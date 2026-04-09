@@ -114,7 +114,7 @@ function generateKPIs(config: ScenarioConfig): KPIImpact[] {
     : 0.25
 
   return [
-    { label: `Abonnenten in ${config.timeframeDays}T`, current: "15,200", projected: `${(15200 + Math.round(2340 * mult * (config.timeframeDays / 90))).toLocaleString("de-CH")}`, change: Math.round(18 * mult), icon: Users },
+    { label: `Follower in ${config.timeframeDays}T`, current: "15,200", projected: `${(15200 + Math.round(2340 * mult * (config.timeframeDays / 90))).toLocaleString("de-CH")}`, change: Math.round(18 * mult), icon: Users },
     { label: "Engagement-Rate", current: "4.7%", projected: `${(4.7 + 0.5 * mult).toFixed(1)}%`, change: Math.round(10 * mult), icon: Heart },
     { label: "Reichweite/Beitrag", current: "3,240", projected: `${(3240 + Math.round(890 * mult)).toLocaleString("de-CH")}`, change: Math.round(27 * mult), icon: Eye },
     { label: "Impressionen", current: "45,600", projected: `${(45600 + Math.round(12400 * mult)).toLocaleString("de-CH")}`, change: Math.round(22 * mult), icon: Megaphone },

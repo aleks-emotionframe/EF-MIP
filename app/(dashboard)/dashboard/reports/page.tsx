@@ -45,7 +45,7 @@ const PREVIEW_DATA: Record<string, { title: string; metrics: { label: string; va
   social_overview: {
     title: "Soziale Medien Übersicht",
     metrics: [
-      { label: "Gesamt-Abonnenten", value: "48.230", change: "+4,2%" },
+      { label: "Gesamt-Follower", value: "48.230", change: "+4,2%" },
       { label: "Engagement-Rate", value: "4,8%", change: "+0,6%" },
       { label: "Reichweite", value: "125.400", change: "+12,3%" },
       { label: "Impressionen", value: "342.100", change: "+8,7%" },
@@ -54,7 +54,7 @@ const PREVIEW_DATA: Record<string, { title: string; metrics: { label: string; va
   instagram: {
     title: "Instagram",
     metrics: [
-      { label: "Abonnenten", value: "15.200", change: "+3,1%" },
+      { label: "Follower", value: "15.200", change: "+3,1%" },
       { label: "Ø Likes", value: "842", change: "+15%" },
       { label: "Story-Aufrufe", value: "2.340", change: "+7,2%" },
     ],
@@ -69,21 +69,21 @@ const PREVIEW_DATA: Record<string, { title: string; metrics: { label: string; va
   youtube: {
     title: "YouTube",
     metrics: [
-      { label: "Abonnenten", value: "5.840", change: "+18,5%" },
+      { label: "Follower", value: "5.840", change: "+18,5%" },
       { label: "Aufrufe (30T)", value: "45.200", change: "+22,1%" },
     ],
   },
   linkedin: {
     title: "LinkedIn",
     metrics: [
-      { label: "Abonnenten", value: "3.120", change: "+6,8%" },
+      { label: "Follower", value: "3.120", change: "+6,8%" },
       { label: "Impressionen", value: "18.900", change: "+11,2%" },
     ],
   },
   tiktok: {
     title: "TikTok",
     metrics: [
-      { label: "Abonnenten", value: "12.400", change: "+28,3%" },
+      { label: "Follower", value: "12.400", change: "+28,3%" },
       { label: "Video-Aufrufe", value: "234.000", change: "+45,1%" },
     ],
   },
@@ -115,7 +115,7 @@ const PREVIEW_DATA: Record<string, { title: string; metrics: { label: string; va
     title: "Szenario-Ergebnisse",
     metrics: [
       { label: "Simulationen", value: "4", change: "" },
-      { label: "Bestes Szenario", value: "+18% Abonnenten", change: "" },
+      { label: "Bestes Szenario", value: "+18% Follower", change: "" },
     ],
   },
 }
