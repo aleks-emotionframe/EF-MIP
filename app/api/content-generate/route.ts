@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server"
 import { auth } from "@/lib/auth"
+import { prisma } from "@/lib/prisma"
 
 export const maxDuration = 30
 
@@ -14,6 +15,15 @@ interface GenerateRequest {
   includeEmoji: boolean
 }
 
+interface ProfileData {
+  connected: boolean
+  followerCount?: number
+  avgEngagement?: number
+  topPostTimes?: string[]
+  recentPostTypes?: string[]
+  bestPerformingContent?: string[]
+}
+
 export async function POST(request: NextRequest) {
   const session = await auth()
   if (!session?.user) {
@@ -21,39 +31,141 @@ export async function POST(request: NextRequest) {
   }
 
   const body = (await request.json()) as GenerateRequest
-
   if (!body.topic?.trim()) {
     return Response.json({ error: "Thema ist erforderlich" }, { status: 400 })
   }
 
-  // Try Claude API for real content generation
+  // Fetch real profile data if platform is connected
+  const profileData = await getProfileData(
+    session.user.activeOrganizationId ?? "",
+    body.platform
+  )
+
+  // Fetch current Reddit trends for context
+  const trends = await getCurrentTrends()
+
   if (ANTHROPIC_API_KEY) {
     try {
-      const result = await generateWithClaude(body)
-      return Response.json({ ...result, source: "claude" })
+      const result = await generateWithClaude(body, profileData, trends)
+      return Response.json({ ...result, source: "claude", profileConnected: profileData.connected })
     } catch {
       // Fall through to template
     }
   }
 
-  // Template-based generation (no API key needed, still useful)
-  const result = generateWithTemplate(body)
-  return Response.json({ ...result, source: "template" })
+  const result = generateWithTemplate(body, profileData)
+  return Response.json({ ...result, source: "template", profileConnected: profileData.connected })
 }
 
-async function generateWithClaude(body: GenerateRequest) {
+// ─── Fetch real profile data from connected platform ────────────
+async function getProfileData(organizationId: string, platform: string): Promise<ProfileData> {
+  if (!prisma || !organizationId) return { connected: false }
+
+  const platformMap: Record<string, string> = {
+    Instagram: "INSTAGRAM",
+    Facebook: "FACEBOOK",
+    LinkedIn: "LINKEDIN",
+    TikTok: "TIKTOK",
+    YouTube: "YOUTUBE",
+  }
+
+  try {
+    const integration = await prisma.integration.findFirst({
+      where: {
+        organizationId,
+        platform: platformMap[platform] as any,
+        status: "CONNECTED",
+      },
+    })
+
+    if (!integration) return { connected: false }
+
+    // Fetch recent metrics for this integration
+    const metrics = await prisma.metric.findMany({
+      where: {
+        integrationId: integration.id,
+        collectedAt: { gte: new Date(Date.now() - 30 * 86400000) },
+      },
+      orderBy: { collectedAt: "desc" },
+      take: 200,
+    })
+
+    if (metrics.length === 0) return { connected: true }
+
+    // Extract real data
+    const followerMetrics = metrics.filter((m) => m.metricName === "followers")
+    const engagementMetrics = metrics.filter((m) => m.metricName === "engagement")
+
+    return {
+      connected: true,
+      followerCount: followerMetrics[0]?.metricValue,
+      avgEngagement: engagementMetrics.length > 0
+        ? engagementMetrics.reduce((a, m) => a + m.metricValue, 0) / engagementMetrics.length
+        : undefined,
+    }
+  } catch {
+    return { connected: false }
+  }
+}
+
+// ─── Fetch Reddit trends for context ────────────────────────────
+async function getCurrentTrends(): Promise<string> {
+  try {
+    // Use internal trends API
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.AUTH_URL || "http://localhost:3000"
+    const res = await fetch(`${baseUrl}/api/trends`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ timeframe: "week" }),
+    }).catch(() => null)
+
+    if (!res || !res.ok) return ""
+
+    const data = await res.json()
+    const topTrends = data.categories
+      ?.flatMap((c: any) => c.trends)
+      ?.slice(0, 5)
+      ?.map((t: any) => t.title)
+      ?.join("; ")
+
+    return topTrends || ""
+  } catch {
+    return ""
+  }
+}
+
+// ─── Claude API Generation ──────────────────────────────────────
+async function generateWithClaude(
+  body: GenerateRequest,
+  profile: ProfileData,
+  trends: string
+) {
   const { default: Anthropic } = await import("@anthropic-ai/sdk")
   const client = new Anthropic({ apiKey: ANTHROPIC_API_KEY })
 
-  const platformLimits: Record<string, string> = {
-    instagram: "Max. 2200 Zeichen. Optimiere für Instagram: starker erster Satz, Absätze mit Leerzeilen, Call-to-Action am Ende.",
-    facebook: "Optimale Länge 40-80 Wörter. Frage am Ende für Engagement.",
-    linkedin: "Professioneller Ton. Hook in der ersten Zeile. 1300 Zeichen optimal. Absätze mit Leerzeilen.",
-    tiktok: "Kurz und catchy. Max 150 Zeichen. Trendige Sprache. CTA für Kommentare.",
-    youtube: "Video-Beschreibung: Zusammenfassung, Timestamps-Vorlage, Call-to-Action. 300-500 Wörter.",
+  const platformRules: Record<string, string> = {
+    Instagram: "WICHTIG: Max 100-150 Wörter. Starker Hook in der ersten Zeile (wird als Vorschau gezeigt). Kurzform. Absätze. Call-to-Action am Ende. Keine langen Textblöcke.",
+    Facebook: "Max 40-80 Wörter. Eine Frage am Ende. Kurz und direkt.",
+    LinkedIn: "Max 100-120 Wörter. Professionell aber persönlich. Hook erste Zeile. Absätze mit Leerzeilen.",
+    TikTok: "Max 2-3 Sätze (unter 150 Zeichen). Extrem catchy. CTA für Kommentare. Trendige Sprache.",
+    YouTube: "Video-Beschreibung: Kurze Zusammenfassung (3 Sätze), dann Timestamps-Vorlage, CTA. Max 200 Wörter.",
   }
 
-  const prompt = `Du bist ein erfahrener Social-Media-Manager. Erstelle einen ${body.platform}-Beitrag.
+  // Build context from real data
+  let profileContext = ""
+  if (profile.connected) {
+    profileContext = "\n\nECHTE PROFILDATEN DES KUNDEN:"
+    if (profile.followerCount) profileContext += `\n- Aktuelle Follower: ${profile.followerCount.toLocaleString("de-CH")}`
+    if (profile.avgEngagement) profileContext += `\n- Durchschnittliche Engagement-Rate: ${profile.avgEngagement.toFixed(1)}%`
+    profileContext += "\nPasse den Content an diese Profilgrösse an (z.B. Tonalität, Reichweiten-Erwartung)."
+  }
+
+  let trendContext = ""
+  if (trends) {
+    trendContext = `\n\nAKTUELLE SOCIAL-MEDIA-TRENDS (diese Woche):\n${trends}\nBerücksichtige diese Trends wenn sie zum Thema passen.`
+  }
+
+  const prompt = `Du bist ein Top Social-Media-Manager im Jahr 2026. Schreibe kurzen, modernen Content.
 
 THEMA: ${body.topic}
 PLATTFORM: ${body.platform}
@@ -61,25 +173,26 @@ TON: ${body.tone}
 SPRACHE: ${body.language}
 
 REGELN:
-- ${platformLimits[body.platform.toLowerCase()] ?? "Optimiere für die Plattform."}
-- ${body.includeHashtags ? "Füge 10-15 relevante Hashtags hinzu (nur existierende, populäre Hashtags verwenden)" : "Keine Hashtags."}
-- ${body.includeEmoji ? "Verwende passende Emojis" : "Keine Emojis."}
-- Schreibe authentisch, nicht werblich
-- Der Content muss faktisch korrekt sein
+- ${platformRules[body.platform] ?? "Kurz und knackig. Max 100 Wörter."}
+- KURZ! Social Media 2026 = Kurzform, kein Textblock. Jeder Satz muss sitzen.
+- ${body.includeHashtags ? "Füge 8-12 relevante, echte Hashtags hinzu" : "Keine Hashtags."}
+- ${body.includeEmoji ? "Passende Emojis einbauen" : "Keine Emojis."}
+- Kein Werbesprech, kein Clickbait. Authentisch und direkt.
+- Faktisch korrekt, nichts erfinden.${profileContext}${trendContext}
 
 Antworte als JSON:
 {
-  "content": "Der fertige Beitragstext",
-  "hashtags": ["hashtag1", "hashtag2"],
-  "bestTime": "Beste Posting-Zeit basierend auf allgemeinen Plattform-Daten",
+  "content": "Der fertige Beitragstext (KURZ!)",
+  "hashtags": ["tag1", "tag2"],
+  "bestTime": "${profile.connected ? "Basierend auf dem Profil die beste Zeit nennen" : "Allgemeine beste Posting-Zeit für " + body.platform}",
   "bestDay": "Bester Wochentag",
-  "tips": ["Tipp 1", "Tipp 2", "Tipp 3"],
+  "tips": ["Tipp 1 (spezifisch zum Thema)", "Tipp 2", "Tipp 3"],
   "charCount": 123
 }`
 
   const message = await client.messages.create({
     model: "claude-sonnet-4-20250514",
-    max_tokens: 1500,
+    max_tokens: 1200,
     messages: [{ role: "user", content: prompt }],
   })
 
@@ -103,8 +216,8 @@ Antworte als JSON:
   }
 }
 
-function generateWithTemplate(body: GenerateRequest) {
-  // Platform-specific best posting times (based on general industry data)
+// ─── Template fallback ──────────────────────────────────────────
+function generateWithTemplate(body: GenerateRequest, profile: ProfileData) {
   const bestTimes: Record<string, { time: string; day: string }> = {
     instagram: { time: "11:00–13:00 oder 18:00–20:00", day: "Dienstag, Mittwoch oder Donnerstag" },
     facebook: { time: "09:00–11:00 oder 13:00–15:00", day: "Mittwoch oder Freitag" },
@@ -115,29 +228,29 @@ function generateWithTemplate(body: GenerateRequest) {
 
   const platformTips: Record<string, string[]> = {
     instagram: [
-      "Erster Satz ist entscheidend – er wird im Feed als Vorschau angezeigt",
-      "Nutze Absätze und Leerzeilen für bessere Lesbarkeit",
-      "Stelle eine Frage am Ende um Kommentare zu fördern",
-      "Speichere den Post als Reel oder Karussell für mehr Reichweite",
+      "Kurzform ist King 2026 – max. 3-4 Sätze + starker Hook",
+      "Karussell-Posts erzielen 3x mehr Reichweite als Einzelbilder",
+      "Frage am Ende für Kommentare",
+      "Reels werden vom Algorithmus bevorzugt",
     ],
     facebook: [
-      "Kurze Posts (unter 80 Wörter) erhalten mehr Engagement",
-      "Fragen oder Umfragen erhöhen die Kommentarrate",
-      "Videos werden vom Algorithmus bevorzugt",
+      "Kurze Posts (unter 40 Wörter) performen am besten",
+      "Videos werden vom Algorithmus stark bevorzugt",
+      "Fragen und Umfragen erhöhen die Kommentarrate",
     ],
     linkedin: [
-      "Die erste Zeile muss zum Weiterlesen animieren (Hook)",
-      "Persönliche Geschichten performen besser als reine Fakten",
-      "Kommentare in den ersten 60 Minuten sind entscheidend",
+      "Hook in der allerersten Zeile – entscheidet über Klick",
+      "Persönliche Erfahrungen performen besser als Fakten",
+      "Kommentare in den ersten 60 Min. sind entscheidend",
     ],
     tiktok: [
-      "Die ersten 0.5 Sekunden entscheiden ob weitergeschaut wird",
-      "Trending Sounds erhöhen die Reichweite massiv",
-      "CTA im Video und in der Beschreibung",
+      "Erste 0.5 Sekunden entscheiden alles",
+      "Trending Sounds = mehr Reichweite",
+      "CTA im Video UND in der Beschreibung",
     ],
     youtube: [
-      "Thumbnail und Titel sind 80% des Erfolgs",
-      "Optimiere die ersten 30 Sekunden für die Retention",
+      "Thumbnail und Titel = 80% des Erfolgs",
+      "Erste 30 Sekunden optimieren für Retention",
       "Frage am Ende des Videos für Kommentare",
     ],
   }
@@ -145,25 +258,20 @@ function generateWithTemplate(body: GenerateRequest) {
   const platform = body.platform.toLowerCase()
   const timing = bestTimes[platform] ?? { time: "10:00–12:00", day: "Dienstag" }
 
-  // Generate a helpful template based on topic
-  const tonePrefix: Record<string, string> = {
-    professionell: "Wir freuen uns",
-    locker: "Hey Leute! 👋",
-    inspirierend: "Stell dir vor",
-    humorvoll: "Wusstet ihr schon",
-    informativ: "Gut zu wissen",
+  let content: string
+  if (profile.connected) {
+    content = `Dein ${body.platform}-Profil ist verbunden. Die KI-Content-Generierung wird gerade aktiviert.\n\nThema: "${body.topic}"\n\nSobald die KI verfügbar ist, analysiert sie dein echtes Profil und erstellt massgeschneiderten Content.`
+  } else {
+    content = `Verbinde dein ${body.platform}-Profil unter Einstellungen → Integrationen für personalisierten Content.\n\nThema: "${body.topic}"\n\nMit verbundenem Profil analysiert die KI deine echten Daten und erstellt optimierten Content.`
   }
 
-  const prefix = tonePrefix[body.tone] ?? "Wir freuen uns"
-  const templateContent = `${prefix} – hier kommt bald dein KI-generierter Beitrag zum Thema:\n\n"${body.topic}"\n\nDie vollständige KI-Content-Generierung wird gerade für dein Konto aktiviert. Nutze in der Zwischenzeit die Posting-Zeiten und Tipps hier unten, um deinen Beitrag manuell zu verfassen.`
-
   return {
-    content: templateContent,
+    content,
     hashtags: [],
     bestTime: timing.time,
     bestDay: timing.day,
-    tips: platformTips[platform] ?? ["Optimiere deinen Content für die gewählte Plattform"],
-    charCount: templateContent.length,
+    tips: platformTips[platform] ?? ["Optimiere deinen Content für die Plattform"],
+    charCount: content.length,
     needsApiKey: true,
   }
 }

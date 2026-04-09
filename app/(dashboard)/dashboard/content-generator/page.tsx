@@ -33,6 +33,7 @@ interface GenerateResult {
   charCount: number
   source: string
   needsApiKey?: boolean
+  profileConnected?: boolean
 }
 
 export default function ContentGeneratorPage() {
@@ -163,7 +164,9 @@ export default function ContentGeneratorPage() {
                       <selectedPlatform.icon className="h-4 w-4" style={{ color: selectedPlatform.color }} />
                       <h3 className="text-[14px] font-semibold text-gray-900">{platform}-Beitrag</h3>
                       {result.source === "claude" && (
-                        <span className="text-[10px] bg-[#6C5CE7]/[0.08] text-[#6C5CE7] rounded-full px-2 py-0.5 font-medium">KI-generiert</span>
+                        <span className="text-[10px] bg-[#6C5CE7]/[0.08] text-[#6C5CE7] rounded-full px-2 py-0.5 font-medium">
+                          {result.profileConnected ? "KI · Profil-basiert" : "KI-generiert"}
+                        </span>
                       )}
                     </div>
                     <div className="flex gap-2">
@@ -215,7 +218,12 @@ export default function ContentGeneratorPage() {
                       <Calendar className="h-3.5 w-3.5 text-gray-400" />
                       <p className="text-[12px] text-gray-500">{result.bestDay}</p>
                     </div>
-                    <p className="text-[10px] text-gray-400 mt-2">Basierend auf allgemeinen {platform}-Nutzungsdaten</p>
+                    <p className="text-[10px] text-gray-400 mt-2">
+                      {result.profileConnected
+                        ? `Basierend auf deinem ${platform}-Profil`
+                        : `Basierend auf allgemeinen ${platform}-Daten · Verbinde dein Profil für personalisierte Zeiten`
+                      }
+                    </p>
                   </div>
 
                   <div className="rounded-2xl border border-gray-100 bg-white p-5">
