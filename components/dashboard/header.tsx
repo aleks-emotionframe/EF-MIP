@@ -20,6 +20,7 @@ const pageTitles: Record<string, string> = {
   "/dashboard/scenarios": "Szenarien",
   "/dashboard/ai-insights": "KI-Erkenntnisse",
   "/dashboard/seo": "SEO-Analyse",
+  "/dashboard/email": "E-Mail-Marketing",
   "/dashboard/reports": "Berichte",
   "/dashboard/settings": "Einstellungen",
   "/dashboard/settings/integrations": "Integrationen",

@@ -24,6 +24,8 @@ model Organization {
   reports      Report[]
   integrations Integration[]
   metrics      Metric[]
+  emailLists   EmailList[]
+  campaigns    Campaign[]
 
   @@map("organizations")
 }
@@ -252,4 +254,76 @@ model Metric {
   @@index([organizationId, platform, metricName, period])
   @@index([integrationId, metricName, period])
   @@map("metrics")
+}
+
+// ─── E-Mail Marketing ───────────────────────────────────────────
+model EmailList {
+  id             String       @id @default(cuid())
+  organizationId String
+  name           String
+  description    String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  subscribers    Subscriber[]
+  campaigns      Campaign[]
+
+  @@map("email_lists")
+}
+
+model Subscriber {
+  id          String           @id @default(cuid())
+  listId      String
+  email       String
+  firstName   String?
+  lastName    String?
+  status      SubscriberStatus @default(ACTIVE)
+  tags        String?          // comma-separated
+  subscribedAt DateTime        @default(now())
+  unsubscribedAt DateTime?
+
+  list        EmailList        @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@unique([listId, email])
+  @@map("subscribers")
+}
+
+enum SubscriberStatus {
+  ACTIVE
+  UNSUBSCRIBED
+  BOUNCED
+}
+
+model Campaign {
+  id             String         @id @default(cuid())
+  organizationId String
+  listId         String?
+  name           String
+  subject        String
+  previewText    String?
+  htmlContent    String?
+  status         CampaignStatus @default(DRAFT)
+  scheduledAt    DateTime?
+  sentAt         DateTime?
+  totalSent      Int            @default(0)
+  totalOpened    Int            @default(0)
+  totalClicked   Int            @default(0)
+  totalBounced   Int            @default(0)
+  totalUnsubscribed Int         @default(0)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  organization   Organization   @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  list           EmailList?     @relation(fields: [listId], references: [id], onDelete: SetNull)
+
+  @@map("campaigns")
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  SENDING
+  SENT
+  FAILED
 }
