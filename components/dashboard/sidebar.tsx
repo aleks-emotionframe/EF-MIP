@@ -10,6 +10,7 @@ import {
   Layers,
   Sparkles,
   FileText,
+  Globe,
   Settings,
   ChevronLeft,
   ChevronRight,
@@ -21,6 +22,7 @@ const menuItems = [
   { icon: BarChart3, label: "Analysen", href: "/dashboard/analytics" },
   { icon: Layers, label: "Szenarien", href: "/dashboard/scenarios" },
   { icon: Sparkles, label: "KI-Erkenntnisse", href: "/dashboard/ai-insights" },
+  { icon: Globe, label: "SEO-Analyse", href: "/dashboard/seo" },
   { icon: FileText, label: "Berichte", href: "/dashboard/reports" },
 ]
 
