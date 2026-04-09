@@ -15,20 +15,26 @@ import {
   Users,
   Mail,
   Settings,
+  Calendar,
   ChevronLeft,
   ChevronRight,
+  Target,
+  Bell,
 } from "lucide-react"
 
 const menuItems = [
   { icon: Home, label: "Startseite", href: "/dashboard" },
   { icon: Share2, label: "Soziale Medien", href: "/dashboard/social" },
+  { icon: Calendar, label: "Kalender", href: "/dashboard/kalender" },
   { icon: BarChart3, label: "Analysen", href: "/dashboard/analytics" },
   { icon: Layers, label: "Szenarien", href: "/dashboard/scenarios" },
   { icon: Sparkles, label: "KI-Erkenntnisse", href: "/dashboard/ai-insights" },
   { icon: TrendingUp, label: "Trends", href: "/dashboard/trends" },
+  { icon: Target, label: "Konkurrenz", href: "/dashboard/konkurrenz" },
   { icon: Globe, label: "SEO-Analyse", href: "/dashboard/seo" },
   { icon: Users, label: "Kontakte", href: "/dashboard/kontakte" },
   { icon: Mail, label: "E-Mail-Marketing", href: "/dashboard/email" },
+  { icon: Bell, label: "Benachrichtigungen", href: "/dashboard/benachrichtigungen" },
   { icon: FileText, label: "Berichte", href: "/dashboard/reports" },
 ]
 
