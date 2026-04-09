@@ -1,0 +1,137 @@
+services:
+  # ─── Next.js App ─────────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ef-app
+    restart: unless-stopped
+    env_file: .env.production
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://efuser:${POSTGRES_PASSWORD}@postgres:5432/emotionframe
+      - REDIS_URL=redis://redis:6379
+      - AI_ENGINE_URL=http://ai-engine:8000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - ef-network
+    expose:
+      - "3000"
+
+  # ─── Python FastAPI AI Engine ────────────────────────────────────
+  ai-engine:
+    build:
+      context: ./services/ai-engine
+      dockerfile: Dockerfile
+    container_name: ef-ai-engine
+    restart: unless-stopped
+    env_file: .env.production
+    environment:
+      - DATABASE_URL=postgresql://efuser:${POSTGRES_PASSWORD}@postgres:5432/emotionframe
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - ef-network
+    expose:
+      - "8000"
+
+  # ─── PostgreSQL ──────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: ef-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: efuser
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: emotionframe
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ef-network
+    expose:
+      - "5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U efuser -d emotionframe"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ─── Redis ───────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: ef-redis
+    restart: unless-stopped
+    command: redis-server --maxmemory 128mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    networks:
+      - ef-network
+    expose:
+      - "6379"
+
+  # ─── Nginx Reverse Proxy ─────────────────────────────────────────
+  nginx:
+    image: nginx:alpine
+    container_name: ef-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - certbot_certs:/etc/letsencrypt:ro
+      - certbot_www:/var/www/certbot:ro
+    depends_on:
+      - app
+      - ai-engine
+    networks:
+      - ef-network
+
+  # ─── Certbot (SSL) ──────────────────────────────────────────────
+  certbot:
+    image: certbot/certbot
+    container_name: ef-certbot
+    volumes:
+      - certbot_certs:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    networks:
+      - ef-network
+
+  # ─── Backup Cron ─────────────────────────────────────────────────
+  backup:
+    image: postgres:16-alpine
+    container_name: ef-backup
+    restart: unless-stopped
+    environment:
+      PGHOST: postgres
+      PGUSER: efuser
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      PGDATABASE: emotionframe
+    volumes:
+      - ./scripts/backup.sh:/backup.sh:ro
+      - ./scripts/setup-cron.sh:/setup-cron.sh:ro
+      - backups:/backups
+    entrypoint: ["/bin/sh", "/setup-cron.sh"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - ef-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  certbot_certs:
+  certbot_www:
+  backups:
+
+networks:
+  ef-network:
+    driver: bridge
