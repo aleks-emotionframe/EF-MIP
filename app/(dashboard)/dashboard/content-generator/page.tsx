@@ -234,14 +234,14 @@ export default function ContentGeneratorPage() {
                   </div>
                 </div>
 
-                {/* API key hint */}
+                {/* Service info */}
                 {result.needsApiKey && (
-                  <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-4 flex items-start gap-3">
-                    <Sparkles className="h-4 w-4 text-blue-500 mt-0.5 shrink-0" />
+                  <div className="rounded-xl border border-amber-100 bg-amber-50/50 p-4 flex items-start gap-3">
+                    <Sparkles className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
                     <div>
-                      <p className="text-[13px] text-blue-800 font-medium">KI-Content freischalten</p>
-                      <p className="text-[12px] text-blue-600 mt-0.5">
-                        Trage den ANTHROPIC_API_KEY in die Umgebungsvariablen ein, um vollständig KI-generierten Content zu erhalten. Die Posting-Zeiten und Tipps funktionieren bereits.
+                      <p className="text-[13px] text-amber-800 font-medium">KI-Content wird eingerichtet</p>
+                      <p className="text-[12px] text-amber-600 mt-0.5">
+                        Die vollständige KI-Content-Generierung wird gerade für dein Konto aktiviert. In der Zwischenzeit findest du hier bereits die besten Posting-Zeiten und plattformspezifische Tipps.
                       </p>
                     </div>
                   </div>

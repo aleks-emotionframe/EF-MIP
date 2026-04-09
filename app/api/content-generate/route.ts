@@ -145,13 +145,25 @@ function generateWithTemplate(body: GenerateRequest) {
   const platform = body.platform.toLowerCase()
   const timing = bestTimes[platform] ?? { time: "10:00–12:00", day: "Dienstag" }
 
+  // Generate a helpful template based on topic
+  const tonePrefix: Record<string, string> = {
+    professionell: "Wir freuen uns",
+    locker: "Hey Leute! 👋",
+    inspirierend: "Stell dir vor",
+    humorvoll: "Wusstet ihr schon",
+    informativ: "Gut zu wissen",
+  }
+
+  const prefix = tonePrefix[body.tone] ?? "Wir freuen uns"
+  const templateContent = `${prefix} – hier kommt bald dein KI-generierter Beitrag zum Thema:\n\n"${body.topic}"\n\nDie vollständige KI-Content-Generierung wird gerade für dein Konto aktiviert. Nutze in der Zwischenzeit die Posting-Zeiten und Tipps hier unten, um deinen Beitrag manuell zu verfassen.`
+
   return {
-    content: `[KI Content-Generator benötigt ANTHROPIC_API_KEY]\n\nThema: ${body.topic}\nPlattform: ${body.platform}\nTon: ${body.tone}\n\nTrage den ANTHROPIC_API_KEY in die Umgebungsvariablen ein, um KI-generierten Content zu erhalten. Ohne API-Key können wir dir trotzdem die besten Posting-Zeiten und Tipps geben.`,
+    content: templateContent,
     hashtags: [],
     bestTime: timing.time,
     bestDay: timing.day,
     tips: platformTips[platform] ?? ["Optimiere deinen Content für die gewählte Plattform"],
-    charCount: 0,
+    charCount: templateContent.length,
     needsApiKey: true,
   }
 }
