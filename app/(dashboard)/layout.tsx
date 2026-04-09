@@ -1,4 +1,5 @@
 import { SessionProvider } from "@/components/providers/session-provider"
+import { ThemeProvider } from "@/components/providers/theme-provider"
 import { DashboardShell } from "@/components/dashboard/dashboard-shell"
 
 export default function DashboardLayout({
@@ -8,7 +9,9 @@ export default function DashboardLayout({
 }) {
   return (
     <SessionProvider>
-      <DashboardShell>{children}</DashboardShell>
+      <ThemeProvider>
+        <DashboardShell>{children}</DashboardShell>
+      </ThemeProvider>
     </SessionProvider>
   )
 }

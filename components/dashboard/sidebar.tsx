@@ -16,6 +16,7 @@ import {
   Mail,
   Settings,
   Calendar,
+  Hash,
   ChevronLeft,
   ChevronRight,
   Target,
@@ -26,6 +27,8 @@ const menuItems = [
   { icon: Home, label: "Startseite", href: "/dashboard" },
   { icon: Share2, label: "Soziale Medien", href: "/dashboard/social" },
   { icon: Calendar, label: "Kalender", href: "/dashboard/kalender" },
+  { icon: Sparkles, label: "Content-Generator", href: "/dashboard/content-generator" },
+  { icon: Hash, label: "Hashtags", href: "/dashboard/hashtags" },
   { icon: BarChart3, label: "Analysen", href: "/dashboard/analytics" },
   { icon: Layers, label: "Szenarien", href: "/dashboard/scenarios" },
   { icon: Sparkles, label: "KI-Erkenntnisse", href: "/dashboard/ai-insights" },
@@ -55,7 +58,7 @@ export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
       initial={false}
       animate={{ width: isCollapsed ? 68 : 260 }}
       transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-      className="hidden md:flex flex-col h-screen fixed left-0 top-0 z-40 bg-white border-r border-gray-100"
+      className="hidden md:flex flex-col h-screen fixed left-0 top-0 z-40 bg-white dark:bg-gray-900 border-r border-gray-100 dark:border-gray-800"
       role="navigation"
       aria-label="Hauptnavigation"
     >
@@ -71,7 +74,7 @@ export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
             transition={{ duration: 0.15 }}
             className="overflow-hidden whitespace-nowrap"
           >
-            <span className="font-semibold text-[15px] text-gray-900 tracking-tight">EmotionFrame</span>
+            <span className="font-semibold text-[15px] text-gray-900 dark:text-gray-100 tracking-tight">EmotionFrame</span>
           </motion.div>
         </Link>
       </div>

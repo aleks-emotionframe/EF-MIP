@@ -200,3 +200,102 @@ body {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
+
+/* ─── Dark Mode Global Overrides ─────────────────────────────── */
+.dark {
+  color-scheme: dark;
+}
+
+/* Cards, panels, modals */
+.dark .bg-white {
+  background-color: #111827 !important;
+}
+
+/* Gray backgrounds */
+.dark .bg-gray-50,
+.dark .bg-gray-100,
+.dark .bg-\[#F8F9FB\] {
+  background-color: #0a0f1a !important;
+}
+.dark .bg-gray-50\/50,
+.dark .bg-gray-50\/30 {
+  background-color: rgba(17, 24, 39, 0.5) !important;
+}
+
+/* Borders */
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-gray-50 {
+  border-color: #1f2937 !important;
+}
+
+/* Text */
+.dark .text-gray-900 { color: #f3f4f6 !important; }
+.dark .text-gray-800 { color: #e5e7eb !important; }
+.dark .text-gray-700 { color: #d1d5db !important; }
+.dark .text-gray-600 { color: #9ca3af !important; }
+.dark .text-gray-500 { color: #6b7280 !important; }
+.dark .text-gray-400 { color: #4b5563 !important; }
+
+/* Inputs */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+  color: #f3f4f6 !important;
+}
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #4b5563 !important;
+}
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: #6C5CE7 !important;
+}
+
+/* Popover / Dropdowns */
+.dark .bg-popover,
+.dark [class*="shadow-lg"] {
+  background-color: #111827 !important;
+}
+
+/* Hover states */
+.dark .hover\:bg-gray-50:hover,
+.dark .hover\:bg-gray-100:hover {
+  background-color: #1f2937 !important;
+}
+.dark .hover\:bg-muted:hover {
+  background-color: #1f2937 !important;
+}
+
+/* Charts tooltip */
+.dark .recharts-default-tooltip {
+  background-color: #111827 !important;
+  border-color: #1f2937 !important;
+}
+
+/* Glass morphism dark */
+.dark .glass-light {
+  background: rgba(17, 24, 39, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Table rows */
+.dark tr:hover {
+  background-color: rgba(31, 41, 55, 0.5) !important;
+}
+
+/* Mobile nav */
+.dark .bg-white\/95 {
+  background-color: rgba(17, 24, 39, 0.95) !important;
+}
+
+/* Scrollbar dark */
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}

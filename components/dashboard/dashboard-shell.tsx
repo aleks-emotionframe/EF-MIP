@@ -10,7 +10,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   const { isCollapsed, toggle } = useSidebar()
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB]">
+    <div className="min-h-screen bg-[#F8F9FB] dark:bg-gray-950">
       {/* Desktop Sidebar */}
       <Sidebar isCollapsed={isCollapsed} onToggle={toggle} />
 

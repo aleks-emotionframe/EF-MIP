@@ -11,7 +11,10 @@ import {
   Building2,
   ChevronDown,
   Bell,
+  Moon,
+  Sun,
 } from "lucide-react"
+import { useTheme } from "@/components/providers/theme-provider"
 
 const pageTitles: Record<string, string> = {
   "/dashboard": "Übersicht",
@@ -19,6 +22,8 @@ const pageTitles: Record<string, string> = {
   "/dashboard/analytics": "Analysen",
   "/dashboard/scenarios": "Szenarien",
   "/dashboard/kalender": "Kalender",
+  "/dashboard/content-generator": "Content-Generator",
+  "/dashboard/hashtags": "Hashtag-Recherche",
   "/dashboard/konkurrenz": "Konkurrenz-Analyse",
   "/dashboard/benachrichtigungen": "Benachrichtigungen",
   "/dashboard/ai-insights": "KI-Erkenntnisse",
@@ -33,6 +38,7 @@ const pageTitles: Record<string, string> = {
 }
 
 export function Header() {
+  const { theme, toggle: toggleTheme } = useTheme()
   const { data: session } = useSession()
   const pathname = usePathname()
   const [showUserMenu, setShowUserMenu] = useState(false)
@@ -65,10 +71,10 @@ export function Header() {
     : session?.user?.email?.[0]?.toUpperCase() ?? "U"
 
   return (
-    <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-6 sticky top-0 z-30">
+    <header className="h-16 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between px-6 sticky top-0 z-30">
       {/* Left: Page Title */}
       <div className="flex items-center gap-2">
-        <h1 className="text-[15px] font-semibold text-gray-900 capitalize">{pageTitle}</h1>
+        <h1 className="text-[15px] font-semibold text-gray-900 dark:text-gray-100 capitalize">{pageTitle}</h1>
       </div>
 
       {/* Right */}
@@ -122,6 +128,15 @@ export function Header() {
             {activeOrg.organizationName}
           </span>
         )}
+
+        {/* Dark Mode Toggle */}
+        <button
+          onClick={toggleTheme}
+          className="rounded-lg p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          aria-label={theme === "dark" ? "Helles Design" : "Dunkles Design"}
+        >
+          {theme === "dark" ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
+        </button>
 
         {/* Notification Bell */}
         <button className="relative rounded-lg p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors">
