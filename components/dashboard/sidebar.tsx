@@ -25,7 +25,7 @@ const menuItems = [
 ]
 
 const bottomItems = [
-  { icon: Settings, label: "Settings", href: "/dashboard/settings" },
+  { icon: Settings, label: "Settings", href: "/dashboard/settings/integrations" },
 ]
 
 interface SidebarProps {

@@ -18,10 +18,12 @@ model Organization {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  members     OrganizationMember[]
-  clients     Client[]
-  scenarios   Scenario[]
-  reports     Report[]
+  members      OrganizationMember[]
+  clients      Client[]
+  scenarios    Scenario[]
+  reports      Report[]
+  integrations Integration[]
+  metrics      Metric[]
 
   @@map("organizations")
 }
@@ -136,6 +138,7 @@ model Client {
 
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   scenarios      Scenario[]
+  integrations   Integration[]
 
   @@map("clients")
 }
@@ -185,4 +188,68 @@ enum ReportType {
   SENTIMENT_TREND
   ENGAGEMENT
   CUSTOM
+}
+
+// ─── Platform Integrations ──────────────────────────────────────
+model Integration {
+  id             String       @id @default(cuid())
+  organizationId String
+  clientId       String?
+  platform       Platform
+  accessToken    String?
+  refreshToken   String?
+  tokenExpiresAt DateTime?
+  externalId     String?      // Platform-specific account/page ID
+  externalName   String?      // Display name from the platform
+  scopes         String?      // Comma-separated scopes granted
+  status         IntegrationStatus @default(DISCONNECTED)
+  lastSyncAt     DateTime?
+  lastSyncError  String?
+  metadata       Json?        // Platform-specific config
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  client         Client?      @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  metrics        Metric[]
+
+  @@unique([organizationId, platform, externalId])
+  @@map("integrations")
+}
+
+enum Platform {
+  GOOGLE_ANALYTICS
+  SEARCH_CONSOLE
+  INSTAGRAM
+  FACEBOOK
+  YOUTUBE
+  LINKEDIN
+  TIKTOK
+}
+
+enum IntegrationStatus {
+  CONNECTED
+  DISCONNECTED
+  ERROR
+  SYNCING
+}
+
+// ─── Metrics (Time-series data from platforms) ──────────────────
+model Metric {
+  id             String   @id @default(cuid())
+  organizationId String
+  integrationId  String
+  platform       Platform
+  metricName     String   // e.g. "sessions", "followers", "impressions"
+  metricValue    Float
+  dimensions     Json?    // e.g. {"source": "organic", "query": "keyword"}
+  period         String   // e.g. "2026-04-09", "2026-W15"
+  collectedAt    DateTime @default(now())
+
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  integration    Integration  @relation(fields: [integrationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, platform, metricName, period])
+  @@index([integrationId, metricName, period])
+  @@map("metrics")
 }

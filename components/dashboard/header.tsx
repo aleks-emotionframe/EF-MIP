@@ -21,6 +21,7 @@ const pageTitles: Record<string, string> = {
   "/dashboard/ai-insights": "AI Insights",
   "/dashboard/reports": "Reports",
   "/dashboard/settings": "Settings",
+  "/dashboard/settings/integrations": "Integrationen",
   "/admin/clients": "Clients",
 }
 
