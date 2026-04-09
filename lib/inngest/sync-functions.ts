@@ -180,4 +180,41 @@ export const dailySync = inngest.createFunction(
   }
 )
 
-export const functions = [syncIntegration, dailySync]
+// ─── Monthly report cron (1st of each month, 06:00 UTC) ─────────
+export const monthlyReport = inngest.createFunction(
+  {
+    id: "monthly-report-generation",
+    triggers: [{ cron: "0 6 1 * *" }],
+  },
+  async ({ step }) => {
+    if (!prisma) return { skipped: true, reason: "No database" }
+
+    const organizations = await step.run("fetch-orgs", () =>
+      prisma!.organization.findMany({
+        where: { isActive: true },
+        select: { id: true, name: true },
+      })
+    )
+
+    for (const org of organizations) {
+      await step.run(`generate-report-${org.id}`, async () => {
+        await prisma!.report.create({
+          data: {
+            organizationId: org.id,
+            title: `Monatlicher Report - ${new Date().toLocaleDateString("de-CH", { month: "long", year: "numeric" })}`,
+            type: "ENGAGEMENT",
+            data: {
+              generatedAt: new Date().toISOString(),
+              period: "monthly",
+              sections: ["social_overview", "analytics", "ai_insights"],
+            },
+          },
+        })
+      })
+    }
+
+    return { reportsGenerated: organizations.length }
+  }
+)
+
+export const functions = [syncIntegration, dailySync, monthlyReport]

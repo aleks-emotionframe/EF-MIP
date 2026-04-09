@@ -42,6 +42,8 @@ export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
       animate={{ width: isCollapsed ? 68 : 260 }}
       transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
       className="hidden md:flex flex-col h-screen fixed left-0 top-0 z-40 bg-white border-r border-gray-100"
+      role="navigation"
+      aria-label="Hauptnavigation"
     >
       {/* Logo */}
       <div className="flex items-center h-16 px-4">
