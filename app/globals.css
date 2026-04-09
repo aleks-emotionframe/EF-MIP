@@ -2,61 +2,87 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ─── EmotionFrame Design System ─────────────────────────────── */
 :root {
+  /* Primary Palette */
+  --ef-primary: 108 92 231;         /* #6C5CE7 */
+  --ef-primary-light: 162 155 254;  /* #A29BFE */
+  --ef-primary-dark: 86 67 204;     /* #5643CC */
+
+  /* Secondary */
+  --ef-secondary: 0 206 201;        /* #00CEC9 */
+  --ef-accent: 253 121 168;         /* #FD79A8 */
+  --ef-warning: 253 203 110;        /* #FDCB6E */
+  --ef-success: 0 184 148;          /* #00B894 */
+  --ef-danger: 214 48 49;           /* #D63031 */
+
+  /* Neutrals */
+  --ef-dark: 45 52 54;              /* #2D3436 */
+  --ef-gray-900: 30 30 30;
+  --ef-gray-800: 45 52 54;
+  --ef-gray-700: 99 110 114;
+  --ef-gray-600: 130 140 145;
+  --ef-gray-500: 178 186 187;
+  --ef-gray-400: 200 206 208;
+  --ef-gray-300: 223 228 234;
+  --ef-gray-200: 241 242 246;
+  --ef-gray-100: 248 249 250;
+
+  /* shadcn/ui tokens */
   --background: 0 0% 100%;
-  --foreground: 0 0% 3.9%;
+  --foreground: 210 11% 15%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 3.9%;
+  --card-foreground: 210 11% 15%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 3.9%;
-  --primary: 0 0% 9%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 96.1%;
-  --secondary-foreground: 0 0% 9%;
-  --muted: 0 0% 96.1%;
-  --muted-foreground: 0 0% 45.1%;
-  --accent: 0 0% 96.1%;
-  --accent-foreground: 0 0% 9%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 89.8%;
-  --input: 0 0% 89.8%;
-  --ring: 0 0% 3.9%;
-  --radius: 0.5rem;
-  --chart-1: 12 76% 61%;
-  --chart-2: 173 58% 39%;
-  --chart-3: 197 37% 24%;
-  --chart-4: 43 74% 66%;
-  --chart-5: 27 87% 67%;
+  --popover-foreground: 210 11% 15%;
+  --primary: 252 75% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 174 100% 40%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 43%;
+  --accent: 252 75% 94%;
+  --accent-foreground: 252 75% 40%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 252 75% 60%;
+  --radius: 0.75rem;
+  --chart-1: 252 75% 60%;
+  --chart-2: 174 100% 40%;
+  --chart-3: 340 82% 52%;
+  --chart-4: 45 96% 71%;
+  --chart-5: 160 100% 36%;
+
+  /* Sidebar */
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 64px;
 }
 
 .dark {
-  --background: 0 0% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 0 0% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 0 0% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
-  --primary-foreground: 0 0% 9%;
-  --secondary: 0 0% 14.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 0 0% 14.9%;
-  --muted-foreground: 0 0% 63.9%;
-  --accent: 0 0% 14.9%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 14.9%;
-  --input: 0 0% 14.9%;
-  --ring: 0 0% 83.1%;
-  --chart-1: 220 70% 50%;
-  --chart-2: 160 60% 45%;
-  --chart-3: 30 80% 55%;
-  --chart-4: 280 65% 60%;
-  --chart-5: 340 75% 55%;
+  --background: 220 20% 6%;
+  --foreground: 0 0% 95%;
+  --card: 220 20% 9%;
+  --card-foreground: 0 0% 95%;
+  --popover: 220 20% 9%;
+  --popover-foreground: 0 0% 95%;
+  --primary: 252 75% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 174 100% 40%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 220 14% 14%;
+  --muted-foreground: 220 9% 60%;
+  --accent: 252 75% 15%;
+  --accent-foreground: 252 75% 80%;
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 0 0% 95%;
+  --border: 220 14% 18%;
+  --input: 220 14% 18%;
+  --ring: 252 75% 60%;
 }
 
+/* ─── Tailwind Theme ─────────────────────────────────────────── */
 @theme inline {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -82,6 +108,18 @@
   --color-chart-3: hsl(var(--chart-3));
   --color-chart-4: hsl(var(--chart-4));
   --color-chart-5: hsl(var(--chart-5));
+
+  /* EmotionFrame brand colors */
+  --color-ef-primary: rgb(var(--ef-primary));
+  --color-ef-primary-light: rgb(var(--ef-primary-light));
+  --color-ef-primary-dark: rgb(var(--ef-primary-dark));
+  --color-ef-secondary: rgb(var(--ef-secondary));
+  --color-ef-accent: rgb(var(--ef-accent));
+  --color-ef-warning: rgb(var(--ef-warning));
+  --color-ef-success: rgb(var(--ef-success));
+  --color-ef-danger: rgb(var(--ef-danger));
+  --color-ef-dark: rgb(var(--ef-dark));
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -90,7 +128,70 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* ─── Glassmorphism Utilities ────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ─── Glow Effects ───────────────────────────────────────────── */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(108, 92, 231, 0.3),
+              0 0 60px rgba(108, 92, 231, 0.1);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 20px rgba(0, 206, 201, 0.3),
+              0 0 60px rgba(0, 206, 201, 0.1);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px rgba(253, 121, 168, 0.3),
+              0 0 60px rgba(253, 121, 168, 0.1);
+}
+
+/* ─── Animated Gradient Background (Login) ───────────────────── */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient {
+  background: linear-gradient(
+    -45deg,
+    #6c5ce7, #a29bfe, #00cec9, #fd79a8, #6c5ce7
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* ─── Base Styles ────────────────────────────────────────────── */
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
 }
