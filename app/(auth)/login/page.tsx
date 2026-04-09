@@ -23,7 +23,22 @@ export default function LoginPage() {
 
           <LoginForm />
 
-          <p className="mt-6 text-center text-xs text-gray-400">
+          {/* Demo Credentials */}
+          <div className="mt-6 rounded-lg bg-gray-50 border border-gray-200 p-4">
+            <p className="text-xs font-semibold text-gray-500 uppercase mb-2">Demo-Zugangsdaten</p>
+            <div className="space-y-1.5 text-xs text-gray-600">
+              <div className="flex justify-between">
+                <span className="font-medium">Admin:</span>
+                <span className="font-mono">admin@emotionframe.com / demo1234</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">User:</span>
+                <span className="font-mono">user@emotionframe.com / demo1234</span>
+              </div>
+            </div>
+          </div>
+
+          <p className="mt-4 text-center text-xs text-gray-400">
             &copy; {new Date().getFullYear()} EmotionFrame. Alle Rechte vorbehalten.
           </p>
         </div>
