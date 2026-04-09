@@ -230,12 +230,12 @@ body {
 }
 
 /* Text */
-.dark .text-gray-900 { color: #f3f4f6 !important; }
-.dark .text-gray-800 { color: #e5e7eb !important; }
-.dark .text-gray-700 { color: #d1d5db !important; }
-.dark .text-gray-600 { color: #9ca3af !important; }
-.dark .text-gray-500 { color: #6b7280 !important; }
-.dark .text-gray-400 { color: #4b5563 !important; }
+.dark .text-gray-900 { color: #f9fafb !important; }
+.dark .text-gray-800 { color: #f3f4f6 !important; }
+.dark .text-gray-700 { color: #e5e7eb !important; }
+.dark .text-gray-600 { color: #d1d5db !important; }
+.dark .text-gray-500 { color: #9ca3af !important; }
+.dark .text-gray-400 { color: #9ca3af !important; }
 
 /* Inputs */
 .dark input,
