@@ -11,6 +11,7 @@ import {
   Sparkles,
   FileText,
   Globe,
+  Users,
   Mail,
   Settings,
   ChevronLeft,
@@ -24,6 +25,7 @@ const menuItems = [
   { icon: Layers, label: "Szenarien", href: "/dashboard/scenarios" },
   { icon: Sparkles, label: "KI-Erkenntnisse", href: "/dashboard/ai-insights" },
   { icon: Globe, label: "SEO-Analyse", href: "/dashboard/seo" },
+  { icon: Users, label: "Kontakte", href: "/dashboard/kontakte" },
   { icon: Mail, label: "E-Mail-Marketing", href: "/dashboard/email" },
   { icon: FileText, label: "Berichte", href: "/dashboard/reports" },
 ]
