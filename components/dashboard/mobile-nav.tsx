@@ -11,11 +11,11 @@ import {
 } from "lucide-react"
 
 const mobileItems = [
-  { icon: Home, label: "Home", href: "/dashboard" },
-  { icon: BarChart3, label: "Analytics", href: "/dashboard/analytics" },
-  { icon: Layers, label: "Scenarios", href: "/dashboard/scenarios" },
-  { icon: Sparkles, label: "AI", href: "/dashboard/ai-insights" },
-  { icon: FileText, label: "Reports", href: "/dashboard/reports" },
+  { icon: Home, label: "Start", href: "/dashboard" },
+  { icon: BarChart3, label: "Analysen", href: "/dashboard/analytics" },
+  { icon: Layers, label: "Szenarien", href: "/dashboard/scenarios" },
+  { icon: Sparkles, label: "KI", href: "/dashboard/ai-insights" },
+  { icon: FileText, label: "Berichte", href: "/dashboard/reports" },
 ]
 
 export function MobileNav() {

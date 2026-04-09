@@ -50,11 +50,11 @@ const SCENARIO_TYPES: { key: ScenarioType; label: string; icon: any; desc: strin
   { key: "frequency", label: "Posting-Frequenz ändern", icon: Calendar, desc: "Wie oft posten?" },
   { key: "new_platform", label: "Neue Plattform starten", icon: Layers, desc: "Was wäre wenn?" },
   { key: "content", label: "Content-Strategie ändern", icon: PenTool, desc: "Anderer Content-Mix" },
-  { key: "custom", label: "Custom Szenario", icon: Zap, desc: "Freie Parameter" },
+  { key: "custom", label: "Eigenes Szenario", icon: Zap, desc: "Freie Parameter" },
 ]
 
 const PLATFORMS = ["Instagram", "Facebook", "YouTube", "LinkedIn", "TikTok", "Google Ads"]
-const CONTENT_TYPES = ["Reels/Shorts", "Stories", "Karussell-Posts", "Live Videos", "Blog/Artikel", "Infografiken"]
+const CONTENT_TYPES = ["Reels/Shorts", "Stories", "Karussell-Beiträge", "Live-Videos", "Blog/Artikel", "Infografiken"]
 
 // ─── Demo chart data generator ──────────────────────────────────
 function generateChartData(config: ScenarioConfig): any[] {
@@ -78,8 +78,8 @@ function generateChartData(config: ScenarioConfig): any[] {
     data.push({
       date: date.toLocaleDateString("de-CH", { day: "2-digit", month: "2-digit" }),
       day: i,
-      ist: Math.round(val),
-      szenario: null,
+      Ist: Math.round(val),
+      Szenario: null,
       upper: null,
       lower: null,
     })
@@ -96,9 +96,9 @@ function generateChartData(config: ScenarioConfig): any[] {
     data.push({
       date: date.toLocaleDateString("de-CH", { day: "2-digit", month: "2-digit" }),
       day: i,
-      ist: null,
-      szenario: Math.round(scenarioVal),
-      baseline: Math.round(baseVal),
+      Ist: null,
+      Szenario: Math.round(scenarioVal),
+      Basis: Math.round(baseVal),
       upper: Math.round(scenarioVal + confidence),
       lower: Math.round(scenarioVal - confidence),
     })
@@ -114,10 +114,10 @@ function generateKPIs(config: ScenarioConfig): KPIImpact[] {
     : 0.25
 
   return [
-    { label: `Follower in ${config.timeframeDays}T`, current: "15,200", projected: `${(15200 + Math.round(2340 * mult * (config.timeframeDays / 90))).toLocaleString("de-CH")}`, change: Math.round(18 * mult), icon: Users },
-    { label: "Engagement Rate", current: "4.7%", projected: `${(4.7 + 0.5 * mult).toFixed(1)}%`, change: Math.round(10 * mult), icon: Heart },
-    { label: "Reichweite/Post", current: "3,240", projected: `${(3240 + Math.round(890 * mult)).toLocaleString("de-CH")}`, change: Math.round(27 * mult), icon: Eye },
-    { label: "Impressions", current: "45,600", projected: `${(45600 + Math.round(12400 * mult)).toLocaleString("de-CH")}`, change: Math.round(22 * mult), icon: Megaphone },
+    { label: `Abonnenten in ${config.timeframeDays}T`, current: "15,200", projected: `${(15200 + Math.round(2340 * mult * (config.timeframeDays / 90))).toLocaleString("de-CH")}`, change: Math.round(18 * mult), icon: Users },
+    { label: "Engagement-Rate", current: "4.7%", projected: `${(4.7 + 0.5 * mult).toFixed(1)}%`, change: Math.round(10 * mult), icon: Heart },
+    { label: "Reichweite/Beitrag", current: "3,240", projected: `${(3240 + Math.round(890 * mult)).toLocaleString("de-CH")}`, change: Math.round(27 * mult), icon: Eye },
+    { label: "Impressionen", current: "45,600", projected: `${(45600 + Math.round(12400 * mult)).toLocaleString("de-CH")}`, change: Math.round(22 * mult), icon: Megaphone },
   ]
 }
 
@@ -350,7 +350,7 @@ export default function ScenariosPage() {
               >
                 {config.type === "budget" && (
                   <LabeledSlider
-                    label="Monatliches Budget" min={500} max={20000} step={250}
+                    label="Monatsbudget" min={500} max={20000} step={250}
                     value={config.budget ?? 2000} onChange={(v) => setConfig((p) => ({ ...p, budget: v }))}
                     format={(v) => `CHF ${v.toLocaleString("de-CH")}`}
                   />
@@ -358,15 +358,15 @@ export default function ScenariosPage() {
 
                 {config.type === "frequency" && (
                   <LabeledSlider
-                    label="Posts pro Woche" min={1} max={21} step={1}
+                    label="Beiträge pro Woche" min={1} max={21} step={1}
                     value={config.frequency ?? 5} onChange={(v) => setConfig((p) => ({ ...p, frequency: v }))}
-                    unit="Posts/Woche"
+                    unit="Beiträge/Woche"
                   />
                 )}
 
                 {config.type === "content" && (
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Content-Typ Fokus</label>
+                    <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Inhaltstyp-Fokus</label>
                     <div className="grid grid-cols-2 gap-2">
                       {CONTENT_TYPES.map((ct) => (
                         <button
@@ -387,7 +387,7 @@ export default function ScenariosPage() {
 
                 {config.type === "custom" && (
                   <LabeledSlider
-                    label="Erwartete Änderung" min={-50} max={100} step={5}
+                    label="Erwartete Veränderung" min={-50} max={100} step={5}
                     value={config.customChange ?? 15}
                     onChange={(v) => setConfig((p) => ({ ...p, customChange: v }))}
                     format={(v) => `${v > 0 ? "+" : ""}${v}%`}
@@ -457,7 +457,7 @@ export default function ScenariosPage() {
                 <div className="flex items-center gap-4 text-[11px]">
                   <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-[#6C5CE7] rounded" />Ist-Daten</span>
                   <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-[#00CEC9] rounded border-dashed" style={{ borderBottom: "2px dashed #00CEC9", height: 0 }} />Szenario</span>
-                  <span className="flex items-center gap-1.5"><span className="w-3 h-2 bg-[#00CEC9]/10 rounded" />Konfidenz</span>
+                  <span className="flex items-center gap-1.5"><span className="w-3 h-2 bg-[#00CEC9]/10 rounded" />Vertrauen</span>
                 </div>
               )}
             </div>
@@ -479,9 +479,9 @@ export default function ScenariosPage() {
                     <ReferenceLine x={chartData.find((d) => d.day === 0)?.date} stroke="#e5e7eb" strokeDasharray="4 4" label={{ value: "Heute", position: "top", fontSize: 10, fill: "#9ca3af" }} />
                     <Area type="monotone" dataKey="upper" stroke="none" fill="url(#confGrad)" />
                     <Area type="monotone" dataKey="lower" stroke="none" fill="white" />
-                    <Line type="monotone" dataKey="ist" stroke="#6C5CE7" strokeWidth={2.5} dot={false} connectNulls={false} />
-                    <Line type="monotone" dataKey="baseline" stroke="#d1d5db" strokeWidth={1.5} strokeDasharray="6 4" dot={false} connectNulls={false} />
-                    <Line type="monotone" dataKey="szenario" stroke="#00CEC9" strokeWidth={2.5} strokeDasharray="8 4" dot={false} connectNulls={false} />
+                    <Line type="monotone" dataKey="Ist" stroke="#6C5CE7" strokeWidth={2.5} dot={false} connectNulls={false} />
+                    <Line type="monotone" dataKey="Basis" stroke="#d1d5db" strokeWidth={1.5} strokeDasharray="6 4" dot={false} connectNulls={false} />
+                    <Line type="monotone" dataKey="Szenario" stroke="#00CEC9" strokeWidth={2.5} strokeDasharray="8 4" dot={false} connectNulls={false} />
                   </AreaChart>
                 </ResponsiveContainer>
               ) : (

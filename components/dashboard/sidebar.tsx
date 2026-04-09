@@ -16,16 +16,16 @@ import {
 } from "lucide-react"
 
 const menuItems = [
-  { icon: Home, label: "Home", href: "/dashboard" },
-  { icon: Share2, label: "Social", href: "/dashboard/social" },
-  { icon: BarChart3, label: "Analytics", href: "/dashboard/analytics" },
-  { icon: Layers, label: "Scenarios", href: "/dashboard/scenarios" },
-  { icon: Sparkles, label: "AI Insights", href: "/dashboard/ai-insights" },
-  { icon: FileText, label: "Reports", href: "/dashboard/reports" },
+  { icon: Home, label: "Startseite", href: "/dashboard" },
+  { icon: Share2, label: "Soziale Medien", href: "/dashboard/social" },
+  { icon: BarChart3, label: "Analysen", href: "/dashboard/analytics" },
+  { icon: Layers, label: "Szenarien", href: "/dashboard/scenarios" },
+  { icon: Sparkles, label: "KI-Erkenntnisse", href: "/dashboard/ai-insights" },
+  { icon: FileText, label: "Berichte", href: "/dashboard/reports" },
 ]
 
 const bottomItems = [
-  { icon: Settings, label: "Settings", href: "/dashboard/settings/integrations" },
+  { icon: Settings, label: "Einstellungen", href: "/dashboard/settings/integrations" },
 ]
 
 interface SidebarProps {
@@ -73,7 +73,7 @@ export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
           transition={{ duration: 0.15 }}
           className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2 overflow-hidden"
         >
-          Menu
+          Menü
         </motion.p>
         {menuItems.map((item) => {
           const isActive =

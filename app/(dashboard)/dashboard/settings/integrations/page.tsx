@@ -274,7 +274,7 @@ export default function IntegrationsPage() {
                       ) : (
                         <RefreshCw className="h-3.5 w-3.5" />
                       )}
-                      {isSyncing ? "Syncing..." : "Sync Now"}
+                      {isSyncing ? "Synchronisiere..." : "Jetzt synchronisieren"}
                     </button>
                     <button
                       onClick={() => handleDisconnect(platform.key)}

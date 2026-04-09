@@ -41,7 +41,7 @@ const stats = [
     bg: "bg-[#6C5CE7]/[0.06]",
   },
   {
-    label: "Engagement Rate",
+    label: "Engagement-Rate",
     value: "4.8%",
     change: "+0.6%",
     trend: "up" as const,
@@ -50,7 +50,7 @@ const stats = [
     bg: "bg-[#00CEC9]/[0.06]",
   },
   {
-    label: "Clients",
+    label: "Kunden",
     value: "24",
     change: "+2",
     trend: "up" as const,
@@ -59,7 +59,7 @@ const stats = [
     bg: "bg-[#FD79A8]/[0.06]",
   },
   {
-    label: "AI Insights",
+    label: "KI-Erkenntnisse",
     value: "156",
     change: "-8",
     trend: "down" as const,
@@ -74,7 +74,7 @@ const activities = [
   { text: 'Kampagne "Sommer 2026" wurde aktiviert', time: "Vor 1 Std.", dot: "#00CEC9" },
   { text: "3 neue Sentiment-Alerts für GreenLeaf", time: "Vor 2 Std.", dot: "#FD79A8" },
   { text: 'Report "Q1 Engagement" generiert', time: "Vor 4 Std.", dot: "#FDCB6E" },
-  { text: "AI Insight: Positiver Trend bei MediaPulse erkannt", time: "Vor 5 Std.", dot: "#6C5CE7" },
+  { text: "KI-Erkenntnis: Positiver Trend bei MediaPulse erkannt", time: "Vor 5 Std.", dot: "#6C5CE7" },
 ]
 
 const topClients = [
@@ -241,8 +241,8 @@ export default function DashboardPage() {
       <div className="rounded-xl border border-gray-100 bg-white p-5">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-[15px] font-semibold text-gray-900">Top Clients</h2>
-            <p className="text-[12px] text-gray-500 mt-0.5">Nach Sentiment Score</p>
+            <h2 className="text-[15px] font-semibold text-gray-900">Top Kunden</h2>
+            <p className="text-[12px] text-gray-500 mt-0.5">Nach Stimmungs-Score</p>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">

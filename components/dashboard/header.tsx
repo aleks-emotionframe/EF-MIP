@@ -14,15 +14,15 @@ import {
 } from "lucide-react"
 
 const pageTitles: Record<string, string> = {
-  "/dashboard": "Dashboard",
-  "/dashboard/social": "Social",
-  "/dashboard/analytics": "Analytics",
-  "/dashboard/scenarios": "Scenarios",
-  "/dashboard/ai-insights": "AI Insights",
-  "/dashboard/reports": "Reports",
-  "/dashboard/settings": "Settings",
+  "/dashboard": "Übersicht",
+  "/dashboard/social": "Soziale Medien",
+  "/dashboard/analytics": "Analysen",
+  "/dashboard/scenarios": "Szenarien",
+  "/dashboard/ai-insights": "KI-Erkenntnisse",
+  "/dashboard/reports": "Berichte",
+  "/dashboard/settings": "Einstellungen",
   "/dashboard/settings/integrations": "Integrationen",
-  "/admin/clients": "Clients",
+  "/admin/clients": "Kunden",
 }
 
 export function Header() {
@@ -75,7 +75,7 @@ export function Header() {
             >
               <Building2 className="h-3.5 w-3.5 text-gray-400" />
               <span className="max-w-[120px] truncate font-medium">
-                {activeOrg?.organizationName ?? "Org wählen"}
+                {activeOrg?.organizationName ?? "Organisation wählen"}
               </span>
               <ChevronDown className="h-3 w-3 text-gray-400" />
             </button>
@@ -139,7 +139,7 @@ export function Header() {
                 {session?.user?.name ?? "User"}
               </p>
               <p className="text-[11px] text-gray-400 leading-tight">
-                {session?.user?.globalRole === "SUPER_ADMIN" ? "Super Admin" : "Member"}
+                {session?.user?.globalRole === "SUPER_ADMIN" ? "Super-Admin" : "Mitglied"}
               </p>
             </div>
             <ChevronDown className="h-3 w-3 text-gray-400 hidden sm:block" />

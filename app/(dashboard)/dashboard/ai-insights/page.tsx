@@ -43,28 +43,28 @@ const FILTER_TABS: { key: FilterTab; label: string }[] = [
   { key: "anomaly", label: "Anomalien" },
   { key: "trend", label: "Trends" },
   { key: "recommendation", label: "Empfehlungen" },
-  { key: "forecast", label: "Prognosen" },
+  { key: "forecast", label: "Vorhersagen" },
 ]
 
 const TYPE_CONFIG: Record<InsightType, { icon: any; color: string; bg: string; label: string }> = {
   anomaly: { icon: AlertTriangle, color: "#EF4444", bg: "bg-red-50", label: "Anomalie" },
   trend: { icon: TrendingUp, color: "#6C5CE7", bg: "bg-[#6C5CE7]/[0.06]", label: "Trend" },
   recommendation: { icon: Lightbulb, color: "#F59E0B", bg: "bg-amber-50", label: "Empfehlung" },
-  forecast: { icon: LineChart, color: "#00CEC9", bg: "bg-teal-50", label: "Prognose" },
+  forecast: { icon: LineChart, color: "#00CEC9", bg: "bg-teal-50", label: "Vorhersage" },
 }
 
 const PRIORITY_CONFIG: Record<Priority, { color: string; bg: string; label: string }> = {
   critical: { color: "text-red-700", bg: "bg-red-100", label: "Kritisch" },
   high: { color: "text-orange-700", bg: "bg-orange-100", label: "Hoch" },
   medium: { color: "text-blue-700", bg: "bg-blue-100", label: "Mittel" },
-  low: { color: "text-gray-600", bg: "bg-gray-100", label: "Niedrig" },
+  low: { color: "text-gray-600", bg: "bg-gray-100", label: "Gering" },
 }
 
 const LEARNING_TIMELINE = [
-  { date: "09.04.2026", text: "Feedback verarbeitet: Video-Content Empfehlung als 'Nützlich' bewertet", icon: BookOpen },
-  { date: "07.04.2026", text: "Anomalie-Erkennung kalibriert - Schwellwert für Instagram angepasst", icon: Target },
+  { date: "09.04.2026", text: "Rückmeldung verarbeitet: Video-Inhalt-Empfehlung als 'Nützlich' bewertet", icon: BookOpen },
+  { date: "07.04.2026", text: "Anomalie-Erkennung kalibriert – Schwellwert für Instagram angepasst", icon: Target },
   { date: "05.04.2026", text: "Neues Modell trainiert mit 2 Wochen zusätzlichen Daten", icon: Brain },
-  { date: "01.04.2026", text: "Monatliches Retraining abgeschlossen - Genauigkeit: 89.2%", icon: Zap },
+  { date: "01.04.2026", text: "Monatliches Neutraining abgeschlossen – Genauigkeit: 89,2 %", icon: Zap },
 ]
 
 export default function AIInsightsPage() {
@@ -116,7 +116,7 @@ export default function AIInsightsPage() {
             <h1 className="text-xl font-semibold text-gray-900">AI Insights</h1>
           </div>
           <p className="text-[13px] text-gray-500 mt-0.5">
-            KI-generierte Analyse deiner Plattform-Daten
+            KI-gestützte Analyse deiner Plattform-Daten
           </p>
         </div>
         <button
@@ -124,7 +124,7 @@ export default function AIInsightsPage() {
           className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-2 text-[12px] font-medium text-gray-600 hover:bg-gray-50 transition-colors"
         >
           <Sparkles className="h-3.5 w-3.5" />
-          Neu generieren
+          Neu erstellen
         </button>
       </div>
 
@@ -166,7 +166,7 @@ export default function AIInsightsPage() {
       {loading ? (
         <div className="flex items-center justify-center py-20">
           <Loader2 className="h-6 w-6 animate-spin text-[#6C5CE7]" />
-          <span className="ml-2 text-[13px] text-gray-500">Insights werden generiert...</span>
+          <span className="ml-2 text-[13px] text-gray-500">Erkenntnisse werden erstellt...</span>
         </div>
       ) : (
         <div className="space-y-3">
@@ -216,7 +216,7 @@ export default function AIInsightsPage() {
 
                       {/* Confidence Bar */}
                       <div className="flex items-center gap-2 mt-2.5">
-                        <span className="text-[10px] text-gray-400 font-medium">Konfidenz</span>
+                        <span className="text-[10px] text-gray-400 font-medium">Vertrauen</span>
                         <div className="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                           <motion.div
                             className="h-full rounded-full"
@@ -253,7 +253,7 @@ export default function AIInsightsPage() {
                           {insight.actions.length > 0 && (
                             <div className="mt-4">
                               <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2">
-                                Empfohlene Aktionen
+                                Empfohlene Massnahmen
                               </p>
                               <div className="flex flex-wrap gap-2">
                                 {insight.actions.map((action, i) => (
@@ -273,7 +273,7 @@ export default function AIInsightsPage() {
                             {feedback ? (
                               <span className="text-[12px] text-emerald-600 flex items-center gap-1">
                                 <Check className="h-3.5 w-3.5" />
-                                Feedback: {feedback === "useful" ? "Nützlich" : feedback === "implemented" ? "Umgesetzt" : "Ignoriert"}
+                                Rückmeldung: {feedback === "useful" ? "Nützlich" : feedback === "implemented" ? "Umgesetzt" : "Ignoriert"}
                               </span>
                             ) : (
                               <>
@@ -313,7 +313,7 @@ export default function AIInsightsPage() {
           {filtered.length === 0 && (
             <div className="text-center py-16">
               <Sparkles className="h-10 w-10 text-gray-200 mx-auto mb-3" />
-              <p className="text-[13px] text-gray-400">Keine Insights für diesen Filter</p>
+              <p className="text-[13px] text-gray-400">Keine Erkenntnisse für diesen Filter</p>
             </div>
           )}
         </div>
@@ -323,8 +323,8 @@ export default function AIInsightsPage() {
       <div className="rounded-xl border border-gray-100 bg-white p-5 mt-8">
         <div className="flex items-center gap-2 mb-5">
           <Brain className="h-4 w-4 text-[#6C5CE7]" />
-          <h2 className="text-[15px] font-semibold text-gray-900">Lern-Timeline</h2>
-          <span className="text-[11px] text-gray-400">Was die KI gelernt hat</span>
+          <h2 className="text-[15px] font-semibold text-gray-900">Lernverlauf</h2>
+          <span className="text-[11px] text-gray-400">Was die KI bisher gelernt hat</span>
         </div>
         <div className="space-y-0">
           {LEARNING_TIMELINE.map((entry, i) => (
