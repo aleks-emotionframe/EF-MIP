@@ -1,11 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+import logoDark from "@/public/logo-dark.svg"
+
 export function EFLogo({ size = 40 }: { size?: number }) {
   return (
     <img
-      src="/logo-dark.svg"
+      src={logoDark.src}
       alt="EmotionFrame"
-      width={size * 4}
-      height={size}
+      width={logoDark.width}
+      height={logoDark.height}
       style={{ height: size, width: "auto" }}
       fetchPriority="high"
     />
