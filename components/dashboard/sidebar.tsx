@@ -131,13 +131,12 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
       >
         {/* Logo */}
         <div className="flex items-center h-[72px] px-5">
-          <Link href="/dashboard" onClick={() => setOpenSection(null)} className="flex items-center gap-2.5 overflow-hidden">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center shrink-0 shadow-md shadow-[#00CEC9]/20">
-              <div className="w-6 h-6 overflow-hidden">
-                <img src="/EmotionFrame_Logo_w.png" alt="" className="h-6 w-auto max-w-none" />
-              </div>
-            </div>
-            <span className="text-[16px] font-bold text-[#0F172A] dark:text-white tracking-tight">EmotionFrame</span>
+          <Link href="/dashboard" onClick={() => setOpenSection(null)} className="overflow-hidden">
+            <img
+              src="/EmotionFrame_LOGO-w.svg"
+              alt="EmotionFrame"
+              className="h-10 w-auto"
+            />
           </Link>
         </div>
 
