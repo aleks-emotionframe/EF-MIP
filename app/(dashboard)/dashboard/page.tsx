@@ -1,23 +1,11 @@
 "use client"
 
 import {
-  Activity,
-  TrendingUp,
-  Users,
-  Sparkles,
-  ArrowUpRight,
-  ArrowDownRight,
-  MoreHorizontal,
-  Clock,
+  Activity, TrendingUp, Users, Sparkles, ArrowUpRight,
+  ArrowDownRight, MoreHorizontal, Clock,
 } from "lucide-react"
 import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from "recharts"
 
 const chartData = [
@@ -31,50 +19,18 @@ const chartData = [
 ]
 
 const stats = [
-  {
-    label: "Aktive Kampagnen",
-    value: "12",
-    change: "+3",
-    trend: "up" as const,
-    icon: Activity,
-    color: "#6C5CE7",
-    bg: "bg-[#6C5CE7]/[0.06]",
-  },
-  {
-    label: "Engagement-Rate",
-    value: "4.8%",
-    change: "+0.6%",
-    trend: "up" as const,
-    icon: TrendingUp,
-    color: "#00CEC9",
-    bg: "bg-[#00CEC9]/[0.06]",
-  },
-  {
-    label: "Kunden",
-    value: "24",
-    change: "+2",
-    trend: "up" as const,
-    icon: Users,
-    color: "#FD79A8",
-    bg: "bg-[#FD79A8]/[0.06]",
-  },
-  {
-    label: "KI-Erkenntnisse",
-    value: "156",
-    change: "-8",
-    trend: "down" as const,
-    icon: Sparkles,
-    color: "#FDCB6E",
-    bg: "bg-[#FDCB6E]/[0.08]",
-  },
+  { label: "Aktive Kampagnen", value: "12", change: "+3", trend: "up" as const, icon: Activity, gradient: "from-[#7B68EE] to-[#4F46E5]" },
+  { label: "Engagement-Rate", value: "4.8%", change: "+0.6%", trend: "up" as const, icon: TrendingUp, gradient: "from-[#00CEC9] to-[#00B4D8]" },
+  { label: "Kunden", value: "24", change: "+2", trend: "up" as const, icon: Users, gradient: "from-[#FF6B6B] to-[#EE5A24]" },
+  { label: "KI-Erkenntnisse", value: "156", change: "-8", trend: "down" as const, icon: Sparkles, gradient: "from-[#FDCB6E] to-[#F39C12]" },
 ]
 
 const activities = [
-  { text: "Neue Emotion-Analyse für TechVision abgeschlossen", time: "Vor 12 Min.", dot: "#6C5CE7" },
+  { text: "Neue Emotion-Analyse für TechVision abgeschlossen", time: "Vor 12 Min.", dot: "#7B68EE" },
   { text: 'Kampagne "Sommer 2026" wurde aktiviert', time: "Vor 1 Std.", dot: "#00CEC9" },
-  { text: "3 neue Sentiment-Alerts für GreenLeaf", time: "Vor 2 Std.", dot: "#FD79A8" },
+  { text: "3 neue Sentiment-Alerts für GreenLeaf", time: "Vor 2 Std.", dot: "#FF6B6B" },
   { text: 'Report "Q1 Engagement" generiert', time: "Vor 4 Std.", dot: "#FDCB6E" },
-  { text: "KI-Erkenntnis: Positiver Trend bei MediaPulse erkannt", time: "Vor 5 Std.", dot: "#6C5CE7" },
+  { text: "KI-Erkenntnis: Positiver Trend bei MediaPulse erkannt", time: "Vor 5 Std.", dot: "#7B68EE" },
 ]
 
 const topClients = [
@@ -89,146 +45,90 @@ export default function DashboardPage() {
     <div className="space-y-6">
       {/* Greeting */}
       <div>
-        <h1 className="text-xl font-semibold text-gray-900">Willkommen zurück</h1>
-        <p className="text-[13px] text-gray-500 mt-0.5">
-          Hier ist dein Überblick für heute.
-        </p>
+        <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Willkommen zurück</h1>
+        <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Hier ist dein Überblick für heute.</p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="rounded-xl border border-gray-100 bg-white p-5 hover:shadow-sm transition-shadow"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <div className={`w-9 h-9 rounded-lg ${stat.bg} flex items-center justify-center`}>
-                <stat.icon className="h-[18px] w-[18px]" style={{ color: stat.color }} />
+          <div key={stat.label} className="rounded-2xl bg-white dark:bg-[#111c44] p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-4">
+              <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center shadow-lg`}>
+                <stat.icon className="h-5 w-5 text-white" />
               </div>
-              <div className={`flex items-center gap-0.5 text-[12px] font-medium ${
-                stat.trend === "up" ? "text-emerald-600" : "text-red-500"
+              <div className={`flex items-center gap-0.5 text-[13px] font-semibold ${
+                stat.trend === "up" ? "text-emerald-500" : "text-red-500"
               }`}>
-                {stat.trend === "up" ? (
-                  <ArrowUpRight className="h-3 w-3" />
-                ) : (
-                  <ArrowDownRight className="h-3 w-3" />
-                )}
+                {stat.trend === "up" ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />}
                 {stat.change}
               </div>
             </div>
-            <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-            <p className="text-[12px] text-gray-500 mt-0.5">{stat.label}</p>
+            <p className="text-[28px] font-extrabold text-[#1B2559] dark:text-white tracking-tight">{stat.value}</p>
+            <p className="text-[13px] text-gray-400 dark:text-white/40 mt-1">{stat.label}</p>
           </div>
         ))}
       </div>
 
       {/* Chart + Activities */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Emotion Trend Chart */}
-        <div className="lg:col-span-2 rounded-xl border border-gray-100 bg-white p-5">
-          <div className="flex items-center justify-between mb-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        {/* Chart */}
+        <div className="lg:col-span-2 rounded-2xl bg-white dark:bg-[#111c44] p-6 shadow-sm">
+          <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-[15px] font-semibold text-gray-900">Emotion Trends</h2>
-              <p className="text-[12px] text-gray-500 mt-0.5">Letzte 7 Tage</p>
+              <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Emotion Trends</h2>
+              <p className="text-[12px] text-gray-400 dark:text-white/30 mt-0.5">Letzte 7 Tage</p>
             </div>
-            <div className="flex items-center gap-4 text-[11px]">
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#6C5CE7]" />Positiv
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#FD79A8]" />Negativ
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#DFE4EA]" />Neutral
-              </span>
+            <div className="flex items-center gap-5 text-[11px]">
+              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#7B68EE]" />Positiv</span>
+              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#FF6B6B]" />Negativ</span>
+              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-white/20" />Neutral</span>
             </div>
           </div>
-          <div className="h-[260px]">
+          <div className="h-[280px]">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={chartData}>
                 <defs>
-                  <linearGradient id="gradPositiv" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#6C5CE7" stopOpacity={0.15} />
-                    <stop offset="100%" stopColor="#6C5CE7" stopOpacity={0} />
+                  <linearGradient id="gradPos" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#7B68EE" stopOpacity={0.2} />
+                    <stop offset="100%" stopColor="#7B68EE" stopOpacity={0} />
                   </linearGradient>
-                  <linearGradient id="gradNegativ" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#FD79A8" stopOpacity={0.1} />
-                    <stop offset="100%" stopColor="#FD79A8" stopOpacity={0} />
+                  <linearGradient id="gradNeg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#FF6B6B" stopOpacity={0.15} />
+                    <stop offset="100%" stopColor="#FF6B6B" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
-                <XAxis
-                  dataKey="name"
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fontSize: 11, fill: "#9ca3af" }}
-                />
-                <YAxis
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fontSize: 11, fill: "#9ca3af" }}
-                />
-                <Tooltip
-                  contentStyle={{
-                    background: "white",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: "8px",
-                    fontSize: "12px",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-                  }}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="positiv"
-                  stroke="#6C5CE7"
-                  strokeWidth={2}
-                  fill="url(#gradPositiv)"
-                />
-                <Area
-                  type="monotone"
-                  dataKey="negativ"
-                  stroke="#FD79A8"
-                  strokeWidth={2}
-                  fill="url(#gradNegativ)"
-                />
-                <Area
-                  type="monotone"
-                  dataKey="neutral"
-                  stroke="#DFE4EA"
-                  strokeWidth={1.5}
-                  fill="transparent"
-                />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#a0aec0" }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#a0aec0" }} />
+                <Tooltip contentStyle={{ background: "white", border: "none", borderRadius: "12px", fontSize: "12px", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }} />
+                <Area type="monotone" dataKey="positiv" stroke="#7B68EE" strokeWidth={2.5} fill="url(#gradPos)" />
+                <Area type="monotone" dataKey="negativ" stroke="#FF6B6B" strokeWidth={2} fill="url(#gradNeg)" />
+                <Area type="monotone" dataKey="neutral" stroke="#CBD5E0" strokeWidth={1.5} fill="transparent" strokeDasharray="5 5" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        {/* Activity Feed */}
-        <div className="rounded-xl border border-gray-100 bg-white p-5">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[15px] font-semibold text-gray-900">Aktivitäten</h2>
+        {/* Activities */}
+        <div className="rounded-2xl bg-white dark:bg-[#111c44] p-6 shadow-sm">
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Aktivitäten</h2>
             <button className="text-gray-400 hover:text-gray-600 transition-colors">
-              <MoreHorizontal className="h-4 w-4" />
+              <MoreHorizontal className="h-5 w-5" />
             </button>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {activities.map((activity, i) => (
               <div key={i} className="flex gap-3">
                 <div className="relative flex flex-col items-center">
-                  <div
-                    className="w-2 h-2 rounded-full mt-1.5 shrink-0"
-                    style={{ backgroundColor: activity.dot }}
-                  />
-                  {i < activities.length - 1 && (
-                    <div className="w-px flex-1 bg-gray-100 mt-1.5" />
-                  )}
+                  <div className="w-2.5 h-2.5 rounded-full mt-1 shrink-0" style={{ backgroundColor: activity.dot }} />
+                  {i < activities.length - 1 && <div className="w-px flex-1 bg-gray-100 dark:bg-white/[0.06] mt-2" />}
                 </div>
-                <div className="pb-4">
-                  <p className="text-[13px] text-gray-700 leading-snug">{activity.text}</p>
-                  <p className="text-[11px] text-gray-400 mt-1 flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    {activity.time}
+                <div className="pb-1">
+                  <p className="text-[13px] text-[#1B2559] dark:text-white/80 leading-snug">{activity.text}</p>
+                  <p className="text-[11px] text-gray-400 dark:text-white/30 mt-1 flex items-center gap-1">
+                    <Clock className="h-3 w-3" />{activity.time}
                   </p>
                 </div>
               </div>
@@ -238,37 +138,27 @@ export default function DashboardPage() {
       </div>
 
       {/* Top Clients */}
-      <div className="rounded-xl border border-gray-100 bg-white p-5">
-        <div className="flex items-center justify-between mb-4">
+      <div className="rounded-2xl bg-white dark:bg-[#111c44] p-6 shadow-sm">
+        <div className="flex items-center justify-between mb-5">
           <div>
-            <h2 className="text-[15px] font-semibold text-gray-900">Top Kunden</h2>
-            <p className="text-[12px] text-gray-500 mt-0.5">Nach Stimmungs-Score</p>
+            <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Top Kunden</h2>
+            <p className="text-[12px] text-gray-400 dark:text-white/30 mt-0.5">Nach Stimmungs-Score</p>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {topClients.map((client) => (
-            <div
-              key={client.name}
-              className="flex items-center gap-3 rounded-lg border border-gray-100 p-3.5 hover:bg-gray-50/50 transition-colors"
-            >
-              <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-[13px] font-bold text-gray-500 shrink-0">
+            <div key={client.name} className="flex items-center gap-3 rounded-xl bg-[#F4F7FE] dark:bg-white/[0.04] p-4 hover:bg-[#EEF2FF] dark:hover:bg-white/[0.06] transition-colors">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#7B68EE]/20 to-[#4F46E5]/10 flex items-center justify-center text-[13px] font-bold text-[#7B68EE] shrink-0">
                 {client.name.split(" ").map(w => w[0]).join("").slice(0, 2)}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[13px] font-medium text-gray-800 truncate">{client.name}</p>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                    <div
-                      className="h-full rounded-full bg-[#6C5CE7]"
-                      style={{ width: `${client.score}%` }}
-                    />
+                <p className="text-[13px] font-semibold text-[#1B2559] dark:text-white truncate">{client.name}</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <div className="flex-1 h-2 bg-white dark:bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-full rounded-full bg-gradient-to-r from-[#7B68EE] to-[#4F46E5]" style={{ width: `${client.score}%` }} />
                   </div>
-                  <span className="text-[11px] font-medium text-gray-500">{client.score}</span>
-                  <span className={`text-[11px] font-medium ${
-                    client.change.startsWith("+") ? "text-emerald-600" : "text-red-500"
-                  }`}>
-                    {client.change}
-                  </span>
+                  <span className="text-[12px] font-bold text-[#1B2559] dark:text-white">{client.score}</span>
+                  <span className={`text-[11px] font-semibold ${client.change.startsWith("+") ? "text-emerald-500" : "text-red-500"}`}>{client.change}</span>
                 </div>
               </div>
             </div>

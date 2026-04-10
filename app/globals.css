@@ -208,14 +208,15 @@ body {
 
 /* Cards, panels, modals */
 .dark .bg-white {
-  background-color: #111827 !important;
+  background-color: #111c44 !important;
 }
 
 /* Gray backgrounds */
 .dark .bg-gray-50,
 .dark .bg-gray-100,
-.dark .bg-\[#F8F9FB\] {
-  background-color: #0a0f1a !important;
+.dark .bg-\[#F8F9FB\],
+.dark .bg-\[#F4F7FE\] {
+  background-color: rgba(255, 255, 255, 0.03) !important;
 }
 .dark .bg-gray-50\/50,
 .dark .bg-gray-50\/30 {
