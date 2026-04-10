@@ -442,7 +442,7 @@ export default function FunnelPage() {
                       boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
                       fontSize: "12px",
                     }}
-                    formatter={(value: number) => [`${value}%`, "Conversion-Rate"]}
+                    formatter={(value) => [`${value}%`, "Conversion-Rate"]}
                   />
                   <Line
                     type="monotone"
