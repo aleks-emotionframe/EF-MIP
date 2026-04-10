@@ -23,22 +23,63 @@ import {
   Bell,
 } from "lucide-react"
 
-const menuItems = [
-  { icon: Home, label: "Startseite", href: "/dashboard" },
-  { icon: Share2, label: "Soziale Medien", href: "/dashboard/social" },
-  { icon: Calendar, label: "Kalender", href: "/dashboard/kalender" },
-  { icon: Sparkles, label: "Content-Generator", href: "/dashboard/content-generator" },
-  { icon: Hash, label: "Hashtags", href: "/dashboard/hashtags" },
-  { icon: BarChart3, label: "Analysen", href: "/dashboard/analytics" },
-  { icon: Layers, label: "Szenarien", href: "/dashboard/scenarios" },
-  { icon: Sparkles, label: "KI-Erkenntnisse", href: "/dashboard/ai-insights" },
-  { icon: TrendingUp, label: "Trends", href: "/dashboard/trends" },
-  { icon: Target, label: "Konkurrenz", href: "/dashboard/konkurrenz" },
-  { icon: Globe, label: "SEO-Analyse", href: "/dashboard/seo" },
-  { icon: Users, label: "Kontakte", href: "/dashboard/kontakte" },
-  { icon: Mail, label: "E-Mail-Marketing", href: "/dashboard/email" },
-  { icon: Bell, label: "Benachrichtigungen", href: "/dashboard/benachrichtigungen" },
-  { icon: FileText, label: "Berichte", href: "/dashboard/reports" },
+interface MenuItem {
+  icon: any
+  label: string
+  href: string
+}
+
+interface MenuSection {
+  title: string
+  items: MenuItem[]
+}
+
+const menuSections: MenuSection[] = [
+  {
+    title: "Übersicht",
+    items: [
+      { icon: Home, label: "Startseite", href: "/dashboard" },
+    ],
+  },
+  {
+    title: "Social Media",
+    items: [
+      { icon: Share2, label: "Soziale Medien", href: "/dashboard/social" },
+      { icon: Calendar, label: "Kalender", href: "/dashboard/kalender" },
+      { icon: Sparkles, label: "Content-Generator", href: "/dashboard/content-generator" },
+      { icon: Hash, label: "Hashtags", href: "/dashboard/hashtags" },
+      { icon: Target, label: "Konkurrenz", href: "/dashboard/konkurrenz" },
+      { icon: TrendingUp, label: "Trends", href: "/dashboard/trends" },
+    ],
+  },
+  {
+    title: "Web & SEO",
+    items: [
+      { icon: BarChart3, label: "Analysen", href: "/dashboard/analytics" },
+      { icon: Globe, label: "SEO-Analyse", href: "/dashboard/seo" },
+    ],
+  },
+  {
+    title: "KI & Strategie",
+    items: [
+      { icon: Sparkles, label: "KI-Erkenntnisse", href: "/dashboard/ai-insights" },
+      { icon: Layers, label: "Szenarien", href: "/dashboard/scenarios" },
+    ],
+  },
+  {
+    title: "Marketing",
+    items: [
+      { icon: Users, label: "Kontakte", href: "/dashboard/kontakte" },
+      { icon: Mail, label: "E-Mail-Marketing", href: "/dashboard/email" },
+    ],
+  },
+  {
+    title: "Allgemein",
+    items: [
+      { icon: Bell, label: "Benachrichtigungen", href: "/dashboard/benachrichtigungen" },
+      { icon: FileText, label: "Berichte", href: "/dashboard/reports" },
+    ],
+  },
 ]
 
 const bottomItems = [
@@ -83,25 +124,30 @@ export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
       <div className="mx-4 border-t border-gray-100" />
 
       {/* Main Nav */}
-      <nav className="flex-1 pt-4 px-3 space-y-0.5 overflow-y-auto">
-        <motion.p
-          initial={false}
-          animate={{ opacity: isCollapsed ? 0 : 1, height: isCollapsed ? 0 : "auto" }}
-          transition={{ duration: 0.15 }}
-          className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2 overflow-hidden"
-        >
-          Menü
-        </motion.p>
-        {menuItems.map((item) => {
-          const isActive =
-            item.href === "/dashboard"
-              ? pathname === "/dashboard"
-              : pathname.startsWith(item.href)
-
-          return (
-            <NavItem key={item.href} item={item} isActive={isActive} isCollapsed={isCollapsed} />
-          )
-        })}
+      <nav className="flex-1 pt-3 px-3 overflow-y-auto">
+        {menuSections.map((section) => (
+          <div key={section.title} className="mb-3">
+            <motion.p
+              initial={false}
+              animate={{ opacity: isCollapsed ? 0 : 1, height: isCollapsed ? 0 : "auto" }}
+              transition={{ duration: 0.15 }}
+              className="text-[10px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider px-3 mb-1.5 overflow-hidden"
+            >
+              {section.title}
+            </motion.p>
+            <div className="space-y-0.5">
+              {section.items.map((item) => {
+                const isActive =
+                  item.href === "/dashboard"
+                    ? pathname === "/dashboard"
+                    : pathname.startsWith(item.href)
+                return (
+                  <NavItem key={item.href} item={item} isActive={isActive} isCollapsed={isCollapsed} />
+                )
+              })}
+            </div>
+          </div>
+        ))}
       </nav>
 
       {/* Bottom */}
