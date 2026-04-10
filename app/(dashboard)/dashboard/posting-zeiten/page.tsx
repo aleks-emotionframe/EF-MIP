@@ -222,11 +222,6 @@ export default function PostingZeitenPage() {
               }`}
             >
               {tab.icon && <tab.icon className="h-3.5 w-3.5" />}
-              {tab.key === "tiktok" && (
-                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.88-2.88 2.89 2.89 0 0 1 2.88-2.88c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.8a8.26 8.26 0 0 0 4.76 1.5V6.85a4.79 4.79 0 0 1-1-.16z" />
-                </svg>
-              )}
               {tab.label}
             </button>
           )
