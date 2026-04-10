@@ -147,7 +147,7 @@ export default function KonkurrenzPage() {
       {/* Comparison Overview */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Bar Chart: Follower */}
-        <div className="rounded-2xl bg-white shadow-sm p-5">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Follower-Vergleich</h3>
           <p className="text-[11px] text-gray-400 mb-4">in Tausend</p>
           <div className="h-[250px]">
@@ -169,7 +169,7 @@ export default function KonkurrenzPage() {
 
         {/* Radar Chart */}
         {selected && (
-          <div className="rounded-2xl bg-white shadow-sm p-5">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Du vs. {selected.name}</h3>
             <p className="text-[11px] text-gray-400 mb-4">Stärken-Vergleich</p>
             <div className="h-[250px]">
@@ -194,7 +194,7 @@ export default function KonkurrenzPage() {
 
       {/* Selected Competitor Detail */}
       {selected && (
-        <div className="rounded-2xl bg-white shadow-sm p-5 space-y-4">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5 space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">{selected.name}</h3>

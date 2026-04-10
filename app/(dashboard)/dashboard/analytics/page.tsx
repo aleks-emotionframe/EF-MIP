@@ -69,7 +69,7 @@ export default function AnalyticsPage() {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {kpis.map((kpi) => (
-          <div key={kpi.label} className="rounded-2xl bg-white shadow-sm p-4">
+          <div key={kpi.label} className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/[0.06] flex items-center justify-center">
                 <kpi.icon className="h-4 w-4 text-[#00CEC9]" />

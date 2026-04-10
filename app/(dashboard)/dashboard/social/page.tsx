@@ -156,7 +156,7 @@ export default function SocialPage() {
             className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-all ${
               active === p.key
                 ? "text-white shadow-md"
-                : "bg-white border border-gray-100 text-gray-600 hover:bg-gray-50"
+                : "bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"
             }`}
             style={active === p.key ? { backgroundColor: p.color, boxShadow: `0 4px 14px ${p.color}30` } : {}}
           >
@@ -169,7 +169,7 @@ export default function SocialPage() {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {data.kpis.map((kpi) => (
-          <div key={kpi.label} className="rounded-2xl bg-white shadow-sm p-4">
+          <div key={kpi.label} className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
             <div className="flex items-center justify-between mb-2">
               <div className={`w-8 h-8 rounded-lg ${platform.bg} flex items-center justify-center`}>
                 <kpi.icon className="h-4 w-4" style={{ color: platform.color }} />
@@ -180,16 +180,16 @@ export default function SocialPage() {
               </span>
             </div>
             <p className="text-[22px] font-extrabold text-[#0F172A] dark:text-white">{kpi.value}</p>
-            <p className="text-[11px] text-gray-400 mt-0.5">{kpi.label}</p>
+            <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">{kpi.label}</p>
           </div>
         ))}
       </div>
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="rounded-2xl bg-white shadow-sm p-5">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Follower-Entwicklung</h3>
-          <p className="text-[11px] text-gray-400 mb-4">Letzte 7 Tage</p>
+          <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-4">Letzte 7 Tage</p>
           <div className="h-[220px]">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={data.chartData}>
@@ -209,9 +209,9 @@ export default function SocialPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl bg-white shadow-sm p-5">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Tägliche Reichweite</h3>
-          <p className="text-[11px] text-gray-400 mb-4">Letzte 7 Tage</p>
+          <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-4">Letzte 7 Tage</p>
           <div className="h-[220px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data.chartData}>
@@ -227,18 +227,18 @@ export default function SocialPage() {
       </div>
 
       {/* Top-Beiträge */}
-      <div className="rounded-2xl bg-white shadow-sm p-5">
+      <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">Top-Beiträge</h3>
         <div className="space-y-3">
           {data.topPosts.map((post, i) => (
-            <div key={i} className="flex items-center gap-4 rounded-lg border border-gray-50 p-3.5 hover:bg-gray-50/50 transition-colors">
-              <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-[12px] font-bold text-gray-400 shrink-0">
+            <div key={i} className="flex items-center gap-4 rounded-lg border border-gray-50 dark:border-white/[0.06] p-3.5 hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
+              <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/[0.04] flex items-center justify-center text-[12px] font-bold text-gray-400 dark:text-gray-500 shrink-0">
                 {i + 1}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-[13px] font-semibold text-[#0F172A] dark:text-white truncate">{post.title}</p>
               </div>
-              <div className="flex items-center gap-4 text-[11px] text-gray-400 shrink-0">
+              <div className="flex items-center gap-4 text-[11px] text-gray-400 dark:text-gray-500 shrink-0">
                 <span className="flex items-center gap-1"><Heart className="h-3 w-3" />{post.likes.toLocaleString("de-CH")}</span>
                 <span className="flex items-center gap-1"><MessageSquare className="h-3 w-3" />{post.kommentare}</span>
                 <span className="flex items-center gap-1"><Share2 className="h-3 w-3" />{post.geteilt}</span>
