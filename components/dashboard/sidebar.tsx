@@ -103,7 +103,7 @@ export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
                 className="w-full flex items-center justify-between px-3 py-[7px] rounded-lg hover:bg-white/[0.04] transition-colors overflow-hidden"
               >
                 <span className={`text-[10px] font-bold uppercase tracking-[0.1em] ${
-                  hasActiveItem ? "text-[#7B68EE]" : "text-white/30"
+                  hasActiveItem ? "text-[#7B68EE]" : "text-white/40"
                 }`}>
                   {section.title}
                 </span>
@@ -179,7 +179,7 @@ function NavItem({
       className={`relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium transition-all group ${
         isActive
           ? "bg-gradient-to-r from-[#7B68EE]/20 to-[#7B68EE]/[0.05] text-white shadow-sm"
-          : "text-white/50 hover:text-white/80 hover:bg-white/[0.05]"
+          : "text-white/60 hover:text-white/90 hover:bg-white/[0.06]"
       }`}
     >
       {isActive && (
@@ -192,7 +192,7 @@ function NavItem({
 
       <item.icon
         className={`h-[18px] w-[18px] shrink-0 ${isCollapsed ? "mx-auto" : ""} ${
-          isActive ? "text-[#7B68EE]" : "text-white/30 group-hover:text-white/60"
+          isActive ? "text-[#7B68EE]" : "text-white/40 group-hover:text-white/70"
         }`}
         strokeWidth={isActive ? 2 : 1.6}
       />

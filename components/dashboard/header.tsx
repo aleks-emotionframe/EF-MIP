@@ -63,7 +63,7 @@ export function Header() {
       {/* Left */}
       <div>
         <h1 className="text-[18px] font-bold text-[#1B2559] dark:text-white tracking-tight">{pageTitle}</h1>
-        <p className="text-[12px] text-gray-400 dark:text-white/40 mt-0.5">
+        <p className="text-[12px] text-gray-500 dark:text-white/40 mt-0.5">
           {activeOrg?.organizationName ?? "EmotionFrame"}
         </p>
       </div>

@@ -46,7 +46,7 @@ export default function DashboardPage() {
       {/* Greeting */}
       <div>
         <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Willkommen zurück</h1>
-        <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Hier ist dein Überblick für heute.</p>
+        <p className="text-[14px] text-gray-600 dark:text-white/50 mt-1">Hier ist dein Überblick für heute.</p>
       </div>
 
       {/* Stats */}
@@ -65,7 +65,7 @@ export default function DashboardPage() {
               </div>
             </div>
             <p className="text-[28px] font-extrabold text-[#1B2559] dark:text-white tracking-tight">{stat.value}</p>
-            <p className="text-[13px] text-gray-400 dark:text-white/40 mt-1">{stat.label}</p>
+            <p className="text-[13px] text-gray-500 dark:text-white/40 mt-1">{stat.label}</p>
           </div>
         ))}
       </div>
@@ -77,7 +77,7 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Emotion Trends</h2>
-              <p className="text-[12px] text-gray-400 dark:text-white/30 mt-0.5">Letzte 7 Tage</p>
+              <p className="text-[12px] text-gray-500 dark:text-white/40 mt-0.5">Letzte 7 Tage</p>
             </div>
             <div className="flex items-center gap-5 text-[11px]">
               <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#7B68EE]" />Positiv</span>
@@ -142,7 +142,7 @@ export default function DashboardPage() {
         <div className="flex items-center justify-between mb-5">
           <div>
             <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Top Kunden</h2>
-            <p className="text-[12px] text-gray-400 dark:text-white/30 mt-0.5">Nach Stimmungs-Score</p>
+            <p className="text-[12px] text-gray-500 dark:text-white/40 mt-0.5">Nach Stimmungs-Score</p>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
