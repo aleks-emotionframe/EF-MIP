@@ -184,8 +184,8 @@ export default function ReportsPage() {
         {/* ─── LEFT: Builder (40%) ───────────────────────────── */}
         <div className="lg:col-span-2 space-y-4">
           {/* Time Period */}
-          <div className="rounded-2xl bg-white shadow-sm p-5">
-            <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3 block">Zeitraum</label>
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
+            <label className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3 block">Zeitraum</label>
             <div className="grid grid-cols-2 gap-2">
               {TIME_PERIODS.map((tp) => (
                 <button
@@ -194,7 +194,7 @@ export default function ReportsPage() {
                   className={`rounded-xl py-2.5 text-[12px] font-medium transition-all ${
                     period === tp.key
                       ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25"
-                      : "bg-gray-50 text-gray-600 hover:bg-gray-100"
+                      : "bg-gray-50 dark:bg-white/[0.04] text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/[0.06]"
                   }`}
                 >
                   {tp.label}
@@ -204,10 +204,10 @@ export default function ReportsPage() {
           </div>
 
           {/* Sections (Drag & Drop) */}
-          <div className="rounded-2xl bg-white shadow-sm p-5">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
             <div className="flex items-center justify-between mb-3">
-              <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Berichts-Abschnitte</label>
-              <span className="text-[11px] text-gray-400">{sections.length} Abschnitte</span>
+              <label className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Berichts-Abschnitte</label>
+              <span className="text-[11px] text-gray-400 dark:text-gray-500">{sections.length} Abschnitte</span>
             </div>
 
             <Reorder.Group
@@ -220,7 +220,7 @@ export default function ReportsPage() {
                 <Reorder.Item
                   key={section.id}
                   value={section}
-                  className="rounded-xl border border-gray-200/80 bg-white/80 backdrop-blur-sm p-3.5 flex items-center gap-3 cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md transition-shadow"
+                  className="rounded-xl border border-gray-200/80 dark:border-white/[0.06] bg-white/80 dark:bg-[#1E293B]/80 backdrop-blur-sm p-3.5 flex items-center gap-3 cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md transition-shadow"
                   whileDrag={{ scale: 1.02, boxShadow: "0 8px 25px rgba(0,0,0,0.1)" }}
                 >
                   <GripVertical className="h-4 w-4 text-gray-300 shrink-0" />
@@ -248,7 +248,7 @@ export default function ReportsPage() {
               <button
                 onClick={() => setShowAddMenu(!showAddMenu)}
                 disabled={availableToAdd.length === 0}
-                className="w-full flex items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-gray-200 py-3 text-[12px] font-medium text-gray-400 hover:text-[#00CEC9] hover:border-[#00CEC9]/30 disabled:opacity-40 disabled:hover:text-gray-400 disabled:hover:border-gray-200 transition-colors"
+                className="w-full flex items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-gray-200 dark:border-white/[0.06] py-3 text-[12px] font-medium text-gray-400 hover:text-[#00CEC9] hover:border-[#00CEC9]/30 disabled:opacity-40 disabled:hover:text-gray-400 disabled:hover:border-gray-200 transition-colors"
               >
                 <Plus className="h-3.5 w-3.5" />
                 Abschnitt hinzufügen
@@ -260,13 +260,13 @@ export default function ReportsPage() {
                     initial={{ opacity: 0, y: -4 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
-                    className="absolute z-50 bottom-full mb-2 w-full rounded-xl border border-gray-200 bg-white shadow-lg p-1 max-h-64 overflow-y-auto"
+                    className="absolute z-50 bottom-full mb-2 w-full rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] shadow-lg p-1 max-h-64 overflow-y-auto"
                   >
                     {availableToAdd.map((s) => (
                       <button
                         key={s.key}
                         onClick={() => addSection(s)}
-                        className="w-full flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 hover:bg-gray-50 transition-colors"
+                        className="w-full flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
                       >
                         <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{ backgroundColor: `${s.color}10` }}>
                           <s.icon className="h-3.5 w-3.5" style={{ color: s.color }} />
@@ -312,7 +312,7 @@ export default function ReportsPage() {
 
         {/* ─── RIGHT: Live Preview (60%) ─────────────────────── */}
         <div className="lg:col-span-3">
-          <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
             {/* PDF Header Preview */}
             <div className="bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] p-6 text-white">
               <div className="flex items-center gap-3 mb-3">
@@ -351,7 +351,7 @@ export default function ReportsPage() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ delay: idx * 0.05 }}
-                        className="rounded-xl border border-gray-100 p-4"
+                        className="rounded-xl border border-gray-100 dark:border-white/[0.06] p-4"
                       >
                         <div className="flex items-center gap-2 mb-3">
                           <div className="w-6 h-6 rounded-md flex items-center justify-center" style={{ backgroundColor: `${section.color}10` }}>
@@ -361,10 +361,10 @@ export default function ReportsPage() {
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                           {data.metrics.map((m) => (
-                            <div key={m.label} className="bg-gray-50 rounded-lg p-3">
-                              <p className="text-[10px] text-gray-400 mb-0.5">{m.label}</p>
+                            <div key={m.label} className="bg-gray-50 dark:bg-white/[0.04] rounded-lg p-3">
+                              <p className="text-[10px] text-gray-400 dark:text-gray-500 mb-0.5">{m.label}</p>
                               <div className="flex items-baseline gap-1.5">
-                                <span className="text-[15px] font-bold text-gray-900">{m.value}</span>
+                                <span className="text-[15px] font-bold text-gray-900 dark:text-white">{m.value}</span>
                                 {m.change && (
                                   <span className={`text-[10px] font-semibold ${
                                     m.change.startsWith("+") ? "text-emerald-600"
@@ -396,7 +396,7 @@ export default function ReportsPage() {
 
               {/* Footer */}
               {sections.length > 0 && (
-                <div className="border-t border-gray-100 pt-4 flex items-center justify-between text-[10px] text-gray-400">
+                <div className="border-t border-gray-100 dark:border-white/[0.06] pt-4 flex items-center justify-between text-[10px] text-gray-400 dark:text-gray-500">
                   <span>EmotionFrame Platform &middot; Automatisch erstellt</span>
                   <span>Seite 1 von {Math.max(1, Math.ceil(sections.length / 3))}</span>
                 </div>

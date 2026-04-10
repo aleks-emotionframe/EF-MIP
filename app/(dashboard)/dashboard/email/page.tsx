@@ -354,8 +354,8 @@ export default function EmailPage() {
 
           {/* Preview */}
           <div className="lg:col-span-2">
-            <div className="rounded-2xl bg-white shadow-sm overflow-hidden sticky top-20">
-              <div className="bg-gray-50 px-5 py-3 border-b border-gray-100">
+            <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden sticky top-20">
+              <div className="bg-gray-50 dark:bg-white/[0.04] px-5 py-3 border-b border-gray-100 dark:border-white/[0.06]">
                 <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Vorschau</p>
               </div>
               <div className="p-5">

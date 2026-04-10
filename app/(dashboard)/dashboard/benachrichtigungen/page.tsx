@@ -120,7 +120,7 @@ export default function BenachrichtigungenPage() {
         </div>
         <div className="flex gap-2">
           {tab === "feed" && unreadCount > 0 && (
-            <button onClick={markAllRead} className="flex items-center gap-1.5 rounded-xl border border-gray-200 px-3 py-2.5 text-[12px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">
+            <button onClick={markAllRead} className="flex items-center gap-1.5 rounded-xl border border-gray-200 dark:border-white/[0.06] px-3 py-2.5 text-[12px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
               <Check className="h-3.5 w-3.5" />Alle gelesen
             </button>
           )}
@@ -133,11 +133,11 @@ export default function BenachrichtigungenPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 p-1 rounded-xl bg-gray-100 w-fit">
+      <div className="flex gap-1 p-1 rounded-xl bg-gray-100 dark:bg-white/[0.04] w-fit">
         {([{ key: "feed" as Tab, label: "Benachrichtigungen" }, { key: "regeln" as Tab, label: "Alert-Regeln" }]).map((t) => (
           <button key={t.key} onClick={() => setTab(t.key)}
-            className={`relative rounded-lg px-5 py-2 text-[13px] font-medium transition-all ${tab === t.key ? "text-gray-900" : "text-gray-500"}`}>
-            {tab === t.key && <motion.div layoutId="notif-tab" className="absolute inset-0 bg-white rounded-lg shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />}
+            className={`relative rounded-lg px-5 py-2 text-[13px] font-medium transition-all ${tab === t.key ? "text-gray-900 dark:text-white" : "text-gray-500 dark:hover:text-gray-300"}`}>
+            {tab === t.key && <motion.div layoutId="notif-tab" className="absolute inset-0 bg-white dark:bg-[#1E293B] rounded-lg shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />}
             <span className="relative z-10">{t.label}</span>
           </button>
         ))}
@@ -150,7 +150,7 @@ export default function BenachrichtigungenPage() {
           <div className="flex gap-1.5 overflow-x-auto">
             {[{ key: "all", label: "Alle" }, { key: "alert", label: "Warnungen" }, { key: "trend", label: "Trends" }, { key: "milestone", label: "Meilensteine" }, { key: "system", label: "System" }].map((f) => (
               <button key={f.key} onClick={() => setFilterType(f.key)}
-                className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${filterType === f.key ? "bg-[#00CEC9] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
+                className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${filterType === f.key ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"}`}>
                 {f.label}
               </button>
             ))}
@@ -161,18 +161,18 @@ export default function BenachrichtigungenPage() {
               const tc = TYPE_CONFIG[notif.type]
               const isExp = expandedNotif === notif.id
               return (
-                <motion.div key={notif.id} layout className={`rounded-xl border bg-white overflow-hidden transition-colors ${notif.read ? "border-gray-100" : "border-[#00CEC9]/20 bg-[#00CEC9]/[0.01]"}`}>
+                <motion.div key={notif.id} layout className={`rounded-xl border bg-white dark:bg-[#1E293B] overflow-hidden transition-colors ${notif.read ? "border-gray-100 dark:border-white/[0.06]" : "border-[#00CEC9]/20 bg-[#00CEC9]/[0.01]"}`}>
                   <button onClick={() => { setExpandedNotif(isExp ? null : notif.id); if (!notif.read) markRead(notif.id) }}
-                    className="w-full flex items-start gap-3 p-4 text-left hover:bg-gray-50/50 transition-colors">
+                    className="w-full flex items-start gap-3 p-4 text-left hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
                     <div className={`w-9 h-9 rounded-xl ${tc.bg} flex items-center justify-center shrink-0 mt-0.5`}>
                       <tc.icon className="h-4 w-4" style={{ color: tc.color }} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
                         {!notif.read && <span className={`w-2 h-2 rounded-full ${PRIORITY_DOT[notif.priority]} shrink-0`} />}
-                        <p className={`text-[13px] font-medium truncate ${notif.read ? "text-gray-700" : "text-gray-900 font-semibold"}`}>{notif.title}</p>
+                        <p className={`text-[13px] font-medium truncate ${notif.read ? "text-gray-700 dark:text-gray-300" : "text-gray-900 dark:text-white font-semibold"}`}>{notif.title}</p>
                       </div>
-                      <p className="text-[11px] text-gray-400 mt-0.5 flex items-center gap-1"><Clock className="h-3 w-3" />{notif.createdAt}</p>
+                      <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5 flex items-center gap-1"><Clock className="h-3 w-3" />{notif.createdAt}</p>
                     </div>
                     <ChevronDown className={`h-4 w-4 text-gray-400 shrink-0 mt-1 transition-transform ${isExp ? "rotate-180" : ""}`} />
                   </button>
@@ -181,7 +181,7 @@ export default function BenachrichtigungenPage() {
                       <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                         <div className="px-4 pb-4">
                           <div className={`rounded-lg p-3.5 ${tc.bg}`}>
-                            <p className="text-[13px] text-gray-700 leading-relaxed">{notif.message}</p>
+                            <p className="text-[13px] text-gray-700 dark:text-gray-300 leading-relaxed">{notif.message}</p>
                           </div>
                           <div className="flex justify-end mt-2">
                             <button onClick={(e) => { e.stopPropagation(); deleteNotif(notif.id) }} className="flex items-center gap-1 text-[11px] text-gray-400 hover:text-red-500 transition-colors">
@@ -206,7 +206,7 @@ export default function BenachrichtigungenPage() {
       {tab === "regeln" && (
         <div className="space-y-3">
           {rules.map((rule) => (
-            <div key={rule.id} className={`rounded-xl border bg-white p-4 flex items-center gap-4 transition-colors ${rule.active ? "border-gray-100" : "border-gray-100 opacity-60"}`}>
+            <div key={rule.id} className={`rounded-xl border bg-white dark:bg-[#1E293B] p-4 flex items-center gap-4 transition-colors ${rule.active ? "border-gray-100 dark:border-white/[0.06]" : "border-gray-100 dark:border-white/[0.06] opacity-60"}`}>
               <button onClick={() => toggleRule(rule.id)} className="shrink-0">
                 {rule.active
                   ? <ToggleRight className="h-6 w-6 text-[#00CEC9]" />
@@ -214,7 +214,7 @@ export default function BenachrichtigungenPage() {
               </button>
               <div className="flex-1 min-w-0">
                 <p className="text-[14px] font-semibold text-[#0F172A] dark:text-white">{rule.name}</p>
-                <p className="text-[11px] text-gray-400 mt-0.5">
+                <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">
                   {rule.metric} · {rule.platform} · {rule.condition === "above" ? "Über" : rule.condition === "below" ? "Unter" : "Änderung >"} {rule.threshold}{rule.condition === "change" ? "%" : ""}
                   {rule.notifyEmail && <span className="ml-2 inline-flex items-center gap-0.5"><Mail className="h-3 w-3" />E-Mail</span>}
                 </p>
@@ -237,19 +237,19 @@ export default function BenachrichtigungenPage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowRuleModal(false)} />
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-md mx-4 rounded-2xl bg-white p-6 shadow-2xl">
-              <h2 className="text-[16px] font-bold text-gray-900 mb-4">Neue Alert-Regel</h2>
+              className="relative z-10 w-full max-w-md mx-4 rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-2xl">
+              <h2 className="text-[16px] font-bold text-gray-900 dark:text-white mb-4">Neue Alert-Regel</h2>
               <div className="space-y-3">
-                <input value={ruleName} onChange={(e) => setRuleName(e.target.value)} placeholder="Regelname" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
+                <input value={ruleName} onChange={(e) => setRuleName(e.target.value)} placeholder="Regelname" className="w-full rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
                 <div className="grid grid-cols-2 gap-3">
-                  <select value={ruleMetric} onChange={(e) => setRuleMetric(e.target.value)} className="rounded-xl border border-gray-200 px-3 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none">
+                  <select value={ruleMetric} onChange={(e) => setRuleMetric(e.target.value)} className="rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-3 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none">
                     <option value="engagement_rate">Engagement-Rate</option>
                     <option value="followers">Follower</option>
                     <option value="impressions">Impressionen</option>
                     <option value="sessions">Sitzungen</option>
                     <option value="sentiment">Sentiment</option>
                   </select>
-                  <select value={rulePlatform} onChange={(e) => setRulePlatform(e.target.value)} className="rounded-xl border border-gray-200 px-3 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none">
+                  <select value={rulePlatform} onChange={(e) => setRulePlatform(e.target.value)} className="rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-3 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none">
                     <option value="Alle">Alle Plattformen</option>
                     <option value="Instagram">Instagram</option>
                     <option value="Facebook">Facebook</option>
@@ -260,20 +260,20 @@ export default function BenachrichtigungenPage() {
                   </select>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  <select value={ruleCondition} onChange={(e) => setRuleCondition(e.target.value as any)} className="rounded-xl border border-gray-200 px-3 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none">
+                  <select value={ruleCondition} onChange={(e) => setRuleCondition(e.target.value as any)} className="rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-3 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none">
                     <option value="below">Fällt unter</option>
                     <option value="above">Steigt über</option>
                     <option value="change">Ändert sich um</option>
                   </select>
-                  <input type="number" value={ruleThreshold} onChange={(e) => setRuleThreshold(Number(e.target.value))} className="rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
+                  <input type="number" value={ruleThreshold} onChange={(e) => setRuleThreshold(Number(e.target.value))} className="rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
                 </div>
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input type="checkbox" checked={ruleEmail} onChange={(e) => setRuleEmail(e.target.checked)} className="rounded border-gray-300 text-[#00CEC9] focus:ring-[#00CEC9]" />
-                  <span className="text-[13px] text-gray-600">Auch per E-Mail benachrichtigen</span>
+                  <span className="text-[13px] text-gray-600 dark:text-gray-300">Auch per E-Mail benachrichtigen</span>
                 </label>
               </div>
               <div className="flex gap-3 mt-5">
-                <button onClick={() => setShowRuleModal(false)} className="flex-1 rounded-xl border border-gray-200 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">Abbrechen</button>
+                <button onClick={() => setShowRuleModal(false)} className="flex-1 rounded-xl border border-gray-200 dark:border-white/[0.06] py-2.5 text-[13px] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]">Abbrechen</button>
                 <button onClick={handleAddRule} disabled={!ruleName} className="flex-1 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50">Erstellen</button>
               </div>
             </motion.div>
