@@ -1,10 +1,8 @@
 "use client"
 
-import { Sidebar } from "@/components/dashboard/sidebar"
+import { Sidebar, PRIMARY_WIDTH } from "@/components/dashboard/sidebar"
 import { Header } from "@/components/dashboard/header"
 import { MobileNav } from "@/components/dashboard/mobile-nav"
-
-const PRIMARY_WIDTH = 72
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
   return (
