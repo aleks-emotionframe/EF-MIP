@@ -56,16 +56,16 @@ export function LoginForm() {
 
   return (
     <div className="space-y-5">
-      {/* Quick Login Buttons */}
-      <div className="space-y-2">
-        <p className="text-xs font-semibold text-gray-500 uppercase text-center">Schnell-Login</p>
+      {/* Quick Login */}
+      <div className="space-y-3">
+        <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider text-center">Schnell-Login</p>
         <div className="grid grid-cols-2 gap-3">
           {DEMO_ACCOUNTS.map((account) => (
             <button
               key={account.email}
               onClick={() => doLogin(account.email, account.password, account.email)}
               disabled={loading !== null}
-              className="flex items-center justify-center gap-2 rounded-lg border-2 border-ef-primary/20 bg-ef-primary/5 dark:bg-ef-primary/10 px-4 py-3 text-sm font-semibold text-[#00CEC9] transition-all hover:bg-ef-primary/10 hover:border-ef-primary/40 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-3 text-[13px] font-medium text-gray-600 transition-all hover:border-[#00CEC9] hover:text-[#00CEC9] hover:bg-[#00CEC9]/5 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading === account.email ? (
                 <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
@@ -83,26 +83,26 @@ export function LoginForm() {
 
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200 dark:border-white/[0.06]" />
+          <div className="w-full border-t border-gray-100" />
         </div>
-        <div className="relative flex justify-center text-xs">
-          <span className="bg-white dark:bg-[#1E293B] px-3 text-gray-400">oder manuell</span>
+        <div className="relative flex justify-center text-[11px]">
+          <span className="bg-white px-3 text-gray-300">oder manuell</span>
         </div>
       </div>
 
       {error && (
-        <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-600">
+        <div className="rounded-xl bg-red-50 border border-red-100 p-3 text-[13px] text-red-500">
           {error}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-3">
         <input
           name="email"
           type="email"
           autoComplete="email"
           required
-          className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary placeholder:text-muted-foreground"
+          className="w-full rounded-xl border border-gray-200 bg-[#F8FAFC] px-4 py-3 text-[13px] text-[#0F172A] transition-all focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/20 focus:border-[#00CEC9] placeholder:text-gray-300"
           placeholder="E-Mail"
         />
         <input
@@ -110,13 +110,13 @@ export function LoginForm() {
           type="password"
           autoComplete="current-password"
           required
-          className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary placeholder:text-muted-foreground"
+          className="w-full rounded-xl border border-gray-200 bg-[#F8FAFC] px-4 py-3 text-[13px] text-[#0F172A] transition-all focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/20 focus:border-[#00CEC9] placeholder:text-gray-300"
           placeholder="Passwort"
         />
         <button
           type="submit"
           disabled={loading !== null}
-          className="w-full rounded-lg bg-ef-primary px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-ef-primary-dark focus:outline-none focus:ring-2 focus:ring-ef-primary/50 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-3 text-[13px] font-semibold text-white shadow-md shadow-[#00CEC9]/20 transition-all hover:shadow-lg hover:shadow-[#00CEC9]/30 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading === "form" ? "Anmelden..." : "Anmelden"}
         </button>
