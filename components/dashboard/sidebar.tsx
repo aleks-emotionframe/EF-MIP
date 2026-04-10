@@ -8,7 +8,8 @@ import {
   Home, Share2, BarChart3, Layers, Sparkles, FileText,
   TrendingUp, Globe, Users, Mail, Settings, Calendar,
   Hash, Target, Bell, ChevronRight, X, Inbox, Clock,
-  PieChart, SmilePlus, GitCompare,
+  PieChart, SmilePlus, GitCompare, Gauge, Link2, MapPin,
+  FileBarChart, GitFork, Search,
 } from "lucide-react"
 
 interface MenuItem { icon: any; label: string; href: string }
@@ -47,6 +48,12 @@ const menuSections: MenuSection[] = [
     items: [
       { icon: BarChart3, label: "Analysen", href: "/dashboard/analytics" },
       { icon: Globe, label: "SEO-Analyse", href: "/dashboard/seo" },
+      { icon: Gauge, label: "Website Speed", href: "/dashboard/speed" },
+      { icon: Link2, label: "Backlinks", href: "/dashboard/backlinks" },
+      { icon: MapPin, label: "Live Besucher", href: "/dashboard/live-besucher" },
+      { icon: FileBarChart, label: "Seiten-Ranking", href: "/dashboard/seiten-ranking" },
+      { icon: GitFork, label: "Conversion-Funnel", href: "/dashboard/funnel" },
+      { icon: Search, label: "Content-Lücken", href: "/dashboard/content-luecken" },
     ],
   },
   {
