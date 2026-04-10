@@ -118,8 +118,8 @@ export default function AudiencePage() {
             <PieChartIcon className="h-5 w-5 text-[#00CEC9]" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-[#0F172A]">Audience Insights</h1>
-            <p className="text-[14px] text-gray-500 mt-0.5">Zielgruppen-Analyse und Follower-Demografie</p>
+            <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Audience Insights</h1>
+            <p className="text-[14px] text-gray-500 dark:text-white/50 mt-0.5">Zielgruppen-Analyse und Follower-Demografie</p>
           </div>
         </div>
 
@@ -162,7 +162,7 @@ export default function AudiencePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05, duration: 0.35 }}
-            className="rounded-2xl bg-white shadow-sm p-4"
+            className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/[0.06] flex items-center justify-center">
@@ -172,7 +172,7 @@ export default function AudiencePage() {
                 <ArrowUpRight className="h-3 w-3" />
               </span>
             </div>
-            <p className="text-[22px] font-extrabold text-[#0F172A]">{stat.value}</p>
+            <p className="text-[22px] font-extrabold text-[#0F172A] dark:text-white">{stat.value}</p>
             <p className="text-[11px] text-gray-400 mt-0.5">{stat.label}</p>
             <p className="text-[10px] text-gray-300 mt-0.5">{stat.sub}</p>
           </motion.div>
@@ -186,9 +186,9 @@ export default function AudiencePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.35 }}
-          className="rounded-2xl bg-white shadow-sm p-6"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
-          <h3 className="text-[16px] font-bold text-[#0F172A] mb-1">Follower-Wachstum</h3>
+          <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Follower-Wachstum</h3>
           <p className="text-[11px] text-gray-400 mb-4">Letzte 12 Monate</p>
           <div className="h-[260px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -214,9 +214,9 @@ export default function AudiencePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.35 }}
-          className="rounded-2xl bg-white shadow-sm p-6"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
-          <h3 className="text-[16px] font-bold text-[#0F172A] mb-1">Altersverteilung</h3>
+          <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Altersverteilung</h3>
           <p className="text-[11px] text-gray-400 mb-4">Alter der Follower in Prozent</p>
           <div className="h-[260px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -239,9 +239,9 @@ export default function AudiencePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.35 }}
-          className="rounded-2xl bg-white shadow-sm p-6"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
-          <h3 className="text-[16px] font-bold text-[#0F172A] mb-1">Geschlecht</h3>
+          <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Geschlecht</h3>
           <p className="text-[11px] text-gray-400 mb-4">Verteilung nach Geschlecht</p>
           <div className="flex items-center gap-8">
             <div className="w-[180px] h-[180px] shrink-0 relative">
@@ -268,7 +268,7 @@ export default function AudiencePage() {
               {/* Center Label */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div className="text-center">
-                  <p className="text-[20px] font-extrabold text-[#0F172A]">58%</p>
+                  <p className="text-[20px] font-extrabold text-[#0F172A] dark:text-white">58%</p>
                   <p className="text-[10px] text-gray-400">Weiblich</p>
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function AudiencePage() {
                       <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: g.color }} />
                       <span className="text-[13px] font-medium text-gray-700">{g.name}</span>
                     </div>
-                    <span className="text-[13px] font-bold text-[#0F172A]">{g.value}%</span>
+                    <span className="text-[13px] font-bold text-[#0F172A] dark:text-white">{g.value}%</span>
                   </div>
                   <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                     <div
@@ -300,9 +300,9 @@ export default function AudiencePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.35 }}
-          className="rounded-2xl bg-white shadow-sm p-6"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
-          <h3 className="text-[16px] font-bold text-[#0F172A] mb-1">Top Standorte</h3>
+          <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Top Standorte</h3>
           <p className="text-[11px] text-gray-400 mb-4">Städte mit den meisten Followern</p>
           <div className="space-y-3.5">
             {topCities.map((city, i) => (
@@ -312,7 +312,7 @@ export default function AudiencePage() {
                 </span>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-[13px] font-semibold text-[#0F172A]">{city.name}</span>
+                    <span className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{city.name}</span>
                     <span className="text-[12px] font-bold text-gray-900">{city.value}%</span>
                   </div>
                   <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
@@ -333,9 +333,9 @@ export default function AudiencePage() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.35 }}
-        className="rounded-2xl bg-white shadow-sm p-6"
+        className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
       >
-        <h3 className="text-[16px] font-bold text-[#0F172A] mb-1">Top Fans</h3>
+        <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Top Fans</h3>
         <p className="text-[11px] text-gray-400 mb-4">Die engagiertesten Follower nach Interaktionen</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {topFans.map((fan, i) => (
@@ -372,9 +372,9 @@ export default function AudiencePage() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.35 }}
-        className="rounded-2xl bg-white shadow-sm p-6"
+        className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
       >
-        <h3 className="text-[16px] font-bold text-[#0F172A] mb-1">Interessen-Tags</h3>
+        <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Interessen-Tags</h3>
         <p className="text-[11px] text-gray-400 mb-4">Häufigste Interessen der Follower</p>
         <div className="flex flex-wrap gap-2">
           {interestTags.map((tag, i) => (

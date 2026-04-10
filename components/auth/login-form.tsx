@@ -65,7 +65,7 @@ export function LoginForm() {
               key={account.email}
               onClick={() => doLogin(account.email, account.password, account.email)}
               disabled={loading !== null}
-              className="flex items-center justify-center gap-2 rounded-lg border-2 border-ef-primary/20 bg-ef-primary/5 px-4 py-3 text-sm font-semibold text-[#00CEC9] transition-all hover:bg-ef-primary/10 hover:border-ef-primary/40 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center justify-center gap-2 rounded-lg border-2 border-ef-primary/20 bg-ef-primary/5 dark:bg-ef-primary/10 px-4 py-3 text-sm font-semibold text-[#00CEC9] transition-all hover:bg-ef-primary/10 hover:border-ef-primary/40 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading === account.email ? (
                 <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
@@ -83,10 +83,10 @@ export function LoginForm() {
 
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200" />
+          <div className="w-full border-t border-gray-200 dark:border-white/[0.06]" />
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="bg-white px-3 text-gray-400">oder manuell</span>
+          <span className="bg-white dark:bg-[#1E293B] px-3 text-gray-400">oder manuell</span>
         </div>
       </div>
 

@@ -101,7 +101,7 @@ export default function BacklinksPage() {
         <div className="relative">
           <button
             onClick={() => setDomainOpen(!domainOpen)}
-            className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-[13px] font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            className="flex items-center gap-2 rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-4 py-2.5 text-[13px] font-medium text-gray-700 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04] transition-colors"
           >
             <Globe className="h-3.5 w-3.5 text-gray-400" />
             {selectedDomain}
@@ -118,7 +118,7 @@ export default function BacklinksPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
                 transition={{ duration: 0.15 }}
-                className="absolute right-0 mt-1 w-56 rounded-xl border border-gray-200 bg-white shadow-lg z-20 overflow-hidden"
+                className="absolute right-0 mt-1 w-56 rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] shadow-lg z-20 overflow-hidden"
               >
                 {domains.map((d) => (
                   <button
@@ -183,7 +183,7 @@ function NotConnectedState() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="rounded-2xl bg-white shadow-sm overflow-hidden"
+        className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden"
       >
         <div className="p-8 md:p-10">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
@@ -222,7 +222,7 @@ function NotConnectedState() {
                       <f.icon className="h-4 w-4 text-[#00CEC9]" />
                     </div>
                     <div>
-                      <p className="text-[13px] font-semibold text-[#0F172A]">{f.title}</p>
+                      <p className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{f.title}</p>
                       <p className="text-[11px] text-gray-500 mt-0.5 leading-relaxed">
                         {f.desc}
                       </p>
@@ -477,7 +477,7 @@ function ConnectedState({ domain }: { domain: string }) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: i * 0.06 }}
-            className="rounded-2xl bg-white shadow-sm p-5"
+            className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5"
           >
             <div className="flex items-center justify-between mb-3">
               <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">
@@ -502,7 +502,7 @@ function ConnectedState({ domain }: { domain: string }) {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.15 }}
-        className="rounded-2xl bg-white shadow-sm p-6"
+        className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
       >
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -571,7 +571,7 @@ function ConnectedState({ domain }: { domain: string }) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.2 }}
-          className="rounded-2xl bg-white shadow-sm p-6"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">
             Top Verweisende Domains
@@ -655,7 +655,7 @@ function ConnectedState({ domain }: { domain: string }) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.25 }}
-          className="rounded-2xl bg-white shadow-sm p-6"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">
             Neue Backlinks
@@ -702,7 +702,7 @@ function ConnectedState({ domain }: { domain: string }) {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.3 }}
-        className="rounded-2xl bg-white shadow-sm overflow-hidden"
+        className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden"
       >
         <div className="flex items-center gap-3 px-6 pt-6 pb-4">
           <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center">
@@ -740,7 +740,7 @@ function ConnectedState({ domain }: { domain: string }) {
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-2">
-                  <p className="text-[13px] font-semibold text-[#0F172A] truncate">
+                  <p className="text-[13px] font-semibold text-[#0F172A] dark:text-white truncate">
                     {link.url}
                   </p>
                   <span

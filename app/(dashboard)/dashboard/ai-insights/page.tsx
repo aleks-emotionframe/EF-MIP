@@ -121,7 +121,7 @@ export default function AIInsightsPage() {
         </div>
         <button
           onClick={() => { setLoading(true); setTimeout(() => setLoading(false), 1200) }}
-          className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-2 text-[12px] font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+          className="flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-white/[0.06] px-3 py-2 text-[12px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
         >
           <Sparkles className="h-3.5 w-3.5" />
           Neu erstellen
@@ -129,7 +129,7 @@ export default function AIInsightsPage() {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex gap-1 p-1 rounded-xl bg-gray-100 w-fit">
+      <div className="flex gap-1 p-1 rounded-xl bg-gray-100 dark:bg-white/[0.04] w-fit">
         {FILTER_TABS.map((tab) => {
           const count = tab.key === "all"
             ? insights.length
@@ -140,21 +140,21 @@ export default function AIInsightsPage() {
               onClick={() => setActiveFilter(tab.key)}
               className={`relative rounded-lg px-4 py-1.5 text-[12px] font-medium transition-all ${
                 activeFilter === tab.key
-                  ? "text-gray-900"
-                  : "text-gray-500 hover:text-gray-700"
+                  ? "text-gray-900 dark:text-white"
+                  : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
               }`}
             >
               {activeFilter === tab.key && (
                 <motion.div
                   layoutId="filter-pill"
-                  className="absolute inset-0 bg-white rounded-lg shadow-sm"
+                  className="absolute inset-0 bg-white dark:bg-[#1E293B] rounded-lg shadow-sm"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
               <span className="relative z-10">
                 {tab.label}
                 {count > 0 && (
-                  <span className="ml-1.5 text-[10px] text-gray-400">{count}</span>
+                  <span className="ml-1.5 text-[10px] text-gray-400 dark:text-gray-500">{count}</span>
                 )}
               </span>
             </button>
@@ -184,7 +184,7 @@ export default function AIInsightsPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="rounded-2xl bg-white shadow-sm overflow-hidden hover:shadow-sm transition-shadow"
+                  className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden hover:shadow-sm transition-shadow"
                 >
                   {/* Main Row */}
                   <div
@@ -210,14 +210,14 @@ export default function AIInsightsPage() {
                         )}
                       </div>
 
-                      <p className="text-[13px] text-gray-600 leading-relaxed line-clamp-2">
+                      <p className="text-[13px] text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-2">
                         {insight.description}
                       </p>
 
                       {/* Confidence Bar */}
                       <div className="flex items-center gap-2 mt-2.5">
-                        <span className="text-[10px] text-gray-400 font-medium">Vertrauen</span>
-                        <div className="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                        <span className="text-[10px] text-gray-400 dark:text-gray-500 font-medium">Vertrauen</span>
+                        <div className="w-24 h-1.5 bg-gray-100 dark:bg-white/[0.04] rounded-full overflow-hidden">
                           <motion.div
                             className="h-full rounded-full"
                             style={{ backgroundColor: typeConf.color }}
@@ -248,7 +248,7 @@ export default function AIInsightsPage() {
                         transition={{ duration: 0.2 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-5 pb-5 pt-0 border-t border-gray-50">
+                        <div className="px-5 pb-5 pt-0 border-t border-gray-50 dark:border-white/[0.06]">
                           {/* Actions */}
                           {insight.actions.length > 0 && (
                             <div className="mt-4">
@@ -259,7 +259,7 @@ export default function AIInsightsPage() {
                                 {insight.actions.map((action, i) => (
                                   <span
                                     key={i}
-                                    className="inline-flex items-center rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-[12px] text-gray-600"
+                                    className="inline-flex items-center rounded-lg border border-gray-200 dark:border-white/[0.06] bg-gray-50 dark:bg-white/[0.04] px-3 py-1.5 text-[12px] text-gray-600 dark:text-gray-300"
                                   >
                                     {action}
                                   </span>
@@ -286,14 +286,14 @@ export default function AIInsightsPage() {
                                 </button>
                                 <button
                                   onClick={(e) => { e.stopPropagation(); handleFeedback(insight.id, "not_useful") }}
-                                  className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3.5 py-2 text-[12px] text-gray-500 hover:bg-gray-50 transition-colors"
+                                  className="flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-white/[0.06] px-3.5 py-2 text-[12px] text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
                                 >
                                   <X className="h-3.5 w-3.5" />
                                   Ignorieren
                                 </button>
                                 <button
                                   onClick={(e) => { e.stopPropagation(); handleFeedback(insight.id, "useful") }}
-                                  className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3.5 py-2 text-[12px] text-gray-500 hover:bg-gray-50 transition-colors"
+                                  className="flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-white/[0.06] px-3.5 py-2 text-[12px] text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
                                 >
                                   <Eye className="h-3.5 w-3.5" />
                                   Nützlich
@@ -320,11 +320,11 @@ export default function AIInsightsPage() {
       )}
 
       {/* Learning Timeline */}
-      <div className="rounded-2xl bg-white shadow-sm p-5 mt-8">
+      <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5 mt-8">
         <div className="flex items-center gap-2 mb-5">
           <Brain className="h-4 w-4 text-[#00CEC9]" />
           <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Lernverlauf</h2>
-          <span className="text-[11px] text-gray-400">Was die KI bisher gelernt hat</span>
+          <span className="text-[11px] text-gray-400 dark:text-gray-500">Was die KI bisher gelernt hat</span>
         </div>
         <div className="space-y-0">
           {LEARNING_TIMELINE.map((entry, i) => (
@@ -334,12 +334,12 @@ export default function AIInsightsPage() {
                   <entry.icon className="h-3.5 w-3.5 text-[#00CEC9]" />
                 </div>
                 {i < LEARNING_TIMELINE.length - 1 && (
-                  <div className="w-px flex-1 bg-gray-100 my-1" />
+                  <div className="w-px flex-1 bg-gray-100 dark:bg-white/[0.06] my-1" />
                 )}
               </div>
               <div className="pb-5">
-                <p className="text-[13px] text-gray-700 leading-snug">{entry.text}</p>
-                <p className="text-[11px] text-gray-400 mt-0.5 flex items-center gap-1">
+                <p className="text-[13px] text-gray-700 dark:text-gray-300 leading-snug">{entry.text}</p>
+                <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5 flex items-center gap-1">
                   <Clock className="h-3 w-3" />
                   {entry.date}
                 </p>

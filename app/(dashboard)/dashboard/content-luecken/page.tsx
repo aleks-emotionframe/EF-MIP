@@ -180,14 +180,14 @@ export default function ContentLueckenPage() {
                   { label: "Schwierigkeit", val: "42%" },
                   { label: "Vorschläge", val: "12" },
                 ].map((s) => (
-                  <div key={s.label} className="rounded-xl bg-white p-4">
+                  <div key={s.label} className="rounded-xl bg-white dark:bg-[#1E293B] p-4">
                     <p className="text-[11px] text-gray-400">{s.label}</p>
                     <p className="text-[20px] font-bold text-gray-900 mt-1">{s.val}</p>
                   </div>
                 ))}
               </div>
               {/* Fake table rows */}
-              <div className="rounded-xl bg-white p-4 space-y-3">
+              <div className="rounded-xl bg-white dark:bg-[#1E293B] p-4 space-y-3">
                 {PREVIEW_KEYWORDS.map((kw) => (
                   <div key={kw.keyword} className="flex items-center gap-4 py-2 border-b border-gray-50 last:border-0">
                     <span className="text-[13px] font-medium text-gray-700 flex-1">{kw.keyword}</span>
@@ -209,7 +209,7 @@ export default function ContentLueckenPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="relative z-10 rounded-2xl border border-gray-200 bg-white/95 backdrop-blur-sm shadow-lg p-8 md:p-12"
+            className="relative z-10 rounded-2xl border border-gray-200 dark:border-white/[0.06] bg-white/95 dark:bg-[#1E293B]/95 backdrop-blur-sm shadow-lg p-8 md:p-12"
           >
             <div className="max-w-2xl mx-auto text-center">
               {/* Animated search icon */}
@@ -250,7 +250,7 @@ export default function ContentLueckenPage() {
                       <f.icon className="h-4 w-4 text-[#00CEC9]" />
                     </div>
                     <div>
-                      <p className="text-[13px] font-semibold text-[#0F172A]">{f.text}</p>
+                      <p className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{f.text}</p>
                       <p className="text-[11px] text-gray-500 mt-0.5 leading-relaxed">{f.desc}</p>
                     </div>
                   </motion.div>
@@ -316,7 +316,7 @@ export default function ContentLueckenPage() {
                 key={stat.label}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-2xl bg-white shadow-sm p-4"
+                className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4"
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: `${stat.color}10` }}>
@@ -332,7 +332,7 @@ export default function ContentLueckenPage() {
           </div>
 
           {/* Keyword-Chancen Table */}
-          <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
             <div className="px-5 pt-5 pb-3 flex items-center justify-between">
               <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white flex items-center gap-2">
                 <Target className="h-4 w-4 text-[#00CEC9]" />
@@ -446,10 +446,10 @@ export default function ContentLueckenPage() {
           </div>
 
           {/* KI Content-Vorschläge */}
-          <div className="rounded-2xl bg-white shadow-sm overflow-hidden relative">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden relative">
             {/* Gradient border effect */}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#6C5CE7] via-[#E84393] to-[#00CEC9] p-[1px] pointer-events-none">
-              <div className="w-full h-full rounded-2xl bg-white" />
+              <div className="w-full h-full rounded-2xl bg-white dark:bg-[#1E293B]" />
             </div>
 
             <div className="relative z-10 p-5">
@@ -515,7 +515,7 @@ export default function ContentLueckenPage() {
           </div>
 
           {/* Keyword-Verteilung Chart */}
-          <div className="rounded-2xl bg-white shadow-sm p-5">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white flex items-center gap-2 mb-4">
               <Award className="h-4 w-4 text-[#F97316]" />
               Keyword-Verteilung
@@ -548,8 +548,8 @@ export default function ContentLueckenPage() {
                       return (
                         <div className="rounded-lg bg-white shadow-lg border border-gray-100 p-3 text-[12px]">
                           <p className="font-semibold text-[#0F172A] mb-1">{d.keyword}</p>
-                          <p className="text-gray-500">Suchvolumen: <span className="font-bold text-[#0F172A]">{d.volume.toLocaleString("de-CH")}</span></p>
-                          <p className="text-gray-500">Schwierigkeit: <span className="font-bold text-[#0F172A]">{d.difficulty}%</span></p>
+                          <p className="text-gray-500">Suchvolumen: <span className="font-bold text-[#0F172A] dark:text-white">{d.volume.toLocaleString("de-CH")}</span></p>
+                          <p className="text-gray-500">Schwierigkeit: <span className="font-bold text-[#0F172A] dark:text-white">{d.difficulty}%</span></p>
                           <p className="text-gray-500">Potential: <span className="font-bold text-[#00CEC9]">{d.potential}</span></p>
                         </div>
                       )

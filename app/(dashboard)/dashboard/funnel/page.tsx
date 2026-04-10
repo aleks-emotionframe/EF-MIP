@@ -137,7 +137,7 @@ export default function FunnelPage() {
 
         {/* Time range selector */}
         <div className="relative">
-          <div className="flex items-center gap-1 bg-white dark:bg-white/5 rounded-xl shadow-sm border border-gray-100 dark:border-white/10 p-1">
+          <div className="flex items-center gap-1 bg-white dark:bg-[#1E293B] rounded-xl shadow-sm border border-gray-100 dark:border-white/10 p-1">
             {TIME_RANGES.map((range) => (
               <button
                 key={range}
@@ -160,7 +160,7 @@ export default function FunnelPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="rounded-2xl bg-white dark:bg-white/5 shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden"
         >
           <div className="flex flex-col items-center justify-center py-16 px-6 text-center">
             {/* Animated icon */}
@@ -189,7 +189,7 @@ export default function FunnelPage() {
               ].map((feature) => (
                 <div
                   key={feature.label}
-                  className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/5 text-left"
+                  className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/[0.04] text-left"
                 >
                   <div className="w-8 h-8 rounded-lg bg-[#6C5CE7]/10 flex items-center justify-center shrink-0 mt-0.5">
                     <feature.icon className="h-4 w-4 text-[#6C5CE7]" />
@@ -236,7 +236,7 @@ export default function FunnelPage() {
                 key={stat.label}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-2xl bg-white dark:bg-white/5 shadow-sm p-4"
+                className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4"
               >
                 <div className="flex items-center justify-between mb-2">
                   <div
@@ -253,7 +253,7 @@ export default function FunnelPage() {
           </div>
 
           {/* ── Visual Funnel ────────────────────────────────── */}
-          <div className="rounded-2xl bg-white dark:bg-white/5 shadow-sm p-6">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6">
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Conversion-Trichter</h3>
             <p className="text-[11px] text-gray-400 dark:text-white/40 mb-6">
               5-Stufen-Funnel · Letzte {timeRange}
@@ -321,7 +321,7 @@ export default function FunnelPage() {
           </div>
 
           {/* ── Drop-off Analyse ─────────────────────────────── */}
-          <div className="rounded-2xl bg-white dark:bg-white/5 shadow-sm p-6">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6">
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Drop-off Analyse</h3>
             <p className="text-[11px] text-gray-400 dark:text-white/40 mb-4">
               Wo und warum verlierst du Besucher?
@@ -407,7 +407,7 @@ export default function FunnelPage() {
           </div>
 
           {/* ── Conversion über Zeit ─────────────────────────── */}
-          <div className="rounded-2xl bg-white dark:bg-white/5 shadow-sm p-5">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Conversion über Zeit</h3>
             <p className="text-[11px] text-gray-400 dark:text-white/40 mb-4">
               Conversion-Rate im Zeitverlauf · Letzte {timeRange}
@@ -458,7 +458,7 @@ export default function FunnelPage() {
           </div>
 
           {/* ── KI-Empfehlungen ──────────────────────────────── */}
-          <div className="rounded-2xl bg-white dark:bg-white/5 shadow-sm p-6">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-[#6C5CE7]/10 flex items-center justify-center">
                 <Sparkles className="h-4 w-4 text-[#6C5CE7]" />
@@ -469,7 +469,7 @@ export default function FunnelPage() {
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex items-center gap-3">
+            <div className="p-4 rounded-xl bg-gray-50 dark:bg-white/[0.04] border border-gray-100 dark:border-white/10 flex items-center gap-3">
               <Sparkles className="h-5 w-5 text-gray-300 dark:text-white/20 shrink-0" />
               <div>
                 <p className="text-[13px] font-medium text-gray-500 dark:text-white/50">

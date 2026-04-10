@@ -125,28 +125,28 @@ export default function EmailPage() {
 
       {/* Overview KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="rounded-2xl bg-white shadow-sm p-4">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/[0.06] flex items-center justify-center"><Users className="h-4 w-4 text-[#00CEC9]" /></div>
           </div>
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{totalSubscribers.toLocaleString("de-CH")}</p>
           <p className="text-[11px] text-gray-400 mt-0.5">Aktive Empfänger</p>
         </div>
-        <div className="rounded-2xl bg-white shadow-sm p-4">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center"><Send className="h-4 w-4 text-emerald-600" /></div>
           </div>
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{totalSent.toLocaleString("de-CH")}</p>
           <p className="text-[11px] text-gray-400 mt-0.5">E-Mails versendet</p>
         </div>
-        <div className="rounded-2xl bg-white shadow-sm p-4">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center"><Eye className="h-4 w-4 text-blue-600" /></div>
           </div>
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{avgOpenRate.toFixed(1)}%</p>
           <p className="text-[11px] text-gray-400 mt-0.5">Ø Öffnungsrate</p>
         </div>
-        <div className="rounded-2xl bg-white shadow-sm p-4">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center"><MousePointer className="h-4 w-4 text-amber-600" /></div>
           </div>
@@ -156,15 +156,15 @@ export default function EmailPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 p-1 rounded-xl bg-gray-100 w-fit">
+      <div className="flex gap-1 p-1 rounded-xl bg-gray-100 dark:bg-white/[0.04] w-fit">
         {([
           { key: "kampagnen" as MainTab, label: "Kampagnen" },
           { key: "empfaenger" as MainTab, label: "Empfänger-Listen" },
           { key: "neu" as MainTab, label: "Neue Kampagne" },
         ]).map((tab) => (
           <button key={tab.key} onClick={() => setMainTab(tab.key)}
-            className={`relative rounded-lg px-5 py-2 text-[13px] font-medium transition-all ${mainTab === tab.key ? "text-gray-900" : "text-gray-500 hover:text-gray-700"}`}>
-            {mainTab === tab.key && <motion.div layoutId="email-tab" className="absolute inset-0 bg-white rounded-lg shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />}
+            className={`relative rounded-lg px-5 py-2 text-[13px] font-medium transition-all ${mainTab === tab.key ? "text-gray-900 dark:text-white" : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"}`}>
+            {mainTab === tab.key && <motion.div layoutId="email-tab" className="absolute inset-0 bg-white dark:bg-[#1E293B] rounded-lg shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />}
             <span className="relative z-10">{tab.label}</span>
           </button>
         ))}
@@ -177,8 +177,8 @@ export default function EmailPage() {
             const sc = STATUS_CONFIG[c.status]
             const isExp = expandedCampaign === c.id
             return (
-              <div key={c.id} className="rounded-2xl bg-white shadow-sm overflow-hidden">
-                <button onClick={() => setExpandedCampaign(isExp ? null : c.id)} className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50/50 transition-colors">
+              <div key={c.id} className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
+                <button onClick={() => setExpandedCampaign(isExp ? null : c.id)} className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
                   <div className={`w-9 h-9 rounded-lg ${sc.bg} flex items-center justify-center shrink-0`}>
                     <sc.icon className={`h-4 w-4 ${sc.color}`} />
                   </div>
@@ -187,9 +187,9 @@ export default function EmailPage() {
                       <p className="text-[14px] font-semibold text-[#0F172A] dark:text-white truncate">{c.name}</p>
                       <span className={`text-[10px] font-medium rounded-full px-2 py-0.5 ${sc.bg} ${sc.color}`}>{sc.label}</span>
                     </div>
-                    <p className="text-[12px] text-gray-500 mt-0.5 truncate">{c.subject}</p>
+                    <p className="text-[12px] text-gray-500 dark:text-gray-400 mt-0.5 truncate">{c.subject}</p>
                   </div>
-                  <div className="hidden sm:flex items-center gap-6 text-[12px] text-gray-500 shrink-0">
+                  <div className="hidden sm:flex items-center gap-6 text-[12px] text-gray-500 dark:text-gray-400 shrink-0">
                     {c.status === "sent" && (
                       <>
                         <div className="text-right"><p className="font-bold text-[#0F172A] dark:text-white">{c.totalSent.toLocaleString("de-CH")}</p><p className="text-[10px] text-gray-400">Versendet</p></div>

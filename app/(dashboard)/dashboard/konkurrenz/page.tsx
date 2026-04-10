@@ -135,7 +135,7 @@ export default function KonkurrenzPage() {
         {competitors.map((c) => (
           <div key={c.id} className="relative group/comp">
             <button onClick={() => setSelectedId(c.id)}
-              className={`rounded-xl px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-all ${selectedId === c.id ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
+              className={`rounded-xl px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-all ${selectedId === c.id ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04]"}`}>
               {c.name}
             </button>
             <button onClick={() => { setCompetitors((prev) => prev.filter((x) => x.id !== c.id)); if (selectedId === c.id) setSelectedId(null) }}
@@ -221,7 +221,7 @@ export default function KonkurrenzPage() {
               const followerDiff = yourPlatform ? ((p.follower - yourPlatform.follower) / yourPlatform.follower * 100) : 0
 
               return (
-                <div key={p.platform} className="rounded-xl border border-gray-100 p-3.5">
+                <div key={p.platform} className="rounded-xl border border-gray-100 dark:border-white/[0.06] p-3.5">
                   <div className="flex items-center gap-2 mb-2">
                     <Icon className="h-4 w-4" style={{ color }} />
                     <span className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{p.platform}</span>
@@ -271,7 +271,7 @@ export default function KonkurrenzPage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowAdd(false)} />
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-md mx-4 rounded-2xl bg-white p-6 shadow-2xl">
+              className="relative z-10 w-full max-w-md mx-4 rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-2xl">
               <h2 className="text-[16px] font-bold text-gray-900 mb-4">Wettbewerber hinzufügen</h2>
               <div className="space-y-3">
                 <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Firmenname" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />

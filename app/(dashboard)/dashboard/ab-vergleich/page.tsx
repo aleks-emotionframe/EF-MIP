@@ -175,7 +175,7 @@ export default function ABVergleichPage() {
       </div>
 
       {/* ─── Performance-Vergleich Chart ────────────────────────── */}
-      <div className="rounded-2xl bg-white shadow-sm p-6">
+      <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6">
         <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Performance-Vergleich</h2>
         <p className="text-[11px] text-gray-400 mb-5">Metriken im direkten Vergleich (Demo-Daten)</p>
         <div className="h-[300px]">
@@ -238,7 +238,7 @@ export default function ABVergleichPage() {
       </div>
 
       {/* ─── Vergangene Tests ───────────────────────────────────── */}
-      <div className="rounded-2xl bg-white shadow-sm p-6">
+      <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6">
         <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Vergangene Tests</h2>
         <p className="text-[11px] text-gray-400 mb-4">Abgeschlossene A/B-Tests (Demo-Daten)</p>
         <div className="overflow-x-auto">
@@ -301,14 +301,14 @@ export default function ABVergleichPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="w-full max-w-lg rounded-2xl bg-white shadow-xl p-6 space-y-5"
+              className="w-full max-w-lg rounded-2xl bg-white dark:bg-[#1E293B] shadow-xl p-6 space-y-5"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <GitCompare className="h-5 w-5 text-[#00CEC9]" />
-                  <h2 className="text-[16px] font-bold text-[#0F172A]">Neuer A/B-Test</h2>
+                  <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Neuer A/B-Test</h2>
                 </div>
                 <button onClick={() => setShowModal(false)} className="rounded-lg p-1.5 hover:bg-gray-100 transition-colors">
                   <X className="h-4 w-4 text-gray-400" />
@@ -403,7 +403,7 @@ function VariantCard({ variant, isWinner }: { variant: Variant; isWinner: boolea
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: variant.label === "A" ? 0 : 0.15 }}
-      className={`relative rounded-2xl bg-white shadow-sm overflow-hidden transition-shadow ${
+      className={`relative rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden transition-shadow ${
         isWinner ? "ring-2 ring-green-400/60 shadow-green-100" : ""
       }`}
     >
@@ -450,7 +450,7 @@ function VariantCard({ variant, isWinner }: { variant: Variant; isWinner: boolea
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7]" />
               <div>
-                <p className="text-[11px] font-semibold text-[#0F172A]">emotionframe</p>
+                <p className="text-[11px] font-semibold text-[#0F172A] dark:text-white">emotionframe</p>
                 <p className="text-[9px] text-gray-400">Gesponsert</p>
               </div>
             </div>
@@ -478,7 +478,7 @@ function VariantCard({ variant, isWinner }: { variant: Variant; isWinner: boolea
             <span className="text-[11px] text-gray-400">Demo-Daten</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-[13px] font-bold text-[#0F172A]">
+            <span className="text-[13px] font-bold text-[#0F172A] dark:text-white">
               Erwartete Reichweite: {fmt(variant.prognose)}
             </span>
             <span className="text-[11px] font-medium" style={{ color: variant.color }}>{variant.confidence}% Konfidenz</span>
@@ -524,7 +524,7 @@ function MetricTile({
     <div className="rounded-xl bg-gray-50 p-3 flex items-center gap-2.5">
       <Icon className="h-4 w-4 shrink-0" style={{ color }} />
       <div>
-        <p className="text-[13px] font-bold text-[#0F172A]">{fmt(value)}</p>
+        <p className="text-[13px] font-bold text-[#0F172A] dark:text-white">{fmt(value)}</p>
         <p className="text-[10px] text-gray-400">{label}</p>
       </div>
     </div>

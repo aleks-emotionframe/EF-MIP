@@ -177,7 +177,7 @@ export default function KontaktePage() {
           <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Verwalte deine Empfänger und Gruppen.</p>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => setShowGroupModal(true)} className="flex items-center gap-1.5 rounded-xl border border-gray-200 px-3 py-2.5 text-[12px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">
+          <button onClick={() => setShowGroupModal(true)} className="flex items-center gap-1.5 rounded-xl border border-gray-200 dark:border-white/[0.06] px-3 py-2.5 text-[12px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
             <Tag className="h-3.5 w-3.5" />Neue Gruppe
           </button>
           <button onClick={openCreate} className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
@@ -188,19 +188,19 @@ export default function KontaktePage() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="rounded-2xl bg-white shadow-sm p-4">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{contacts.length}</p>
           <p className="text-[11px] text-gray-400">Gesamt</p>
         </div>
-        <div className="rounded-2xl bg-white shadow-sm p-4">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <p className="text-[20px] font-bold text-emerald-600">{activeCount}</p>
           <p className="text-[11px] text-gray-400">Aktiv</p>
         </div>
-        <div className="rounded-2xl bg-white shadow-sm p-4">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{groups.length}</p>
           <p className="text-[11px] text-gray-400">Gruppen</p>
         </div>
-        <div className="rounded-2xl bg-white shadow-sm p-4">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{contacts.filter((c) => c.status === "unsubscribed").length}</p>
           <p className="text-[11px] text-gray-400">Abgemeldet</p>
         </div>
@@ -209,13 +209,13 @@ export default function KontaktePage() {
       {/* Groups */}
       <div className="flex gap-2 overflow-x-auto pb-1">
         <button onClick={() => setFilterGroup("all")}
-          className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${filterGroup === "all" ? "bg-[#00CEC9] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
+          className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${filterGroup === "all" ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"}`}>
           Alle <span className="text-[10px] ml-1 opacity-70">{contacts.length}</span>
         </button>
         {groups.map((g) => (
           <div key={g.id} className="relative group/tag">
             <button onClick={() => setFilterGroup(g.id)}
-              className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all flex items-center gap-1.5 ${filterGroup === g.id ? "text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+              className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all flex items-center gap-1.5 ${filterGroup === g.id ? "text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"}`}
               style={filterGroup === g.id ? { backgroundColor: g.color } : {}}>
               <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: filterGroup === g.id ? "white" : g.color }} />
               {g.name}
@@ -233,10 +233,10 @@ export default function KontaktePage() {
         <div className="flex-1 relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Name oder E-Mail suchen..."
-            className="w-full rounded-xl border border-gray-200 bg-white pl-10 pr-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
+            className="w-full rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white pl-10 pr-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
         </div>
         <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}
-          className="rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-[12px] text-gray-600 focus:border-[#00CEC9] focus:outline-none appearance-none pr-8">
+          className="rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-3 py-2.5 text-[12px] text-gray-600 dark:text-gray-300 focus:border-[#00CEC9] focus:outline-none appearance-none pr-8">
           <option value="all">Alle Status</option>
           <option value="active">Aktiv</option>
           <option value="unsubscribed">Abgemeldet</option>
@@ -255,11 +255,11 @@ export default function KontaktePage() {
       </div>
 
       {/* Contact Table */}
-      <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+      <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-[13px]">
             <thead>
-              <tr className="border-b border-gray-100 bg-gray-50/50">
+              <tr className="border-b border-gray-100 dark:border-white/[0.06] bg-gray-50/50 dark:bg-white/[0.04]">
                 <th className="w-10 px-4 py-3"><input type="checkbox" checked={selected.size === filtered.length && filtered.length > 0} onChange={toggleSelectAll} className="rounded border-gray-300 text-[#00CEC9] focus:ring-[#00CEC9]" /></th>
                 <th className="text-left px-4 py-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Name</th>
                 <th className="text-left px-4 py-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider hidden md:table-cell">E-Mail</th>
@@ -272,7 +272,7 @@ export default function KontaktePage() {
               {filtered.map((contact) => {
                 const sc = STATUS_CONFIG[contact.status]
                 return (
-                  <tr key={contact.id} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/50 transition-colors">
+                  <tr key={contact.id} className="border-b border-gray-50 dark:border-white/[0.06] last:border-0 hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
                     <td className="px-4 py-3"><input type="checkbox" checked={selected.has(contact.id)} onChange={() => toggleSelect(contact.id)} className="rounded border-gray-300 text-[#00CEC9] focus:ring-[#00CEC9]" /></td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
@@ -281,11 +281,11 @@ export default function KontaktePage() {
                         </div>
                         <div>
                           <p className="font-semibold text-[#0F172A] dark:text-white">{contact.firstName} {contact.lastName}</p>
-                          <p className="text-[11px] text-gray-400 md:hidden">{contact.email}</p>
+                          <p className="text-[11px] text-gray-400 dark:text-gray-500 md:hidden">{contact.email}</p>
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-gray-500 hidden md:table-cell">{contact.email}</td>
+                    <td className="px-4 py-3 text-gray-500 dark:text-gray-400 hidden md:table-cell">{contact.email}</td>
                     <td className="px-4 py-3 hidden lg:table-cell">
                       <div className="flex gap-1 flex-wrap">
                         {contact.groups.slice(0, 3).map((gId) => {
@@ -321,7 +321,7 @@ export default function KontaktePage() {
             </tbody>
           </table>
         </div>
-        <div className="px-4 py-3 border-t border-gray-100 flex items-center justify-between text-[12px] text-gray-400">
+        <div className="px-4 py-3 border-t border-gray-100 dark:border-white/[0.06] flex items-center justify-between text-[12px] text-gray-400 dark:text-gray-500">
           <span>{filtered.length} von {contacts.length} Kontakten</span>
           {selected.size > 0 && <span className="text-[#00CEC9] font-medium">{selected.size} ausgewählt</span>}
         </div>
@@ -333,20 +333,20 @@ export default function KontaktePage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowModal(false)} />
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-lg mx-4 rounded-2xl bg-white border border-gray-200 p-6 shadow-2xl">
+              className="relative z-10 w-full max-w-lg mx-4 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
               <div className="flex items-center justify-between mb-5">
-                <h2 className="text-[16px] font-bold text-gray-900">{editingContact ? "Kontakt bearbeiten" : "Neuer Kontakt"}</h2>
+                <h2 className="text-[16px] font-bold text-gray-900 dark:text-white">{editingContact ? "Kontakt bearbeiten" : "Neuer Kontakt"}</h2>
                 <button onClick={() => setShowModal(false)} className="rounded-lg p-1 hover:bg-gray-100 transition-colors"><X className="h-5 w-5 text-gray-400" /></button>
               </div>
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Vorname</label>
-                    <input value={formFirst} onChange={(e) => setFormFirst(e.target.value)} className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="Anna" /></div>
+                    <input value={formFirst} onChange={(e) => setFormFirst(e.target.value)} className="w-full rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="Anna" /></div>
                   <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Nachname</label>
-                    <input value={formLast} onChange={(e) => setFormLast(e.target.value)} className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="Müller" /></div>
+                    <input value={formLast} onChange={(e) => setFormLast(e.target.value)} className="w-full rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="Müller" /></div>
                 </div>
                 <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">E-Mail</label>
-                  <input type="email" value={formEmail} onChange={(e) => setFormEmail(e.target.value)} className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="anna@beispiel.ch" /></div>
+                  <input type="email" value={formEmail} onChange={(e) => setFormEmail(e.target.value)} className="w-full rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="anna@beispiel.ch" /></div>
                 <div>
                   <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Gruppen</label>
                   <div className="flex flex-wrap gap-2 mt-2">
@@ -361,7 +361,7 @@ export default function KontaktePage() {
                   </div>
                 </div>
                 <div className="flex gap-3 pt-2">
-                  <button onClick={() => setShowModal(false)} className="flex-1 rounded-xl border border-gray-200 py-2.5 text-[13px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">Abbrechen</button>
+                  <button onClick={() => setShowModal(false)} className="flex-1 rounded-xl border border-gray-200 dark:border-white/[0.06] py-2.5 text-[13px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">Abbrechen</button>
                   <button onClick={handleSave} disabled={!formEmail} className="flex-1 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50 transition-colors">{editingContact ? "Speichern" : "Erstellen"}</button>
                 </div>
               </div>
@@ -376,13 +376,13 @@ export default function KontaktePage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowGroupModal(false)} />
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-sm mx-4 rounded-2xl bg-white border border-gray-200 p-6 shadow-2xl">
+              className="relative z-10 w-full max-w-sm mx-4 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
               <h2 className="text-[16px] font-bold text-gray-900 mb-4">Neue Gruppe</h2>
               <input value={newGroupName} onChange={(e) => setNewGroupName(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleCreateGroup()}
                 placeholder="Gruppenname..." autoFocus
-                className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
+                className="w-full rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
               <div className="flex gap-3 mt-4">
-                <button onClick={() => setShowGroupModal(false)} className="flex-1 rounded-xl border border-gray-200 py-2.5 text-[13px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">Abbrechen</button>
+                <button onClick={() => setShowGroupModal(false)} className="flex-1 rounded-xl border border-gray-200 dark:border-white/[0.06] py-2.5 text-[13px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">Abbrechen</button>
                 <button onClick={handleCreateGroup} disabled={!newGroupName.trim()} className="flex-1 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50 transition-colors">Erstellen</button>
               </div>
             </motion.div>
@@ -396,13 +396,13 @@ export default function KontaktePage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowAssignModal(false)} />
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-sm mx-4 rounded-2xl bg-white border border-gray-200 p-6 shadow-2xl">
+              className="relative z-10 w-full max-w-sm mx-4 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
               <h2 className="text-[16px] font-bold text-gray-900 mb-1">Gruppe zuweisen</h2>
-              <p className="text-[12px] text-gray-500 mb-4">{selected.size} Kontakt(e) einer Gruppe zuweisen</p>
+              <p className="text-[12px] text-gray-500 dark:text-gray-400 mb-4">{selected.size} Kontakt(e) einer Gruppe zuweisen</p>
               <div className="space-y-2">
                 {groups.map((g) => (
                   <button key={g.id} onClick={() => handleBulkAssign(g.id)}
-                    className="w-full flex items-center gap-3 rounded-xl border border-gray-200 p-3 text-left hover:bg-gray-50 transition-colors">
+                    className="w-full flex items-center gap-3 rounded-xl border border-gray-200 dark:border-white/[0.06] p-3 text-left hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
                     <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: g.color }} />
                     <span className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{g.name}</span>
                     <span className="text-[11px] text-gray-400 ml-auto">{groupCounts[g.id] ?? 0} Kontakte</span>

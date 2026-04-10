@@ -168,15 +168,15 @@ export default function KalenderPage() {
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="rounded-2xl bg-white shadow-sm p-4 text-center">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4 text-center">
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{thisMonthPosts.length}</p>
           <p className="text-[11px] text-gray-400">Beiträge im {MONTH_NAMES[month]}</p>
         </div>
-        <div className="rounded-2xl bg-white shadow-sm p-4 text-center">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4 text-center">
           <p className="text-[20px] font-bold text-blue-600">{plannedCount}</p>
           <p className="text-[11px] text-gray-400">Geplant</p>
         </div>
-        <div className="rounded-2xl bg-white shadow-sm p-4 text-center">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4 text-center">
           <p className="text-[20px] font-bold text-gray-500">{draftCount}</p>
           <p className="text-[11px] text-gray-400">Entwürfe</p>
         </div>
@@ -202,9 +202,9 @@ export default function KalenderPage() {
 
       {/* ─── Month View ──────────────────────────────────────── */}
       {view === "month" && (
-        <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
           {/* Weekday headers */}
-          <div className="grid grid-cols-7 border-b border-gray-100">
+          <div className="grid grid-cols-7 border-b border-gray-100 dark:border-white/[0.06]">
             {WEEKDAYS.map((d) => (
               <div key={d} className="py-2.5 text-center text-[11px] font-semibold text-gray-400 uppercase">{d}</div>
             ))}
@@ -246,7 +246,7 @@ export default function KalenderPage() {
 
       {/* ─── Week View ───────────────────────────────────────── */}
       {view === "week" && (
-        <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
           <div className="grid grid-cols-7">
             {weekDates.map((date) => {
               const dateStr = formatDate(date)
@@ -291,7 +291,7 @@ export default function KalenderPage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowModal(false)} />
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-lg mx-4 rounded-2xl bg-white border border-gray-200 p-6 shadow-2xl">
+              className="relative z-10 w-full max-w-lg mx-4 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
               <div className="flex items-center justify-between mb-5">
                 <h2 className="text-[16px] font-bold text-gray-900">{editingPost ? "Beitrag bearbeiten" : "Beitrag planen"}</h2>
                 <button onClick={() => setShowModal(false)} className="rounded-lg p-1 hover:bg-gray-100"><X className="h-5 w-5 text-gray-400" /></button>

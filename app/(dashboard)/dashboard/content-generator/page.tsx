@@ -93,7 +93,7 @@ export default function ContentGeneratorPage() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* ─── LEFT: Config ──────────────────────────────────── */}
         <div className="lg:col-span-2 space-y-4">
-          <div className="rounded-2xl bg-white shadow-sm p-6 space-y-5">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6 space-y-5">
             {/* Platform */}
             <div>
               <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Plattform</label>
@@ -158,7 +158,7 @@ export default function ContentGeneratorPage() {
             {result ? (
               <motion.div key="result" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 {/* Generated Content */}
-                <div className="rounded-2xl bg-white shadow-sm p-5">
+                <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <selectedPlatform.icon className="h-4 w-4" style={{ color: selectedPlatform.color }} />
@@ -208,7 +208,7 @@ export default function ContentGeneratorPage() {
 
                 {/* Posting Time + Tips */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="rounded-2xl bg-white shadow-sm p-5">
+                  <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
                     <div className="flex items-center gap-2 mb-3">
                       <Clock className="h-4 w-4 text-[#00CEC9]" />
                       <h3 className="text-[14px] font-semibold text-[#0F172A] dark:text-white">Beste Posting-Zeit</h3>
@@ -226,7 +226,7 @@ export default function ContentGeneratorPage() {
                     </p>
                   </div>
 
-                  <div className="rounded-2xl bg-white shadow-sm p-5">
+                  <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
                     <div className="flex items-center gap-2 mb-3">
                       <Lightbulb className="h-4 w-4 text-amber-500" />
                       <h3 className="text-[14px] font-semibold text-[#0F172A] dark:text-white">Tipps</h3>

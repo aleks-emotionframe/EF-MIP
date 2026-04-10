@@ -133,7 +133,7 @@ function ScoreRing({
 
   return (
     <motion.div
-      className="rounded-2xl bg-white shadow-sm p-6 flex flex-col items-center"
+      className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6 flex flex-col items-center"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
@@ -267,7 +267,7 @@ export default function SpeedPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="rounded-2xl bg-white shadow-sm p-12 flex flex-col items-center justify-center"
+            className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-12 flex flex-col items-center justify-center"
           >
             <Loader2 className="h-10 w-10 text-[#00CEC9] animate-spin mb-4" />
             <p className="text-[14px] font-medium text-gray-700">
@@ -360,7 +360,7 @@ export default function SpeedPage() {
                     return (
                       <motion.div
                         key={key}
-                        className="rounded-2xl bg-white shadow-sm p-5"
+                        className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5"
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: 0.3 + i * 0.06 }}
@@ -410,7 +410,7 @@ export default function SpeedPage() {
                     return (
                       <div
                         key={i}
-                        className="rounded-2xl bg-white shadow-sm overflow-hidden"
+                        className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden"
                       >
                         <button
                           onClick={() =>
@@ -473,7 +473,7 @@ export default function SpeedPage() {
                   {result.diagnostics.map((diag, i) => (
                     <motion.div
                       key={i}
-                      className="rounded-2xl bg-white shadow-sm p-4"
+                      className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4"
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: i * 0.05 }}

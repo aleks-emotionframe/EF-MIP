@@ -162,7 +162,7 @@ function BarTooltip({ active, payload, label }: any) {
   const item = payload[0].payload
   return (
     <div className="bg-white border border-gray-200 rounded-lg px-3 py-2 shadow-lg text-[12px]">
-      <p className="font-bold text-[#0F172A]">{item.fullName}</p>
+      <p className="font-bold text-[#0F172A] dark:text-white">{item.fullName}</p>
       <p className="text-gray-500">Ø Engagement: <span className="font-semibold text-[#00CEC9]">{item.engagement}%</span></p>
     </div>
   )
@@ -218,7 +218,7 @@ export default function PostingZeitenPage() {
               className={`relative flex items-center gap-1.5 rounded-xl px-4 py-2 text-[13px] font-medium whitespace-nowrap transition-all ${
                 active
                   ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25"
-                  : "bg-white text-gray-600 hover:bg-gray-50 shadow-sm"
+                  : "bg-white dark:bg-[#1E293B] text-gray-600 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04] shadow-sm"
               }`}
             >
               {tab.icon && <tab.icon className="h-3.5 w-3.5" />}
@@ -241,7 +241,7 @@ export default function PostingZeitenPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="rounded-2xl bg-white shadow-sm p-4"
+            className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4"
           >
             <div className="flex items-center justify-between mb-2">
               <div
@@ -258,7 +258,7 @@ export default function PostingZeitenPage() {
       </div>
 
       {/* Main Heatmap */}
-      <div className="rounded-2xl bg-white shadow-sm p-5 overflow-x-auto">
+      <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5 overflow-x-auto">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Engagement-Heatmap</h3>
@@ -370,7 +370,7 @@ export default function PostingZeitenPage() {
       </div>
 
       {/* Empfohlene Zeiten */}
-      <div className="rounded-2xl bg-white shadow-sm p-5">
+      <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Empfohlene Zeiten</h3>
         <p className="text-[11px] text-gray-400 mb-4">Die Top-3 Zeitfenster mit dem höchsten erwarteten Engagement</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -423,7 +423,7 @@ export default function PostingZeitenPage() {
       </div>
 
       {/* Bar Chart – Engagement by Day */}
-      <div className="rounded-2xl bg-white shadow-sm p-5">
+      <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Engagement nach Wochentag</h3>
         <p className="text-[11px] text-gray-400 mb-4">Durchschnittliches Engagement pro Tag</p>
         <div className="h-[260px]">

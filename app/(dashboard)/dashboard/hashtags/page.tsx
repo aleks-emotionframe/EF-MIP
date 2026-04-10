@@ -228,7 +228,7 @@ export default function HashtagsPage() {
                 const TrendIcon = TREND_ICON[h.trend]
                 return (
                   <button key={h.hashtag} onClick={() => copyTag(h.hashtag)}
-                    className="rounded-2xl bg-white shadow-sm p-3.5 text-left hover:shadow-sm hover:border-[#00CEC9]/20 transition-all group">
+                    className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-3.5 text-left hover:shadow-sm hover:border-[#00CEC9]/20 transition-all group">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[16px] font-bold text-[#0F172A] dark:text-white group-hover:text-[#00CEC9] transition-colors">#{h.hashtag}</span>
                       {copiedTag === h.hashtag
@@ -248,7 +248,7 @@ export default function HashtagsPage() {
 
             {/* Related Searches */}
             {result.related.length > 0 && (
-              <div className="rounded-2xl bg-white shadow-sm p-5">
+              <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
                 <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-3">Verwandte Themen</h3>
                 <div className="flex gap-2 flex-wrap">
                   {result.related.map((tag) => (
@@ -263,7 +263,7 @@ export default function HashtagsPage() {
 
             {/* Tips */}
             {result.tips.length > 0 && (
-              <div className="rounded-2xl bg-white shadow-sm p-5">
+              <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <Lightbulb className="h-4 w-4 text-amber-500" />
                   <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Tipps</h3>

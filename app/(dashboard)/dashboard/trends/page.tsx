@@ -152,14 +152,14 @@ export default function TrendsPage() {
 
         <div className="flex gap-1.5 overflow-x-auto">
           <button onClick={() => setActiveCategory("all")}
-            className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === "all" ? "bg-[#00CEC9] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
+            className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === "all" ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04]"}`}>
             Alle
           </button>
           {(data?.categories ?? []).map((cat) => {
             const Icon = ICON_MAP[cat.icon] ?? Sparkles
             return (
               <button key={cat.name} onClick={() => setActiveCategory(cat.name)}
-                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === cat.name ? "bg-[#00CEC9] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
+                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === cat.name ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04]"}`}>
                 <Icon className="h-3 w-3" />
                 {cat.name}
                 <span className={`text-[10px] ${activeCategory === cat.name ? "text-white/70" : "text-gray-400"}`}>{cat.trends.length}</span>
@@ -196,7 +196,7 @@ export default function TrendsPage() {
                   {category.trends.map((trend) => {
                     const isExp = expandedId === trend.id
                     return (
-                      <motion.div key={trend.id} layout className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                      <motion.div key={trend.id} layout className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
                         <button onClick={() => setExpandedId(isExp ? null : trend.id)}
                           className="w-full flex items-start gap-4 p-4 text-left hover:bg-gray-50/50 transition-colors">
 

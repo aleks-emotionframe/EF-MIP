@@ -142,9 +142,9 @@ function CustomDropdown<T extends string>({
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-[13px] text-left hover:border-gray-300 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 transition-all"
+        className="w-full flex items-center justify-between rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-4 py-3 text-[13px] text-left hover:border-gray-300 dark:hover:border-white/[0.12] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 transition-all"
       >
-        <span className={value ? "text-gray-900 font-medium" : "text-gray-400"}>
+        <span className={value ? "text-gray-900 dark:text-white font-medium" : "text-gray-400 dark:text-gray-500"}>
           {renderOption ? renderOption(value) : value || placeholder}
         </span>
         <ChevronDown className={`h-4 w-4 text-gray-400 transition-transform ${open ? "rotate-180" : ""}`} />
@@ -156,14 +156,14 @@ function CustomDropdown<T extends string>({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-50 mt-1.5 w-full rounded-xl border border-gray-200 bg-white shadow-lg shadow-gray-200/50 p-1 max-h-64 overflow-y-auto"
+            className="absolute z-50 mt-1.5 w-full rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] shadow-lg shadow-gray-200/50 dark:shadow-black/30 p-1 max-h-64 overflow-y-auto"
           >
             {options.map((opt) => (
               <button
                 key={opt}
                 onClick={() => { onChange(opt); setOpen(false) }}
                 className={`w-full text-left rounded-lg px-3 py-2.5 text-[13px] transition-colors ${
-                  value === opt ? "bg-[#00CEC9]/[0.06] text-[#00CEC9] font-medium" : "text-gray-700 hover:bg-gray-50"
+                  value === opt ? "bg-[#00CEC9]/[0.06] text-[#00CEC9] font-medium" : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"
                 }`}
               >
                 {renderOption ? renderOption(opt) : opt}
@@ -188,8 +188,8 @@ function LabeledSlider({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <span className="text-[12px] font-medium text-gray-500">{label}</span>
-        <span className="text-[14px] font-bold text-gray-900">
+        <span className="text-[12px] font-medium text-gray-500 dark:text-gray-400">{label}</span>
+        <span className="text-[14px] font-bold text-gray-900 dark:text-white">
           {format ? format(value) : value}{unit ? ` ${unit}` : ""}
         </span>
       </div>
@@ -198,7 +198,7 @@ function LabeledSlider({
           type="range"
           min={min} max={max} step={step} value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="w-full h-2 rounded-full appearance-none cursor-pointer bg-gray-100 accent-[#00CEC9] [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#00CEC9] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white"
+          className="w-full h-2 rounded-full appearance-none cursor-pointer bg-gray-100 dark:bg-white/[0.04] accent-[#00CEC9] [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#00CEC9] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white"
         />
         <div
           className="absolute top-0 left-0 h-2 rounded-full bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] pointer-events-none"
@@ -294,7 +294,7 @@ export default function ScenariosPage() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* ─── LEFT: Builder (40%) ───────────────────────────── */}
         <div className="lg:col-span-2 space-y-5">
-          <div className="rounded-2xl bg-white shadow-sm p-6 space-y-5">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6 space-y-5">
             <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Szenario konfigurieren</h2>
 
             {/* Scenario Type */}
@@ -308,19 +308,19 @@ export default function ScenariosPage() {
                     className={`w-full flex items-center gap-3 rounded-xl px-4 py-3 text-left transition-all ${
                       config.type === st.key
                         ? "bg-[#00CEC9]/[0.06] border-2 border-[#00CEC9]/30 shadow-sm"
-                        : "border-2 border-transparent hover:bg-gray-50"
+                        : "border-2 border-transparent hover:bg-gray-50 dark:hover:bg-white/[0.06]"
                     }`}
                   >
                     <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${
-                      config.type === st.key ? "bg-[#00CEC9]/10" : "bg-gray-100"
+                      config.type === st.key ? "bg-[#00CEC9]/10" : "bg-gray-100 dark:bg-white/[0.04]"
                     }`}>
-                      <st.icon className={`h-4 w-4 ${config.type === st.key ? "text-[#00CEC9]" : "text-gray-400"}`} />
+                      <st.icon className={`h-4 w-4 ${config.type === st.key ? "text-[#00CEC9]" : "text-gray-400 dark:text-gray-500"}`} />
                     </div>
                     <div>
-                      <p className={`text-[13px] font-medium ${config.type === st.key ? "text-[#00CEC9]" : "text-gray-800"}`}>
+                      <p className={`text-[13px] font-medium ${config.type === st.key ? "text-[#00CEC9]" : "text-gray-800 dark:text-gray-200"}`}>
                         {st.label}
                       </p>
-                      <p className="text-[11px] text-gray-400">{st.desc}</p>
+                      <p className="text-[11px] text-gray-400 dark:text-gray-500">{st.desc}</p>
                     </div>
                   </button>
                 ))}
@@ -375,7 +375,7 @@ export default function ScenariosPage() {
                           className={`rounded-lg px-3 py-2 text-[12px] font-medium transition-all ${
                             config.contentType === ct
                               ? "bg-[#00CEC9]/[0.08] text-[#00CEC9] border border-[#00CEC9]/20"
-                              : "bg-gray-50 text-gray-600 border border-transparent hover:bg-gray-100"
+                              : "bg-gray-50 dark:bg-white/[0.04] text-gray-600 dark:text-gray-300 border border-transparent hover:bg-gray-100 dark:hover:bg-white/[0.06]"
                           }`}
                         >
                           {ct}
@@ -407,7 +407,7 @@ export default function ScenariosPage() {
                     className={`flex-1 rounded-xl py-2.5 text-[13px] font-medium transition-all ${
                       config.timeframeDays === d
                         ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25"
-                        : "bg-gray-50 text-gray-600 hover:bg-gray-100"
+                        : "bg-gray-50 dark:bg-white/[0.04] text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/[0.06]"
                     }`}
                   >
                     {d} Tage
@@ -445,11 +445,11 @@ export default function ScenariosPage() {
         {/* ─── RIGHT: Results (60%) ──────────────────────────── */}
         <div className="lg:col-span-3 space-y-4">
           {/* Chart */}
-          <div className="rounded-2xl bg-white shadow-sm p-6">
+          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6">
             <div className="flex items-center justify-between mb-5">
               <div>
                 <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Prognose</h2>
-                <p className="text-[11px] text-gray-400 mt-0.5">
+                <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">
                   {hasResult ? `${config.platform} · ${typeConfig.label} · ${config.timeframeDays} Tage` : "Starte eine Simulation um Ergebnisse zu sehen"}
                 </p>
               </div>
@@ -507,21 +507,21 @@ export default function ScenariosPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="rounded-2xl bg-white shadow-sm p-4"
+                    className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4"
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center">
-                        <kpi.icon className="h-4 w-4 text-gray-400" />
+                      <div className="w-8 h-8 rounded-lg bg-gray-50 dark:bg-white/[0.04] flex items-center justify-center">
+                        <kpi.icon className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                       </div>
                       <div className={`flex items-center gap-0.5 text-[12px] font-bold ${kpi.change >= 0 ? "text-emerald-600" : "text-red-500"}`}>
                         {kpi.change >= 0 ? <ArrowUpRight className="h-3.5 w-3.5" /> : <ArrowDownRight className="h-3.5 w-3.5" />}
                         {kpi.change >= 0 ? "+" : ""}{kpi.change}%
                       </div>
                     </div>
-                    <p className="text-[11px] text-gray-400 mb-0.5">{kpi.label}</p>
+                    <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-0.5">{kpi.label}</p>
                     <div className="flex items-center gap-2">
-                      <span className="text-[13px] text-gray-400 line-through">{kpi.current}</span>
-                      <span className="text-[16px] font-bold text-gray-900">{kpi.projected}</span>
+                      <span className="text-[13px] text-gray-400 dark:text-gray-500 line-through">{kpi.current}</span>
+                      <span className="text-[16px] font-bold text-gray-900 dark:text-white">{kpi.projected}</span>
                     </div>
                   </motion.div>
                 ))}
@@ -540,19 +540,19 @@ export default function ScenariosPage() {
                     onKeyDown={(e) => e.key === "Enter" && handleSave()}
                     placeholder="Szenario-Name..."
                     autoFocus
-                    className="flex-1 rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none"
+                    className="flex-1 rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-4 py-2.5 text-[13px] dark:text-white focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none"
                   />
                   <button onClick={handleSave} className="rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:bg-[#00B4A3] transition-colors">
                     <Check className="h-4 w-4" />
                   </button>
-                  <button onClick={() => setShowSaveInput(false)} className="rounded-xl border border-gray-200 px-3 py-2.5 text-gray-400 hover:bg-gray-50 transition-colors">
+                  <button onClick={() => setShowSaveInput(false)} className="rounded-xl border border-gray-200 dark:border-white/[0.06] px-3 py-2.5 text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
                     <RotateCcw className="h-4 w-4" />
                   </button>
                 </div>
               ) : (
                 <button
                   onClick={() => setShowSaveInput(true)}
-                  className="flex items-center gap-1.5 rounded-xl border border-gray-200 px-4 py-2.5 text-[12px] font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-1.5 rounded-xl border border-gray-200 dark:border-white/[0.06] px-4 py-2.5 text-[12px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
                 >
                   <Save className="h-3.5 w-3.5" />
                   Szenario speichern
@@ -565,7 +565,7 @@ export default function ScenariosPage() {
 
       {/* ─── Saved Scenarios ─────────────────────────────────── */}
       {savedScenarios.length > 0 && (
-        <div className="rounded-2xl bg-white shadow-sm p-6">
+        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Gespeicherte Szenarien</h2>
             {compareIds.length === 2 && (
@@ -578,7 +578,7 @@ export default function ScenariosPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-[13px]">
               <thead>
-                <tr className="border-b border-gray-100">
+                <tr className="border-b border-gray-100 dark:border-white/[0.06]">
                   <th className="text-left py-2.5 px-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Vergleich</th>
                   <th className="text-left py-2.5 px-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Name</th>
                   <th className="text-left py-2.5 px-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Typ</th>
@@ -589,7 +589,7 @@ export default function ScenariosPage() {
               </thead>
               <tbody>
                 {savedScenarios.map((s) => (
-                  <tr key={s.id} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/50 transition-colors">
+                  <tr key={s.id} className="border-b border-gray-50 dark:border-white/[0.06] last:border-0 hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
                     <td className="py-3 px-3">
                       <button
                         onClick={() => toggleCompare(s.id)}
@@ -601,9 +601,9 @@ export default function ScenariosPage() {
                       </button>
                     </td>
                     <td className="py-3 px-3 font-semibold text-[#0F172A] dark:text-white">{s.name}</td>
-                    <td className="py-3 px-3 text-gray-500 capitalize">{SCENARIO_TYPES.find((t) => t.key === s.type)?.label}</td>
-                    <td className="py-3 px-3 text-gray-500">{s.platform}</td>
-                    <td className="py-3 px-3 text-gray-400">{s.createdAt}</td>
+                    <td className="py-3 px-3 text-gray-500 dark:text-gray-400 capitalize">{SCENARIO_TYPES.find((t) => t.key === s.type)?.label}</td>
+                    <td className="py-3 px-3 text-gray-500 dark:text-gray-400">{s.platform}</td>
+                    <td className="py-3 px-3 text-gray-400 dark:text-gray-500">{s.createdAt}</td>
                     <td className="py-3 px-3 text-right">
                       <button
                         onClick={() => handleDelete(s.id)}
@@ -618,7 +618,7 @@ export default function ScenariosPage() {
             </table>
           </div>
           {compareIds.length > 0 && compareIds.length < 2 && (
-            <p className="text-[11px] text-gray-400 mt-3">Wähle 2 Szenarien zum Vergleichen aus.</p>
+            <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-3">Wähle 2 Szenarien zum Vergleichen aus.</p>
           )}
         </div>
       )}

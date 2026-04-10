@@ -118,7 +118,7 @@ function ScoreRing({ score }: { score: number }) {
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-4xl">😊</span>
         <motion.span
-          className="text-3xl font-extrabold text-[#0F172A]"
+          className="text-3xl font-extrabold text-[#0F172A] dark:text-white"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.5 }}
@@ -140,7 +140,7 @@ function ChartTooltip({ active, payload, label }: any) {
         <div key={p.dataKey} className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
           <span className="text-gray-500">{p.dataKey}:</span>
-          <span className="font-bold text-[#0F172A]">{p.value}%</span>
+          <span className="font-bold text-[#0F172A] dark:text-white">{p.value}%</span>
         </div>
       ))}
     </div>
@@ -166,9 +166,9 @@ export default function SentimentPage() {
         <div>
           <div className="flex items-center gap-2">
             <SmilePlus className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-2xl font-bold text-[#0F172A]">Stimmungsanalyse</h1>
+            <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Stimmungsanalyse</h1>
           </div>
-          <p className="text-[14px] text-gray-500 mt-1">
+          <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
             Automatische Auswertung aller Kommentare und Erwähnungen
           </p>
         </div>
@@ -204,10 +204,10 @@ export default function SentimentPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="lg:col-span-1 rounded-2xl bg-white shadow-sm p-6 flex flex-col items-center justify-center text-center"
+          className="lg:col-span-1 rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6 flex flex-col items-center justify-center text-center"
         >
           <ScoreRing score={78} />
-          <p className="mt-3 text-[15px] font-bold text-[#0F172A]">Überwiegend positiv</p>
+          <p className="mt-3 text-[15px] font-bold text-[#0F172A] dark:text-white">Überwiegend positiv</p>
           <div className="mt-1.5 flex items-center gap-1 text-[12px] font-semibold text-emerald-600">
             <ArrowUpRight className="h-3.5 w-3.5" />
             +3% vs. Vormonat
@@ -224,7 +224,7 @@ export default function SentimentPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 * (i + 1) }}
-                className="rounded-2xl bg-white shadow-sm p-5 flex flex-col justify-between"
+                className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5 flex flex-col justify-between"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${s.color}15` }}>
@@ -234,7 +234,7 @@ export default function SentimentPage() {
                     {s.label}
                   </span>
                 </div>
-                <p className="text-3xl font-extrabold text-[#0F172A]">{s.value}%</p>
+                <p className="text-3xl font-extrabold text-[#0F172A] dark:text-white">{s.value}%</p>
                 <div className="mt-3 h-2 bg-gray-100 rounded-full overflow-hidden">
                   <motion.div
                     className="h-full rounded-full"
@@ -257,9 +257,9 @@ export default function SentimentPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="lg:col-span-2 rounded-2xl bg-white shadow-sm p-5"
+          className="lg:col-span-2 rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5"
         >
-          <h3 className="text-[16px] font-bold text-[#0F172A] mb-1">Stimmungsverlauf</h3>
+          <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Stimmungsverlauf</h3>
           <p className="text-[11px] text-gray-400 mb-4">Letzte 30 Tage – Verteilung in %</p>
           <div className="h-[280px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -295,9 +295,9 @@ export default function SentimentPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="rounded-2xl bg-white shadow-sm p-5 flex flex-col"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5 flex flex-col"
         >
-          <h3 className="text-[16px] font-bold text-[#0F172A] mb-1">Verteilung</h3>
+          <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Verteilung</h3>
           <p className="text-[11px] text-gray-400 mb-2">Gesamtanteil nach Stimmung</p>
           <div className="flex-1 flex items-center justify-center">
             <div className="w-[180px] h-[180px]">
@@ -329,7 +329,7 @@ export default function SentimentPage() {
                   <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: d.color }} />
                   <span className="text-[12px] text-gray-600">{d.name}</span>
                 </div>
-                <span className="text-[12px] font-bold text-[#0F172A]">{d.value}%</span>
+                <span className="text-[12px] font-bold text-[#0F172A] dark:text-white">{d.value}%</span>
               </div>
             ))}
           </div>
@@ -341,9 +341,9 @@ export default function SentimentPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.35 }}
-        className="rounded-2xl bg-white shadow-sm p-5"
+        className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5"
       >
-        <h3 className="text-[16px] font-bold text-[#0F172A] mb-1">Letzte Kommentare</h3>
+        <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Letzte Kommentare</h3>
         <p className="text-[11px] text-gray-400 mb-4">Aktuelle Erwähnungen aus allen Plattformen</p>
         <div className="space-y-2">
           {comments.map((c, i) => {
@@ -362,7 +362,7 @@ export default function SentimentPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
-                    <span className="text-[12px] font-semibold text-[#0F172A]">{c.author}</span>
+                    <span className="text-[12px] font-semibold text-[#0F172A] dark:text-white">{c.author}</span>
                     <span className="text-[10px] text-gray-400">· {c.platform}</span>
                   </div>
                   <p className="text-[12px] text-gray-600 leading-relaxed">{c.text}</p>
@@ -387,14 +387,14 @@ export default function SentimentPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="rounded-2xl bg-white shadow-sm p-5"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5"
         >
           <div className="flex items-center gap-2 mb-4">
             <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/10 flex items-center justify-center">
               <ThumbsUp className="h-4 w-4 text-[#00CEC9]" />
             </div>
             <div>
-              <h3 className="text-[14px] font-bold text-[#0F172A]">Positive Begriffe</h3>
+              <h3 className="text-[14px] font-bold text-[#0F172A] dark:text-white">Positive Begriffe</h3>
               <p className="text-[10px] text-gray-400">Häufigste positive Wörter</p>
             </div>
           </div>
@@ -424,14 +424,14 @@ export default function SentimentPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.45 }}
-          className="rounded-2xl bg-white shadow-sm p-5"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5"
         >
           <div className="flex items-center gap-2 mb-4">
             <div className="w-8 h-8 rounded-lg bg-[#F97316]/10 flex items-center justify-center">
               <ThumbsDown className="h-4 w-4 text-[#F97316]" />
             </div>
             <div>
-              <h3 className="text-[14px] font-bold text-[#0F172A]">Negative Begriffe</h3>
+              <h3 className="text-[14px] font-bold text-[#0F172A] dark:text-white">Negative Begriffe</h3>
               <p className="text-[10px] text-gray-400">Häufigste negative Wörter</p>
             </div>
           </div>

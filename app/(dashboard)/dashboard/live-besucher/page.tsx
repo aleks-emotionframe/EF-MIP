@@ -149,14 +149,14 @@ function LiveDashboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="rounded-2xl bg-white shadow-sm p-6"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/10 flex items-center justify-center">
                 <Globe className="h-4 w-4 text-[#00CEC9]" />
               </div>
-              <h2 className="text-[15px] font-bold text-[#0F172A]">Standort-Ubersicht</h2>
+              <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white">Standort-Ubersicht</h2>
             </div>
             <span className="text-[11px] text-gray-400">Top 6 Standorte</span>
           </div>
@@ -198,14 +198,14 @@ function LiveDashboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="rounded-2xl bg-white shadow-sm p-6"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-[#6C5CE7]/10 flex items-center justify-center">
                 <Eye className="h-4 w-4 text-[#6C5CE7]" />
               </div>
-              <h2 className="text-[15px] font-bold text-[#0F172A]">Aktive Seiten</h2>
+              <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white">Aktive Seiten</h2>
             </div>
             <span className="text-[11px] text-gray-400">Jetzt aufgerufen</span>
           </div>
@@ -248,14 +248,14 @@ function LiveDashboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="rounded-2xl bg-white shadow-sm p-6"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-[#E84393]/10 flex items-center justify-center">
                 <ExternalLink className="h-4 w-4 text-[#E84393]" />
               </div>
-              <h2 className="text-[15px] font-bold text-[#0F172A]">Herkunft</h2>
+              <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white">Herkunft</h2>
             </div>
           </div>
           <div className="space-y-4">
@@ -267,7 +267,7 @@ function LiveDashboard() {
                 transition={{ delay: 0.25 + i * 0.05 }}
               >
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[13px] font-semibold text-[#0F172A]">{ref.source}</span>
+                  <span className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{ref.source}</span>
                   <div className="flex items-center gap-2">
                     <span className="text-[12px] text-gray-500">{ref.visitors} Besucher</span>
                     <span className="text-[11px] font-bold" style={{ color: ref.color }}>{ref.percent}%</span>
@@ -292,14 +292,14 @@ function LiveDashboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
-          className="rounded-2xl bg-white shadow-sm p-6"
+          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-[#F97316]/10 flex items-center justify-center">
                 <Monitor className="h-4 w-4 text-[#F97316]" />
               </div>
-              <h2 className="text-[15px] font-bold text-[#0F172A]">Gerate</h2>
+              <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white">Gerate</h2>
             </div>
           </div>
           <div className="space-y-5">
@@ -319,7 +319,7 @@ function LiveDashboard() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[13px] font-semibold text-[#0F172A]">{device.type}</span>
+                    <span className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{device.type}</span>
                     <span className="text-[14px] font-bold" style={{ color: device.color }}>{device.percent}%</span>
                   </div>
                   <div className="h-2.5 rounded-full bg-gray-100 overflow-hidden">
@@ -338,7 +338,7 @@ function LiveDashboard() {
           {/* Device summary */}
           <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-[12px] text-gray-400">
             <span>Total aktive Gerate</span>
-            <span className="font-bold text-[#0F172A]">76</span>
+            <span className="font-bold text-[#0F172A] dark:text-white">76</span>
           </div>
         </motion.div>
       </div>
@@ -348,14 +348,14 @@ function LiveDashboard() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="rounded-2xl bg-white shadow-sm p-6"
+        className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
       >
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-[#22C55E]/10 flex items-center justify-center">
               <Activity className="h-4 w-4 text-[#22C55E]" />
             </div>
-            <h2 className="text-[15px] font-bold text-[#0F172A]">Live Aktivitat</h2>
+            <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white">Live Aktivitat</h2>
             <PulsingDot color="#22C55E" size={6} />
           </div>
           <span className="text-[11px] text-gray-400">Letzte Aktionen</span>
@@ -373,7 +373,7 @@ function LiveDashboard() {
                 <MapPin className="h-3.5 w-3.5 text-[#6C5CE7]" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[13px] text-[#0F172A]">
+                <p className="text-[13px] text-[#0F172A] dark:text-white">
                   Besucher aus <span className="font-semibold">{entry.city}</span> hat{" "}
                   <span className="font-semibold text-[#6C5CE7]">{entry.page}</span> aufgerufen
                 </p>
@@ -417,7 +417,7 @@ function ConnectionRequired() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="w-full max-w-lg mx-auto"
         >
-          <div className="rounded-2xl bg-white/95 backdrop-blur-xl shadow-xl border border-gray-100 p-8 text-center">
+          <div className="rounded-2xl bg-white/95 dark:bg-[#1E293B]/95 backdrop-blur-xl shadow-xl border border-gray-100 dark:border-white/[0.06] p-8 text-center">
             {/* Animated Icon */}
             <div className="flex justify-center mb-6">
               <motion.div
@@ -449,7 +449,7 @@ function ConnectionRequired() {
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <Zap className="h-3.5 w-3.5 text-[#6C5CE7]" />
-                    <span className="text-[12px] font-bold text-[#0F172A]">{f.label}</span>
+                    <span className="text-[12px] font-bold text-[#0F172A] dark:text-white">{f.label}</span>
                   </div>
                   <p className="text-[11px] text-gray-400 leading-snug">{f.desc}</p>
                 </div>
