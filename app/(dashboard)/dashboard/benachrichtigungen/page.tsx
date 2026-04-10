@@ -32,7 +32,7 @@ interface AlertRule {
 
 const TYPE_CONFIG = {
   alert: { icon: AlertTriangle, color: "#EF4444", bg: "bg-red-50", label: "Warnung" },
-  trend: { icon: TrendingUp, color: "#6C5CE7", bg: "bg-[#6C5CE7]/[0.06]", label: "Trend" },
+  trend: { icon: TrendingUp, color: "#6C5CE7", bg: "bg-[#00CEC9]/[0.06]", label: "Trend" },
   milestone: { icon: Target, color: "#00CEC9", bg: "bg-teal-50", label: "Meilenstein" },
   system: { icon: Settings, color: "#6b7280", bg: "bg-gray-50", label: "System" },
 }
@@ -209,7 +209,7 @@ export default function BenachrichtigungenPage() {
             <div key={rule.id} className={`rounded-xl border bg-white p-4 flex items-center gap-4 transition-colors ${rule.active ? "border-gray-100" : "border-gray-100 opacity-60"}`}>
               <button onClick={() => toggleRule(rule.id)} className="shrink-0">
                 {rule.active
-                  ? <ToggleRight className="h-6 w-6 text-[#6C5CE7]" />
+                  ? <ToggleRight className="h-6 w-6 text-[#00CEC9]" />
                   : <ToggleLeft className="h-6 w-6 text-gray-300" />}
               </button>
               <div className="flex-1 min-w-0">
@@ -240,16 +240,16 @@ export default function BenachrichtigungenPage() {
               className="relative z-10 w-full max-w-md mx-4 rounded-2xl bg-white p-6 shadow-2xl">
               <h2 className="text-[16px] font-bold text-gray-900 mb-4">Neue Alert-Regel</h2>
               <div className="space-y-3">
-                <input value={ruleName} onChange={(e) => setRuleName(e.target.value)} placeholder="Regelname" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#6C5CE7] focus:outline-none" />
+                <input value={ruleName} onChange={(e) => setRuleName(e.target.value)} placeholder="Regelname" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
                 <div className="grid grid-cols-2 gap-3">
-                  <select value={ruleMetric} onChange={(e) => setRuleMetric(e.target.value)} className="rounded-xl border border-gray-200 px-3 py-2.5 text-[13px] focus:border-[#6C5CE7] focus:outline-none">
+                  <select value={ruleMetric} onChange={(e) => setRuleMetric(e.target.value)} className="rounded-xl border border-gray-200 px-3 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none">
                     <option value="engagement_rate">Engagement-Rate</option>
                     <option value="followers">Follower</option>
                     <option value="impressions">Impressionen</option>
                     <option value="sessions">Sitzungen</option>
                     <option value="sentiment">Sentiment</option>
                   </select>
-                  <select value={rulePlatform} onChange={(e) => setRulePlatform(e.target.value)} className="rounded-xl border border-gray-200 px-3 py-2.5 text-[13px] focus:border-[#6C5CE7] focus:outline-none">
+                  <select value={rulePlatform} onChange={(e) => setRulePlatform(e.target.value)} className="rounded-xl border border-gray-200 px-3 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none">
                     <option value="Alle">Alle Plattformen</option>
                     <option value="Instagram">Instagram</option>
                     <option value="Facebook">Facebook</option>
@@ -260,21 +260,21 @@ export default function BenachrichtigungenPage() {
                   </select>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  <select value={ruleCondition} onChange={(e) => setRuleCondition(e.target.value as any)} className="rounded-xl border border-gray-200 px-3 py-2.5 text-[13px] focus:border-[#6C5CE7] focus:outline-none">
+                  <select value={ruleCondition} onChange={(e) => setRuleCondition(e.target.value as any)} className="rounded-xl border border-gray-200 px-3 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none">
                     <option value="below">Fällt unter</option>
                     <option value="above">Steigt über</option>
                     <option value="change">Ändert sich um</option>
                   </select>
-                  <input type="number" value={ruleThreshold} onChange={(e) => setRuleThreshold(Number(e.target.value))} className="rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#6C5CE7] focus:outline-none" />
+                  <input type="number" value={ruleThreshold} onChange={(e) => setRuleThreshold(Number(e.target.value))} className="rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
                 </div>
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" checked={ruleEmail} onChange={(e) => setRuleEmail(e.target.checked)} className="rounded border-gray-300 text-[#6C5CE7] focus:ring-[#6C5CE7]" />
+                  <input type="checkbox" checked={ruleEmail} onChange={(e) => setRuleEmail(e.target.checked)} className="rounded border-gray-300 text-[#00CEC9] focus:ring-[#00CEC9]" />
                   <span className="text-[13px] text-gray-600">Auch per E-Mail benachrichtigen</span>
                 </label>
               </div>
               <div className="flex gap-3 mt-5">
                 <button onClick={() => setShowRuleModal(false)} className="flex-1 rounded-xl border border-gray-200 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">Abbrechen</button>
-                <button onClick={handleAddRule} disabled={!ruleName} className="flex-1 rounded-xl bg-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#5A4BD1] disabled:opacity-50">Erstellen</button>
+                <button onClick={handleAddRule} disabled={!ruleName} className="flex-1 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50">Erstellen</button>
               </div>
             </motion.div>
           </div>

@@ -169,8 +169,8 @@ export default function ReportsPage() {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <FileText className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Berichts-Generator</h1>
+            <FileText className="h-5 w-5 text-[#00CEC9]" />
+            <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Berichts-Generator</h1>
           </div>
           <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
             Stelle deinen Bericht zusammen und erstelle ein PDF.
@@ -193,7 +193,7 @@ export default function ReportsPage() {
                   onClick={() => { setPeriod(tp.key); setGenerated(false) }}
                   className={`rounded-xl py-2.5 text-[12px] font-medium transition-all ${
                     period === tp.key
-                      ? "bg-[#6C5CE7] text-white shadow-md shadow-[#6C5CE7]/25"
+                      ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25"
                       : "bg-gray-50 text-gray-600 hover:bg-gray-100"
                   }`}
                 >
@@ -230,7 +230,7 @@ export default function ReportsPage() {
                   >
                     <section.icon className="h-4 w-4" style={{ color: section.color }} />
                   </div>
-                  <span className="flex-1 text-[13px] font-semibold text-[#1B2559] dark:text-white truncate">
+                  <span className="flex-1 text-[13px] font-semibold text-[#0F172A] dark:text-white truncate">
                     {section.label}
                   </span>
                   <button
@@ -248,7 +248,7 @@ export default function ReportsPage() {
               <button
                 onClick={() => setShowAddMenu(!showAddMenu)}
                 disabled={availableToAdd.length === 0}
-                className="w-full flex items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-gray-200 py-3 text-[12px] font-medium text-gray-400 hover:text-[#6C5CE7] hover:border-[#6C5CE7]/30 disabled:opacity-40 disabled:hover:text-gray-400 disabled:hover:border-gray-200 transition-colors"
+                className="w-full flex items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-gray-200 py-3 text-[12px] font-medium text-gray-400 hover:text-[#00CEC9] hover:border-[#00CEC9]/30 disabled:opacity-40 disabled:hover:text-gray-400 disabled:hover:border-gray-200 transition-colors"
               >
                 <Plus className="h-3.5 w-3.5" />
                 Abschnitt hinzufügen
@@ -287,8 +287,8 @@ export default function ReportsPage() {
             whileTap={{ scale: 0.97 }}
             className={`w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-[14px] font-semibold text-white transition-all disabled:opacity-50 ${
               generating
-                ? "bg-[#6C5CE7]/70"
-                : "bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] hover:shadow-lg hover:shadow-[#6C5CE7]/30"
+                ? "bg-[#00CEC9]/70"
+                : "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] hover:shadow-lg hover:shadow-[#00CEC9]/30"
             }`}
           >
             {generating ? (
@@ -314,7 +314,7 @@ export default function ReportsPage() {
         <div className="lg:col-span-3">
           <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
             {/* PDF Header Preview */}
-            <div className="bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] p-6 text-white">
+            <div className="bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] p-6 text-white">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
                   <span className="font-bold text-sm">EF</span>
@@ -357,7 +357,7 @@ export default function ReportsPage() {
                           <div className="w-6 h-6 rounded-md flex items-center justify-center" style={{ backgroundColor: `${section.color}10` }}>
                             <section.icon className="h-3 w-3" style={{ color: section.color }} />
                           </div>
-                          <h3 className="text-[14px] font-semibold text-[#1B2559] dark:text-white">{data.title}</h3>
+                          <h3 className="text-[14px] font-semibold text-[#0F172A] dark:text-white">{data.title}</h3>
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                           {data.metrics.map((m) => (

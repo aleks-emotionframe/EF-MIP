@@ -156,12 +156,12 @@ export default function KalenderPage() {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <CalendarIcon className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Content-Kalender</h1>
+            <CalendarIcon className="h-5 w-5 text-[#00CEC9]" />
+            <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Content-Kalender</h1>
           </div>
           <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Plane und verwalte deine Social-Media-Beiträge.</p>
         </div>
-        <button onClick={() => openCreate()} className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#6C5CE7]/30 transition-all">
+        <button onClick={() => openCreate()} className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
           <Plus className="h-3.5 w-3.5" />Beitrag planen
         </button>
       </div>
@@ -169,7 +169,7 @@ export default function KalenderPage() {
       {/* Stats */}
       <div className="grid grid-cols-3 gap-3">
         <div className="rounded-2xl bg-white shadow-sm p-4 text-center">
-          <p className="text-[24px] font-extrabold text-[#1B2559] dark:text-white">{thisMonthPosts.length}</p>
+          <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{thisMonthPosts.length}</p>
           <p className="text-[11px] text-gray-400">Beiträge im {MONTH_NAMES[month]}</p>
         </div>
         <div className="rounded-2xl bg-white shadow-sm p-4 text-center">
@@ -186,7 +186,7 @@ export default function KalenderPage() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button onClick={() => navigate(-1)} className="rounded-lg p-2 hover:bg-gray-100 transition-colors"><ChevronLeft className="h-4 w-4 text-gray-600" /></button>
-          <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white w-40 text-center">{MONTH_NAMES[month]} {year}</h2>
+          <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white w-40 text-center">{MONTH_NAMES[month]} {year}</h2>
           <button onClick={() => navigate(1)} className="rounded-lg p-2 hover:bg-gray-100 transition-colors"><ChevronRight className="h-4 w-4 text-gray-600" /></button>
         </div>
         <div className="flex gap-1 p-1 rounded-xl bg-gray-100">
@@ -225,8 +225,8 @@ export default function KalenderPage() {
               return (
                 <div key={day}
                   onClick={() => openCreate(dateStr)}
-                  className={`min-h-[100px] border-b border-r border-gray-50 p-1.5 cursor-pointer hover:bg-[#6C5CE7]/[0.02] transition-colors ${isToday ? "bg-[#6C5CE7]/[0.03]" : ""}`}>
-                  <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-[11px] font-medium ${isToday ? "bg-[#6C5CE7] text-white" : "text-gray-600"}`}>{day}</span>
+                  className={`min-h-[100px] border-b border-r border-gray-50 p-1.5 cursor-pointer hover:bg-[#00CEC9]/[0.02] transition-colors ${isToday ? "bg-[#00CEC9]/[0.03]" : ""}`}>
+                  <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-[11px] font-medium ${isToday ? "bg-[#00CEC9] text-white" : "text-gray-600"}`}>{day}</span>
                   <div className="mt-1 space-y-0.5">
                     {dayPosts.slice(0, 3).map((post) => (
                       <button key={post.id} onClick={(e) => { e.stopPropagation(); openEdit(post) }}
@@ -253,10 +253,10 @@ export default function KalenderPage() {
               const dayPosts = (postsByDate[dateStr] ?? []).sort((a, b) => a.time.localeCompare(b.time))
               const isToday = dateStr === today
               return (
-                <div key={dateStr} className={`border-r border-gray-50 last:border-r-0 ${isToday ? "bg-[#6C5CE7]/[0.02]" : ""}`}>
-                  <div className={`p-3 border-b border-gray-100 text-center ${isToday ? "bg-[#6C5CE7]/[0.05]" : ""}`}>
+                <div key={dateStr} className={`border-r border-gray-50 last:border-r-0 ${isToday ? "bg-[#00CEC9]/[0.02]" : ""}`}>
+                  <div className={`p-3 border-b border-gray-100 text-center ${isToday ? "bg-[#00CEC9]/[0.05]" : ""}`}>
                     <p className="text-[10px] text-gray-400 uppercase">{WEEKDAYS[weekDates.indexOf(date)]}</p>
-                    <p className={`text-[16px] font-bold mt-0.5 ${isToday ? "text-[#6C5CE7]" : "text-gray-900"}`}>{date.getDate()}</p>
+                    <p className={`text-[16px] font-bold mt-0.5 ${isToday ? "text-[#00CEC9]" : "text-gray-900"}`}>{date.getDate()}</p>
                   </div>
                   <div className="p-2 space-y-1.5 min-h-[300px]">
                     {dayPosts.map((post) => {
@@ -269,12 +269,12 @@ export default function KalenderPage() {
                             {pl && <pl.icon className="h-3 w-3" style={{ color: post.color }} />}
                             <span className="text-[10px] font-medium" style={{ color: post.color }}>{post.time}</span>
                           </div>
-                          <p className="text-[11px] font-bold text-[#1B2559] dark:text-white leading-tight">{post.title}</p>
+                          <p className="text-[11px] font-bold text-[#0F172A] dark:text-white leading-tight">{post.title}</p>
                           <p className="text-[10px] text-gray-400 mt-0.5 truncate">{post.content}</p>
                         </button>
                       )
                     })}
-                    <button onClick={() => openCreate(dateStr)} className="w-full rounded-lg border border-dashed border-gray-200 p-2 text-[10px] text-gray-400 hover:text-[#6C5CE7] hover:border-[#6C5CE7]/30 transition-colors flex items-center justify-center gap-1">
+                    <button onClick={() => openCreate(dateStr)} className="w-full rounded-lg border border-dashed border-gray-200 p-2 text-[10px] text-gray-400 hover:text-[#00CEC9] hover:border-[#00CEC9]/30 transition-colors flex items-center justify-center gap-1">
                       <Plus className="h-3 w-3" />Hinzufügen
                     </button>
                   </div>
@@ -313,16 +313,16 @@ export default function KalenderPage() {
                 {/* Date + Time */}
                 <div className="grid grid-cols-2 gap-3">
                   <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Datum</label>
-                    <input type="date" value={formDate} onChange={(e) => setFormDate(e.target.value)} className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#6C5CE7] focus:outline-none" /></div>
+                    <input type="date" value={formDate} onChange={(e) => setFormDate(e.target.value)} className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none" /></div>
                   <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Uhrzeit</label>
-                    <input type="time" value={formTime} onChange={(e) => setFormTime(e.target.value)} className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#6C5CE7] focus:outline-none" /></div>
+                    <input type="time" value={formTime} onChange={(e) => setFormTime(e.target.value)} className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none" /></div>
                 </div>
                 {/* Title */}
                 <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Titel</label>
-                  <input value={formTitle} onChange={(e) => setFormTitle(e.target.value)} placeholder="z.B. Produkt-Reel" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#6C5CE7] focus:outline-none" /></div>
+                  <input value={formTitle} onChange={(e) => setFormTitle(e.target.value)} placeholder="z.B. Produkt-Reel" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none" /></div>
                 {/* Content */}
                 <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Beschreibung</label>
-                  <textarea value={formContent} onChange={(e) => setFormContent(e.target.value)} rows={3} placeholder="Was soll der Beitrag beinhalten?" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#6C5CE7] focus:outline-none resize-none" /></div>
+                  <textarea value={formContent} onChange={(e) => setFormContent(e.target.value)} rows={3} placeholder="Was soll der Beitrag beinhalten?" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none resize-none" /></div>
                 {/* Status */}
                 <div>
                   <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Status</label>
@@ -346,7 +346,7 @@ export default function KalenderPage() {
                     </button>
                   )}
                   <button onClick={() => setShowModal(false)} className="flex-1 rounded-xl border border-gray-200 py-2.5 text-[13px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">Abbrechen</button>
-                  <button onClick={handleSave} disabled={!formTitle || !formDate} className="flex-1 rounded-xl bg-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#5A4BD1] disabled:opacity-50 transition-colors">
+                  <button onClick={handleSave} disabled={!formTitle || !formDate} className="flex-1 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50 transition-colors">
                     {editingPost ? "Speichern" : "Planen"}
                   </button>
                 </div>

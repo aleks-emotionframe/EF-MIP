@@ -120,12 +120,12 @@ export default function KonkurrenzPage() {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <Target className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Konkurrenz-Analyse</h1>
+            <Target className="h-5 w-5 text-[#00CEC9]" />
+            <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Konkurrenz-Analyse</h1>
           </div>
           <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Vergleiche deine Performance mit Wettbewerbern.</p>
         </div>
-        <button onClick={() => setShowAdd(true)} className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#6C5CE7]/30 transition-all">
+        <button onClick={() => setShowAdd(true)} className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
           <Plus className="h-3.5 w-3.5" />Wettbewerber hinzufügen
         </button>
       </div>
@@ -135,7 +135,7 @@ export default function KonkurrenzPage() {
         {competitors.map((c) => (
           <div key={c.id} className="relative group/comp">
             <button onClick={() => setSelectedId(c.id)}
-              className={`rounded-xl px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-all ${selectedId === c.id ? "bg-[#6C5CE7] text-white shadow-md shadow-[#6C5CE7]/25" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
+              className={`rounded-xl px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-all ${selectedId === c.id ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
               {c.name}
             </button>
             <button onClick={() => { setCompetitors((prev) => prev.filter((x) => x.id !== c.id)); if (selectedId === c.id) setSelectedId(null) }}
@@ -148,7 +148,7 @@ export default function KonkurrenzPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Bar Chart: Follower */}
         <div className="rounded-2xl bg-white shadow-sm p-5">
-          <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-1">Follower-Vergleich</h3>
+          <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Follower-Vergleich</h3>
           <p className="text-[11px] text-gray-400 mb-4">in Tausend</p>
           <div className="h-[250px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -170,7 +170,7 @@ export default function KonkurrenzPage() {
         {/* Radar Chart */}
         {selected && (
           <div className="rounded-2xl bg-white shadow-sm p-5">
-            <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-1">Du vs. {selected.name}</h3>
+            <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Du vs. {selected.name}</h3>
             <p className="text-[11px] text-gray-400 mb-4">Stärken-Vergleich</p>
             <div className="h-[250px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -197,12 +197,12 @@ export default function KonkurrenzPage() {
         <div className="rounded-2xl bg-white shadow-sm p-5 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white">{selected.name}</h3>
+              <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">{selected.name}</h3>
               <p className="text-[12px] text-gray-400">{selected.website}</p>
             </div>
             <div className="flex gap-3">
               <div className="text-right">
-                <p className="text-[22px] font-extrabold text-[#1B2559] dark:text-white">{(selected.totalFollower / 1000).toFixed(1)}k</p>
+                <p className="text-[22px] font-extrabold text-[#0F172A] dark:text-white">{(selected.totalFollower / 1000).toFixed(1)}k</p>
                 <p className="text-[10px] text-gray-400">Follower</p>
               </div>
               <div className="text-right">
@@ -224,7 +224,7 @@ export default function KonkurrenzPage() {
                 <div key={p.platform} className="rounded-xl border border-gray-100 p-3.5">
                   <div className="flex items-center gap-2 mb-2">
                     <Icon className="h-4 w-4" style={{ color }} />
-                    <span className="text-[13px] font-semibold text-[#1B2559] dark:text-white">{p.platform}</span>
+                    <span className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{p.platform}</span>
                     <span className="text-[10px] text-gray-400 ml-auto">{p.handle}</span>
                   </div>
                   <div className="grid grid-cols-3 gap-2 text-center">
@@ -274,12 +274,12 @@ export default function KonkurrenzPage() {
               className="relative z-10 w-full max-w-md mx-4 rounded-2xl bg-white p-6 shadow-2xl">
               <h2 className="text-[16px] font-bold text-gray-900 mb-4">Wettbewerber hinzufügen</h2>
               <div className="space-y-3">
-                <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Firmenname" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#6C5CE7] focus:outline-none" />
-                <input value={newWebsite} onChange={(e) => setNewWebsite(e.target.value)} placeholder="Website (z.B. competitor.com)" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#6C5CE7] focus:outline-none" />
+                <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Firmenname" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
+                <input value={newWebsite} onChange={(e) => setNewWebsite(e.target.value)} placeholder="Website (z.B. competitor.com)" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
               </div>
               <div className="flex gap-3 mt-5">
                 <button onClick={() => setShowAdd(false)} className="flex-1 rounded-xl border border-gray-200 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">Abbrechen</button>
-                <button onClick={handleAdd} disabled={!newName} className="flex-1 rounded-xl bg-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#5A4BD1] disabled:opacity-50">Hinzufügen</button>
+                <button onClick={handleAdd} disabled={!newName} className="flex-1 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50">Hinzufügen</button>
               </div>
             </motion.div>
           </div>

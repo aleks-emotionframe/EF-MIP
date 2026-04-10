@@ -99,8 +99,8 @@ export default function TrendsPage() {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Social-Media-Trends</h1>
+            <TrendingUp className="h-5 w-5 text-[#00CEC9]" />
+            <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Social-Media-Trends</h1>
           </div>
           <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
             Aktuelle Trends aus Reddit-Communities – was die Branche gerade bewegt.
@@ -152,14 +152,14 @@ export default function TrendsPage() {
 
         <div className="flex gap-1.5 overflow-x-auto">
           <button onClick={() => setActiveCategory("all")}
-            className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === "all" ? "bg-[#6C5CE7] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
+            className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === "all" ? "bg-[#00CEC9] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
             Alle
           </button>
           {(data?.categories ?? []).map((cat) => {
             const Icon = ICON_MAP[cat.icon] ?? Sparkles
             return (
               <button key={cat.name} onClick={() => setActiveCategory(cat.name)}
-                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === cat.name ? "bg-[#6C5CE7] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
+                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === cat.name ? "bg-[#00CEC9] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
                 <Icon className="h-3 w-3" />
                 {cat.name}
                 <span className={`text-[10px] ${activeCategory === cat.name ? "text-white/70" : "text-gray-400"}`}>{cat.trends.length}</span>
@@ -172,7 +172,7 @@ export default function TrendsPage() {
       {/* Loading */}
       {loading && (
         <div className="flex items-center justify-center py-20">
-          <Loader2 className="h-6 w-6 animate-spin text-[#6C5CE7]" />
+          <Loader2 className="h-6 w-6 animate-spin text-[#00CEC9]" />
           <span className="ml-2 text-[13px] text-gray-500">Reddit-Trends werden geladen...</span>
         </div>
       )}
@@ -185,10 +185,10 @@ export default function TrendsPage() {
             return (
               <div key={category.name}>
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="w-7 h-7 rounded-lg bg-[#6C5CE7]/[0.06] flex items-center justify-center">
-                    <Icon className="h-3.5 w-3.5 text-[#6C5CE7]" />
+                  <div className="w-7 h-7 rounded-lg bg-[#00CEC9]/[0.06] flex items-center justify-center">
+                    <Icon className="h-3.5 w-3.5 text-[#00CEC9]" />
                   </div>
-                  <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">{category.name}</h2>
+                  <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">{category.name}</h2>
                   <span className="text-[11px] text-gray-400">{category.trends.length} Trends</span>
                 </div>
 
@@ -202,14 +202,14 @@ export default function TrendsPage() {
 
                           {/* Score */}
                           <div className="flex flex-col items-center shrink-0 w-12">
-                            <ArrowUpRight className="h-3.5 w-3.5 text-[#6C5CE7]" />
+                            <ArrowUpRight className="h-3.5 w-3.5 text-[#00CEC9]" />
                             <span className="text-[14px] font-bold text-gray-900">{trend.score >= 1000 ? `${(trend.score / 1000).toFixed(1)}k` : trend.score}</span>
                             <span className="text-[9px] text-gray-400">Upvotes</span>
                           </div>
 
                           {/* Content */}
                           <div className="flex-1 min-w-0">
-                            <p className="text-[14px] font-semibold text-[#1B2559] dark:text-white leading-snug">{trend.title}</p>
+                            <p className="text-[14px] font-semibold text-[#0F172A] dark:text-white leading-snug">{trend.title}</p>
 
                             {/* Tags */}
                             <div className="flex items-center gap-1.5 mt-2 flex-wrap">
@@ -243,11 +243,11 @@ export default function TrendsPage() {
                                 )}
 
                                 {/* AI Takeaway */}
-                                <div className="rounded-lg bg-[#6C5CE7]/[0.04] border border-[#6C5CE7]/10 p-3.5">
+                                <div className="rounded-lg bg-[#00CEC9]/[0.04] border border-[#00CEC9]/10 p-3.5">
                                   <div className="flex items-start gap-2.5">
-                                    <Sparkles className="h-4 w-4 text-[#6C5CE7] mt-0.5 shrink-0" />
+                                    <Sparkles className="h-4 w-4 text-[#00CEC9] mt-0.5 shrink-0" />
                                     <div>
-                                      <p className="text-[12px] font-semibold text-[#6C5CE7] mb-1">Was bedeutet das für dich?</p>
+                                      <p className="text-[12px] font-semibold text-[#00CEC9] mb-1">Was bedeutet das für dich?</p>
                                       <p className="text-[13px] text-gray-700 leading-relaxed">{generateTakeaway(trend)}</p>
                                     </div>
                                   </div>
@@ -261,7 +261,7 @@ export default function TrendsPage() {
                                   </div>
                                   {trend.url !== "#" && (
                                     <a href={trend.url} target="_blank" rel="noopener noreferrer"
-                                      className="flex items-center gap-1 text-[12px] font-medium text-[#6C5CE7] hover:underline">
+                                      className="flex items-center gap-1 text-[12px] font-medium text-[#00CEC9] hover:underline">
                                       <ExternalLink className="h-3 w-3" />Auf Reddit ansehen
                                     </a>
                                   )}

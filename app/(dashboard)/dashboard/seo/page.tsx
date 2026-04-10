@@ -133,8 +133,8 @@ export default function SEOPage() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-2">
-          <Globe className="h-5 w-5 text-[#6C5CE7]" />
-          <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">SEO-Analyse</h1>
+          <Globe className="h-5 w-5 text-[#00CEC9]" />
+          <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">SEO-Analyse</h1>
         </div>
         <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
           Website analysieren und Keyword-Rankings einsehen.
@@ -172,11 +172,11 @@ export default function SEOPage() {
               <input
                 type="text" value={url} onChange={(e) => setUrl(e.target.value)}
                 placeholder="Website-URL eingeben (z.B. example.com)"
-                className="w-full rounded-xl border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-[14px] focus:border-[#6C5CE7] focus:ring-2 focus:ring-[#6C5CE7]/20 focus:outline-none transition-all"
+                className="w-full rounded-xl border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-[14px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none transition-all"
               />
             </div>
             <motion.button type="submit" disabled={loading || !url.trim()} whileTap={{ scale: 0.97 }}
-              className="rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] px-6 py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#6C5CE7]/30 disabled:opacity-50 transition-all flex items-center gap-2">
+              className="rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-6 py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all flex items-center gap-2">
               {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <BarChart3 className="h-4 w-4" />}
               {loading ? "Analysiere..." : "Analysieren"}
             </motion.button>
@@ -233,7 +233,7 @@ export default function SEOPage() {
                     const count = cat === "all" ? result.checks.length : result.checks.filter((c) => c.category === cat).length
                     return (
                       <button key={cat} onClick={() => setActiveCategory(cat)}
-                        className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === cat ? "bg-[#6C5CE7] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
+                        className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === cat ? "bg-[#00CEC9] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
                         {cat === "all" ? "Alle" : cat}
                         <span className={`text-[10px] ${activeCategory === cat ? "text-white/70" : "text-gray-400"}`}>{count}</span>
                       </button>
@@ -251,7 +251,7 @@ export default function SEOPage() {
                         <button onClick={() => setExpandedCheck(isExp ? null : `${check.category}-${check.name}`)} className="w-full flex items-center gap-3 p-4 text-left hover:bg-gray-50/50 transition-colors">
                           <div className={`w-8 h-8 rounded-lg ${STATUS_BG[check.status]} flex items-center justify-center shrink-0`}><Icon className={`h-4 w-4 ${STATUS_COLOR[check.status]}`} /></div>
                           <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2"><span className="text-[13px] font-semibold text-[#1B2559] dark:text-white">{check.name}</span><span className="text-[10px] text-gray-400 bg-gray-100 rounded px-1.5 py-0.5">{check.category}</span></div>
+                            <div className="flex items-center gap-2"><span className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{check.name}</span><span className="text-[10px] text-gray-400 bg-gray-100 rounded px-1.5 py-0.5">{check.category}</span></div>
                             <p className="text-[12px] text-gray-500 mt-0.5 truncate">{check.value}</p>
                           </div>
                           <span className={`text-[11px] font-medium ${STATUS_COLOR[check.status]} shrink-0 hidden sm:block`}>{STATUS_LABEL[check.status]}</span>
@@ -270,11 +270,11 @@ export default function SEOPage() {
                 {/* Headings */}
                 {result.headings.length > 0 && (
                   <div className="rounded-2xl bg-white shadow-sm p-5">
-                    <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-3">Überschriften-Struktur</h3>
+                    <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-3">Überschriften-Struktur</h3>
                     <div className="space-y-1.5">
                       {result.headings.map((h, i) => (
                         <div key={i} className="flex items-center gap-2" style={{ paddingLeft: (parseInt(h.tag[1]) - 1) * 20 }}>
-                          <span className={`text-[10px] font-bold uppercase rounded px-1.5 py-0.5 shrink-0 ${h.tag === "h1" ? "bg-[#6C5CE7]/10 text-[#6C5CE7]" : "bg-gray-100 text-gray-500"}`}>{h.tag}</span>
+                          <span className={`text-[10px] font-bold uppercase rounded px-1.5 py-0.5 shrink-0 ${h.tag === "h1" ? "bg-[#00CEC9]/10 text-[#00CEC9]" : "bg-gray-100 text-gray-500"}`}>{h.tag}</span>
                           <span className="text-[12px] text-gray-700 truncate">{h.text}</span>
                         </div>
                       ))}
@@ -285,7 +285,7 @@ export default function SEOPage() {
                 {/* Images without alt */}
                 {result.images.filter((i) => !i.hasAlt).length > 0 && (
                   <div className="rounded-2xl bg-white shadow-sm p-5">
-                    <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-3">Bilder ohne Alt-Text ({result.images.filter((i) => !i.hasAlt).length})</h3>
+                    <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-3">Bilder ohne Alt-Text ({result.images.filter((i) => !i.hasAlt).length})</h3>
                     <div className="space-y-1.5 max-h-48 overflow-y-auto">
                       {result.images.filter((i) => !i.hasAlt).map((img, i) => (
                         <div key={i} className="flex items-center gap-2 text-[12px] rounded-lg p-2 bg-red-50">
@@ -352,7 +352,7 @@ export default function SEOPage() {
               <input
                 type="text" value={keywordFilter} onChange={(e) => setKeywordFilter(e.target.value)}
                 placeholder="Keyword suchen..."
-                className="w-full rounded-xl border border-gray-200 bg-white pl-10 pr-4 py-2.5 text-[13px] focus:border-[#6C5CE7] focus:ring-2 focus:ring-[#6C5CE7]/20 focus:outline-none"
+                className="w-full rounded-xl border border-gray-200 bg-white pl-10 pr-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none"
               />
             </div>
             <div className="flex gap-1.5">
@@ -363,7 +363,7 @@ export default function SEOPage() {
                 { key: "ctr" as const, label: "CTR" },
               ]).map((s) => (
                 <button key={s.key} onClick={() => setKeywordSort(s.key)}
-                  className={`rounded-lg px-3 py-2 text-[11px] font-medium transition-all ${keywordSort === s.key ? "bg-[#6C5CE7] text-white" : "bg-white border border-gray-200 text-gray-500 hover:bg-gray-50"}`}>
+                  className={`rounded-lg px-3 py-2 text-[11px] font-medium transition-all ${keywordSort === s.key ? "bg-[#00CEC9] text-white" : "bg-white border border-gray-200 text-gray-500 hover:bg-gray-50"}`}>
                   {s.label}
                 </button>
               ))}
@@ -399,21 +399,21 @@ export default function SEOPage() {
 
                     {/* Keyword */}
                     <div className="flex-1 min-w-0">
-                      <p className="text-[13px] font-semibold text-[#1B2559] dark:text-white truncate">{kw.query}</p>
+                      <p className="text-[13px] font-semibold text-[#0F172A] dark:text-white truncate">{kw.query}</p>
                     </div>
 
                     {/* Metrics */}
                     <div className="hidden sm:flex items-center gap-6 text-[12px] text-gray-500 shrink-0">
                       <div className="text-right w-16">
-                        <p className="font-bold text-[#1B2559] dark:text-white">{kw.clicks.toLocaleString("de-CH")}</p>
+                        <p className="font-bold text-[#0F172A] dark:text-white">{kw.clicks.toLocaleString("de-CH")}</p>
                         <p className="text-[10px] text-gray-400">Klicks</p>
                       </div>
                       <div className="text-right w-20">
-                        <p className="font-bold text-[#1B2559] dark:text-white">{kw.impressions.toLocaleString("de-CH")}</p>
+                        <p className="font-bold text-[#0F172A] dark:text-white">{kw.impressions.toLocaleString("de-CH")}</p>
                         <p className="text-[10px] text-gray-400">Impressionen</p>
                       </div>
                       <div className="text-right w-14">
-                        <p className="font-bold text-[#1B2559] dark:text-white">{kw.ctr}%</p>
+                        <p className="font-bold text-[#0F172A] dark:text-white">{kw.ctr}%</p>
                         <p className="text-[10px] text-gray-400">CTR</p>
                       </div>
                     </div>
@@ -434,13 +434,13 @@ export default function SEOPage() {
                           </div>
 
                           {/* Tip */}
-                          <div className="rounded-lg bg-[#6C5CE7]/[0.04] border border-[#6C5CE7]/10 p-4">
+                          <div className="rounded-lg bg-[#00CEC9]/[0.04] border border-[#00CEC9]/10 p-4">
                             <div className="flex items-start gap-2.5">
-                              <div className="w-7 h-7 rounded-lg bg-[#6C5CE7]/10 flex items-center justify-center shrink-0 mt-0.5">
-                                <Lightbulb className="h-3.5 w-3.5 text-[#6C5CE7]" />
+                              <div className="w-7 h-7 rounded-lg bg-[#00CEC9]/10 flex items-center justify-center shrink-0 mt-0.5">
+                                <Lightbulb className="h-3.5 w-3.5 text-[#00CEC9]" />
                               </div>
                               <div>
-                                <p className="text-[12px] font-semibold text-[#6C5CE7] mb-1">Optimierungs-Tipp</p>
+                                <p className="text-[12px] font-semibold text-[#00CEC9] mb-1">Optimierungs-Tipp</p>
                                 <p className="text-[13px] text-gray-700 leading-relaxed">{kw.tip}</p>
                               </div>
                             </div>

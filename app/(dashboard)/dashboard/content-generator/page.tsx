@@ -82,8 +82,8 @@ export default function ContentGeneratorPage() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-[#6C5CE7]" />
-          <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Content-Generator</h1>
+          <Sparkles className="h-5 w-5 text-[#00CEC9]" />
+          <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Content-Generator</h1>
         </div>
         <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
           KI-gestützter Content für deine Social-Media-Kanäle.
@@ -114,7 +114,7 @@ export default function ContentGeneratorPage() {
               <textarea
                 value={topic} onChange={(e) => setTopic(e.target.value)}
                 rows={4} placeholder="Worüber soll der Beitrag sein? z.B. 'Neue Funktion unseres Analytics-Tools vorgestellen' oder 'Tipps für mehr Engagement auf Instagram'"
-                className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-[13px] mt-1.5 focus:border-[#6C5CE7] focus:ring-2 focus:ring-[#6C5CE7]/20 focus:outline-none resize-none"
+                className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none resize-none"
               />
             </div>
 
@@ -124,7 +124,7 @@ export default function ContentGeneratorPage() {
               <div className="flex flex-wrap gap-2 mt-2">
                 {TONES.map((t) => (
                   <button key={t.key} onClick={() => setTone(t.key)}
-                    className={`rounded-lg px-3 py-1.5 text-[12px] font-medium transition-all ${tone === t.key ? "bg-[#6C5CE7]/[0.08] text-[#6C5CE7] border border-[#6C5CE7]/20" : "bg-gray-50 text-gray-600 border border-transparent"}`}>
+                    className={`rounded-lg px-3 py-1.5 text-[12px] font-medium transition-all ${tone === t.key ? "bg-[#00CEC9]/[0.08] text-[#00CEC9] border border-[#00CEC9]/20" : "bg-gray-50 text-gray-600 border border-transparent"}`}>
                     {t.label}
                   </button>
                 ))}
@@ -134,18 +134,18 @@ export default function ContentGeneratorPage() {
             {/* Options */}
             <div className="flex gap-4">
               <label className="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" checked={includeHashtags} onChange={(e) => setIncludeHashtags(e.target.checked)} className="rounded border-gray-300 text-[#6C5CE7] focus:ring-[#6C5CE7]" />
+                <input type="checkbox" checked={includeHashtags} onChange={(e) => setIncludeHashtags(e.target.checked)} className="rounded border-gray-300 text-[#00CEC9] focus:ring-[#00CEC9]" />
                 <span className="text-[12px] text-gray-600">Hashtags</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" checked={includeEmoji} onChange={(e) => setIncludeEmoji(e.target.checked)} className="rounded border-gray-300 text-[#6C5CE7] focus:ring-[#6C5CE7]" />
+                <input type="checkbox" checked={includeEmoji} onChange={(e) => setIncludeEmoji(e.target.checked)} className="rounded border-gray-300 text-[#00CEC9] focus:ring-[#00CEC9]" />
                 <span className="text-[12px] text-gray-600">Emojis</span>
               </label>
             </div>
 
             {/* Generate Button */}
             <motion.button onClick={handleGenerate} disabled={loading || !topic.trim()} whileTap={{ scale: 0.97 }}
-              className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#6C5CE7]/30 disabled:opacity-50 transition-all">
+              className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all">
               {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
               {loading ? "Wird generiert..." : "Content generieren"}
             </motion.button>
@@ -162,15 +162,15 @@ export default function ContentGeneratorPage() {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <selectedPlatform.icon className="h-4 w-4" style={{ color: selectedPlatform.color }} />
-                      <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white">{platform}-Beitrag</h3>
+                      <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">{platform}-Beitrag</h3>
                       {result.source === "claude" && (
-                        <span className="text-[10px] bg-[#6C5CE7]/[0.08] text-[#6C5CE7] rounded-full px-2 py-0.5 font-medium">
+                        <span className="text-[10px] bg-[#00CEC9]/[0.08] text-[#00CEC9] rounded-full px-2 py-0.5 font-medium">
                           {result.profileConnected ? "KI · Profil-basiert" : "KI-generiert"}
                         </span>
                       )}
                     </div>
                     <div className="flex gap-2">
-                      <button onClick={handleGenerate} className="rounded-lg p-2 text-gray-400 hover:text-[#6C5CE7] hover:bg-[#6C5CE7]/[0.06] transition-colors" title="Neu generieren">
+                      <button onClick={handleGenerate} className="rounded-lg p-2 text-gray-400 hover:text-[#00CEC9] hover:bg-[#00CEC9]/[0.06] transition-colors" title="Neu generieren">
                         <RefreshCw className="h-4 w-4" />
                       </button>
                       <button onClick={handleCopy} className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-[12px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">
@@ -191,7 +191,7 @@ export default function ContentGeneratorPage() {
                       <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2">Hashtags</p>
                       <div className="flex flex-wrap gap-1.5">
                         {result.hashtags.map((tag) => (
-                          <span key={tag} className="inline-flex items-center rounded-full bg-[#6C5CE7]/[0.06] px-2.5 py-1 text-[11px] font-medium text-[#6C5CE7]">
+                          <span key={tag} className="inline-flex items-center rounded-full bg-[#00CEC9]/[0.06] px-2.5 py-1 text-[11px] font-medium text-[#00CEC9]">
                             <Hash className="h-3 w-3 mr-0.5" />
                             {tag}
                           </span>
@@ -210,8 +210,8 @@ export default function ContentGeneratorPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="rounded-2xl bg-white shadow-sm p-5">
                     <div className="flex items-center gap-2 mb-3">
-                      <Clock className="h-4 w-4 text-[#6C5CE7]" />
-                      <h3 className="text-[14px] font-semibold text-[#1B2559] dark:text-white">Beste Posting-Zeit</h3>
+                      <Clock className="h-4 w-4 text-[#00CEC9]" />
+                      <h3 className="text-[14px] font-semibold text-[#0F172A] dark:text-white">Beste Posting-Zeit</h3>
                     </div>
                     <p className="text-[14px] font-bold text-gray-900">{result.bestTime}</p>
                     <div className="flex items-center gap-2 mt-2">
@@ -229,12 +229,12 @@ export default function ContentGeneratorPage() {
                   <div className="rounded-2xl bg-white shadow-sm p-5">
                     <div className="flex items-center gap-2 mb-3">
                       <Lightbulb className="h-4 w-4 text-amber-500" />
-                      <h3 className="text-[14px] font-semibold text-[#1B2559] dark:text-white">Tipps</h3>
+                      <h3 className="text-[14px] font-semibold text-[#0F172A] dark:text-white">Tipps</h3>
                     </div>
                     <div className="space-y-2">
                       {result.tips.map((tip, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <ArrowRight className="h-3 w-3 text-[#6C5CE7] mt-1 shrink-0" />
+                          <ArrowRight className="h-3 w-3 text-[#00CEC9] mt-1 shrink-0" />
                           <p className="text-[12px] text-gray-600 leading-relaxed">{tip}</p>
                         </div>
                       ))}

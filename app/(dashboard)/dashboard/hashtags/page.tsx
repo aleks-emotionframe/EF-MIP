@@ -166,8 +166,8 @@ export default function HashtagsPage() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-2">
-          <Hash className="h-5 w-5 text-[#6C5CE7]" />
-          <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Hashtag-Recherche</h1>
+          <Hash className="h-5 w-5 text-[#00CEC9]" />
+          <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Hashtag-Recherche</h1>
         </div>
         <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
           Finde die besten Hashtags für deine Beiträge.
@@ -180,10 +180,10 @@ export default function HashtagsPage() {
           <Hash className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <input type="text" value={query} onChange={(e) => setQuery(e.target.value)}
             placeholder="Hashtag eingeben (z.B. marketing, fitness, schweiz)"
-            className="w-full rounded-xl border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-[14px] focus:border-[#6C5CE7] focus:ring-2 focus:ring-[#6C5CE7]/20 focus:outline-none" />
+            className="w-full rounded-xl border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-[14px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
         </div>
         <motion.button type="submit" disabled={loading || !query.trim()} whileTap={{ scale: 0.97 }}
-          className="rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] px-6 py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#6C5CE7]/30 disabled:opacity-50 transition-all flex items-center gap-2">
+          className="rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-6 py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all flex items-center gap-2">
           {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
           Suchen
         </motion.button>
@@ -193,7 +193,7 @@ export default function HashtagsPage() {
       <div className="flex gap-2 flex-wrap">
         {["marketing", "socialmedia", "schweiz", "fitness", "food", "travel", "design", "tech"].map((tag) => (
           <button key={tag} onClick={() => searchRelated(tag)}
-            className="rounded-full bg-gray-50 border border-gray-200 px-3 py-1 text-[11px] font-medium text-gray-500 hover:bg-[#6C5CE7]/[0.06] hover:text-[#6C5CE7] hover:border-[#6C5CE7]/20 transition-colors">
+            className="rounded-full bg-gray-50 border border-gray-200 px-3 py-1 text-[11px] font-medium text-gray-500 hover:bg-[#00CEC9]/[0.06] hover:text-[#00CEC9] hover:border-[#00CEC9]/20 transition-colors">
             #{tag}
           </button>
         ))}
@@ -228,9 +228,9 @@ export default function HashtagsPage() {
                 const TrendIcon = TREND_ICON[h.trend]
                 return (
                   <button key={h.hashtag} onClick={() => copyTag(h.hashtag)}
-                    className="rounded-2xl bg-white shadow-sm p-3.5 text-left hover:shadow-sm hover:border-[#6C5CE7]/20 transition-all group">
+                    className="rounded-2xl bg-white shadow-sm p-3.5 text-left hover:shadow-sm hover:border-[#00CEC9]/20 transition-all group">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[16px] font-bold text-[#1B2559] dark:text-white group-hover:text-[#6C5CE7] transition-colors">#{h.hashtag}</span>
+                      <span className="text-[16px] font-bold text-[#0F172A] dark:text-white group-hover:text-[#00CEC9] transition-colors">#{h.hashtag}</span>
                       {copiedTag === h.hashtag
                         ? <Check className="h-3.5 w-3.5 text-emerald-500" />
                         : <Copy className="h-3.5 w-3.5 text-gray-300 group-hover:text-gray-500 transition-colors" />
@@ -249,11 +249,11 @@ export default function HashtagsPage() {
             {/* Related Searches */}
             {result.related.length > 0 && (
               <div className="rounded-2xl bg-white shadow-sm p-5">
-                <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-3">Verwandte Themen</h3>
+                <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-3">Verwandte Themen</h3>
                 <div className="flex gap-2 flex-wrap">
                   {result.related.map((tag) => (
                     <button key={tag} onClick={() => searchRelated(tag)}
-                      className="rounded-full bg-[#6C5CE7]/[0.06] px-3 py-1.5 text-[12px] font-medium text-[#6C5CE7] hover:bg-[#6C5CE7]/[0.12] transition-colors">
+                      className="rounded-full bg-[#00CEC9]/[0.06] px-3 py-1.5 text-[12px] font-medium text-[#00CEC9] hover:bg-[#00CEC9]/[0.12] transition-colors">
                       #{tag}
                     </button>
                   ))}
@@ -266,12 +266,12 @@ export default function HashtagsPage() {
               <div className="rounded-2xl bg-white shadow-sm p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <Lightbulb className="h-4 w-4 text-amber-500" />
-                  <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Tipps</h3>
+                  <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Tipps</h3>
                 </div>
                 <div className="space-y-2.5">
                   {result.tips.map((tip, i) => (
                     <div key={i} className="flex items-start gap-2">
-                      <ArrowRight className="h-3.5 w-3.5 text-[#6C5CE7] mt-0.5 shrink-0" />
+                      <ArrowRight className="h-3.5 w-3.5 text-[#00CEC9] mt-0.5 shrink-0" />
                       <p className="text-[13px] text-gray-600 leading-relaxed">{tip}</p>
                     </div>
                   ))}

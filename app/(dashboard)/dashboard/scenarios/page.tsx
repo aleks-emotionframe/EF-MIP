@@ -142,7 +142,7 @@ function CustomDropdown<T extends string>({
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-[13px] text-left hover:border-gray-300 focus:border-[#6C5CE7] focus:ring-2 focus:ring-[#6C5CE7]/20 transition-all"
+        className="w-full flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-[13px] text-left hover:border-gray-300 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 transition-all"
       >
         <span className={value ? "text-gray-900 font-medium" : "text-gray-400"}>
           {renderOption ? renderOption(value) : value || placeholder}
@@ -163,7 +163,7 @@ function CustomDropdown<T extends string>({
                 key={opt}
                 onClick={() => { onChange(opt); setOpen(false) }}
                 className={`w-full text-left rounded-lg px-3 py-2.5 text-[13px] transition-colors ${
-                  value === opt ? "bg-[#6C5CE7]/[0.06] text-[#6C5CE7] font-medium" : "text-gray-700 hover:bg-gray-50"
+                  value === opt ? "bg-[#00CEC9]/[0.06] text-[#00CEC9] font-medium" : "text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 {renderOption ? renderOption(opt) : opt}
@@ -198,10 +198,10 @@ function LabeledSlider({
           type="range"
           min={min} max={max} step={step} value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="w-full h-2 rounded-full appearance-none cursor-pointer bg-gray-100 accent-[#6C5CE7] [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#6C5CE7] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white"
+          className="w-full h-2 rounded-full appearance-none cursor-pointer bg-gray-100 accent-[#00CEC9] [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#00CEC9] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white"
         />
         <div
-          className="absolute top-0 left-0 h-2 rounded-full bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] pointer-events-none"
+          className="absolute top-0 left-0 h-2 rounded-full bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] pointer-events-none"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -282,8 +282,8 @@ export default function ScenariosPage() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-[#6C5CE7]" />
-          <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Szenario Simulator</h1>
+          <Sparkles className="h-5 w-5 text-[#00CEC9]" />
+          <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Szenario Simulator</h1>
         </div>
         <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
           Was wäre wenn? Simuliere verschiedene Strategien und sehe die Auswirkungen.
@@ -295,7 +295,7 @@ export default function ScenariosPage() {
         {/* ─── LEFT: Builder (40%) ───────────────────────────── */}
         <div className="lg:col-span-2 space-y-5">
           <div className="rounded-2xl bg-white shadow-sm p-6 space-y-5">
-            <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Szenario konfigurieren</h2>
+            <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Szenario konfigurieren</h2>
 
             {/* Scenario Type */}
             <div className="space-y-1.5">
@@ -307,17 +307,17 @@ export default function ScenariosPage() {
                     onClick={() => setConfig((p) => ({ ...p, type: st.key }))}
                     className={`w-full flex items-center gap-3 rounded-xl px-4 py-3 text-left transition-all ${
                       config.type === st.key
-                        ? "bg-[#6C5CE7]/[0.06] border-2 border-[#6C5CE7]/30 shadow-sm"
+                        ? "bg-[#00CEC9]/[0.06] border-2 border-[#00CEC9]/30 shadow-sm"
                         : "border-2 border-transparent hover:bg-gray-50"
                     }`}
                   >
                     <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${
-                      config.type === st.key ? "bg-[#6C5CE7]/10" : "bg-gray-100"
+                      config.type === st.key ? "bg-[#00CEC9]/10" : "bg-gray-100"
                     }`}>
-                      <st.icon className={`h-4 w-4 ${config.type === st.key ? "text-[#6C5CE7]" : "text-gray-400"}`} />
+                      <st.icon className={`h-4 w-4 ${config.type === st.key ? "text-[#00CEC9]" : "text-gray-400"}`} />
                     </div>
                     <div>
-                      <p className={`text-[13px] font-medium ${config.type === st.key ? "text-[#6C5CE7]" : "text-gray-800"}`}>
+                      <p className={`text-[13px] font-medium ${config.type === st.key ? "text-[#00CEC9]" : "text-gray-800"}`}>
                         {st.label}
                       </p>
                       <p className="text-[11px] text-gray-400">{st.desc}</p>
@@ -374,7 +374,7 @@ export default function ScenariosPage() {
                           onClick={() => setConfig((p) => ({ ...p, contentType: ct }))}
                           className={`rounded-lg px-3 py-2 text-[12px] font-medium transition-all ${
                             config.contentType === ct
-                              ? "bg-[#6C5CE7]/[0.08] text-[#6C5CE7] border border-[#6C5CE7]/20"
+                              ? "bg-[#00CEC9]/[0.08] text-[#00CEC9] border border-[#00CEC9]/20"
                               : "bg-gray-50 text-gray-600 border border-transparent hover:bg-gray-100"
                           }`}
                         >
@@ -406,7 +406,7 @@ export default function ScenariosPage() {
                     onClick={() => setConfig((p) => ({ ...p, timeframeDays: d }))}
                     className={`flex-1 rounded-xl py-2.5 text-[13px] font-medium transition-all ${
                       config.timeframeDays === d
-                        ? "bg-[#6C5CE7] text-white shadow-md shadow-[#6C5CE7]/25"
+                        ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25"
                         : "bg-gray-50 text-gray-600 hover:bg-gray-100"
                     }`}
                   >
@@ -423,8 +423,8 @@ export default function ScenariosPage() {
               whileTap={{ scale: 0.97 }}
               className={`w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-[14px] font-semibold text-white transition-all ${
                 calculating
-                  ? "bg-[#6C5CE7]/70"
-                  : "bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] hover:shadow-lg hover:shadow-[#6C5CE7]/30"
+                  ? "bg-[#00CEC9]/70"
+                  : "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] hover:shadow-lg hover:shadow-[#00CEC9]/30"
               }`}
             >
               {calculating ? (
@@ -448,7 +448,7 @@ export default function ScenariosPage() {
           <div className="rounded-2xl bg-white shadow-sm p-6">
             <div className="flex items-center justify-between mb-5">
               <div>
-                <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Prognose</h2>
+                <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Prognose</h2>
                 <p className="text-[11px] text-gray-400 mt-0.5">
                   {hasResult ? `${config.platform} · ${typeConfig.label} · ${config.timeframeDays} Tage` : "Starte eine Simulation um Ergebnisse zu sehen"}
                 </p>
@@ -540,9 +540,9 @@ export default function ScenariosPage() {
                     onKeyDown={(e) => e.key === "Enter" && handleSave()}
                     placeholder="Szenario-Name..."
                     autoFocus
-                    className="flex-1 rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#6C5CE7] focus:ring-2 focus:ring-[#6C5CE7]/20 focus:outline-none"
+                    className="flex-1 rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none"
                   />
-                  <button onClick={handleSave} className="rounded-xl bg-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:bg-[#5A4BD1] transition-colors">
+                  <button onClick={handleSave} className="rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:bg-[#00B4A3] transition-colors">
                     <Check className="h-4 w-4" />
                   </button>
                   <button onClick={() => setShowSaveInput(false)} className="rounded-xl border border-gray-200 px-3 py-2.5 text-gray-400 hover:bg-gray-50 transition-colors">
@@ -567,9 +567,9 @@ export default function ScenariosPage() {
       {savedScenarios.length > 0 && (
         <div className="rounded-2xl bg-white shadow-sm p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Gespeicherte Szenarien</h2>
+            <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Gespeicherte Szenarien</h2>
             {compareIds.length === 2 && (
-              <button className="flex items-center gap-1.5 rounded-lg bg-[#6C5CE7]/[0.08] px-3 py-1.5 text-[12px] font-medium text-[#6C5CE7]">
+              <button className="flex items-center gap-1.5 rounded-lg bg-[#00CEC9]/[0.08] px-3 py-1.5 text-[12px] font-medium text-[#00CEC9]">
                 <GitCompare className="h-3.5 w-3.5" />
                 Vergleich anzeigen
               </button>
@@ -594,13 +594,13 @@ export default function ScenariosPage() {
                       <button
                         onClick={() => toggleCompare(s.id)}
                         className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
-                          compareIds.includes(s.id) ? "bg-[#6C5CE7] border-[#6C5CE7]" : "border-gray-300 hover:border-gray-400"
+                          compareIds.includes(s.id) ? "bg-[#00CEC9] border-[#00CEC9]" : "border-gray-300 hover:border-gray-400"
                         }`}
                       >
                         {compareIds.includes(s.id) && <Check className="h-3 w-3 text-white" />}
                       </button>
                     </td>
-                    <td className="py-3 px-3 font-semibold text-[#1B2559] dark:text-white">{s.name}</td>
+                    <td className="py-3 px-3 font-semibold text-[#0F172A] dark:text-white">{s.name}</td>
                     <td className="py-3 px-3 text-gray-500 capitalize">{SCENARIO_TYPES.find((t) => t.key === s.type)?.label}</td>
                     <td className="py-3 px-3 text-gray-500">{s.platform}</td>
                     <td className="py-3 px-3 text-gray-400">{s.createdAt}</td>
