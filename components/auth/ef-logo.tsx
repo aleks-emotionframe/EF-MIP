@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import logoPng from "@/public/EmotionFrame_LOGO-b.png"
+import logoPng from "@/public/EmotionFrame_LOGO-bb.png"
 
 export function EFLogo({ size = 40 }: { size?: number }) {
   return (
