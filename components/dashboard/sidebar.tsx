@@ -166,10 +166,8 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
                 key={section.key}
                 onClick={() => handleSectionClick(section)}
                 className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-medium transition-all text-left w-full ${
-                  isOpen
+                  isOpen || isActive
                     ? "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white shadow-md shadow-[#00CEC9]/20"
-                    : isActive
-                    ? "bg-[#00CEC9]/10 text-[#00CEC9] dark:text-[#00CEC9]"
                     : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
                 }`}
               >
