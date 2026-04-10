@@ -59,10 +59,10 @@ export function Header() {
     : session?.user?.email?.[0]?.toUpperCase() ?? "U"
 
   return (
-    <header className="h-[72px] bg-white dark:bg-[#111c44] border-b border-gray-100 dark:border-white/[0.05] flex items-center justify-between px-8 sticky top-0 z-30">
+    <header className="h-[72px] bg-white dark:bg-[#0F172A] border-b border-gray-100 dark:border-white/[0.05] flex items-center justify-between px-8 sticky top-0 z-30">
       {/* Left */}
       <div>
-        <h1 className="text-[18px] font-bold text-[#1B2559] dark:text-white tracking-tight">{pageTitle}</h1>
+        <h1 className="text-[18px] font-bold text-[#0F172A] dark:text-white tracking-tight">{pageTitle}</h1>
         <p className="text-[12px] text-gray-500 dark:text-white/40 mt-0.5">
           {activeOrg?.organizationName ?? "EmotionFrame"}
         </p>
@@ -90,18 +90,18 @@ export function Header() {
               <ChevronDown className="h-3 w-3 opacity-50" />
             </button>
             {showOrgSwitcher && (
-              <div className="absolute right-0 top-full mt-2 w-56 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#111c44] p-1.5 shadow-xl">
+              <div className="absolute right-0 top-full mt-2 w-56 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0F172A] p-1.5 shadow-xl">
                 <p className="px-3 py-1.5 text-[10px] font-bold text-gray-400 dark:text-white/30 uppercase tracking-wider">Organisationen</p>
                 {session.user.memberships.map((m) => (
                   <button key={m.organizationId} onClick={() => setShowOrgSwitcher(false)}
                     className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-[13px] transition-colors ${
                       m.organizationId === session.user.activeOrganizationId
-                        ? "bg-[#6C5CE7]/10 text-[#6C5CE7] font-medium"
+                        ? "bg-[#00CEC9]/10 text-[#00CEC9] font-medium"
                         : "hover:bg-gray-50 dark:hover:bg-white/[0.05] text-gray-700 dark:text-white/60"
                     }`}>
                     <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold ${
                       m.organizationId === session.user.activeOrganizationId
-                        ? "bg-[#6C5CE7]/15 text-[#6C5CE7]"
+                        ? "bg-[#00CEC9]/15 text-[#00CEC9]"
                         : "bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-white/40"
                     }`}>{m.organizationName[0]}</div>
                     <span className="truncate">{m.organizationName}</span>
@@ -121,7 +121,7 @@ export function Header() {
         {/* Bell */}
         <button className="relative rounded-full p-2.5 text-gray-400 dark:text-white/40 hover:bg-[#F4F7FE] dark:hover:bg-white/[0.05] transition-colors">
           <Bell className="h-[18px] w-[18px]" />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-[#6C5CE7] rounded-full border-2 border-white dark:border-[#111c44]" />
+          <span className="absolute top-2 right-2 w-2 h-2 bg-[#F97316] rounded-full border-2 border-white dark:border-[#0F172A]" />
         </button>
 
         {/* Divider */}
@@ -131,17 +131,17 @@ export function Header() {
         <div ref={userMenuRef} className="relative">
           <button onClick={() => setShowUserMenu(!showUserMenu)}
             className="flex items-center gap-3 rounded-full py-1 pl-1 pr-3 hover:bg-[#F4F7FE] dark:hover:bg-white/[0.05] transition-colors">
-            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-[#6C5CE7] to-[#5643CC] flex items-center justify-center text-[12px] font-bold text-white shadow-lg shadow-[#5643CC]/20">
+            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center text-[12px] font-bold text-white shadow-lg shadow-[#00CEC9]/20">
               {initials}
             </div>
             <div className="hidden sm:block text-left">
-              <p className="text-[13px] font-semibold text-[#1B2559] dark:text-white leading-tight">{session?.user?.name ?? "User"}</p>
+              <p className="text-[13px] font-semibold text-[#0F172A] dark:text-white leading-tight">{session?.user?.name ?? "User"}</p>
               <p className="text-[11px] text-gray-400 dark:text-white/40 leading-tight">{session?.user?.globalRole === "SUPER_ADMIN" ? "Super-Admin" : "Mitglied"}</p>
             </div>
           </button>
 
           {showUserMenu && (
-            <div className="absolute right-0 top-full mt-2 w-56 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#111c44] p-1.5 shadow-xl">
+            <div className="absolute right-0 top-full mt-2 w-56 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0F172A] p-1.5 shadow-xl">
               <div className="px-3 py-2.5 border-b border-gray-100 dark:border-white/[0.05] mb-1">
                 <p className="text-[13px] font-semibold text-gray-900 dark:text-white truncate">{session?.user?.name ?? "User"}</p>
                 <p className="text-[11px] text-gray-400 dark:text-white/40 truncate">{session?.user?.email}</p>

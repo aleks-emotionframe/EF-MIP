@@ -48,7 +48,7 @@ const FILTER_TABS: { key: FilterTab; label: string }[] = [
 
 const TYPE_CONFIG: Record<InsightType, { icon: any; color: string; bg: string; label: string }> = {
   anomaly: { icon: AlertTriangle, color: "#EF4444", bg: "bg-red-50", label: "Anomalie" },
-  trend: { icon: TrendingUp, color: "#6C5CE7", bg: "bg-[#6C5CE7]/[0.06]", label: "Trend" },
+  trend: { icon: TrendingUp, color: "#6C5CE7", bg: "bg-[#00CEC9]/[0.06]", label: "Trend" },
   recommendation: { icon: Lightbulb, color: "#F59E0B", bg: "bg-amber-50", label: "Empfehlung" },
   forecast: { icon: LineChart, color: "#00CEC9", bg: "bg-teal-50", label: "Vorhersage" },
 }
@@ -112,8 +112,8 @@ export default function AIInsightsPage() {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">AI Insights</h1>
+            <Sparkles className="h-5 w-5 text-[#00CEC9]" />
+            <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">AI Insights</h1>
           </div>
           <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
             KI-gestützte Analyse deiner Plattform-Daten
@@ -165,7 +165,7 @@ export default function AIInsightsPage() {
       {/* Insights Feed */}
       {loading ? (
         <div className="flex items-center justify-center py-20">
-          <Loader2 className="h-6 w-6 animate-spin text-[#6C5CE7]" />
+          <Loader2 className="h-6 w-6 animate-spin text-[#00CEC9]" />
           <span className="ml-2 text-[13px] text-gray-500">Erkenntnisse werden erstellt...</span>
         </div>
       ) : (
@@ -199,7 +199,7 @@ export default function AIInsightsPage() {
                     {/* Content */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap mb-1">
-                        <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white">{insight.title}</h3>
+                        <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">{insight.title}</h3>
                         <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold ${prioConf.bg} ${prioConf.color}`}>
                           {prioConf.label}
                         </span>
@@ -279,7 +279,7 @@ export default function AIInsightsPage() {
                               <>
                                 <button
                                   onClick={(e) => { e.stopPropagation(); handleFeedback(insight.id, "implemented") }}
-                                  className="flex items-center gap-1.5 rounded-lg bg-[#6C5CE7] px-3.5 py-2 text-[12px] font-semibold text-white hover:bg-[#5A4BD1] transition-colors"
+                                  className="flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-3.5 py-2 text-[12px] font-semibold text-white hover:bg-[#00B4A3] transition-colors"
                                 >
                                   <Check className="h-3.5 w-3.5" />
                                   Umsetzen
@@ -322,16 +322,16 @@ export default function AIInsightsPage() {
       {/* Learning Timeline */}
       <div className="rounded-2xl bg-white shadow-sm p-5 mt-8">
         <div className="flex items-center gap-2 mb-5">
-          <Brain className="h-4 w-4 text-[#6C5CE7]" />
-          <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Lernverlauf</h2>
+          <Brain className="h-4 w-4 text-[#00CEC9]" />
+          <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Lernverlauf</h2>
           <span className="text-[11px] text-gray-400">Was die KI bisher gelernt hat</span>
         </div>
         <div className="space-y-0">
           {LEARNING_TIMELINE.map((entry, i) => (
             <div key={i} className="flex gap-3">
               <div className="flex flex-col items-center">
-                <div className="w-8 h-8 rounded-lg bg-[#6C5CE7]/[0.06] flex items-center justify-center shrink-0">
-                  <entry.icon className="h-3.5 w-3.5 text-[#6C5CE7]" />
+                <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/[0.06] flex items-center justify-center shrink-0">
+                  <entry.icon className="h-3.5 w-3.5 text-[#00CEC9]" />
                 </div>
                 {i < LEARNING_TIMELINE.length - 1 && (
                   <div className="w-px flex-1 bg-gray-100 my-1" />

@@ -37,7 +37,7 @@ export function MobileNav() {
               aria-label={item.label}
               aria-current={isActive ? "page" : undefined}
               className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-3 rounded-xl transition-colors ${
-                isActive ? "text-[#6C5CE7]" : "text-gray-400"
+                isActive ? "text-[#00CEC9]" : "text-gray-400"
               }`}
             >
               <item.icon className="h-5 w-5" strokeWidth={isActive ? 2.2 : 1.7} />

@@ -48,12 +48,12 @@
   --destructive-foreground: 0 0% 100%;
   --border: 220 13% 91%;
   --input: 220 13% 91%;
-  --ring: 252 75% 60%;
+  --ring: 174 100% 40%;
   --radius: 0.75rem;
-  --chart-1: 252 75% 60%;
-  --chart-2: 174 100% 40%;
-  --chart-3: 340 82% 52%;
-  --chart-4: 45 96% 71%;
+  --chart-1: 174 100% 40%;
+  --chart-2: 252 75% 60%;
+  --chart-3: 24 95% 53%;
+  --chart-4: 330 80% 55%;
   --chart-5: 160 100% 36%;
 
   /* Sidebar */
@@ -147,8 +147,8 @@
 
 /* ─── Glow Effects ───────────────────────────────────────────── */
 .glow-primary {
-  box-shadow: 0 0 20px rgba(108, 92, 231, 0.3),
-              0 0 60px rgba(108, 92, 231, 0.1);
+  box-shadow: 0 0 20px rgba(0, 206, 201, 0.3),
+              0 0 60px rgba(0, 206, 201, 0.1);
 }
 
 .glow-secondary {
@@ -222,7 +222,7 @@ body {
 .text-gray-600 { color: #4A5568 !important; }
 .text-gray-700 { color: #2D3748 !important; }
 .text-gray-800 { color: #1A202C !important; }
-.text-gray-900 { color: #1B2559 !important; }
+.text-gray-900 { color: #0F172A !important; }
 
 /* Page backgrounds */
 .bg-\[#F4F7FE\] { background-color: #F4F7FE; }
@@ -239,7 +239,7 @@ body {
 
 /* Cards */
 .dark .bg-white {
-  background-color: #111c44 !important;
+  background-color: #1E293B !important;
 }
 .dark .border-gray-100.bg-white,
 .dark .rounded-xl.border.bg-white,
@@ -289,7 +289,7 @@ body {
 .dark input:focus,
 .dark textarea:focus,
 .dark select:focus {
-  border-color: #6C5CE7 !important;
+  border-color: #00CEC9 !important;
 }
 
 /* Popover / Dropdowns */

@@ -112,8 +112,8 @@ export default function BenachrichtigungenPage() {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <Bell className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Benachrichtigungen</h1>
+            <Bell className="h-5 w-5 text-[#00CEC9]" />
+            <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Benachrichtigungen</h1>
             {unreadCount > 0 && <span className="rounded-full bg-red-500 px-2 py-0.5 text-[10px] font-bold text-white">{unreadCount}</span>}
           </div>
           <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Alerts, Trends und Meilensteine im Blick.</p>
@@ -125,7 +125,7 @@ export default function BenachrichtigungenPage() {
             </button>
           )}
           {tab === "regeln" && (
-            <button onClick={() => setShowRuleModal(true)} className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#6C5CE7]/30 transition-all">
+            <button onClick={() => setShowRuleModal(true)} className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
               <Plus className="h-3.5 w-3.5" />Neue Regel
             </button>
           )}
@@ -150,7 +150,7 @@ export default function BenachrichtigungenPage() {
           <div className="flex gap-1.5 overflow-x-auto">
             {[{ key: "all", label: "Alle" }, { key: "alert", label: "Warnungen" }, { key: "trend", label: "Trends" }, { key: "milestone", label: "Meilensteine" }, { key: "system", label: "System" }].map((f) => (
               <button key={f.key} onClick={() => setFilterType(f.key)}
-                className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${filterType === f.key ? "bg-[#6C5CE7] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
+                className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${filterType === f.key ? "bg-[#00CEC9] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
                 {f.label}
               </button>
             ))}
@@ -161,7 +161,7 @@ export default function BenachrichtigungenPage() {
               const tc = TYPE_CONFIG[notif.type]
               const isExp = expandedNotif === notif.id
               return (
-                <motion.div key={notif.id} layout className={`rounded-xl border bg-white overflow-hidden transition-colors ${notif.read ? "border-gray-100" : "border-[#6C5CE7]/20 bg-[#6C5CE7]/[0.01]"}`}>
+                <motion.div key={notif.id} layout className={`rounded-xl border bg-white overflow-hidden transition-colors ${notif.read ? "border-gray-100" : "border-[#00CEC9]/20 bg-[#00CEC9]/[0.01]"}`}>
                   <button onClick={() => { setExpandedNotif(isExp ? null : notif.id); if (!notif.read) markRead(notif.id) }}
                     className="w-full flex items-start gap-3 p-4 text-left hover:bg-gray-50/50 transition-colors">
                     <div className={`w-9 h-9 rounded-xl ${tc.bg} flex items-center justify-center shrink-0 mt-0.5`}>
@@ -213,7 +213,7 @@ export default function BenachrichtigungenPage() {
                   : <ToggleLeft className="h-6 w-6 text-gray-300" />}
               </button>
               <div className="flex-1 min-w-0">
-                <p className="text-[14px] font-semibold text-[#1B2559] dark:text-white">{rule.name}</p>
+                <p className="text-[14px] font-semibold text-[#0F172A] dark:text-white">{rule.name}</p>
                 <p className="text-[11px] text-gray-400 mt-0.5">
                   {rule.metric} · {rule.platform} · {rule.condition === "above" ? "Über" : rule.condition === "below" ? "Unter" : "Änderung >"} {rule.threshold}{rule.condition === "change" ? "%" : ""}
                   {rule.notifyEmail && <span className="ml-2 inline-flex items-center gap-0.5"><Mail className="h-3 w-3" />E-Mail</span>}
