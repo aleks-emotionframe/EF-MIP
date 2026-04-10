@@ -9,7 +9,7 @@ import {
   TrendingUp, Globe, Users, Mail, Settings, Calendar,
   Hash, Target, Bell, ChevronRight, X, Inbox, Clock,
   PieChart, SmilePlus, GitCompare, Gauge, Link2, MapPin,
-  FileBarChart, GitFork, Search,
+  FileBarChart, GitFork, Search, LogOut,
 } from "lucide-react"
 
 interface MenuItem { icon: any; label: string; href: string }
@@ -18,7 +18,7 @@ interface MenuSection { key: string; title: string; icon: any; items: MenuItem[]
 const menuSections: MenuSection[] = [
   {
     key: "home",
-    title: "Übersicht",
+    title: "Dashboard",
     icon: Home,
     singleLink: "/dashboard",
     items: [],
@@ -85,7 +85,7 @@ const menuSections: MenuSection[] = [
   },
 ]
 
-export const PRIMARY_WIDTH = 220
+export const PRIMARY_WIDTH = 230
 export const SUB_WIDTH = 260
 
 interface SidebarProps {
@@ -121,26 +121,27 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
 
   return (
     <>
-      {/* ─── Primary Sidebar ─── */}
+      {/* ─── Primary Sidebar (Light) ─── */}
       <aside
-        className="hidden md:flex flex-col h-screen fixed left-0 top-0 z-50 bg-[#0F172A] dark:bg-[#060C18]"
+        className="hidden md:flex flex-col h-screen fixed left-0 top-0 z-50 bg-white dark:bg-[#1E293B] border-r border-gray-100 dark:border-white/[0.06]"
         style={{ width: PRIMARY_WIDTH }}
         role="navigation"
         aria-label="Hauptnavigation"
       >
         {/* Logo */}
         <div className="flex items-center h-[72px] px-5">
-          <Link href="/dashboard" onClick={() => setOpenSection(null)} className="overflow-hidden">
-            <img
-              src="/EmotionFrame_Logo_w.png"
-              alt="EmotionFrame"
-              className="h-9 w-auto shrink-0"
-            />
+          <Link href="/dashboard" onClick={() => setOpenSection(null)} className="flex items-center gap-2.5 overflow-hidden">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center shrink-0 shadow-md shadow-[#00CEC9]/20">
+              <div className="w-6 h-6 overflow-hidden">
+                <img src="/EmotionFrame_Logo_w.png" alt="" className="h-6 w-auto max-w-none" />
+              </div>
+            </div>
+            <span className="text-[16px] font-bold text-[#0F172A] dark:text-white tracking-tight">EmotionFrame</span>
           </Link>
         </div>
 
         {/* Sections */}
-        <nav className="flex-1 flex flex-col gap-1 pt-2 px-3 overflow-y-auto sidebar-scroll">
+        <nav className="flex-1 flex flex-col gap-0.5 pt-3 px-3 overflow-y-auto sidebar-scroll">
           {menuSections.map((section) => {
             const isActive = activeSection?.key === section.key
             const isOpen = openSection === section.key
@@ -151,15 +152,12 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
                 key={section.key}
                 href={section.singleLink}
                 onClick={() => setOpenSection(null)}
-                className={`relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all group ${
+                className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-medium transition-all ${
                   isActive
-                    ? "bg-[#00CEC9]/15 text-[#00CEC9]"
-                    : "text-white/50 hover:text-white/90 hover:bg-white/[0.06]"
+                    ? "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white shadow-md shadow-[#00CEC9]/20"
+                    : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
                 }`}
               >
-                {isActive && (
-                  <div className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-r-full bg-[#00CEC9]" />
-                )}
                 <section.icon className="h-[18px] w-[18px] shrink-0" strokeWidth={isActive ? 2 : 1.5} />
                 <span>{section.title}</span>
               </Link>
@@ -167,110 +165,105 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
               <button
                 key={section.key}
                 onClick={() => handleSectionClick(section)}
-                className={`relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all group text-left w-full ${
+                className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-medium transition-all text-left w-full ${
                   isOpen
-                    ? "bg-[#00CEC9] text-white shadow-lg shadow-[#00CEC9]/20"
+                    ? "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white shadow-md shadow-[#00CEC9]/20"
                     : isActive
-                    ? "bg-[#00CEC9]/15 text-[#00CEC9]"
-                    : "text-white/50 hover:text-white/90 hover:bg-white/[0.06]"
+                    ? "bg-[#00CEC9]/10 text-[#00CEC9] dark:text-[#00CEC9]"
+                    : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
                 }`}
               >
-                {isActive && !isOpen && (
-                  <div className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-r-full bg-[#00CEC9]" />
-                )}
                 <section.icon className="h-[18px] w-[18px] shrink-0" strokeWidth={isOpen || isActive ? 2 : 1.5} />
                 <span className="flex-1">{section.title}</span>
                 {hasSubItems && (
                   <ChevronRight className={`h-3.5 w-3.5 shrink-0 transition-transform ${
                     isOpen ? "rotate-90" : ""
-                  } ${isOpen ? "text-white/70" : "text-white/20 group-hover:text-white/40"}`} />
+                  } ${isOpen ? "text-white/70" : "text-gray-300 dark:text-white/20"}`} />
                 )}
               </button>
             )
           })}
         </nav>
 
-        {/* Bottom: Settings */}
-        <div className="px-3 pb-4">
-          <div className="mx-2 mb-3 border-t border-white/[0.06]" />
+        {/* Bottom */}
+        <div className="px-3 pb-4 space-y-1">
+          <div className="mx-2 mb-2 border-t border-gray-100 dark:border-white/[0.06]" />
           <Link
             href="/dashboard/settings/integrations"
             onClick={() => setOpenSection(null)}
-            className={`relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all ${
+            className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-medium transition-all ${
               pathname.startsWith("/dashboard/settings")
-                ? "bg-[#00CEC9]/15 text-[#00CEC9]"
-                : "text-white/50 hover:text-white/90 hover:bg-white/[0.06]"
+                ? "bg-[#00CEC9]/10 text-[#00CEC9]"
+                : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
             }`}
           >
-            {pathname.startsWith("/dashboard/settings") && (
-              <div className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-r-full bg-[#00CEC9]" />
-            )}
-            <Settings className="h-[18px] w-[18px] shrink-0" strokeWidth={pathname.startsWith("/dashboard/settings") ? 2 : 1.5} />
+            <Settings className="h-[18px] w-[18px] shrink-0" strokeWidth={1.5} />
             <span>Einstellungen</span>
           </Link>
+          <button className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-medium text-gray-400 dark:text-white/30 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all w-full text-left">
+            <LogOut className="h-[18px] w-[18px] shrink-0" strokeWidth={1.5} />
+            <span>Abmelden</span>
+          </button>
         </div>
       </aside>
 
       {/* ─── Secondary Sub-Sidebar ─── */}
       <AnimatePresence>
         {isSubOpen && subSection && (
-          <>
-            <motion.aside
-              initial={{ x: -SUB_WIDTH, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -SUB_WIDTH, opacity: 0 }}
-              transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-              className="hidden md:flex flex-col h-screen fixed top-0 z-45 bg-[#1E293B] dark:bg-[#0F172A] border-r border-white/[0.06] shadow-2xl shadow-black/30"
-              style={{ left: PRIMARY_WIDTH, width: SUB_WIDTH }}
-            >
-              {/* Sub-header */}
-              <div className="flex items-center justify-between h-[72px] px-5">
-                <div className="flex items-center gap-2.5">
-                  <subSection.icon className="h-4 w-4 text-[#00CEC9]" strokeWidth={2} />
-                  <h2 className="text-[15px] font-bold text-white tracking-tight">{subSection.title}</h2>
+          <motion.aside
+            initial={{ x: -SUB_WIDTH, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -SUB_WIDTH, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+            className="hidden md:flex flex-col h-screen fixed top-0 z-45 bg-white dark:bg-[#1E293B] border-r border-gray-100 dark:border-white/[0.06] shadow-xl shadow-black/5 dark:shadow-black/30"
+            style={{ left: PRIMARY_WIDTH, width: SUB_WIDTH }}
+          >
+            {/* Sub-header */}
+            <div className="flex items-center justify-between h-[72px] px-5 border-b border-gray-100 dark:border-white/[0.06]">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#00CEC9]/15 to-[#6C5CE7]/10 flex items-center justify-center">
+                  <subSection.icon className="h-3.5 w-3.5 text-[#00CEC9]" strokeWidth={2} />
                 </div>
-                <button
-                  onClick={() => setOpenSection(null)}
-                  className="w-7 h-7 flex items-center justify-center rounded-lg text-white/30 hover:text-white/70 hover:bg-white/[0.06] transition-colors"
-                >
-                  <X className="h-4 w-4" />
-                </button>
+                <h2 className="text-[14px] font-bold text-[#0F172A] dark:text-white">{subSection.title}</h2>
               </div>
+              <button
+                onClick={() => setOpenSection(null)}
+                className="w-7 h-7 flex items-center justify-center rounded-lg text-gray-300 dark:text-white/30 hover:text-gray-500 dark:hover:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
 
-              {/* Sub-items */}
-              <nav className="flex-1 px-3 overflow-y-auto sidebar-scroll">
-                <div className="space-y-[2px]">
-                  {subSection.items.map((item) => {
-                    const isActive =
-                      pathname === item.href || pathname.startsWith(item.href + "/")
-                    return (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setOpenSection(null)}
-                        className={`relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium transition-all group ${
-                          isActive
-                            ? "bg-gradient-to-r from-[#00CEC9]/15 to-[#6C5CE7]/[0.05] text-white"
-                            : "text-white/60 hover:text-white hover:bg-white/[0.06]"
+            {/* Sub-items */}
+            <nav className="flex-1 px-3 pt-3 overflow-y-auto sidebar-scroll">
+              <div className="space-y-0.5">
+                {subSection.items.map((item) => {
+                  const isActive =
+                    pathname === item.href || pathname.startsWith(item.href + "/")
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setOpenSection(null)}
+                      className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-medium transition-all group ${
+                        isActive
+                          ? "bg-[#00CEC9]/10 text-[#00CEC9]"
+                          : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
+                      }`}
+                    >
+                      <item.icon
+                        className={`h-[18px] w-[18px] shrink-0 ${
+                          isActive ? "text-[#00CEC9]" : "text-gray-400 dark:text-white/30 group-hover:text-gray-600 dark:group-hover:text-white/60"
                         }`}
-                      >
-                        {isActive && (
-                          <div className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-r-full bg-gradient-to-b from-[#00CEC9] to-[#6C5CE7]" />
-                        )}
-                        <item.icon
-                          className={`h-[18px] w-[18px] shrink-0 ${
-                            isActive ? "text-[#00CEC9]" : "text-white/40 group-hover:text-white/70"
-                          }`}
-                          strokeWidth={isActive ? 2 : 1.6}
-                        />
-                        {item.label}
-                      </Link>
-                    )
-                  })}
-                </div>
-              </nav>
-            </motion.aside>
-          </>
+                        strokeWidth={isActive ? 2 : 1.5}
+                      />
+                      {item.label}
+                    </Link>
+                  )
+                })}
+              </div>
+            </nav>
+          </motion.aside>
         )}
       </AnimatePresence>
     </>

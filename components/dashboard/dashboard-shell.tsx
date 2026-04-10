@@ -10,7 +10,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   const [isSubOpen, setIsSubOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-[#F4F7FE] dark:bg-[#0B1437]">
+    <div className="min-h-screen bg-[#F0F5F9] dark:bg-[#0B1437]">
       <Sidebar onSubOpen={setIsSubOpen} />
 
       <motion.div
