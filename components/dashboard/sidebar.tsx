@@ -7,7 +7,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import {
   Home, Share2, BarChart3, Layers, Sparkles, FileText,
   TrendingUp, Globe, Users, Mail, Settings, Calendar,
-  Hash, Target, Bell, ChevronRight, X,
+  Hash, Target, Bell, ChevronRight, X, Inbox, Clock,
+  PieChart, SmilePlus, GitCompare,
 } from "lucide-react"
 
 interface MenuItem { icon: any; label: string; href: string }
@@ -27,8 +28,13 @@ const menuSections: MenuSection[] = [
     icon: Share2,
     items: [
       { icon: Share2, label: "Soziale Medien", href: "/dashboard/social" },
+      { icon: Inbox, label: "Social Inbox", href: "/dashboard/social-inbox" },
+      { icon: SmilePlus, label: "Stimmungsanalyse", href: "/dashboard/sentiment" },
+      { icon: PieChart, label: "Audience Insights", href: "/dashboard/audience" },
       { icon: Calendar, label: "Kalender", href: "/dashboard/kalender" },
+      { icon: Clock, label: "Posting-Zeiten", href: "/dashboard/posting-zeiten" },
       { icon: Sparkles, label: "Content-Generator", href: "/dashboard/content-generator" },
+      { icon: GitCompare, label: "A/B Vergleich", href: "/dashboard/ab-vergleich" },
       { icon: Hash, label: "Hashtags", href: "/dashboard/hashtags" },
       { icon: Target, label: "Konkurrenz", href: "/dashboard/konkurrenz" },
       { icon: TrendingUp, label: "Trends", href: "/dashboard/trends" },

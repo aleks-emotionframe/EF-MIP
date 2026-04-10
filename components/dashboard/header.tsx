@@ -12,6 +12,11 @@ import { useTheme } from "@/components/providers/theme-provider"
 const pageTitles: Record<string, string> = {
   "/dashboard": "Übersicht",
   "/dashboard/social": "Soziale Medien",
+  "/dashboard/social-inbox": "Social Inbox",
+  "/dashboard/sentiment": "Stimmungsanalyse",
+  "/dashboard/audience": "Audience Insights",
+  "/dashboard/posting-zeiten": "Posting-Zeiten",
+  "/dashboard/ab-vergleich": "A/B Vergleich",
   "/dashboard/analytics": "Analysen",
   "/dashboard/scenarios": "Szenarien",
   "/dashboard/kalender": "Kalender",
