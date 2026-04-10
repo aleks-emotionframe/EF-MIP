@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -71,25 +70,19 @@ export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
       <div className="flex items-center h-[72px] px-4">
         <Link href="/dashboard" className="flex items-center overflow-hidden">
           {isCollapsed ? (
-            <div className="relative w-9 h-9 shrink-0">
-              <Image
+            <div className="w-9 h-9 shrink-0 overflow-hidden">
+              <img
                 src="/EmotionFrame_Logo_w.png"
                 alt="EmotionFrame"
-                fill
-                className="object-cover object-left"
-                priority
+                className="h-9 w-auto max-w-none"
               />
             </div>
           ) : (
-            <div className="relative w-[200px] h-[48px] shrink-0">
-              <Image
-                src="/EmotionFrame_Logo_w.png"
-                alt="EmotionFrame"
-                fill
-                className="object-contain object-left"
-                priority
-              />
-            </div>
+            <img
+              src="/EmotionFrame_Logo_w.png"
+              alt="EmotionFrame"
+              className="h-10 w-auto shrink-0"
+            />
           )}
         </Link>
       </div>
