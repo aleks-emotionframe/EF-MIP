@@ -8,6 +8,7 @@ export function EFLogo({ size = 40 }: { size?: number }) {
       alt="EmotionFrame"
       width={logoPng.width}
       height={logoPng.height}
+      className="block mx-auto"
       style={{ height: size, width: "auto" }}
       fetchPriority="high"
     />
