@@ -1,8 +1,9 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import {
   Home,
   Share2,
@@ -17,6 +18,7 @@ import {
   Settings,
   Calendar,
   Hash,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Target,
@@ -93,6 +95,16 @@ interface SidebarProps {
 
 export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
   const pathname = usePathname()
+  const [collapsed, setCollapsed] = useState<Record<string, boolean>>({})
+
+  function toggleSection(title: string) {
+    setCollapsed((prev) => ({ ...prev, [title]: !prev[title] }))
+  }
+
+  // Auto-open section that contains the active page
+  const activeSectionTitle = menuSections.find((s) =>
+    s.items.some((i) => i.href === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(i.href))
+  )?.title
 
   return (
     <motion.aside
@@ -121,33 +133,63 @@ export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
       </div>
 
       {/* Divider */}
-      <div className="mx-4 border-t border-gray-100" />
+      <div className="mx-4 border-t border-gray-100 dark:border-gray-800" />
 
       {/* Main Nav */}
-      <nav className="flex-1 pt-3 px-3 overflow-y-auto">
-        {menuSections.map((section) => (
-          <div key={section.title} className="mb-3">
-            <motion.p
-              initial={false}
-              animate={{ opacity: isCollapsed ? 0 : 1, height: isCollapsed ? 0 : "auto" }}
-              transition={{ duration: 0.15 }}
-              className="text-[10px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider px-3 mb-1.5 overflow-hidden"
-            >
-              {section.title}
-            </motion.p>
-            <div className="space-y-0.5">
-              {section.items.map((item) => {
-                const isActive =
-                  item.href === "/dashboard"
-                    ? pathname === "/dashboard"
-                    : pathname.startsWith(item.href)
-                return (
-                  <NavItem key={item.href} item={item} isActive={isActive} isCollapsed={isCollapsed} />
-                )
-              })}
+      <nav className="flex-1 pt-2 px-3 overflow-y-auto">
+        {menuSections.map((section) => {
+          const isSectionCollapsed = collapsed[section.title] && activeSectionTitle !== section.title
+          const hasActiveItem = section.items.some((i) =>
+            i.href === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(i.href)
+          )
+
+          return (
+            <div key={section.title} className="mb-1">
+              {/* Section Header - clickable */}
+              <motion.button
+                onClick={() => !isCollapsed && toggleSection(section.title)}
+                initial={false}
+                animate={{ opacity: isCollapsed ? 0 : 1, height: isCollapsed ? 0 : "auto" }}
+                transition={{ duration: 0.15 }}
+                className="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors overflow-hidden group"
+              >
+                <span className={`text-[11px] font-semibold uppercase tracking-wider ${
+                  hasActiveItem ? "text-[#6C5CE7]" : "text-gray-400 dark:text-gray-500"
+                }`}>
+                  {section.title}
+                </span>
+                <ChevronDown className={`h-3 w-3 text-gray-400 transition-transform ${
+                  isSectionCollapsed ? "-rotate-90" : ""
+                }`} />
+              </motion.button>
+
+              {/* Section Items */}
+              <AnimatePresence initial={false}>
+                {!isSectionCollapsed && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="space-y-0.5 pb-1">
+                      {section.items.map((item) => {
+                        const isActive =
+                          item.href === "/dashboard"
+                            ? pathname === "/dashboard"
+                            : pathname.startsWith(item.href)
+                        return (
+                          <NavItem key={item.href} item={item} isActive={isActive} isCollapsed={isCollapsed} />
+                        )
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </nav>
 
       {/* Bottom */}
