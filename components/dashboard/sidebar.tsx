@@ -118,6 +118,7 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
 
   const subSection = menuSections.find((s) => s.key === openSection)
   const isSubOpen = !!subSection && subSection.items.length > 0
+  const anySubOpen = openSection !== null
 
   return (
     <>
@@ -147,18 +148,21 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
             const isOpen = openSection === section.key
             const hasSubItems = section.items.length > 0
 
+            const showActive = isActive && !anySubOpen
+            const showGradient = isOpen || showActive
+
             return section.singleLink ? (
               <Link
                 key={section.key}
                 href={section.singleLink}
                 onClick={() => setOpenSection(null)}
                 className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-medium transition-all ${
-                  isActive
+                  showActive
                     ? "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white shadow-md shadow-[#00CEC9]/20"
                     : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
                 }`}
               >
-                <section.icon className="h-[18px] w-[18px] shrink-0" strokeWidth={isActive ? 2 : 1.5} />
+                <section.icon className="h-[18px] w-[18px] shrink-0" strokeWidth={showActive ? 2 : 1.5} />
                 <span>{section.title}</span>
               </Link>
             ) : (
@@ -166,17 +170,17 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
                 key={section.key}
                 onClick={() => handleSectionClick(section)}
                 className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-medium transition-all text-left w-full ${
-                  isOpen || isActive
+                  showGradient
                     ? "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white shadow-md shadow-[#00CEC9]/20"
                     : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
                 }`}
               >
-                <section.icon className="h-[18px] w-[18px] shrink-0" strokeWidth={isOpen || isActive ? 2 : 1.5} />
+                <section.icon className="h-[18px] w-[18px] shrink-0" strokeWidth={showGradient ? 2 : 1.5} />
                 <span className="flex-1">{section.title}</span>
                 {hasSubItems && (
                   <ChevronRight className={`h-3.5 w-3.5 shrink-0 transition-transform ${
                     isOpen ? "rotate-90" : ""
-                  } ${isOpen ? "text-white/70" : "text-gray-300 dark:text-white/20"}`} />
+                  } ${showGradient ? "text-white/70" : "text-gray-300 dark:text-white/20"}`} />
                 )}
               </button>
             )
