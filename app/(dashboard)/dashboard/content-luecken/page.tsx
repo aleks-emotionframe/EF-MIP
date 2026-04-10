@@ -1,352 +1,570 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {
-  Search, Sparkles, ArrowUpRight, ExternalLink, Lock,
-  TrendingUp, BarChart3, FileText, Loader2, Info, Target,
-  ChevronDown, ChevronUp,
+  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid,
+  Tooltip, ResponsiveContainer, ZAxis, Cell,
+} from "recharts"
+import {
+  Search, Sparkles, ArrowRight, ExternalLink,
+  TrendingUp, BarChart3, Target, FileText,
+  ChevronUp, ChevronDown, Loader2, Zap,
+  AlertCircle, Eye, Award, BookOpen,
 } from "lucide-react"
+import Link from "next/link"
 
-/* ─── Types ─── */
+// ─── Types ──────────────────────────────────────────────────────
+type Difficulty = "easy" | "medium" | "hard"
+type SortKey = "keyword" | "volume" | "difficulty" | "yourPos" | "compPos" | "potential"
+
 interface KeywordGap {
   keyword: string
   volume: number
-  difficulty: "einfach" | "mittel" | "schwer"
-  yourPos: number | null
-  compPos: number
-  potential: number
+  difficulty: Difficulty
+  yourPosition: number | null
+  competitorPosition: number
+  potential: number // 0-100
 }
 
 interface ContentSuggestion {
   title: string
-  keyword: string
   wordCount: number
   topics: string[]
+  keyword: string
 }
 
-/* ─── Data ─── */
-const DEMO_KEYWORDS: KeywordGap[] = [
-  { keyword: "social media strategie 2026", volume: 2400, difficulty: "mittel", yourPos: null, compPos: 3, potential: 88 },
-  { keyword: "instagram marketing tipps", volume: 4800, difficulty: "einfach", yourPos: null, compPos: 5, potential: 92 },
-  { keyword: "content kalender erstellen", volume: 1900, difficulty: "einfach", yourPos: null, compPos: 2, potential: 85 },
-  { keyword: "tiktok für unternehmen", volume: 3200, difficulty: "mittel", yourPos: 42, compPos: 7, potential: 78 },
-  { keyword: "linkedin algorithmus", volume: 1600, difficulty: "schwer", yourPos: null, compPos: 4, potential: 72 },
-  { keyword: "engagement rate berechnen", volume: 2100, difficulty: "einfach", yourPos: 38, compPos: 1, potential: 82 },
-  { keyword: "hashtag strategie instagram", volume: 1400, difficulty: "mittel", yourPos: null, compPos: 8, potential: 68 },
-  { keyword: "social media reporting", volume: 1100, difficulty: "einfach", yourPos: 25, compPos: 6, potential: 75 },
-  { keyword: "influencer marketing kosten", volume: 2800, difficulty: "schwer", yourPos: null, compPos: 3, potential: 65 },
-  { keyword: "facebook ads optimierung", volume: 3600, difficulty: "schwer", yourPos: null, compPos: 2, potential: 60 },
+// ─── Blurred preview data (shown behind overlay) ────────────────
+const PREVIEW_KEYWORDS: KeywordGap[] = [
+  { keyword: "social media strategie 2026", volume: 4800, difficulty: "medium", yourPosition: null, competitorPosition: 3, potential: 92 },
+  { keyword: "instagram algorithmus tipps", volume: 6200, difficulty: "easy", yourPosition: null, competitorPosition: 2, potential: 88 },
+  { keyword: "content kalender vorlage", volume: 3400, difficulty: "easy", yourPosition: 18, competitorPosition: 1, potential: 85 },
+  { keyword: "tiktok marketing schweiz", volume: 2100, difficulty: "medium", yourPosition: null, competitorPosition: 5, potential: 81 },
+  { keyword: "engagement rate verbessern", volume: 5100, difficulty: "hard", yourPosition: 12, competitorPosition: 4, potential: 78 },
+  { keyword: "social media reporting tool", volume: 3800, difficulty: "hard", yourPosition: 15, competitorPosition: 2, potential: 75 },
 ]
 
-const DEMO_SUGGESTIONS: ContentSuggestion[] = [
-  { title: "Die ultimative Social-Media-Strategie für 2026", keyword: "social media strategie 2026", wordCount: 2500, topics: ["Plattform-Trends", "KI-Tools", "Content-Planung", "ROI-Messung"] },
-  { title: "Instagram Marketing: 15 bewährte Tipps für mehr Reichweite", keyword: "instagram marketing tipps", wordCount: 1800, topics: ["Reels-Strategie", "Hashtag-Optimierung", "Story-Formate", "Follower-Wachstum"] },
-  { title: "Content-Kalender erstellen: Schritt-für-Schritt Anleitung", keyword: "content kalender erstellen", wordCount: 1500, topics: ["Vorlagen", "Tools", "Frequenz", "Themenplanung"] },
+const PREVIEW_SUGGESTIONS: ContentSuggestion[] = [
+  { title: "Social Media Strategie 2026: Der ultimative Leitfaden", wordCount: 2500, topics: ["Plattform-Auswahl", "Content-Planung", "KPI-Definition"], keyword: "social media strategie 2026" },
+  { title: "Instagram Algorithmus 2026: So erreichst du mehr Menschen", wordCount: 1800, topics: ["Feed-Ranking", "Reels-Boost", "Hashtag-Strategie"], keyword: "instagram algorithmus tipps" },
 ]
 
-const difficultyConfig = {
-  einfach: { color: "text-emerald-600 bg-emerald-50 border-emerald-200", dark: "dark:text-emerald-400 dark:bg-emerald-500/10 dark:border-emerald-500/20" },
-  mittel: { color: "text-amber-600 bg-amber-50 border-amber-200", dark: "dark:text-amber-400 dark:bg-amber-500/10 dark:border-amber-500/20" },
-  schwer: { color: "text-red-600 bg-red-50 border-red-200", dark: "dark:text-red-400 dark:bg-red-500/10 dark:border-red-500/20" },
+const PREVIEW_SCATTER = [
+  { keyword: "social media strategie", volume: 4800, difficulty: 45, potential: 92 },
+  { keyword: "instagram algorithmus", volume: 6200, difficulty: 30, potential: 88 },
+  { keyword: "content kalender", volume: 3400, difficulty: 25, potential: 85 },
+  { keyword: "tiktok marketing", volume: 2100, difficulty: 50, potential: 81 },
+  { keyword: "engagement rate", volume: 5100, difficulty: 72, potential: 78 },
+  { keyword: "reporting tool", volume: 3800, difficulty: 68, potential: 75 },
+  { keyword: "hashtag analyse", volume: 2900, difficulty: 35, potential: 70 },
+  { keyword: "social media audit", volume: 1600, difficulty: 40, potential: 65 },
+]
+
+// ─── Difficulty helpers ─────────────────────────────────────────
+const DIFF_CONFIG: Record<Difficulty, { label: string; color: string; bg: string }> = {
+  easy: { label: "Einfach", color: "text-emerald-700", bg: "bg-emerald-100" },
+  medium: { label: "Mittel", color: "text-amber-700", bg: "bg-amber-100" },
+  hard: { label: "Schwer", color: "text-red-700", bg: "bg-red-100" },
 }
 
-type SortKey = "volume" | "potential" | "difficulty"
+const SCATTER_COLORS = ["#00CEC9", "#6C5CE7", "#F97316", "#E84393", "#10b981", "#3b82f6", "#f59e0b", "#ef4444"]
 
+// ─── Feature bullets for CTA card ───────────────────────────────
+const FEATURES = [
+  { icon: Target, text: "Keyword-Chancen", desc: "Finde Keywords, bei denen deine Konkurrenz rankt, du aber nicht" },
+  { icon: BarChart3, text: "Wettbewerber-Vergleich", desc: "Vergleiche deine Rankings direkt mit Konkurrenten" },
+  { icon: Sparkles, text: "Content-Vorschläge", desc: "KI-generierte Artikel-Ideen basierend auf echten Suchdaten" },
+  { icon: TrendingUp, text: "Suchvolumen-Analyse", desc: "Echte Suchvolumen und Schwierigkeitsgrade pro Keyword" },
+]
+
+// ─── Component ──────────────────────────────────────────────────
 export default function ContentLueckenPage() {
-  const [isConnected, setIsConnected] = useState(false)
-  const [loading, setLoading] = useState(true)
-  const [compUrl, setCompUrl] = useState("")
+  // In production, this would be fetched from API checking Integration status
+  const [isConnected] = useState(false)
+  const [competitorUrl, setCompetitorUrl] = useState("")
   const [analyzing, setAnalyzing] = useState(false)
-  const [showResults, setShowResults] = useState(false)
-  const [sortBy, setSortBy] = useState<SortKey>("potential")
+  const [analyzed, setAnalyzed] = useState(false)
+  const [keywords, setKeywords] = useState<KeywordGap[]>([])
+  const [suggestions, setSuggestions] = useState<ContentSuggestion[]>([])
+  const [sortKey, setSortKey] = useState<SortKey>("potential")
   const [sortAsc, setSortAsc] = useState(false)
-  const [expandedSuggestion, setExpandedSuggestion] = useState<number | null>(0)
 
-  useEffect(() => {
-    fetch("/api/integrations/status?platform=SEARCH_CONSOLE")
-      .then((r) => r.json())
-      .then((d) => setIsConnected(d.connected === true))
-      .catch(() => setIsConnected(false))
-      .finally(() => setLoading(false))
-  }, [])
+  // ── Sort logic ──
+  const sortedKeywords = useMemo(() => {
+    const data = analyzed ? keywords : PREVIEW_KEYWORDS
+    return [...data].sort((a, b) => {
+      let cmp = 0
+      switch (sortKey) {
+        case "keyword": cmp = a.keyword.localeCompare(b.keyword); break
+        case "volume": cmp = a.volume - b.volume; break
+        case "difficulty": {
+          const order: Record<Difficulty, number> = { easy: 0, medium: 1, hard: 2 }
+          cmp = order[a.difficulty] - order[b.difficulty]; break
+        }
+        case "yourPos": cmp = (a.yourPosition ?? 999) - (b.yourPosition ?? 999); break
+        case "compPos": cmp = a.competitorPosition - b.competitorPosition; break
+        case "potential": cmp = a.potential - b.potential; break
+      }
+      return sortAsc ? cmp : -cmp
+    })
+  }, [keywords, sortKey, sortAsc, analyzed])
 
-  function handleAnalyze() {
-    if (!compUrl.trim()) return
+  function handleSort(key: SortKey) {
+    if (sortKey === key) setSortAsc(!sortAsc)
+    else { setSortKey(key); setSortAsc(false) }
+  }
+
+  const SortIcon = ({ col }: { col: SortKey }) => {
+    if (sortKey !== col) return <ChevronDown className="h-3 w-3 text-gray-300" />
+    return sortAsc
+      ? <ChevronUp className="h-3 w-3 text-gray-500" />
+      : <ChevronDown className="h-3 w-3 text-gray-500" />
+  }
+
+  // ── Analyze handler (will call real API when SC is connected) ──
+  async function handleAnalyze(e: React.FormEvent) {
+    e.preventDefault()
+    if (!competitorUrl.trim() || !isConnected) return
     setAnalyzing(true)
-    setTimeout(() => {
+    try {
+      // TODO: Call /api/content-gaps with competitor URL
+      // const res = await fetch("/api/content-gaps", { method: "POST", body: JSON.stringify({ url: competitorUrl }) })
+      // const data = await res.json()
+      // setKeywords(data.keywords)
+      // setSuggestions(data.suggestions)
+      setAnalyzed(true)
+    } catch {
+      // Error handling
+    } finally {
       setAnalyzing(false)
-      setShowResults(true)
-    }, 2000)
+    }
   }
 
-  const sorted = [...DEMO_KEYWORDS].sort((a, b) => {
-    const mul = sortAsc ? 1 : -1
-    if (sortBy === "volume") return (a.volume - b.volume) * mul
-    if (sortBy === "potential") return (a.potential - b.potential) * mul
-    const d = { einfach: 1, mittel: 2, schwer: 3 }
-    return (d[a.difficulty] - d[b.difficulty]) * mul
-  })
-
-  function toggleSort(key: SortKey) {
-    if (sortBy === key) setSortAsc(!sortAsc)
-    else { setSortBy(key); setSortAsc(false) }
-  }
-
-  const SortIcon = ({ k }: { k: SortKey }) => sortBy === k
-    ? sortAsc ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />
-    : <ChevronDown className="h-3 w-3 opacity-30" />
-
-  if (loading) {
-    return (
-      <div className="space-y-6">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#00CEC9]/[0.06] flex items-center justify-center">
-            <Search className="h-5 w-5 text-[#00CEC9]" />
-          </div>
-          <div>
-            <h1 className="text-[20px] font-bold text-[#0F172A] dark:text-white">Content-Lücken-Analyse</h1>
-          </div>
-        </div>
-        <div className="flex items-center justify-center py-20">
-          <Loader2 className="h-8 w-8 animate-spin text-[#00CEC9]" />
-        </div>
-      </div>
-    )
-  }
+  // ── Stats from current data ──
+  const statsData = analyzed ? keywords : PREVIEW_KEYWORDS
+  const totalGaps = statsData.length
+  const totalVolume = statsData.reduce((s, k) => s + k.volume, 0)
+  const avgDiff = statsData.length > 0
+    ? Math.round(statsData.reduce((s, k) => s + ({ easy: 25, medium: 50, hard: 80 }[k.difficulty]), 0) / statsData.length)
+    : 0
+  const suggestionCount = analyzed ? suggestions.length : PREVIEW_SUGGESTIONS.length
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between flex-wrap gap-4">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#00CEC9]/[0.06] flex items-center justify-center">
-            <Search className="h-5 w-5 text-[#00CEC9]" />
-          </div>
-          <div>
-            <h1 className="text-[20px] font-bold text-[#0F172A] dark:text-white">Content-Lücken-Analyse</h1>
-            <p className="text-[12px] text-gray-500 dark:text-white/40">Finde Keywords die dir fehlen</p>
-          </div>
+      {/* ── Header ────────────────────────────────────────────── */}
+      <div>
+        <div className="flex items-center gap-2">
+          <Search className="h-5 w-5 text-[#00CEC9]" />
+          <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Content-Lücken-Analyse</h1>
+          <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#6C5CE7]/10 to-[#E84393]/10 px-2.5 py-0.5 text-[11px] font-semibold text-[#6C5CE7]">
+            <Sparkles className="h-3 w-3" />
+            KI-powered
+          </span>
         </div>
-        <span className="flex items-center gap-1.5 rounded-full bg-[#6C5CE7]/[0.08] px-3 py-1.5 text-[11px] font-semibold text-[#6C5CE7]">
-          <Sparkles className="h-3 w-3" />KI-powered
-        </span>
+        <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
+          Finde Keyword-Chancen und erhalte KI-gestützte Content-Vorschläge.
+        </p>
       </div>
 
-      {/* Not connected */}
+      {/* ── Not Connected State ───────────────────────────────── */}
       {!isConnected && (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative overflow-hidden rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm">
-          {/* Blurred preview */}
-          <div className="absolute inset-0 z-0 blur-[6px] opacity-30 pointer-events-none p-8">
-            <div className="grid grid-cols-4 gap-4 mb-6">
-              {[1,2,3,4].map(i => <div key={i} className="h-20 rounded-xl bg-gray-100 dark:bg-white/5" />)}
-            </div>
-            <div className="space-y-3">
-              {[1,2,3,4,5].map(i => <div key={i} className="h-12 rounded-lg bg-gray-100 dark:bg-white/5" />)}
+        <div className="relative">
+          {/* Blurred preview behind */}
+          <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl">
+            <div className="filter blur-[6px] opacity-40 pointer-events-none p-6 space-y-4">
+              {/* Fake stats row */}
+              <div className="grid grid-cols-4 gap-3">
+                {[
+                  { label: "Gefundene Lücken", val: "47" },
+                  { label: "Suchvolumen", val: "128'400" },
+                  { label: "Schwierigkeit", val: "42%" },
+                  { label: "Vorschläge", val: "12" },
+                ].map((s) => (
+                  <div key={s.label} className="rounded-xl bg-white p-4">
+                    <p className="text-[11px] text-gray-400">{s.label}</p>
+                    <p className="text-[20px] font-bold text-gray-900 mt-1">{s.val}</p>
+                  </div>
+                ))}
+              </div>
+              {/* Fake table rows */}
+              <div className="rounded-xl bg-white p-4 space-y-3">
+                {PREVIEW_KEYWORDS.map((kw) => (
+                  <div key={kw.keyword} className="flex items-center gap-4 py-2 border-b border-gray-50 last:border-0">
+                    <span className="text-[13px] font-medium text-gray-700 flex-1">{kw.keyword}</span>
+                    <span className="text-[12px] text-gray-500">{kw.volume.toLocaleString("de-CH")}</span>
+                    <span className={`text-[11px] font-medium px-2 py-0.5 rounded-full ${DIFF_CONFIG[kw.difficulty].bg} ${DIFF_CONFIG[kw.difficulty].color}`}>
+                      {DIFF_CONFIG[kw.difficulty].label}
+                    </span>
+                    <div className="w-20 h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-full bg-[#00CEC9] rounded-full" style={{ width: `${kw.potential}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Content */}
-          <div className="relative z-10 flex flex-col items-center text-center px-8 py-16">
-            <motion.div animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 3, repeat: Infinity }}
-              className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#00CEC9]/20 to-[#6C5CE7]/20 flex items-center justify-center mb-6">
-              <Search className="h-10 w-10 text-[#00CEC9]" />
-            </motion.div>
-            <h2 className="text-[22px] font-bold text-[#0F172A] dark:text-white mb-2">Verbinde Google Search Console</h2>
-            <p className="text-[14px] text-gray-500 dark:text-white/50 max-w-md mb-8">
-              Finde Keywords für die deine Konkurrenz rankt, du aber nicht &ndash; und erhalte KI-gestützte Content-Vorschläge
-            </p>
-            <div className="grid grid-cols-2 gap-4 mb-8 max-w-lg w-full">
-              {[
-                { icon: Target, label: "Keyword-Chancen", desc: "Ungenutzte Keywords finden" },
-                { icon: BarChart3, label: "Wettbewerber-Vergleich", desc: "Deine vs. Konkurrenz-Rankings" },
-                { icon: FileText, label: "Content-Vorschläge", desc: "KI-generierte Artikel-Ideen" },
-                { icon: TrendingUp, label: "Suchvolumen-Analyse", desc: "Monatliche Suchanfragen" },
-              ].map((f) => (
-                <div key={f.label} className="flex items-start gap-3 rounded-xl bg-[#F4F7FE] dark:bg-white/[0.04] p-4 text-left">
-                  <f.icon className="h-5 w-5 text-[#00CEC9] shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{f.label}</p>
-                    <p className="text-[11px] text-gray-500 dark:text-white/40">{f.desc}</p>
-                  </div>
+          {/* Connection CTA overlay */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10 rounded-2xl border border-gray-200 bg-white/95 backdrop-blur-sm shadow-lg p-8 md:p-12"
+          >
+            <div className="max-w-2xl mx-auto text-center">
+              {/* Animated search icon */}
+              <div className="relative mx-auto w-20 h-20 mb-6">
+                <motion.div
+                  className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#00CEC9]/20 to-[#6C5CE7]/20"
+                  animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <div className="relative w-20 h-20 rounded-2xl bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center">
+                  <motion.div
+                    animate={{ rotate: [0, -10, 10, -5, 0], y: [0, -2, 0, -1, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <Search className="h-9 w-9 text-white" />
+                  </motion.div>
                 </div>
-              ))}
+              </div>
+
+              <h2 className="text-[22px] font-bold text-[#0F172A] dark:text-white mb-3">
+                Verbinde Google Search Console
+              </h2>
+              <p className="text-[14px] text-gray-500 leading-relaxed mb-8 max-w-lg mx-auto">
+                Finde Keywords für die deine Konkurrenz rankt, du aber nicht &ndash; und erhalte KI-gestützte Content-Vorschläge basierend auf echten Suchdaten.
+              </p>
+
+              {/* Feature bullets */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 text-left max-w-xl mx-auto">
+                {FEATURES.map((f, idx) => (
+                  <motion.div
+                    key={f.text}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: idx * 0.1 }}
+                    className="flex items-start gap-3 rounded-xl bg-gray-50 p-3.5"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/10 flex items-center justify-center shrink-0">
+                      <f.icon className="h-4 w-4 text-[#00CEC9]" />
+                    </div>
+                    <div>
+                      <p className="text-[13px] font-semibold text-[#0F172A]">{f.text}</p>
+                      <p className="text-[11px] text-gray-500 mt-0.5 leading-relaxed">{f.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* CTA Button */}
+              <Link href="/dashboard/settings/integrations">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-8 py-4 text-[15px] font-semibold text-white shadow-lg shadow-[#00CEC9]/25 hover:shadow-xl hover:shadow-[#00CEC9]/30 transition-shadow"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Search Console verbinden
+                  <ArrowRight className="h-4 w-4" />
+                </motion.button>
+              </Link>
+
+              <p className="text-[11px] text-gray-400 mt-4">
+                Nur Lesezugriff &ndash; deine Daten bleiben sicher.
+              </p>
             </div>
-            <a href="/dashboard/settings/integrations"
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-6 py-3 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
-              <Lock className="h-4 w-4" />Search Console verbinden
-            </a>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       )}
 
-      {/* Connected */}
+      {/* ── Connected State ───────────────────────────────────── */}
       {isConnected && (
-        <>
-          {/* Competitor URL input */}
-          <div className="rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-sm">
-            <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white mb-4">Konkurrenz-Website analysieren</h2>
-            <div className="flex gap-3">
-              <div className="flex-1 relative">
-                <ExternalLink className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input
-                  value={compUrl}
-                  onChange={(e) => setCompUrl(e.target.value)}
-                  placeholder="z.B. konkurrenz-agentur.ch"
-                  className="w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 pl-11 pr-4 py-3 text-[14px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none transition-all"
-                />
-              </div>
-              <button onClick={handleAnalyze} disabled={analyzing || !compUrl.trim()}
-                className="rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-6 py-3 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all flex items-center gap-2">
-                {analyzing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
-                Analysieren
-              </button>
+        <div className="space-y-6">
+          {/* URL Input */}
+          <form onSubmit={handleAnalyze} className="flex gap-3">
+            <div className="flex-1 relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                value={competitorUrl}
+                onChange={(e) => setCompetitorUrl(e.target.value)}
+                placeholder="Konkurrenz-Website eingeben (z.B. hootsuite.com)"
+                className="w-full rounded-xl border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-[14px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none transition-all"
+              />
             </div>
+            <motion.button
+              type="submit"
+              disabled={analyzing || !competitorUrl.trim()}
+              whileTap={{ scale: 0.97 }}
+              className="rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-6 py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all flex items-center gap-2"
+            >
+              {analyzing ? <Loader2 className="h-4 w-4 animate-spin" /> : <BarChart3 className="h-4 w-4" />}
+              {analyzing ? "Analysiere..." : "Analysieren"}
+            </motion.button>
+          </form>
+
+          {/* Stats Cards */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            {[
+              { label: "Gefundene Lücken", value: totalGaps, icon: Target, color: "#00CEC9", suffix: "" },
+              { label: "Geschätztes Suchvolumen", value: totalVolume.toLocaleString("de-CH"), icon: Eye, color: "#6C5CE7", suffix: "/Mt." },
+              { label: "Schwierigkeit \u00D8", value: avgDiff, icon: AlertCircle, color: "#F97316", suffix: "%" },
+              { label: "Content-Vorschläge", value: suggestionCount, icon: FileText, color: "#E84393", suffix: "" },
+            ].map((stat) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="rounded-2xl bg-white shadow-sm p-4"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: `${stat.color}10` }}>
+                    <stat.icon className="h-4 w-4" style={{ color: stat.color }} />
+                  </div>
+                </div>
+                <p className="text-[11px] text-gray-400">{stat.label}</p>
+                <p className="text-[22px] font-bold text-[#0F172A] dark:text-white mt-0.5">
+                  {stat.value}<span className="text-[13px] font-normal text-gray-400 ml-0.5">{stat.suffix}</span>
+                </p>
+              </motion.div>
+            ))}
           </div>
 
-          {/* Info banner */}
-          <div className="flex items-start gap-3 rounded-xl bg-[#00CEC9]/[0.06] border border-[#00CEC9]/20 p-4">
-            <Info className="h-4 w-4 text-[#00CEC9] shrink-0 mt-0.5" />
-            <p className="text-[12px] text-[#0F172A] dark:text-white/70">
-              Die Analyse basiert auf deinen echten Search Console Daten. Gib eine Konkurrenz-URL ein, um Keyword-Lücken zu finden.
-              {showResults && " Die angezeigten Daten sind Demo-Daten zur Veranschaulichung."}
-            </p>
+          {/* Keyword-Chancen Table */}
+          <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+            <div className="px-5 pt-5 pb-3 flex items-center justify-between">
+              <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white flex items-center gap-2">
+                <Target className="h-4 w-4 text-[#00CEC9]" />
+                Keyword-Chancen
+              </h3>
+              <span className="text-[11px] text-gray-400">
+                {sortedKeywords.length} Keywords
+              </span>
+            </div>
+
+            {/* Table header */}
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[700px]">
+                <thead>
+                  <tr className="border-t border-gray-100">
+                    {([
+                      { key: "keyword" as SortKey, label: "Keyword", width: "w-auto" },
+                      { key: "volume" as SortKey, label: "Suchvolumen/Monat", width: "w-32" },
+                      { key: "difficulty" as SortKey, label: "Schwierigkeit", width: "w-28" },
+                      { key: "yourPos" as SortKey, label: "Deine Position", width: "w-28" },
+                      { key: "compPos" as SortKey, label: "Konkurrenz Pos.", width: "w-28" },
+                      { key: "potential" as SortKey, label: "Potential-Score", width: "w-36" },
+                    ]).map((col) => (
+                      <th
+                        key={col.key}
+                        onClick={() => handleSort(col.key)}
+                        className={`${col.width} text-left px-4 py-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider cursor-pointer hover:text-gray-600 transition-colors select-none`}
+                      >
+                        <span className="inline-flex items-center gap-1">
+                          {col.label}
+                          <SortIcon col={col.key} />
+                        </span>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  <AnimatePresence>
+                    {sortedKeywords.map((kw, i) => (
+                      <motion.tr
+                        key={kw.keyword}
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.03 }}
+                        className="border-t border-gray-50 hover:bg-gray-50/50 transition-colors"
+                      >
+                        {/* Keyword */}
+                        <td className="px-4 py-3">
+                          <span className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{kw.keyword}</span>
+                        </td>
+                        {/* Volume */}
+                        <td className="px-4 py-3">
+                          <span className="text-[13px] font-bold text-[#0F172A] dark:text-white">{kw.volume.toLocaleString("de-CH")}</span>
+                        </td>
+                        {/* Difficulty */}
+                        <td className="px-4 py-3">
+                          <span className={`inline-flex items-center text-[11px] font-medium px-2.5 py-1 rounded-full ${DIFF_CONFIG[kw.difficulty].bg} ${DIFF_CONFIG[kw.difficulty].color}`}>
+                            {DIFF_CONFIG[kw.difficulty].label}
+                          </span>
+                        </td>
+                        {/* Your Position */}
+                        <td className="px-4 py-3">
+                          {kw.yourPosition !== null ? (
+                            <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-amber-100 text-amber-700 text-[13px] font-bold">
+                              {kw.yourPosition}
+                            </span>
+                          ) : (
+                            <span className="text-[13px] text-gray-300 font-medium">&ndash;</span>
+                          )}
+                        </td>
+                        {/* Competitor Position */}
+                        <td className="px-4 py-3">
+                          <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 text-[13px] font-bold">
+                            {kw.competitorPosition}
+                          </span>
+                        </td>
+                        {/* Potential Score */}
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                              <motion.div
+                                className="h-full rounded-full"
+                                style={{
+                                  background: kw.potential >= 80
+                                    ? "linear-gradient(90deg, #00CEC9, #6C5CE7)"
+                                    : kw.potential >= 60
+                                    ? "linear-gradient(90deg, #F97316, #FBBF24)"
+                                    : "#E5E7EB",
+                                }}
+                                initial={{ width: 0 }}
+                                animate={{ width: `${kw.potential}%` }}
+                                transition={{ duration: 0.8, delay: i * 0.05, ease: "easeOut" }}
+                              />
+                            </div>
+                            <span className="text-[12px] font-bold text-[#0F172A] dark:text-white w-8 text-right">{kw.potential}</span>
+                          </div>
+                        </td>
+                      </motion.tr>
+                    ))}
+                  </AnimatePresence>
+                </tbody>
+              </table>
+            </div>
+
+            {sortedKeywords.length === 0 && (
+              <div className="text-center py-12">
+                <Search className="h-10 w-10 text-gray-200 mx-auto mb-3" />
+                <p className="text-[13px] text-gray-400">Gib eine Konkurrenz-URL ein, um Keyword-Lücken zu finden.</p>
+              </div>
+            )}
           </div>
 
-          <AnimatePresence>
-            {showResults && (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-                {/* Stats */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                  {[
-                    { label: "Gefundene Lücken", value: "10", icon: Target, color: "#00CEC9" },
-                    { label: "Ges. Suchvolumen", value: "24.9K", icon: TrendingUp, color: "#6C5CE7" },
-                    { label: "Schwierigkeit Ø", value: "Mittel", icon: BarChart3, color: "#F97316" },
-                    { label: "Content-Vorschläge", value: "3", icon: Sparkles, color: "#E84393" },
-                  ].map((s, i) => (
-                    <motion.div key={s.label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
-                      className="rounded-2xl bg-white dark:bg-[#1E293B] p-5 shadow-sm">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${s.color}10` }}>
-                          <s.icon className="h-4 w-4" style={{ color: s.color }} />
+          {/* KI Content-Vorschläge */}
+          <div className="rounded-2xl bg-white shadow-sm overflow-hidden relative">
+            {/* Gradient border effect */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#6C5CE7] via-[#E84393] to-[#00CEC9] p-[1px] pointer-events-none">
+              <div className="w-full h-full rounded-2xl bg-white" />
+            </div>
+
+            <div className="relative z-10 p-5">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6C5CE7] to-[#E84393] flex items-center justify-center">
+                  <Sparkles className="h-4 w-4 text-white" />
+                </div>
+                <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">KI Content-Vorschläge</h3>
+                <span className="text-[10px] text-[#6C5CE7] font-semibold bg-[#6C5CE7]/10 rounded-full px-2 py-0.5">
+                  Claude AI
+                </span>
+              </div>
+
+              {analyzed && suggestions.length > 0 ? (
+                <div className="space-y-4">
+                  {suggestions.map((s, i) => (
+                    <motion.div
+                      key={s.title}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="rounded-xl border border-gray-100 p-4 hover:border-[#6C5CE7]/20 hover:bg-[#6C5CE7]/[0.02] transition-all"
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <p className="text-[14px] font-semibold text-[#0F172A] dark:text-white mb-1">{s.title}</p>
+                          <div className="flex items-center gap-3 text-[11px] text-gray-400 mb-2">
+                            <span className="flex items-center gap-1"><FileText className="h-3 w-3" />~{s.wordCount.toLocaleString("de-CH")} Wörter</span>
+                            <span className="flex items-center gap-1"><Search className="h-3 w-3" />{s.keyword}</span>
+                          </div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {s.topics.map((t) => (
+                              <span key={t} className="text-[10px] font-medium bg-gray-100 text-gray-600 rounded-md px-2 py-0.5">{t}</span>
+                            ))}
+                          </div>
                         </div>
+                        <motion.button
+                          whileHover={{ scale: 1.03 }}
+                          whileTap={{ scale: 0.97 }}
+                          className="shrink-0 rounded-lg bg-[#6C5CE7] px-4 py-2 text-[12px] font-semibold text-white hover:bg-[#5643CC] transition-colors flex items-center gap-1.5"
+                        >
+                          <BookOpen className="h-3.5 w-3.5" />
+                          Artikel erstellen
+                        </motion.button>
                       </div>
-                      <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{s.value}</p>
-                      <p className="text-[12px] text-gray-500 dark:text-white/40 mt-1">{s.label}</p>
                     </motion.div>
                   ))}
                 </div>
-
-                {/* Keywords table */}
-                <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
-                  <div className="px-6 py-4 border-b border-gray-100 dark:border-white/[0.06]">
-                    <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white">Keyword-Chancen</h2>
-                    <p className="text-[12px] text-gray-500 dark:text-white/40 mt-0.5">Keywords, für die deine Konkurrenz rankt</p>
+              ) : (
+                <div className="text-center py-8">
+                  <div className="w-12 h-12 rounded-xl bg-[#6C5CE7]/10 flex items-center justify-center mx-auto mb-3">
+                    <Zap className="h-5 w-5 text-[#6C5CE7]" />
                   </div>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-[13px]">
-                      <thead>
-                        <tr className="border-b border-gray-100 dark:border-white/[0.06] text-left">
-                          <th className="px-6 py-3 font-semibold text-gray-500 dark:text-white/40">Keyword</th>
-                          <th className="px-4 py-3 font-semibold text-gray-500 dark:text-white/40 cursor-pointer select-none" onClick={() => toggleSort("volume")}>
-                            <span className="flex items-center gap-1">Suchvolumen <SortIcon k="volume" /></span>
-                          </th>
-                          <th className="px-4 py-3 font-semibold text-gray-500 dark:text-white/40 cursor-pointer select-none" onClick={() => toggleSort("difficulty")}>
-                            <span className="flex items-center gap-1">Schwierigkeit <SortIcon k="difficulty" /></span>
-                          </th>
-                          <th className="px-4 py-3 font-semibold text-gray-500 dark:text-white/40">Deine Pos.</th>
-                          <th className="px-4 py-3 font-semibold text-gray-500 dark:text-white/40">Konkurrenz</th>
-                          <th className="px-4 py-3 font-semibold text-gray-500 dark:text-white/40 cursor-pointer select-none" onClick={() => toggleSort("potential")}>
-                            <span className="flex items-center gap-1">Potential <SortIcon k="potential" /></span>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {sorted.map((kw, i) => (
-                          <motion.tr key={kw.keyword} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.05 }}
-                            className="border-b border-gray-50 dark:border-white/[0.03] hover:bg-[#F4F7FE] dark:hover:bg-white/[0.03] transition-colors">
-                            <td className="px-6 py-3 font-medium text-[#0F172A] dark:text-white">{kw.keyword}</td>
-                            <td className="px-4 py-3 text-gray-600 dark:text-white/60">{kw.volume.toLocaleString()}/Mo</td>
-                            <td className="px-4 py-3">
-                              <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-medium ${difficultyConfig[kw.difficulty].color} ${difficultyConfig[kw.difficulty].dark}`}>
-                                {kw.difficulty}
-                              </span>
-                            </td>
-                            <td className="px-4 py-3 text-gray-500 dark:text-white/40">{kw.yourPos ? `#${kw.yourPos}` : "—"}</td>
-                            <td className="px-4 py-3 font-medium text-[#0F172A] dark:text-white">#{kw.compPos}</td>
-                            <td className="px-4 py-3">
-                              <div className="flex items-center gap-2">
-                                <div className="flex-1 h-2 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden max-w-[80px]">
-                                  <div className="h-full rounded-full bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7]" style={{ width: `${kw.potential}%` }} />
-                                </div>
-                                <span className="text-[12px] font-semibold text-[#0F172A] dark:text-white">{kw.potential}%</span>
-                              </div>
-                            </td>
-                          </motion.tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                  <p className="text-[14px] font-semibold text-[#0F172A] dark:text-white mb-1">
+                    Bereit für KI-Vorschläge
+                  </p>
+                  <p className="text-[12px] text-gray-400 max-w-sm mx-auto">
+                    Gib eine Konkurrenz-URL ein und starte die Analyse. Die KI erstellt dann massgeschneiderte Content-Vorschläge basierend auf deinen echten Search Console Daten.
+                  </p>
                 </div>
+              )}
+            </div>
+          </div>
 
-                {/* KI Content Suggestions */}
-                <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
-                  <div className="px-6 py-4 border-b border-gray-100 dark:border-white/[0.06] flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00CEC9]/20 to-[#6C5CE7]/20 flex items-center justify-center">
-                      <Sparkles className="h-4 w-4 text-[#6C5CE7]" />
-                    </div>
-                    <div>
-                      <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white">KI Content-Vorschläge</h2>
-                      <p className="text-[11px] text-gray-500 dark:text-white/40">Basierend auf den gefundenen Keyword-Lücken</p>
-                    </div>
-                  </div>
-                  <div className="p-4 space-y-3">
-                    {DEMO_SUGGESTIONS.map((s, i) => (
-                      <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 + i * 0.15 }}
-                        className="rounded-xl border border-gray-100 dark:border-white/[0.06] overflow-hidden">
-                        <button onClick={() => setExpandedSuggestion(expandedSuggestion === i ? null : i)}
-                          className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-[#F4F7FE] dark:hover:bg-white/[0.03] transition-colors">
-                          <div className="flex items-center gap-3">
-                            <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center text-[11px] font-bold text-white">
-                              {i + 1}
-                            </span>
-                            <div>
-                              <p className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{s.title}</p>
-                              <p className="text-[11px] text-gray-500 dark:text-white/40 mt-0.5">Keyword: {s.keyword}</p>
-                            </div>
-                          </div>
-                          {expandedSuggestion === i ? <ChevronUp className="h-4 w-4 text-gray-400" /> : <ChevronDown className="h-4 w-4 text-gray-400" />}
-                        </button>
-                        <AnimatePresence>
-                          {expandedSuggestion === i && (
-                            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden">
-                              <div className="px-5 pb-4 pt-1 border-t border-gray-100 dark:border-white/[0.06]">
-                                <div className="flex items-center gap-4 mb-3 text-[12px] text-gray-500 dark:text-white/40">
-                                  <span>~{s.wordCount} Wörter</span>
-                                  <span>•</span>
-                                  <span>{s.topics.length} Themenbereiche</span>
-                                </div>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                  {s.topics.map((t) => (
-                                    <span key={t} className="rounded-full bg-[#00CEC9]/[0.08] border border-[#00CEC9]/20 px-3 py-1 text-[11px] font-medium text-[#00CEC9]">{t}</span>
-                                  ))}
-                                </div>
-                                <button className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
-                                  <FileText className="h-3.5 w-3.5" />Artikel erstellen
-                                </button>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
+          {/* Keyword-Verteilung Chart */}
+          <div className="rounded-2xl bg-white shadow-sm p-5">
+            <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white flex items-center gap-2 mb-4">
+              <Award className="h-4 w-4 text-[#F97316]" />
+              Keyword-Verteilung
+            </h3>
+            <p className="text-[12px] text-gray-400 mb-4">Suchvolumen vs. Schwierigkeit &ndash; Grosse Punkte = hohes Potential</p>
+            <div className="h-[350px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <ScatterChart margin={{ top: 10, right: 20, bottom: 20, left: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                  <XAxis
+                    type="number"
+                    dataKey="difficulty"
+                    name="Schwierigkeit"
+                    domain={[0, 100]}
+                    tick={{ fontSize: 11, fill: "#94a3b8" }}
+                    label={{ value: "Schwierigkeit (%)", position: "insideBottom", offset: -10, style: { fontSize: 11, fill: "#94a3b8" } }}
+                  />
+                  <YAxis
+                    type="number"
+                    dataKey="volume"
+                    name="Suchvolumen"
+                    tick={{ fontSize: 11, fill: "#94a3b8" }}
+                    label={{ value: "Suchvolumen", angle: -90, position: "insideLeft", offset: 10, style: { fontSize: 11, fill: "#94a3b8" } }}
+                  />
+                  <ZAxis type="number" dataKey="potential" range={[80, 500]} name="Potential" />
+                  <Tooltip
+                    content={({ active, payload }) => {
+                      if (!active || !payload?.length) return null
+                      const d = payload[0].payload
+                      return (
+                        <div className="rounded-lg bg-white shadow-lg border border-gray-100 p-3 text-[12px]">
+                          <p className="font-semibold text-[#0F172A] mb-1">{d.keyword}</p>
+                          <p className="text-gray-500">Suchvolumen: <span className="font-bold text-[#0F172A]">{d.volume.toLocaleString("de-CH")}</span></p>
+                          <p className="text-gray-500">Schwierigkeit: <span className="font-bold text-[#0F172A]">{d.difficulty}%</span></p>
+                          <p className="text-gray-500">Potential: <span className="font-bold text-[#00CEC9]">{d.potential}</span></p>
+                        </div>
+                      )
+                    }}
+                  />
+                  <Scatter data={PREVIEW_SCATTER} fill="#00CEC9">
+                    {PREVIEW_SCATTER.map((_, i) => (
+                      <Cell key={i} fill={SCATTER_COLORS[i % SCATTER_COLORS.length]} fillOpacity={0.7} />
                     ))}
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </>
+                  </Scatter>
+                </ScatterChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )
