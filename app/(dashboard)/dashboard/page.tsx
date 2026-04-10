@@ -19,18 +19,18 @@ const chartData = [
 ]
 
 const stats = [
-  { label: "Aktive Kampagnen", value: "12", change: "+3", trend: "up" as const, icon: Activity, gradient: "from-[#7B68EE] to-[#4F46E5]" },
+  { label: "Aktive Kampagnen", value: "12", change: "+3", trend: "up" as const, icon: Activity, gradient: "from-[#6C5CE7] to-[#5643CC]" },
   { label: "Engagement-Rate", value: "4.8%", change: "+0.6%", trend: "up" as const, icon: TrendingUp, gradient: "from-[#00CEC9] to-[#00B4D8]" },
   { label: "Kunden", value: "24", change: "+2", trend: "up" as const, icon: Users, gradient: "from-[#FF6B6B] to-[#EE5A24]" },
   { label: "KI-Erkenntnisse", value: "156", change: "-8", trend: "down" as const, icon: Sparkles, gradient: "from-[#FDCB6E] to-[#F39C12]" },
 ]
 
 const activities = [
-  { text: "Neue Emotion-Analyse für TechVision abgeschlossen", time: "Vor 12 Min.", dot: "#7B68EE" },
+  { text: "Neue Emotion-Analyse für TechVision abgeschlossen", time: "Vor 12 Min.", dot: "#6C5CE7" },
   { text: 'Kampagne "Sommer 2026" wurde aktiviert', time: "Vor 1 Std.", dot: "#00CEC9" },
   { text: "3 neue Sentiment-Alerts für GreenLeaf", time: "Vor 2 Std.", dot: "#FF6B6B" },
   { text: 'Report "Q1 Engagement" generiert', time: "Vor 4 Std.", dot: "#FDCB6E" },
-  { text: "KI-Erkenntnis: Positiver Trend bei MediaPulse erkannt", time: "Vor 5 Std.", dot: "#7B68EE" },
+  { text: "KI-Erkenntnis: Positiver Trend bei MediaPulse erkannt", time: "Vor 5 Std.", dot: "#6C5CE7" },
 ]
 
 const topClients = [
@@ -80,7 +80,7 @@ export default function DashboardPage() {
               <p className="text-[12px] text-gray-500 dark:text-white/40 mt-0.5">Letzte 7 Tage</p>
             </div>
             <div className="flex items-center gap-5 text-[11px]">
-              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#7B68EE]" />Positiv</span>
+              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#6C5CE7]" />Positiv</span>
               <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#FF6B6B]" />Negativ</span>
               <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-white/20" />Neutral</span>
             </div>
@@ -90,8 +90,8 @@ export default function DashboardPage() {
               <AreaChart data={chartData}>
                 <defs>
                   <linearGradient id="gradPos" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#7B68EE" stopOpacity={0.2} />
-                    <stop offset="100%" stopColor="#7B68EE" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#6C5CE7" stopOpacity={0.2} />
+                    <stop offset="100%" stopColor="#6C5CE7" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="gradNeg" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#FF6B6B" stopOpacity={0.15} />
@@ -102,7 +102,7 @@ export default function DashboardPage() {
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#a0aec0" }} />
                 <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#a0aec0" }} />
                 <Tooltip contentStyle={{ background: "white", border: "none", borderRadius: "12px", fontSize: "12px", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }} />
-                <Area type="monotone" dataKey="positiv" stroke="#7B68EE" strokeWidth={2.5} fill="url(#gradPos)" />
+                <Area type="monotone" dataKey="positiv" stroke="#6C5CE7" strokeWidth={2.5} fill="url(#gradPos)" />
                 <Area type="monotone" dataKey="negativ" stroke="#FF6B6B" strokeWidth={2} fill="url(#gradNeg)" />
                 <Area type="monotone" dataKey="neutral" stroke="#CBD5E0" strokeWidth={1.5} fill="transparent" strokeDasharray="5 5" />
               </AreaChart>
@@ -148,14 +148,14 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {topClients.map((client) => (
             <div key={client.name} className="flex items-center gap-3 rounded-xl bg-[#F4F7FE] dark:bg-white/[0.04] p-4 hover:bg-[#EEF2FF] dark:hover:bg-white/[0.06] transition-colors">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#7B68EE]/20 to-[#4F46E5]/10 flex items-center justify-center text-[13px] font-bold text-[#7B68EE] shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#6C5CE7]/20 to-[#5643CC]/10 flex items-center justify-center text-[13px] font-bold text-[#6C5CE7] shrink-0">
                 {client.name.split(" ").map(w => w[0]).join("").slice(0, 2)}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-[13px] font-semibold text-[#1B2559] dark:text-white truncate">{client.name}</p>
                 <div className="flex items-center gap-2 mt-1">
                   <div className="flex-1 h-2 bg-white dark:bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full bg-gradient-to-r from-[#7B68EE] to-[#4F46E5]" style={{ width: `${client.score}%` }} />
+                    <div className="h-full rounded-full bg-gradient-to-r from-[#6C5CE7] to-[#5643CC]" style={{ width: `${client.score}%` }} />
                   </div>
                   <span className="text-[12px] font-bold text-[#1B2559] dark:text-white">{client.score}</span>
                   <span className={`text-[11px] font-semibold ${client.change.startsWith("+") ? "text-emerald-500" : "text-red-500"}`}>{client.change}</span>

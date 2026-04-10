@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -68,18 +69,20 @@ export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
     >
       {/* Logo */}
       <div className="flex items-center h-[72px] px-5">
-        <Link href="/dashboard" className="flex items-center gap-3 overflow-hidden">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7B68EE] to-[#4F46E5] flex items-center justify-center shrink-0 shadow-lg shadow-[#4F46E5]/30">
-            <span className="text-white font-extrabold text-[14px]">EF</span>
-          </div>
+        <Link href="/dashboard" className="flex items-center overflow-hidden">
           <motion.div
             initial={false}
-            animate={{ opacity: isCollapsed ? 0 : 1, width: isCollapsed ? 0 : "auto" }}
-            transition={{ duration: 0.15 }}
-            className="overflow-hidden whitespace-nowrap"
+            animate={{ width: isCollapsed ? 38 : 180, height: isCollapsed ? 38 : 44 }}
+            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+            className="relative shrink-0"
           >
-            <span className="font-bold text-[17px] text-white tracking-tight">Emotion</span>
-            <span className="font-bold text-[17px] text-[#7B68EE] tracking-tight">Frame</span>
+            <Image
+              src="/EmotionFrame_Logo_w.png"
+              alt="EmotionFrame"
+              fill
+              className="object-contain object-left"
+              priority
+            />
           </motion.div>
         </Link>
       </div>
@@ -103,12 +106,12 @@ export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
                 className="w-full flex items-center justify-between px-3 py-[7px] rounded-lg hover:bg-white/[0.04] transition-colors overflow-hidden"
               >
                 <span className={`text-[10px] font-bold uppercase tracking-[0.1em] ${
-                  hasActiveItem ? "text-[#7B68EE]" : "text-white/40"
+                  hasActiveItem ? "text-[#6C5CE7]" : "text-white/40"
                 }`}>
                   {section.title}
                 </span>
                 <ChevronDown className={`h-3 w-3 transition-transform ${
-                  hasActiveItem ? "text-[#7B68EE]/60" : "text-white/20"
+                  hasActiveItem ? "text-[#6C5CE7]/60" : "text-white/20"
                 } ${isSectionCollapsed ? "-rotate-90" : ""}`} />
               </motion.button>
 
@@ -178,21 +181,21 @@ function NavItem({
       title={isCollapsed ? item.label : undefined}
       className={`relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium transition-all group ${
         isActive
-          ? "bg-gradient-to-r from-[#7B68EE]/20 to-[#7B68EE]/[0.05] text-white shadow-sm"
+          ? "bg-gradient-to-r from-[#6C5CE7]/20 to-[#6C5CE7]/[0.05] text-white shadow-sm"
           : "text-white/60 hover:text-white/90 hover:bg-white/[0.06]"
       }`}
     >
       {isActive && (
         <motion.div
           layoutId="sidebar-indicator"
-          className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-r-full bg-[#7B68EE]"
+          className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-r-full bg-[#6C5CE7]"
           transition={{ type: "spring", stiffness: 350, damping: 30 }}
         />
       )}
 
       <item.icon
         className={`h-[18px] w-[18px] shrink-0 ${isCollapsed ? "mx-auto" : ""} ${
-          isActive ? "text-[#7B68EE]" : "text-white/40 group-hover:text-white/70"
+          isActive ? "text-[#6C5CE7]" : "text-white/40 group-hover:text-white/70"
         }`}
         strokeWidth={isActive ? 2 : 1.6}
       />

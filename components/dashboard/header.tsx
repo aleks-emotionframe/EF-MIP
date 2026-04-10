@@ -96,12 +96,12 @@ export function Header() {
                   <button key={m.organizationId} onClick={() => setShowOrgSwitcher(false)}
                     className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-[13px] transition-colors ${
                       m.organizationId === session.user.activeOrganizationId
-                        ? "bg-[#7B68EE]/10 text-[#7B68EE] font-medium"
+                        ? "bg-[#6C5CE7]/10 text-[#6C5CE7] font-medium"
                         : "hover:bg-gray-50 dark:hover:bg-white/[0.05] text-gray-700 dark:text-white/60"
                     }`}>
                     <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold ${
                       m.organizationId === session.user.activeOrganizationId
-                        ? "bg-[#7B68EE]/15 text-[#7B68EE]"
+                        ? "bg-[#6C5CE7]/15 text-[#6C5CE7]"
                         : "bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-white/40"
                     }`}>{m.organizationName[0]}</div>
                     <span className="truncate">{m.organizationName}</span>
@@ -121,7 +121,7 @@ export function Header() {
         {/* Bell */}
         <button className="relative rounded-full p-2.5 text-gray-400 dark:text-white/40 hover:bg-[#F4F7FE] dark:hover:bg-white/[0.05] transition-colors">
           <Bell className="h-[18px] w-[18px]" />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-[#7B68EE] rounded-full border-2 border-white dark:border-[#111c44]" />
+          <span className="absolute top-2 right-2 w-2 h-2 bg-[#6C5CE7] rounded-full border-2 border-white dark:border-[#111c44]" />
         </button>
 
         {/* Divider */}
@@ -131,7 +131,7 @@ export function Header() {
         <div ref={userMenuRef} className="relative">
           <button onClick={() => setShowUserMenu(!showUserMenu)}
             className="flex items-center gap-3 rounded-full py-1 pl-1 pr-3 hover:bg-[#F4F7FE] dark:hover:bg-white/[0.05] transition-colors">
-            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-[#7B68EE] to-[#4F46E5] flex items-center justify-center text-[12px] font-bold text-white shadow-lg shadow-[#4F46E5]/20">
+            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-[#6C5CE7] to-[#5643CC] flex items-center justify-center text-[12px] font-bold text-white shadow-lg shadow-[#5643CC]/20">
               {initials}
             </div>
             <div className="hidden sm:block text-left">

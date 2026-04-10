@@ -12,6 +12,7 @@
   /* Secondary */
   --ef-secondary: 0 206 201;        /* #00CEC9 */
   --ef-accent: 253 121 168;         /* #FD79A8 */
+  --ef-orange: 249 115 22;          /* #F97316 */
   --ef-warning: 253 203 110;        /* #FDCB6E */
   --ef-success: 0 184 148;          /* #00B894 */
   --ef-danger: 214 48 49;           /* #D63031 */
@@ -118,6 +119,7 @@
   --color-ef-warning: rgb(var(--ef-warning));
   --color-ef-success: rgb(var(--ef-success));
   --color-ef-danger: rgb(var(--ef-danger));
+  --color-ef-orange: rgb(var(--ef-orange));
   --color-ef-dark: rgb(var(--ef-dark));
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -169,7 +171,7 @@
 .animated-gradient {
   background: linear-gradient(
     -45deg,
-    #6c5ce7, #a29bfe, #00cec9, #fd79a8, #6c5ce7
+    #6c5ce7, #00cec9, #f97316, #fd79a8, #6c5ce7
   );
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
