@@ -70,7 +70,7 @@ export function Header() {
     : session?.user?.email?.[0]?.toUpperCase() ?? "U"
 
   return (
-    <header className="h-[72px] bg-white dark:bg-[#0F172A] border-b border-gray-100 dark:border-white/[0.05] flex items-center justify-between px-8 sticky top-0 z-30">
+    <header className="h-[72px] bg-[#F0F5F9] dark:bg-[#0F172A] flex items-center justify-between px-8 sticky top-0 z-30">
       {/* Left */}
       <div>
         <h1 className="text-[18px] font-bold text-[#0F172A] dark:text-white tracking-tight">{pageTitle}</h1>

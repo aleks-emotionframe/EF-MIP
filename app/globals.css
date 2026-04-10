@@ -30,24 +30,24 @@
   --ef-gray-100: 248 249 250;
 
   /* shadcn/ui tokens */
-  --background: 0 0% 100%;
-  --foreground: 210 11% 15%;
+  --background: 210 20% 97%;
+  --foreground: 215 25% 10%;
   --card: 0 0% 100%;
-  --card-foreground: 210 11% 15%;
+  --card-foreground: 215 25% 10%;
   --popover: 0 0% 100%;
-  --popover-foreground: 210 11% 15%;
-  --primary: 252 75% 60%;
+  --popover-foreground: 215 25% 10%;
+  --primary: 174 100% 40%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 174 100% 40%;
+  --secondary: 252 75% 60%;
   --secondary-foreground: 0 0% 100%;
-  --muted: 220 14% 96%;
-  --muted-foreground: 220 9% 43%;
-  --accent: 252 75% 94%;
-  --accent-foreground: 252 75% 40%;
+  --muted: 210 20% 96%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 174 60% 94%;
+  --accent-foreground: 174 100% 30%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  --border: 220 13% 91%;
-  --input: 220 13% 91%;
+  --border: 214 20% 92%;
+  --input: 214 20% 92%;
   --ring: 174 100% 40%;
   --radius: 0.75rem;
   --chart-1: 174 100% 40%;
@@ -57,30 +57,30 @@
   --chart-5: 160 100% 36%;
 
   /* Sidebar */
-  --sidebar-width: 260px;
+  --sidebar-width: 230px;
   --sidebar-collapsed-width: 64px;
 }
 
 .dark {
-  --background: 220 20% 6%;
-  --foreground: 0 0% 95%;
-  --card: 220 20% 9%;
-  --card-foreground: 0 0% 95%;
-  --popover: 220 20% 9%;
-  --popover-foreground: 0 0% 95%;
-  --primary: 252 75% 60%;
+  --background: 222 47% 8%;
+  --foreground: 210 40% 96%;
+  --card: 222 47% 13%;
+  --card-foreground: 210 40% 96%;
+  --popover: 222 47% 13%;
+  --popover-foreground: 210 40% 96%;
+  --primary: 174 100% 40%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 174 100% 40%;
+  --secondary: 252 75% 60%;
   --secondary-foreground: 0 0% 100%;
-  --muted: 220 14% 14%;
-  --muted-foreground: 220 9% 60%;
-  --accent: 252 75% 15%;
-  --accent-foreground: 252 75% 80%;
+  --muted: 223 47% 16%;
+  --muted-foreground: 215 20% 60%;
+  --accent: 174 50% 15%;
+  --accent-foreground: 174 100% 70%;
   --destructive: 0 62% 30%;
   --destructive-foreground: 0 0% 95%;
-  --border: 220 14% 18%;
-  --input: 220 14% 18%;
-  --ring: 252 75% 60%;
+  --border: 222 40% 18%;
+  --input: 222 40% 18%;
+  --ring: 174 100% 40%;
 }
 
 /* ─── Tailwind Theme ─────────────────────────────────────────── */
@@ -152,8 +152,8 @@
 }
 
 .glow-secondary {
-  box-shadow: 0 0 20px rgba(0, 206, 201, 0.3),
-              0 0 60px rgba(0, 206, 201, 0.1);
+  box-shadow: 0 0 20px rgba(108, 92, 231, 0.3),
+              0 0 60px rgba(108, 92, 231, 0.1);
 }
 
 .glow-accent {
@@ -184,107 +184,72 @@ body {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
 
 @keyframes shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
 
-/* ─── Premium Design System (Light Mode) ─────────────────────── */
-
-/* All cards: better shadows and rounded corners */
+/* ─── Card Design ────────────────────────────────────────────── */
 .rounded-xl { border-radius: 16px !important; }
 .rounded-2xl { border-radius: 20px !important; }
-
-/* Card hover elevation */
-.border-gray-100.bg-white,
-.rounded-xl.border.bg-white,
-.rounded-2xl.border.bg-white {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-}
-
-/* Fix light mode text contrast globally */
-.text-gray-400 { color: #8896AB !important; }
-.text-gray-500 { color: #68778D !important; }
-.text-gray-600 { color: #4A5568 !important; }
-.text-gray-700 { color: #2D3748 !important; }
-.text-gray-800 { color: #1A202C !important; }
-.text-gray-900 { color: #0F172A !important; }
-
-/* Page backgrounds */
-.bg-\[#F4F7FE\] { background-color: #F4F7FE; }
 
 /* Sidebar scroll */
 .sidebar-scroll::-webkit-scrollbar { width: 4px; }
 .sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
-.sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 2px; }
+.dark .sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
 
-/* ─── Dark Mode Global Overrides ─────────────────────────────── */
+/* ─── Dark Mode ──────────────────────────────────────────────── */
 .dark {
   color-scheme: dark;
 }
 
-/* Cards */
+/* Cards: bg-white → dark card */
 .dark .bg-white {
-  background-color: #1E293B !important;
-}
-.dark .border-gray-100.bg-white,
-.dark .rounded-xl.border.bg-white,
-.dark .rounded-2xl.border.bg-white {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  background-color: hsl(222 47% 13%) !important;
 }
 
-/* Gray backgrounds */
+/* Subtle backgrounds */
 .dark .bg-gray-50,
 .dark .bg-gray-100,
 .dark .bg-\[#F8F9FB\],
-.dark .bg-\[#F4F7FE\] {
-  background-color: rgba(255, 255, 255, 0.03) !important;
-}
-.dark .bg-gray-50\/50,
-.dark .bg-gray-50\/30 {
-  background-color: rgba(17, 24, 39, 0.5) !important;
+.dark .bg-\[#F4F7FE\],
+.dark .bg-\[#F0F5F9\] {
+  background-color: hsl(222 47% 10%) !important;
 }
 
 /* Borders */
 .dark .border-gray-100,
 .dark .border-gray-200,
 .dark .border-gray-50 {
-  border-color: rgba(255,255,255,0.06) !important;
+  border-color: hsl(222 40% 18%) !important;
 }
 
-/* Text - override light mode fixes for dark */
-.dark .text-gray-900 { color: #f9fafb !important; }
-.dark .text-gray-800 { color: #f3f4f6 !important; }
-.dark .text-gray-700 { color: #e5e7eb !important; }
-.dark .text-gray-600 { color: #d1d5db !important; }
-.dark .text-gray-500 { color: #9ca3af !important; }
-.dark .text-gray-400 { color: #9ca3af !important; }
+/* Text overrides for dark */
+.dark .text-\[\#0F172A\] { color: #f1f5f9 !important; }
+.dark .text-gray-900 { color: #f1f5f9 !important; }
+.dark .text-gray-800 { color: #e2e8f0 !important; }
+.dark .text-gray-700 { color: #cbd5e1 !important; }
+.dark .text-gray-600 { color: #94a3b8 !important; }
+.dark .text-gray-500 { color: #64748b !important; }
+.dark .text-gray-400 { color: #475569 !important; }
 
 /* Inputs */
 .dark input,
 .dark textarea,
 .dark select {
-  background-color: #1f2937 !important;
-  border-color: #374151 !important;
-  color: #f3f4f6 !important;
+  background-color: hsl(222 47% 16%) !important;
+  border-color: hsl(222 40% 22%) !important;
+  color: #f1f5f9 !important;
 }
 .dark input::placeholder,
 .dark textarea::placeholder {
-  color: #4b5563 !important;
+  color: #475569 !important;
 }
 .dark input:focus,
 .dark textarea:focus,
@@ -292,47 +257,38 @@ body {
   border-color: #00CEC9 !important;
 }
 
-/* Popover / Dropdowns */
-.dark .bg-popover,
-.dark [class*="shadow-lg"] {
-  background-color: #111827 !important;
-}
-
 /* Hover states */
 .dark .hover\:bg-gray-50:hover,
 .dark .hover\:bg-gray-100:hover {
-  background-color: #1f2937 !important;
-}
-.dark .hover\:bg-muted:hover {
-  background-color: #1f2937 !important;
+  background-color: hsl(222 47% 16%) !important;
 }
 
-/* Charts tooltip */
+/* Charts */
 .dark .recharts-default-tooltip {
-  background-color: #111827 !important;
-  border-color: #1f2937 !important;
+  background-color: hsl(222 47% 13%) !important;
+  border-color: hsl(222 40% 18%) !important;
+  color: #f1f5f9 !important;
 }
 
-/* Glass morphism dark */
+/* Glass dark */
 .dark .glass-light {
-  background: rgba(17, 24, 39, 0.8);
+  background: rgba(15, 23, 42, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Table rows */
 .dark tr:hover {
-  background-color: rgba(31, 41, 55, 0.5) !important;
+  background-color: hsl(222 47% 15%) !important;
 }
 
 /* Mobile nav */
 .dark .bg-white\/95 {
-  background-color: rgba(17, 24, 39, 0.95) !important;
+  background-color: rgba(15, 23, 42, 0.95) !important;
 }
 
 /* Scrollbar dark */
-.dark ::-webkit-scrollbar-thumb {
-  background: #374151;
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #4b5563;
-}
+.dark ::-webkit-scrollbar-thumb { background: hsl(222 40% 22%); }
+.dark ::-webkit-scrollbar-thumb:hover { background: hsl(222 40% 30%); }
+
+/* Popover dark */
+.dark .bg-popover { background-color: hsl(222 47% 13%) !important; }
