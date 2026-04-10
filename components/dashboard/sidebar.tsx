@@ -73,11 +73,21 @@ const menuSections: MenuSection[] = [
 ]
 
 export const PRIMARY_WIDTH = 220
-const SUB_WIDTH = 260
+export const SUB_WIDTH = 260
 
-export function Sidebar() {
+interface SidebarProps {
+  onSubOpen?: (open: boolean) => void
+}
+
+export function Sidebar({ onSubOpen }: SidebarProps) {
   const pathname = usePathname()
-  const [openSection, setOpenSection] = useState<string | null>(null)
+  const [openSection, setOpenSectionRaw] = useState<string | null>(null)
+
+  function setOpenSection(key: string | null) {
+    setOpenSectionRaw(key)
+    const section = key ? menuSections.find((s) => s.key === key) : null
+    onSubOpen?.(!!section && section.items.length > 0)
+  }
 
   const activeSection = menuSections.find((s) =>
     s.singleLink
@@ -90,7 +100,7 @@ export function Sidebar() {
       setOpenSection(null)
       return
     }
-    setOpenSection((prev) => (prev === section.key ? null : section.key))
+    setOpenSection(openSection === section.key ? null : section.key)
   }
 
   const subSection = menuSections.find((s) => s.key === openSection)
@@ -192,16 +202,6 @@ export function Sidebar() {
       <AnimatePresence>
         {isSubOpen && subSection && (
           <>
-            {/* Click-away overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
-              className="fixed inset-0 z-40"
-              onClick={() => setOpenSection(null)}
-            />
-
             <motion.aside
               initial={{ x: -SUB_WIDTH, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}

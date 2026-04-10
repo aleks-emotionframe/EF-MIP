@@ -1,21 +1,27 @@
 "use client"
 
-import { Sidebar, PRIMARY_WIDTH } from "@/components/dashboard/sidebar"
+import { useState } from "react"
+import { Sidebar, PRIMARY_WIDTH, SUB_WIDTH } from "@/components/dashboard/sidebar"
 import { Header } from "@/components/dashboard/header"
 import { MobileNav } from "@/components/dashboard/mobile-nav"
+import { motion } from "framer-motion"
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
+  const [isSubOpen, setIsSubOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-[#F4F7FE] dark:bg-[#0B1437]">
-      <Sidebar />
+      <Sidebar onSubOpen={setIsSubOpen} />
 
-      <div
+      <motion.div
+        initial={false}
+        animate={{ marginLeft: isSubOpen ? PRIMARY_WIDTH + SUB_WIDTH : PRIMARY_WIDTH }}
+        transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
         className="hidden md:block min-h-screen"
-        style={{ marginLeft: PRIMARY_WIDTH }}
       >
         <Header />
         <main className="p-6 max-w-[1600px]">{children}</main>
-      </div>
+      </motion.div>
 
       <div className="md:hidden min-h-screen">
         <Header />
