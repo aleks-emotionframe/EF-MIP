@@ -157,9 +157,9 @@ export default function KalenderPage() {
         <div>
           <div className="flex items-center gap-2">
             <CalendarIcon className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-xl font-semibold text-gray-900">Content-Kalender</h1>
+            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Content-Kalender</h1>
           </div>
-          <p className="text-[13px] text-gray-500 mt-0.5">Plane und verwalte deine Social-Media-Beiträge.</p>
+          <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Plane und verwalte deine Social-Media-Beiträge.</p>
         </div>
         <button onClick={() => openCreate()} className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#6C5CE7]/30 transition-all">
           <Plus className="h-3.5 w-3.5" />Beitrag planen
@@ -168,15 +168,15 @@ export default function KalenderPage() {
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="rounded-xl border border-gray-100 bg-white p-4 text-center">
-          <p className="text-[20px] font-bold text-gray-900">{thisMonthPosts.length}</p>
+        <div className="rounded-2xl bg-white shadow-sm p-4 text-center">
+          <p className="text-[24px] font-extrabold text-[#1B2559] dark:text-white">{thisMonthPosts.length}</p>
           <p className="text-[11px] text-gray-400">Beiträge im {MONTH_NAMES[month]}</p>
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-4 text-center">
+        <div className="rounded-2xl bg-white shadow-sm p-4 text-center">
           <p className="text-[20px] font-bold text-blue-600">{plannedCount}</p>
           <p className="text-[11px] text-gray-400">Geplant</p>
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-4 text-center">
+        <div className="rounded-2xl bg-white shadow-sm p-4 text-center">
           <p className="text-[20px] font-bold text-gray-500">{draftCount}</p>
           <p className="text-[11px] text-gray-400">Entwürfe</p>
         </div>
@@ -186,7 +186,7 @@ export default function KalenderPage() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button onClick={() => navigate(-1)} className="rounded-lg p-2 hover:bg-gray-100 transition-colors"><ChevronLeft className="h-4 w-4 text-gray-600" /></button>
-          <h2 className="text-[15px] font-semibold text-gray-900 w-40 text-center">{MONTH_NAMES[month]} {year}</h2>
+          <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white w-40 text-center">{MONTH_NAMES[month]} {year}</h2>
           <button onClick={() => navigate(1)} className="rounded-lg p-2 hover:bg-gray-100 transition-colors"><ChevronRight className="h-4 w-4 text-gray-600" /></button>
         </div>
         <div className="flex gap-1 p-1 rounded-xl bg-gray-100">
@@ -202,7 +202,7 @@ export default function KalenderPage() {
 
       {/* ─── Month View ──────────────────────────────────────── */}
       {view === "month" && (
-        <div className="rounded-2xl border border-gray-100 bg-white overflow-hidden">
+        <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
           {/* Weekday headers */}
           <div className="grid grid-cols-7 border-b border-gray-100">
             {WEEKDAYS.map((d) => (
@@ -246,7 +246,7 @@ export default function KalenderPage() {
 
       {/* ─── Week View ───────────────────────────────────────── */}
       {view === "week" && (
-        <div className="rounded-2xl border border-gray-100 bg-white overflow-hidden">
+        <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
           <div className="grid grid-cols-7">
             {weekDates.map((date) => {
               const dateStr = formatDate(date)
@@ -269,7 +269,7 @@ export default function KalenderPage() {
                             {pl && <pl.icon className="h-3 w-3" style={{ color: post.color }} />}
                             <span className="text-[10px] font-medium" style={{ color: post.color }}>{post.time}</span>
                           </div>
-                          <p className="text-[11px] font-semibold text-gray-800 leading-tight">{post.title}</p>
+                          <p className="text-[11px] font-bold text-[#1B2559] dark:text-white leading-tight">{post.title}</p>
                           <p className="text-[10px] text-gray-400 mt-0.5 truncate">{post.content}</p>
                         </button>
                       )

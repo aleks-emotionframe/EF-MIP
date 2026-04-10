@@ -167,9 +167,9 @@ export default function HashtagsPage() {
       <div>
         <div className="flex items-center gap-2">
           <Hash className="h-5 w-5 text-[#6C5CE7]" />
-          <h1 className="text-xl font-semibold text-gray-900">Hashtag-Recherche</h1>
+          <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Hashtag-Recherche</h1>
         </div>
-        <p className="text-[13px] text-gray-500 mt-0.5">
+        <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
           Finde die besten Hashtags für deine Beiträge.
         </p>
       </div>
@@ -228,9 +228,9 @@ export default function HashtagsPage() {
                 const TrendIcon = TREND_ICON[h.trend]
                 return (
                   <button key={h.hashtag} onClick={() => copyTag(h.hashtag)}
-                    className="rounded-xl border border-gray-100 bg-white p-3.5 text-left hover:shadow-sm hover:border-[#6C5CE7]/20 transition-all group">
+                    className="rounded-2xl bg-white shadow-sm p-3.5 text-left hover:shadow-sm hover:border-[#6C5CE7]/20 transition-all group">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[14px] font-semibold text-gray-900 group-hover:text-[#6C5CE7] transition-colors">#{h.hashtag}</span>
+                      <span className="text-[16px] font-bold text-[#1B2559] dark:text-white group-hover:text-[#6C5CE7] transition-colors">#{h.hashtag}</span>
                       {copiedTag === h.hashtag
                         ? <Check className="h-3.5 w-3.5 text-emerald-500" />
                         : <Copy className="h-3.5 w-3.5 text-gray-300 group-hover:text-gray-500 transition-colors" />
@@ -248,8 +248,8 @@ export default function HashtagsPage() {
 
             {/* Related Searches */}
             {result.related.length > 0 && (
-              <div className="rounded-2xl border border-gray-100 bg-white p-5">
-                <h3 className="text-[14px] font-semibold text-gray-900 mb-3">Verwandte Themen</h3>
+              <div className="rounded-2xl bg-white shadow-sm p-5">
+                <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-3">Verwandte Themen</h3>
                 <div className="flex gap-2 flex-wrap">
                   {result.related.map((tag) => (
                     <button key={tag} onClick={() => searchRelated(tag)}
@@ -263,10 +263,10 @@ export default function HashtagsPage() {
 
             {/* Tips */}
             {result.tips.length > 0 && (
-              <div className="rounded-2xl border border-gray-100 bg-white p-5">
+              <div className="rounded-2xl bg-white shadow-sm p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <Lightbulb className="h-4 w-4 text-amber-500" />
-                  <h3 className="text-[14px] font-semibold text-gray-900">Tipps</h3>
+                  <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Tipps</h3>
                 </div>
                 <div className="space-y-2.5">
                   {result.tips.map((tip, i) => (

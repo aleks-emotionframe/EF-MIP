@@ -143,8 +143,8 @@ export default function SocialPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-semibold text-gray-900">Social Media</h1>
-        <p className="text-[13px] text-gray-500 mt-0.5">Leistung deiner Plattformen im Überblick</p>
+        <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Social Media</h1>
+        <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Leistung deiner Plattformen im Überblick</p>
       </div>
 
       {/* Platform Tabs */}
@@ -169,7 +169,7 @@ export default function SocialPage() {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {data.kpis.map((kpi) => (
-          <div key={kpi.label} className="rounded-xl border border-gray-100 bg-white p-4">
+          <div key={kpi.label} className="rounded-2xl bg-white shadow-sm p-4">
             <div className="flex items-center justify-between mb-2">
               <div className={`w-8 h-8 rounded-lg ${platform.bg} flex items-center justify-center`}>
                 <kpi.icon className="h-4 w-4" style={{ color: platform.color }} />
@@ -179,7 +179,7 @@ export default function SocialPage() {
                 {kpi.change >= 0 ? "+" : ""}{kpi.change}%
               </span>
             </div>
-            <p className="text-[18px] font-bold text-gray-900">{kpi.value}</p>
+            <p className="text-[22px] font-extrabold text-[#1B2559] dark:text-white">{kpi.value}</p>
             <p className="text-[11px] text-gray-400 mt-0.5">{kpi.label}</p>
           </div>
         ))}
@@ -187,8 +187,8 @@ export default function SocialPage() {
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-gray-100 bg-white p-5">
-          <h3 className="text-[14px] font-semibold text-gray-900 mb-1">Follower-Entwicklung</h3>
+        <div className="rounded-2xl bg-white shadow-sm p-5">
+          <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-1">Follower-Entwicklung</h3>
           <p className="text-[11px] text-gray-400 mb-4">Letzte 7 Tage</p>
           <div className="h-[220px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -209,8 +209,8 @@ export default function SocialPage() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-gray-100 bg-white p-5">
-          <h3 className="text-[14px] font-semibold text-gray-900 mb-1">Tägliche Reichweite</h3>
+        <div className="rounded-2xl bg-white shadow-sm p-5">
+          <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-1">Tägliche Reichweite</h3>
           <p className="text-[11px] text-gray-400 mb-4">Letzte 7 Tage</p>
           <div className="h-[220px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -227,8 +227,8 @@ export default function SocialPage() {
       </div>
 
       {/* Top-Beiträge */}
-      <div className="rounded-xl border border-gray-100 bg-white p-5">
-        <h3 className="text-[14px] font-semibold text-gray-900 mb-4">Top-Beiträge</h3>
+      <div className="rounded-2xl bg-white shadow-sm p-5">
+        <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-4">Top-Beiträge</h3>
         <div className="space-y-3">
           {data.topPosts.map((post, i) => (
             <div key={i} className="flex items-center gap-4 rounded-lg border border-gray-50 p-3.5 hover:bg-gray-50/50 transition-colors">
@@ -236,7 +236,7 @@ export default function SocialPage() {
                 {i + 1}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[13px] font-medium text-gray-800 truncate">{post.title}</p>
+                <p className="text-[13px] font-semibold text-[#1B2559] dark:text-white truncate">{post.title}</p>
               </div>
               <div className="flex items-center gap-4 text-[11px] text-gray-400 shrink-0">
                 <span className="flex items-center gap-1"><Heart className="h-3 w-3" />{post.likes.toLocaleString("de-CH")}</span>

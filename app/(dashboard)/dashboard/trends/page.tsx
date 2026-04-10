@@ -100,9 +100,9 @@ export default function TrendsPage() {
         <div>
           <div className="flex items-center gap-2">
             <TrendingUp className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-xl font-semibold text-gray-900">Social-Media-Trends</h1>
+            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Social-Media-Trends</h1>
           </div>
-          <p className="text-[13px] text-gray-500 mt-0.5">
+          <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
             Aktuelle Trends aus Reddit-Communities – was die Branche gerade bewegt.
           </p>
         </div>
@@ -188,7 +188,7 @@ export default function TrendsPage() {
                   <div className="w-7 h-7 rounded-lg bg-[#6C5CE7]/[0.06] flex items-center justify-center">
                     <Icon className="h-3.5 w-3.5 text-[#6C5CE7]" />
                   </div>
-                  <h2 className="text-[14px] font-semibold text-gray-900">{category.name}</h2>
+                  <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">{category.name}</h2>
                   <span className="text-[11px] text-gray-400">{category.trends.length} Trends</span>
                 </div>
 
@@ -196,7 +196,7 @@ export default function TrendsPage() {
                   {category.trends.map((trend) => {
                     const isExp = expandedId === trend.id
                     return (
-                      <motion.div key={trend.id} layout className="rounded-xl border border-gray-100 bg-white overflow-hidden">
+                      <motion.div key={trend.id} layout className="rounded-2xl bg-white shadow-sm overflow-hidden">
                         <button onClick={() => setExpandedId(isExp ? null : trend.id)}
                           className="w-full flex items-start gap-4 p-4 text-left hover:bg-gray-50/50 transition-colors">
 
@@ -209,7 +209,7 @@ export default function TrendsPage() {
 
                           {/* Content */}
                           <div className="flex-1 min-w-0">
-                            <p className="text-[13px] font-semibold text-gray-900 leading-snug">{trend.title}</p>
+                            <p className="text-[14px] font-semibold text-[#1B2559] dark:text-white leading-snug">{trend.title}</p>
 
                             {/* Tags */}
                             <div className="flex items-center gap-1.5 mt-2 flex-wrap">

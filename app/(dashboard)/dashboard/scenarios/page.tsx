@@ -283,9 +283,9 @@ export default function ScenariosPage() {
       <div>
         <div className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-[#6C5CE7]" />
-          <h1 className="text-xl font-semibold text-gray-900">Szenario Simulator</h1>
+          <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Szenario Simulator</h1>
         </div>
-        <p className="text-[13px] text-gray-500 mt-0.5">
+        <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
           Was wäre wenn? Simuliere verschiedene Strategien und sehe die Auswirkungen.
         </p>
       </div>
@@ -294,8 +294,8 @@ export default function ScenariosPage() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* ─── LEFT: Builder (40%) ───────────────────────────── */}
         <div className="lg:col-span-2 space-y-5">
-          <div className="rounded-2xl border border-gray-100 bg-white p-6 space-y-5">
-            <h2 className="text-[14px] font-semibold text-gray-900">Szenario konfigurieren</h2>
+          <div className="rounded-2xl bg-white shadow-sm p-6 space-y-5">
+            <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Szenario konfigurieren</h2>
 
             {/* Scenario Type */}
             <div className="space-y-1.5">
@@ -445,10 +445,10 @@ export default function ScenariosPage() {
         {/* ─── RIGHT: Results (60%) ──────────────────────────── */}
         <div className="lg:col-span-3 space-y-4">
           {/* Chart */}
-          <div className="rounded-2xl border border-gray-100 bg-white p-6">
+          <div className="rounded-2xl bg-white shadow-sm p-6">
             <div className="flex items-center justify-between mb-5">
               <div>
-                <h2 className="text-[14px] font-semibold text-gray-900">Prognose</h2>
+                <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Prognose</h2>
                 <p className="text-[11px] text-gray-400 mt-0.5">
                   {hasResult ? `${config.platform} · ${typeConfig.label} · ${config.timeframeDays} Tage` : "Starte eine Simulation um Ergebnisse zu sehen"}
                 </p>
@@ -507,7 +507,7 @@ export default function ScenariosPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="rounded-xl border border-gray-100 bg-white p-4"
+                    className="rounded-2xl bg-white shadow-sm p-4"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center">
@@ -565,9 +565,9 @@ export default function ScenariosPage() {
 
       {/* ─── Saved Scenarios ─────────────────────────────────── */}
       {savedScenarios.length > 0 && (
-        <div className="rounded-2xl border border-gray-100 bg-white p-6">
+        <div className="rounded-2xl bg-white shadow-sm p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[14px] font-semibold text-gray-900">Gespeicherte Szenarien</h2>
+            <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Gespeicherte Szenarien</h2>
             {compareIds.length === 2 && (
               <button className="flex items-center gap-1.5 rounded-lg bg-[#6C5CE7]/[0.08] px-3 py-1.5 text-[12px] font-medium text-[#6C5CE7]">
                 <GitCompare className="h-3.5 w-3.5" />
@@ -600,7 +600,7 @@ export default function ScenariosPage() {
                         {compareIds.includes(s.id) && <Check className="h-3 w-3 text-white" />}
                       </button>
                     </td>
-                    <td className="py-3 px-3 font-medium text-gray-900">{s.name}</td>
+                    <td className="py-3 px-3 font-semibold text-[#1B2559] dark:text-white">{s.name}</td>
                     <td className="py-3 px-3 text-gray-500 capitalize">{SCENARIO_TYPES.find((t) => t.key === s.type)?.label}</td>
                     <td className="py-3 px-3 text-gray-500">{s.platform}</td>
                     <td className="py-3 px-3 text-gray-400">{s.createdAt}</td>

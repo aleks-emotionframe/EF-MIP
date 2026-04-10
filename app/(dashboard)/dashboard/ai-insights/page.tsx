@@ -113,9 +113,9 @@ export default function AIInsightsPage() {
         <div>
           <div className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-xl font-semibold text-gray-900">AI Insights</h1>
+            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">AI Insights</h1>
           </div>
-          <p className="text-[13px] text-gray-500 mt-0.5">
+          <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
             KI-gestützte Analyse deiner Plattform-Daten
           </p>
         </div>
@@ -184,7 +184,7 @@ export default function AIInsightsPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="rounded-xl border border-gray-100 bg-white overflow-hidden hover:shadow-sm transition-shadow"
+                  className="rounded-2xl bg-white shadow-sm overflow-hidden hover:shadow-sm transition-shadow"
                 >
                   {/* Main Row */}
                   <div
@@ -199,7 +199,7 @@ export default function AIInsightsPage() {
                     {/* Content */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap mb-1">
-                        <h3 className="text-[14px] font-semibold text-gray-900">{insight.title}</h3>
+                        <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white">{insight.title}</h3>
                         <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold ${prioConf.bg} ${prioConf.color}`}>
                           {prioConf.label}
                         </span>
@@ -320,10 +320,10 @@ export default function AIInsightsPage() {
       )}
 
       {/* Learning Timeline */}
-      <div className="rounded-xl border border-gray-100 bg-white p-5 mt-8">
+      <div className="rounded-2xl bg-white shadow-sm p-5 mt-8">
         <div className="flex items-center gap-2 mb-5">
           <Brain className="h-4 w-4 text-[#6C5CE7]" />
-          <h2 className="text-[15px] font-semibold text-gray-900">Lernverlauf</h2>
+          <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Lernverlauf</h2>
           <span className="text-[11px] text-gray-400">Was die KI bisher gelernt hat</span>
         </div>
         <div className="space-y-0">

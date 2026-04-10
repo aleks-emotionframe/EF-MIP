@@ -196,8 +196,8 @@ export default function IntegrationsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-semibold text-gray-900">Integrationen</h1>
-        <p className="text-[13px] text-gray-500 mt-0.5">
+        <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Integrationen</h1>
+        <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
           Verbinde deine Social-Media- und Analytics-Plattformen.
         </p>
       </div>
@@ -212,7 +212,7 @@ export default function IntegrationsPage() {
           return (
             <div
               key={platform.key}
-              className="group rounded-xl border border-gray-100 bg-white p-5 hover:shadow-sm transition-all"
+              className="group rounded-2xl bg-white shadow-sm p-5 hover:shadow-sm transition-all"
             >
               {/* Header */}
               <div className="flex items-start justify-between mb-4">
@@ -226,7 +226,7 @@ export default function IntegrationsPage() {
                     />
                   </div>
                   <div>
-                    <h3 className="text-[14px] font-semibold text-gray-900">
+                    <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white">
                       {platform.name}
                     </h3>
                     {/* Status Badge */}

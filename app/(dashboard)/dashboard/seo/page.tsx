@@ -134,9 +134,9 @@ export default function SEOPage() {
       <div>
         <div className="flex items-center gap-2">
           <Globe className="h-5 w-5 text-[#6C5CE7]" />
-          <h1 className="text-xl font-semibold text-gray-900">SEO-Analyse</h1>
+          <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">SEO-Analyse</h1>
         </div>
-        <p className="text-[13px] text-gray-500 mt-0.5">
+        <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
           Website analysieren und Keyword-Rankings einsehen.
         </p>
       </div>
@@ -189,7 +189,7 @@ export default function SEOPage() {
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 {/* Score + Overview */}
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-                  <div className="rounded-2xl border border-gray-100 bg-white p-6 flex flex-col items-center justify-center">
+                  <div className="rounded-2xl bg-white shadow-sm p-6 flex flex-col items-center justify-center">
                     <div className={`relative w-28 h-28 rounded-full flex items-center justify-center ${result.score >= 80 ? "bg-emerald-50" : result.score >= 50 ? "bg-amber-50" : "bg-red-50"}`}>
                       <svg className="absolute inset-0 w-28 h-28 -rotate-90" viewBox="0 0 100 100">
                         <circle cx="50" cy="50" r="44" fill="none" stroke="#e5e7eb" strokeWidth="6" />
@@ -206,12 +206,12 @@ export default function SEOPage() {
                     </div>
                     <p className="text-[12px] text-gray-500 mt-3">SEO-Score</p>
                   </div>
-                  <div className="rounded-2xl border border-gray-100 bg-white p-5 flex flex-col justify-center space-y-3">
+                  <div className="rounded-2xl bg-white shadow-sm p-5 flex flex-col justify-center space-y-3">
                     <div className="flex items-center justify-between"><span className="flex items-center gap-2 text-[13px] text-gray-600"><CheckCircle2 className="h-4 w-4 text-emerald-500" />Bestanden</span><span className="text-[14px] font-bold text-emerald-600">{passCount}</span></div>
                     <div className="flex items-center justify-between"><span className="flex items-center gap-2 text-[13px] text-gray-600"><AlertTriangle className="h-4 w-4 text-amber-500" />Warnungen</span><span className="text-[14px] font-bold text-amber-600">{warnCount}</span></div>
                     <div className="flex items-center justify-between"><span className="flex items-center gap-2 text-[13px] text-gray-600"><XCircle className="h-4 w-4 text-red-500" />Fehler</span><span className="text-[14px] font-bold text-red-600">{failCount}</span></div>
                   </div>
-                  <div className="lg:col-span-2 rounded-2xl border border-gray-100 bg-white p-5">
+                  <div className="lg:col-span-2 rounded-2xl bg-white shadow-sm p-5">
                     <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">Google-Vorschau</p>
                     <div className="rounded-lg border border-gray-200 p-4 bg-gray-50/50">
                       <p className="text-[14px] text-[#1a0dab] font-medium leading-tight truncate">{result.meta.title || "Kein Titel gefunden"}</p>
@@ -247,11 +247,11 @@ export default function SEOPage() {
                     const Icon = STATUS_ICON[check.status]
                     const isExp = expandedCheck === `${check.category}-${check.name}`
                     return (
-                      <div key={`${check.category}-${check.name}`} className="rounded-xl border border-gray-100 bg-white overflow-hidden">
+                      <div key={`${check.category}-${check.name}`} className="rounded-2xl bg-white shadow-sm overflow-hidden">
                         <button onClick={() => setExpandedCheck(isExp ? null : `${check.category}-${check.name}`)} className="w-full flex items-center gap-3 p-4 text-left hover:bg-gray-50/50 transition-colors">
                           <div className={`w-8 h-8 rounded-lg ${STATUS_BG[check.status]} flex items-center justify-center shrink-0`}><Icon className={`h-4 w-4 ${STATUS_COLOR[check.status]}`} /></div>
                           <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2"><span className="text-[13px] font-medium text-gray-900">{check.name}</span><span className="text-[10px] text-gray-400 bg-gray-100 rounded px-1.5 py-0.5">{check.category}</span></div>
+                            <div className="flex items-center gap-2"><span className="text-[13px] font-semibold text-[#1B2559] dark:text-white">{check.name}</span><span className="text-[10px] text-gray-400 bg-gray-100 rounded px-1.5 py-0.5">{check.category}</span></div>
                             <p className="text-[12px] text-gray-500 mt-0.5 truncate">{check.value}</p>
                           </div>
                           <span className={`text-[11px] font-medium ${STATUS_COLOR[check.status]} shrink-0 hidden sm:block`}>{STATUS_LABEL[check.status]}</span>
@@ -269,8 +269,8 @@ export default function SEOPage() {
 
                 {/* Headings */}
                 {result.headings.length > 0 && (
-                  <div className="rounded-2xl border border-gray-100 bg-white p-5">
-                    <h3 className="text-[14px] font-semibold text-gray-900 mb-3">Überschriften-Struktur</h3>
+                  <div className="rounded-2xl bg-white shadow-sm p-5">
+                    <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-3">Überschriften-Struktur</h3>
                     <div className="space-y-1.5">
                       {result.headings.map((h, i) => (
                         <div key={i} className="flex items-center gap-2" style={{ paddingLeft: (parseInt(h.tag[1]) - 1) * 20 }}>
@@ -284,8 +284,8 @@ export default function SEOPage() {
 
                 {/* Images without alt */}
                 {result.images.filter((i) => !i.hasAlt).length > 0 && (
-                  <div className="rounded-2xl border border-gray-100 bg-white p-5">
-                    <h3 className="text-[14px] font-semibold text-gray-900 mb-3">Bilder ohne Alt-Text ({result.images.filter((i) => !i.hasAlt).length})</h3>
+                  <div className="rounded-2xl bg-white shadow-sm p-5">
+                    <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-3">Bilder ohne Alt-Text ({result.images.filter((i) => !i.hasAlt).length})</h3>
                     <div className="space-y-1.5 max-h-48 overflow-y-auto">
                       {result.images.filter((i) => !i.hasAlt).map((img, i) => (
                         <div key={i} className="flex items-center gap-2 text-[12px] rounded-lg p-2 bg-red-50">
@@ -327,19 +327,19 @@ export default function SEOPage() {
 
           {/* Overview Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-            <div className="rounded-xl border border-gray-100 bg-white p-4">
+            <div className="rounded-2xl bg-white shadow-sm p-4">
               <p className="text-[11px] text-gray-400">Keywords getrackt</p>
               <p className="text-[22px] font-bold text-gray-900 mt-1">{DEMO_KEYWORDS.length}</p>
             </div>
-            <div className="rounded-xl border border-gray-100 bg-white p-4">
+            <div className="rounded-2xl bg-white shadow-sm p-4">
               <p className="text-[11px] text-gray-400">Top 3 Positionen</p>
               <p className="text-[22px] font-bold text-emerald-600 mt-1">{DEMO_KEYWORDS.filter((k) => k.position <= 3).length}</p>
             </div>
-            <div className="rounded-xl border border-gray-100 bg-white p-4">
+            <div className="rounded-2xl bg-white shadow-sm p-4">
               <p className="text-[11px] text-gray-400">Top 10 Positionen</p>
               <p className="text-[22px] font-bold text-[#6C5CE7] mt-1">{DEMO_KEYWORDS.filter((k) => k.position <= 10).length}</p>
             </div>
-            <div className="rounded-xl border border-gray-100 bg-white p-4">
+            <div className="rounded-2xl bg-white shadow-sm p-4">
               <p className="text-[11px] text-gray-400">Ø Klickrate</p>
               <p className="text-[22px] font-bold text-gray-900 mt-1">{(DEMO_KEYWORDS.reduce((a, k) => a + k.ctr, 0) / DEMO_KEYWORDS.length).toFixed(1)}%</p>
             </div>
@@ -378,7 +378,7 @@ export default function SEOPage() {
               const posColor = kw.position <= 3 ? "bg-emerald-100 text-emerald-700" : kw.position <= 10 ? "bg-blue-100 text-blue-700" : kw.position <= 20 ? "bg-amber-100 text-amber-700" : "bg-gray-100 text-gray-600"
 
               return (
-                <div key={kw.query} className="rounded-xl border border-gray-100 bg-white overflow-hidden">
+                <div key={kw.query} className="rounded-2xl bg-white shadow-sm overflow-hidden">
                   <button onClick={() => setExpandedKeyword(isExp ? null : kw.query)}
                     className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50/50 transition-colors">
 
@@ -399,21 +399,21 @@ export default function SEOPage() {
 
                     {/* Keyword */}
                     <div className="flex-1 min-w-0">
-                      <p className="text-[13px] font-medium text-gray-900 truncate">{kw.query}</p>
+                      <p className="text-[13px] font-semibold text-[#1B2559] dark:text-white truncate">{kw.query}</p>
                     </div>
 
                     {/* Metrics */}
                     <div className="hidden sm:flex items-center gap-6 text-[12px] text-gray-500 shrink-0">
                       <div className="text-right w-16">
-                        <p className="font-semibold text-gray-800">{kw.clicks.toLocaleString("de-CH")}</p>
+                        <p className="font-bold text-[#1B2559] dark:text-white">{kw.clicks.toLocaleString("de-CH")}</p>
                         <p className="text-[10px] text-gray-400">Klicks</p>
                       </div>
                       <div className="text-right w-20">
-                        <p className="font-semibold text-gray-800">{kw.impressions.toLocaleString("de-CH")}</p>
+                        <p className="font-bold text-[#1B2559] dark:text-white">{kw.impressions.toLocaleString("de-CH")}</p>
                         <p className="text-[10px] text-gray-400">Impressionen</p>
                       </div>
                       <div className="text-right w-14">
-                        <p className="font-semibold text-gray-800">{kw.ctr}%</p>
+                        <p className="font-bold text-[#1B2559] dark:text-white">{kw.ctr}%</p>
                         <p className="text-[10px] text-gray-400">CTR</p>
                       </div>
                     </div>

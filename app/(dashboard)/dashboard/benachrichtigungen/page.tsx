@@ -113,10 +113,10 @@ export default function BenachrichtigungenPage() {
         <div>
           <div className="flex items-center gap-2">
             <Bell className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-xl font-semibold text-gray-900">Benachrichtigungen</h1>
+            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Benachrichtigungen</h1>
             {unreadCount > 0 && <span className="rounded-full bg-red-500 px-2 py-0.5 text-[10px] font-bold text-white">{unreadCount}</span>}
           </div>
-          <p className="text-[13px] text-gray-500 mt-0.5">Alerts, Trends und Meilensteine im Blick.</p>
+          <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Alerts, Trends und Meilensteine im Blick.</p>
         </div>
         <div className="flex gap-2">
           {tab === "feed" && unreadCount > 0 && (
@@ -213,7 +213,7 @@ export default function BenachrichtigungenPage() {
                   : <ToggleLeft className="h-6 w-6 text-gray-300" />}
               </button>
               <div className="flex-1 min-w-0">
-                <p className="text-[13px] font-semibold text-gray-900">{rule.name}</p>
+                <p className="text-[14px] font-semibold text-[#1B2559] dark:text-white">{rule.name}</p>
                 <p className="text-[11px] text-gray-400 mt-0.5">
                   {rule.metric} · {rule.platform} · {rule.condition === "above" ? "Über" : rule.condition === "below" ? "Unter" : "Änderung >"} {rule.threshold}{rule.condition === "change" ? "%" : ""}
                   {rule.notifyEmail && <span className="ml-2 inline-flex items-center gap-0.5"><Mail className="h-3 w-3" />E-Mail</span>}

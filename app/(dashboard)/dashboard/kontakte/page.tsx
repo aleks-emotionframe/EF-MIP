@@ -172,9 +172,9 @@ export default function KontaktePage() {
         <div>
           <div className="flex items-center gap-2">
             <Users className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-xl font-semibold text-gray-900">Kontakte</h1>
+            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Kontakte</h1>
           </div>
-          <p className="text-[13px] text-gray-500 mt-0.5">Verwalte deine Empfänger und Gruppen.</p>
+          <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Verwalte deine Empfänger und Gruppen.</p>
         </div>
         <div className="flex gap-2">
           <button onClick={() => setShowGroupModal(true)} className="flex items-center gap-1.5 rounded-xl border border-gray-200 px-3 py-2.5 text-[12px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">
@@ -188,20 +188,20 @@ export default function KontaktePage() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="rounded-xl border border-gray-100 bg-white p-4">
-          <p className="text-[20px] font-bold text-gray-900">{contacts.length}</p>
+        <div className="rounded-2xl bg-white shadow-sm p-4">
+          <p className="text-[24px] font-extrabold text-[#1B2559] dark:text-white">{contacts.length}</p>
           <p className="text-[11px] text-gray-400">Gesamt</p>
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-4">
+        <div className="rounded-2xl bg-white shadow-sm p-4">
           <p className="text-[20px] font-bold text-emerald-600">{activeCount}</p>
           <p className="text-[11px] text-gray-400">Aktiv</p>
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-4">
-          <p className="text-[20px] font-bold text-gray-900">{groups.length}</p>
+        <div className="rounded-2xl bg-white shadow-sm p-4">
+          <p className="text-[24px] font-extrabold text-[#1B2559] dark:text-white">{groups.length}</p>
           <p className="text-[11px] text-gray-400">Gruppen</p>
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-4">
-          <p className="text-[20px] font-bold text-gray-900">{contacts.filter((c) => c.status === "unsubscribed").length}</p>
+        <div className="rounded-2xl bg-white shadow-sm p-4">
+          <p className="text-[24px] font-extrabold text-[#1B2559] dark:text-white">{contacts.filter((c) => c.status === "unsubscribed").length}</p>
           <p className="text-[11px] text-gray-400">Abgemeldet</p>
         </div>
       </div>
@@ -255,7 +255,7 @@ export default function KontaktePage() {
       </div>
 
       {/* Contact Table */}
-      <div className="rounded-xl border border-gray-100 bg-white overflow-hidden">
+      <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-[13px]">
             <thead>
@@ -280,7 +280,7 @@ export default function KontaktePage() {
                           {contact.firstName[0]}{contact.lastName[0]}
                         </div>
                         <div>
-                          <p className="font-medium text-gray-900">{contact.firstName} {contact.lastName}</p>
+                          <p className="font-semibold text-[#1B2559] dark:text-white">{contact.firstName} {contact.lastName}</p>
                           <p className="text-[11px] text-gray-400 md:hidden">{contact.email}</p>
                         </div>
                       </div>
@@ -404,7 +404,7 @@ export default function KontaktePage() {
                   <button key={g.id} onClick={() => handleBulkAssign(g.id)}
                     className="w-full flex items-center gap-3 rounded-xl border border-gray-200 p-3 text-left hover:bg-gray-50 transition-colors">
                     <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: g.color }} />
-                    <span className="text-[13px] font-medium text-gray-800">{g.name}</span>
+                    <span className="text-[13px] font-semibold text-[#1B2559] dark:text-white">{g.name}</span>
                     <span className="text-[11px] text-gray-400 ml-auto">{groupCounts[g.id] ?? 0} Kontakte</span>
                   </button>
                 ))}

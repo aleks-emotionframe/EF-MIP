@@ -83,9 +83,9 @@ export default function ContentGeneratorPage() {
       <div>
         <div className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-[#6C5CE7]" />
-          <h1 className="text-xl font-semibold text-gray-900">Content-Generator</h1>
+          <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Content-Generator</h1>
         </div>
-        <p className="text-[13px] text-gray-500 mt-0.5">
+        <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
           KI-gestützter Content für deine Social-Media-Kanäle.
         </p>
       </div>
@@ -93,7 +93,7 @@ export default function ContentGeneratorPage() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* ─── LEFT: Config ──────────────────────────────────── */}
         <div className="lg:col-span-2 space-y-4">
-          <div className="rounded-2xl border border-gray-100 bg-white p-6 space-y-5">
+          <div className="rounded-2xl bg-white shadow-sm p-6 space-y-5">
             {/* Platform */}
             <div>
               <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Plattform</label>
@@ -158,11 +158,11 @@ export default function ContentGeneratorPage() {
             {result ? (
               <motion.div key="result" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 {/* Generated Content */}
-                <div className="rounded-2xl border border-gray-100 bg-white p-5">
+                <div className="rounded-2xl bg-white shadow-sm p-5">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <selectedPlatform.icon className="h-4 w-4" style={{ color: selectedPlatform.color }} />
-                      <h3 className="text-[14px] font-semibold text-gray-900">{platform}-Beitrag</h3>
+                      <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white">{platform}-Beitrag</h3>
                       {result.source === "claude" && (
                         <span className="text-[10px] bg-[#6C5CE7]/[0.08] text-[#6C5CE7] rounded-full px-2 py-0.5 font-medium">
                           {result.profileConnected ? "KI · Profil-basiert" : "KI-generiert"}
@@ -208,10 +208,10 @@ export default function ContentGeneratorPage() {
 
                 {/* Posting Time + Tips */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="rounded-2xl border border-gray-100 bg-white p-5">
+                  <div className="rounded-2xl bg-white shadow-sm p-5">
                     <div className="flex items-center gap-2 mb-3">
                       <Clock className="h-4 w-4 text-[#6C5CE7]" />
-                      <h3 className="text-[13px] font-semibold text-gray-900">Beste Posting-Zeit</h3>
+                      <h3 className="text-[14px] font-semibold text-[#1B2559] dark:text-white">Beste Posting-Zeit</h3>
                     </div>
                     <p className="text-[14px] font-bold text-gray-900">{result.bestTime}</p>
                     <div className="flex items-center gap-2 mt-2">
@@ -226,10 +226,10 @@ export default function ContentGeneratorPage() {
                     </p>
                   </div>
 
-                  <div className="rounded-2xl border border-gray-100 bg-white p-5">
+                  <div className="rounded-2xl bg-white shadow-sm p-5">
                     <div className="flex items-center gap-2 mb-3">
                       <Lightbulb className="h-4 w-4 text-amber-500" />
-                      <h3 className="text-[13px] font-semibold text-gray-900">Tipps</h3>
+                      <h3 className="text-[14px] font-semibold text-[#1B2559] dark:text-white">Tipps</h3>
                     </div>
                     <div className="space-y-2">
                       {result.tips.map((tip, i) => (

@@ -114,9 +114,9 @@ export default function EmailPage() {
         <div>
           <div className="flex items-center gap-2">
             <Mail className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-xl font-semibold text-gray-900">E-Mail-Marketing</h1>
+            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">E-Mail-Marketing</h1>
           </div>
-          <p className="text-[13px] text-gray-500 mt-0.5">Newsletter erstellen, versenden und analysieren.</p>
+          <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Newsletter erstellen, versenden und analysieren.</p>
         </div>
         <button onClick={() => setMainTab("neu")} className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#6C5CE7]/30 transition-all">
           <Plus className="h-3.5 w-3.5" />Neue Kampagne
@@ -125,32 +125,32 @@ export default function EmailPage() {
 
       {/* Overview KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="rounded-xl border border-gray-100 bg-white p-4">
+        <div className="rounded-2xl bg-white shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="w-8 h-8 rounded-lg bg-[#6C5CE7]/[0.06] flex items-center justify-center"><Users className="h-4 w-4 text-[#6C5CE7]" /></div>
           </div>
-          <p className="text-[20px] font-bold text-gray-900">{totalSubscribers.toLocaleString("de-CH")}</p>
+          <p className="text-[24px] font-extrabold text-[#1B2559] dark:text-white">{totalSubscribers.toLocaleString("de-CH")}</p>
           <p className="text-[11px] text-gray-400 mt-0.5">Aktive Empfänger</p>
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-4">
+        <div className="rounded-2xl bg-white shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center"><Send className="h-4 w-4 text-emerald-600" /></div>
           </div>
-          <p className="text-[20px] font-bold text-gray-900">{totalSent.toLocaleString("de-CH")}</p>
+          <p className="text-[24px] font-extrabold text-[#1B2559] dark:text-white">{totalSent.toLocaleString("de-CH")}</p>
           <p className="text-[11px] text-gray-400 mt-0.5">E-Mails versendet</p>
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-4">
+        <div className="rounded-2xl bg-white shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center"><Eye className="h-4 w-4 text-blue-600" /></div>
           </div>
-          <p className="text-[20px] font-bold text-gray-900">{avgOpenRate.toFixed(1)}%</p>
+          <p className="text-[24px] font-extrabold text-[#1B2559] dark:text-white">{avgOpenRate.toFixed(1)}%</p>
           <p className="text-[11px] text-gray-400 mt-0.5">Ø Öffnungsrate</p>
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-4">
+        <div className="rounded-2xl bg-white shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center"><MousePointer className="h-4 w-4 text-amber-600" /></div>
           </div>
-          <p className="text-[20px] font-bold text-gray-900">{campaigns.length}</p>
+          <p className="text-[24px] font-extrabold text-[#1B2559] dark:text-white">{campaigns.length}</p>
           <p className="text-[11px] text-gray-400 mt-0.5">Kampagnen</p>
         </div>
       </div>
@@ -177,14 +177,14 @@ export default function EmailPage() {
             const sc = STATUS_CONFIG[c.status]
             const isExp = expandedCampaign === c.id
             return (
-              <div key={c.id} className="rounded-xl border border-gray-100 bg-white overflow-hidden">
+              <div key={c.id} className="rounded-2xl bg-white shadow-sm overflow-hidden">
                 <button onClick={() => setExpandedCampaign(isExp ? null : c.id)} className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50/50 transition-colors">
                   <div className={`w-9 h-9 rounded-lg ${sc.bg} flex items-center justify-center shrink-0`}>
                     <sc.icon className={`h-4 w-4 ${sc.color}`} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className="text-[13px] font-semibold text-gray-900 truncate">{c.name}</p>
+                      <p className="text-[14px] font-semibold text-[#1B2559] dark:text-white truncate">{c.name}</p>
                       <span className={`text-[10px] font-medium rounded-full px-2 py-0.5 ${sc.bg} ${sc.color}`}>{sc.label}</span>
                     </div>
                     <p className="text-[12px] text-gray-500 mt-0.5 truncate">{c.subject}</p>
@@ -192,7 +192,7 @@ export default function EmailPage() {
                   <div className="hidden sm:flex items-center gap-6 text-[12px] text-gray-500 shrink-0">
                     {c.status === "sent" && (
                       <>
-                        <div className="text-right"><p className="font-semibold text-gray-800">{c.totalSent.toLocaleString("de-CH")}</p><p className="text-[10px] text-gray-400">Versendet</p></div>
+                        <div className="text-right"><p className="font-bold text-[#1B2559] dark:text-white">{c.totalSent.toLocaleString("de-CH")}</p><p className="text-[10px] text-gray-400">Versendet</p></div>
                         <div className="text-right"><p className="font-semibold text-emerald-600">{c.openRate}%</p><p className="text-[10px] text-gray-400">Geöffnet</p></div>
                         <div className="text-right"><p className="font-semibold text-blue-600">{c.clickRate}%</p><p className="text-[10px] text-gray-400">Geklickt</p></div>
                       </>
@@ -223,7 +223,7 @@ export default function EmailPage() {
                             </div>
                             <div className="rounded-lg bg-gray-50 p-3">
                               <p className="text-[10px] text-gray-400">Empfänger-Liste</p>
-                              <p className="text-[14px] font-semibold text-gray-800">{c.listName}</p>
+                              <p className="text-[14px] font-bold text-[#1B2559] dark:text-white">{c.listName}</p>
                             </div>
                           </div>
                         )}
@@ -255,12 +255,12 @@ export default function EmailPage() {
       {mainTab === "empfaenger" && (
         <div className="space-y-3">
           {lists.map((list) => (
-            <div key={list.id} className="rounded-xl border border-gray-100 bg-white p-5 flex items-center gap-4">
+            <div key={list.id} className="rounded-2xl bg-white shadow-sm p-5 flex items-center gap-4">
               <div className="w-10 h-10 rounded-xl bg-[#6C5CE7]/[0.06] flex items-center justify-center shrink-0">
                 <Users className="h-5 w-5 text-[#6C5CE7]" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[14px] font-semibold text-gray-900">{list.name}</p>
+                <p className="text-[16px] font-bold text-[#1B2559] dark:text-white">{list.name}</p>
                 <p className="text-[12px] text-gray-500 mt-0.5">Erstellt: {list.createdAt}</p>
               </div>
               <div className="hidden sm:flex items-center gap-6 shrink-0">
@@ -291,8 +291,8 @@ export default function EmailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Editor */}
           <div className="lg:col-span-3 space-y-4">
-            <div className="rounded-2xl border border-gray-100 bg-white p-6 space-y-4">
-              <h2 className="text-[14px] font-semibold text-gray-900">Kampagne erstellen</h2>
+            <div className="rounded-2xl bg-white shadow-sm p-6 space-y-4">
+              <h2 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Kampagne erstellen</h2>
 
               <div className="space-y-1.5">
                 <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Kampagnen-Name</label>
@@ -354,7 +354,7 @@ export default function EmailPage() {
 
           {/* Preview */}
           <div className="lg:col-span-2">
-            <div className="rounded-2xl border border-gray-100 bg-white overflow-hidden sticky top-20">
+            <div className="rounded-2xl bg-white shadow-sm overflow-hidden sticky top-20">
               <div className="bg-gray-50 px-5 py-3 border-b border-gray-100">
                 <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Vorschau</p>
               </div>
@@ -364,7 +364,7 @@ export default function EmailPage() {
                   <div className="bg-white p-4 border-b border-gray-100">
                     <p className="text-[10px] text-gray-400">Von: EmotionFrame &lt;newsletter@emotionframe.com&gt;</p>
                     <p className="text-[10px] text-gray-400">An: empfaenger@beispiel.ch</p>
-                    <p className="text-[13px] font-semibold text-gray-900 mt-1">{newSubject || "Betreffzeile..."}</p>
+                    <p className="text-[14px] font-semibold text-[#1B2559] dark:text-white mt-1">{newSubject || "Betreffzeile..."}</p>
                     {newPreview && <p className="text-[11px] text-gray-400 mt-0.5">{newPreview}</p>}
                   </div>
                   <div className="bg-gradient-to-b from-[#6C5CE7] to-[#a29bfe] px-6 py-5 text-center">

@@ -170,9 +170,9 @@ export default function ReportsPage() {
         <div>
           <div className="flex items-center gap-2">
             <FileText className="h-5 w-5 text-[#6C5CE7]" />
-            <h1 className="text-xl font-semibold text-gray-900">Berichts-Generator</h1>
+            <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Berichts-Generator</h1>
           </div>
-          <p className="text-[13px] text-gray-500 mt-0.5">
+          <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">
             Stelle deinen Bericht zusammen und erstelle ein PDF.
           </p>
         </div>
@@ -184,7 +184,7 @@ export default function ReportsPage() {
         {/* ─── LEFT: Builder (40%) ───────────────────────────── */}
         <div className="lg:col-span-2 space-y-4">
           {/* Time Period */}
-          <div className="rounded-2xl border border-gray-100 bg-white p-5">
+          <div className="rounded-2xl bg-white shadow-sm p-5">
             <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3 block">Zeitraum</label>
             <div className="grid grid-cols-2 gap-2">
               {TIME_PERIODS.map((tp) => (
@@ -204,7 +204,7 @@ export default function ReportsPage() {
           </div>
 
           {/* Sections (Drag & Drop) */}
-          <div className="rounded-2xl border border-gray-100 bg-white p-5">
+          <div className="rounded-2xl bg-white shadow-sm p-5">
             <div className="flex items-center justify-between mb-3">
               <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Berichts-Abschnitte</label>
               <span className="text-[11px] text-gray-400">{sections.length} Abschnitte</span>
@@ -230,7 +230,7 @@ export default function ReportsPage() {
                   >
                     <section.icon className="h-4 w-4" style={{ color: section.color }} />
                   </div>
-                  <span className="flex-1 text-[13px] font-medium text-gray-800 truncate">
+                  <span className="flex-1 text-[13px] font-semibold text-[#1B2559] dark:text-white truncate">
                     {section.label}
                   </span>
                   <button
@@ -312,7 +312,7 @@ export default function ReportsPage() {
 
         {/* ─── RIGHT: Live Preview (60%) ─────────────────────── */}
         <div className="lg:col-span-3">
-          <div className="rounded-2xl border border-gray-100 bg-white overflow-hidden">
+          <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
             {/* PDF Header Preview */}
             <div className="bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] p-6 text-white">
               <div className="flex items-center gap-3 mb-3">
@@ -357,7 +357,7 @@ export default function ReportsPage() {
                           <div className="w-6 h-6 rounded-md flex items-center justify-center" style={{ backgroundColor: `${section.color}10` }}>
                             <section.icon className="h-3 w-3" style={{ color: section.color }} />
                           </div>
-                          <h3 className="text-[13px] font-semibold text-gray-900">{data.title}</h3>
+                          <h3 className="text-[14px] font-semibold text-[#1B2559] dark:text-white">{data.title}</h3>
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                           {data.metrics.map((m) => (

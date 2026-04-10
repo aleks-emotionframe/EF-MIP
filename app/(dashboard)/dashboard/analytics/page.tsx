@@ -62,14 +62,14 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-semibold text-gray-900">Analytics</h1>
-        <p className="text-[13px] text-gray-500 mt-0.5">Website-Traffic und Suchkonsolen-Daten</p>
+        <h1 className="text-2xl font-bold text-[#1B2559] dark:text-white">Analytics</h1>
+        <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Website-Traffic und Suchkonsolen-Daten</p>
       </div>
 
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {kpis.map((kpi) => (
-          <div key={kpi.label} className="rounded-xl border border-gray-100 bg-white p-4">
+          <div key={kpi.label} className="rounded-2xl bg-white shadow-sm p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="w-8 h-8 rounded-lg bg-[#6C5CE7]/[0.06] flex items-center justify-center">
                 <kpi.icon className="h-4 w-4 text-[#6C5CE7]" />
@@ -81,15 +81,15 @@ export default function AnalyticsPage() {
                 {kpi.change >= 0 ? "+" : ""}{kpi.change}%
               </span>
             </div>
-            <p className="text-[18px] font-bold text-gray-900">{kpi.value}</p>
+            <p className="text-[22px] font-extrabold text-[#1B2559] dark:text-white">{kpi.value}</p>
             <p className="text-[11px] text-gray-400 mt-0.5">{kpi.label}</p>
           </div>
         ))}
       </div>
 
       {/* Traffic Chart */}
-      <div className="rounded-xl border border-gray-100 bg-white p-5">
-        <h3 className="text-[14px] font-semibold text-gray-900 mb-1">Traffic-Übersicht</h3>
+      <div className="rounded-2xl bg-white shadow-sm p-5">
+        <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-1">Traffic-Übersicht</h3>
         <p className="text-[11px] text-gray-400 mb-4">Sitzungen, Nutzer & Seitenaufrufe</p>
         <div className="h-[280px]">
           <ResponsiveContainer width="100%" height="100%">
@@ -119,8 +119,8 @@ export default function AnalyticsPage() {
       {/* Sources + Devices */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Traffic Sources */}
-        <div className="rounded-xl border border-gray-100 bg-white p-5">
-          <h3 className="text-[14px] font-semibold text-gray-900 mb-4">Besucherquellen</h3>
+        <div className="rounded-2xl bg-white shadow-sm p-5">
+          <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-4">Besucherquellen</h3>
           <div className="flex items-center gap-6">
             <div className="w-[140px] h-[140px] shrink-0">
               <ResponsiveContainer width="100%" height="100%">
@@ -140,7 +140,7 @@ export default function AnalyticsPage() {
                     <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
                     <span className="text-[12px] text-gray-600">{s.name}</span>
                   </div>
-                  <span className="text-[12px] font-semibold text-gray-900">{s.value}%</span>
+                  <span className="text-[12px] font-bold text-[#1B2559] dark:text-white">{s.value}%</span>
                 </div>
               ))}
             </div>
@@ -148,8 +148,8 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Devices */}
-        <div className="rounded-xl border border-gray-100 bg-white p-5">
-          <h3 className="text-[14px] font-semibold text-gray-900 mb-4">Endgeräte</h3>
+        <div className="rounded-2xl bg-white shadow-sm p-5">
+          <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-4">Endgeräte</h3>
           <div className="space-y-4">
             {deviceData.map((d) => (
               <div key={d.name} className="flex items-center gap-3">
@@ -158,7 +158,7 @@ export default function AnalyticsPage() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-[12px] font-medium text-gray-800">{d.name}</span>
+                    <span className="text-[12px] font-semibold text-[#1B2559] dark:text-white">{d.name}</span>
                     <span className="text-[12px] font-bold text-gray-900">{d.value}%</span>
                   </div>
                   <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
@@ -174,14 +174,14 @@ export default function AnalyticsPage() {
       {/* Top Pages + Search Console */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Top Pages */}
-        <div className="rounded-xl border border-gray-100 bg-white p-5">
-          <h3 className="text-[14px] font-semibold text-gray-900 mb-4">Top-Seiten</h3>
+        <div className="rounded-2xl bg-white shadow-sm p-5">
+          <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white mb-4">Top-Seiten</h3>
           <div className="space-y-2">
             {topPages.map((page, i) => (
               <div key={page.path} className="flex items-center gap-3 rounded-lg p-2.5 hover:bg-gray-50/50 transition-colors">
                 <span className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-400 shrink-0">{i + 1}</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[12px] font-medium text-gray-800 truncate">{page.title}</p>
+                  <p className="text-[12px] font-semibold text-[#1B2559] dark:text-white truncate">{page.title}</p>
                   <p className="text-[10px] text-gray-400 font-mono truncate">{page.path}</p>
                 </div>
                 <div className="text-right shrink-0">
@@ -194,10 +194,10 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Search Console */}
-        <div className="rounded-xl border border-gray-100 bg-white p-5">
+        <div className="rounded-2xl bg-white shadow-sm p-5">
           <div className="flex items-center gap-2 mb-4">
             <Globe className="h-4 w-4 text-[#4285F4]" />
-            <h3 className="text-[14px] font-semibold text-gray-900">Search Console</h3>
+            <h3 className="text-[16px] font-bold text-[#1B2559] dark:text-white">Search Console</h3>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-[12px]">
@@ -212,7 +212,7 @@ export default function AnalyticsPage() {
               <tbody>
                 {searchData.map((row) => (
                   <tr key={row.query} className="border-b border-gray-50 last:border-0">
-                    <td className="py-2.5 font-medium text-gray-800 max-w-[180px] truncate">{row.query}</td>
+                    <td className="py-2.5 font-semibold text-[#1B2559] dark:text-white max-w-[180px] truncate">{row.query}</td>
                     <td className="py-2.5 text-right text-gray-600">{row.clicks}</td>
                     <td className="py-2.5 text-right text-gray-600">{row.ctr}%</td>
                     <td className="py-2.5 text-right">
