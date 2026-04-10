@@ -133,7 +133,7 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
         <div className="flex items-center h-[72px] px-5">
           <Link href="/dashboard" onClick={() => setOpenSection(null)} className="overflow-hidden">
             <img
-              src="/EmotionFrame_LOGO-b.svg"
+              src="/logo-dark.svg"
               alt="EmotionFrame"
               className="h-10 w-auto"
             />
