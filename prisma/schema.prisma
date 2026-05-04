@@ -331,6 +331,18 @@ model Campaign {
   @@map("campaigns")
 }
 
+model PlatformCredential {
+  id               String   @id @default(cuid())
+  platform         Platform @unique
+  clientId         String
+  clientSecret     String
+  additionalConfig Json?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@map("platform_credentials")
+}
+
 enum CampaignStatus {
   DRAFT
   SCHEDULED

@@ -49,6 +49,7 @@ const pageTitles: Record<string, string> = {
   "/dashboard/reports": "Berichte",
   "/dashboard/settings": "Einstellungen",
   "/dashboard/settings/integrations": "Integrationen",
+  "/dashboard/settings/credentials": "API-Zugangsdaten",
   "/dashboard/kunden": "Kundenübersicht",
   "/dashboard/kunden/neu": "Neuen Kunden registrieren",
   "/admin/clients": "Kunden",

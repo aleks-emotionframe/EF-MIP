@@ -23,11 +23,10 @@ export async function GET(request: NextRequest) {
     return Response.json({ error: "No active organization" }, { status: 400 })
   }
 
-  // State encodes org + platform for callback verification
   const state = Buffer.from(
     JSON.stringify({ organizationId, platform, userId: session.user.id })
   ).toString("base64url")
 
-  const url = getOAuthUrl(platform, state)
+  const url = await getOAuthUrl(platform, state)
   return Response.json({ url })
 }

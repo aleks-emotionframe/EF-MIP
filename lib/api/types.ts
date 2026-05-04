@@ -29,74 +29,81 @@ export type PlatformType =
   | "LINKEDIN"
   | "TIKTOK"
 
-export function getOAuthConfig(platform: PlatformType): OAuthConfig {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.AUTH_URL || "http://localhost:3000"
+type CredentialGroup = "GOOGLE_ANALYTICS" | "INSTAGRAM" | "LINKEDIN" | "TIKTOK"
 
-  const configs: Record<PlatformType, OAuthConfig> = {
-    GOOGLE_ANALYTICS: {
-      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-      redirectUri: `${baseUrl}/api/integrations/callback?platform=GOOGLE_ANALYTICS`,
-      scopes: [
-        "https://www.googleapis.com/auth/analytics.readonly",
-      ],
-    },
-    SEARCH_CONSOLE: {
-      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-      redirectUri: `${baseUrl}/api/integrations/callback?platform=SEARCH_CONSOLE`,
-      scopes: [
-        "https://www.googleapis.com/auth/webmasters.readonly",
-      ],
-    },
-    INSTAGRAM: {
-      clientId: process.env.FACEBOOK_APP_ID ?? "",
-      clientSecret: process.env.FACEBOOK_APP_SECRET ?? "",
-      redirectUri: `${baseUrl}/api/integrations/callback?platform=INSTAGRAM`,
-      scopes: [
-        "instagram_basic",
-        "instagram_manage_insights",
-        "pages_show_list",
-      ],
-    },
-    FACEBOOK: {
-      clientId: process.env.FACEBOOK_APP_ID ?? "",
-      clientSecret: process.env.FACEBOOK_APP_SECRET ?? "",
-      redirectUri: `${baseUrl}/api/integrations/callback?platform=FACEBOOK`,
-      scopes: [
-        "pages_show_list",
-        "pages_read_engagement",
-        "read_insights",
-      ],
-    },
-    YOUTUBE: {
-      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-      redirectUri: `${baseUrl}/api/integrations/callback?platform=YOUTUBE`,
-      scopes: [
-        "https://www.googleapis.com/auth/youtube.readonly",
-        "https://www.googleapis.com/auth/yt-analytics.readonly",
-      ],
-    },
-    LINKEDIN: {
-      clientId: process.env.LINKEDIN_CLIENT_ID ?? "",
-      clientSecret: process.env.LINKEDIN_CLIENT_SECRET ?? "",
-      redirectUri: `${baseUrl}/api/integrations/callback?platform=LINKEDIN`,
-      scopes: ["r_organization_social", "rw_organization_admin"],
-    },
-    TIKTOK: {
-      clientId: process.env.TIKTOK_CLIENT_KEY ?? "",
-      clientSecret: process.env.TIKTOK_CLIENT_SECRET ?? "",
-      redirectUri: `${baseUrl}/api/integrations/callback?platform=TIKTOK`,
-      scopes: ["user.info.basic", "video.list"],
-    },
-  }
-
-  return configs[platform]
+const PLATFORM_CREDENTIAL_GROUP: Record<PlatformType, CredentialGroup> = {
+  GOOGLE_ANALYTICS: "GOOGLE_ANALYTICS",
+  SEARCH_CONSOLE: "GOOGLE_ANALYTICS",
+  YOUTUBE: "GOOGLE_ANALYTICS",
+  INSTAGRAM: "INSTAGRAM",
+  FACEBOOK: "INSTAGRAM",
+  LINKEDIN: "LINKEDIN",
+  TIKTOK: "TIKTOK",
 }
 
-export function getOAuthUrl(platform: PlatformType, state: string): string {
-  const config = getOAuthConfig(platform)
+const ENV_FALLBACKS: Record<CredentialGroup, { id: string; secret: string }> = {
+  GOOGLE_ANALYTICS: { id: "GOOGLE_CLIENT_ID", secret: "GOOGLE_CLIENT_SECRET" },
+  INSTAGRAM: { id: "FACEBOOK_APP_ID", secret: "FACEBOOK_APP_SECRET" },
+  LINKEDIN: { id: "LINKEDIN_CLIENT_ID", secret: "LINKEDIN_CLIENT_SECRET" },
+  TIKTOK: { id: "TIKTOK_CLIENT_KEY", secret: "TIKTOK_CLIENT_SECRET" },
+}
+
+async function resolveCredentials(platform: PlatformType): Promise<{ clientId: string; clientSecret: string }> {
+  const group = PLATFORM_CREDENTIAL_GROUP[platform]
+
+  try {
+    const { prisma } = await import("@/lib/prisma")
+    if (!prisma) throw new Error("No DB")
+    const cred = await prisma.platformCredential.findUnique({
+      where: { platform: group as any },
+    })
+    if (cred?.clientId && cred?.clientSecret) {
+      return { clientId: cred.clientId, clientSecret: cred.clientSecret }
+    }
+  } catch {}
+
+  const env = ENV_FALLBACKS[group]
+  return {
+    clientId: process.env[env.id] || "",
+    clientSecret: process.env[env.secret] || "",
+  }
+}
+
+const SCOPES: Record<PlatformType, string[]> = {
+  GOOGLE_ANALYTICS: ["https://www.googleapis.com/auth/analytics.readonly"],
+  SEARCH_CONSOLE: ["https://www.googleapis.com/auth/webmasters.readonly"],
+  YOUTUBE: ["https://www.googleapis.com/auth/youtube.readonly", "https://www.googleapis.com/auth/yt-analytics.readonly"],
+  INSTAGRAM: ["instagram_basic", "instagram_manage_insights", "pages_show_list"],
+  FACEBOOK: ["pages_show_list", "pages_read_engagement", "read_insights"],
+  LINKEDIN: ["r_organization_social", "rw_organization_admin"],
+  TIKTOK: ["user.info.basic", "video.list"],
+}
+
+export async function getOAuthConfigAsync(platform: PlatformType): Promise<OAuthConfig> {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.AUTH_URL || "http://localhost:3000"
+  const creds = await resolveCredentials(platform)
+  return {
+    clientId: creds.clientId,
+    clientSecret: creds.clientSecret,
+    redirectUri: `${baseUrl}/api/integrations/callback?platform=${platform}`,
+    scopes: SCOPES[platform],
+  }
+}
+
+export function getOAuthConfig(platform: PlatformType): OAuthConfig {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.AUTH_URL || "http://localhost:3000"
+  const group = PLATFORM_CREDENTIAL_GROUP[platform]
+  const env = ENV_FALLBACKS[group]
+  return {
+    clientId: process.env[env.id] || "",
+    clientSecret: process.env[env.secret] || "",
+    redirectUri: `${baseUrl}/api/integrations/callback?platform=${platform}`,
+    scopes: SCOPES[platform],
+  }
+}
+
+export async function getOAuthUrl(platform: PlatformType, state: string): Promise<string> {
+  const config = await getOAuthConfigAsync(platform)
 
   switch (platform) {
     case "GOOGLE_ANALYTICS":
@@ -151,7 +158,7 @@ export async function exchangeCodeForTokens(
   platform: PlatformType,
   code: string
 ): Promise<TokenResponse> {
-  const config = getOAuthConfig(platform)
+  const config = await getOAuthConfigAsync(platform)
 
   switch (platform) {
     case "GOOGLE_ANALYTICS":
@@ -218,7 +225,7 @@ export async function refreshAccessToken(
   platform: PlatformType,
   refreshToken: string
 ): Promise<TokenResponse> {
-  const config = getOAuthConfig(platform)
+  const config = await getOAuthConfigAsync(platform)
 
   switch (platform) {
     case "GOOGLE_ANALYTICS":
@@ -264,7 +271,6 @@ export async function refreshAccessToken(
       return data.data ?? data
     }
     default:
-      // Facebook/Instagram long-lived tokens don't use refresh_token
       throw new Error(`Refresh not supported for ${platform}`)
   }
 }
