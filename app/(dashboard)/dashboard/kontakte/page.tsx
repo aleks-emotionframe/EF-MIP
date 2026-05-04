@@ -177,10 +177,10 @@ export default function KontaktePage() {
           <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Verwalte deine Empfänger und Gruppen.</p>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => setShowGroupModal(true)} className="flex items-center gap-1.5 rounded-md border border-gray-200 dark:border-white/[0.06] px-3 py-2.5 text-[12px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
+          <button onClick={() => setShowGroupModal(true)} className="flex items-center gap-1.5 rounded border border-gray-200 dark:border-white/[0.06] px-3 py-2.5 text-[12px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
             <Tag className="h-3.5 w-3.5" />Neue Gruppe
           </button>
-          <button onClick={openCreate} className="flex items-center gap-1.5 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
+          <button onClick={openCreate} className="flex items-center gap-1.5 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
             <UserPlus className="h-3.5 w-3.5" />Kontakt hinzufügen
           </button>
         </div>
@@ -188,19 +188,19 @@ export default function KontaktePage() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{contacts.length}</p>
           <p className="text-[11px] text-gray-400">Gesamt</p>
         </div>
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <p className="text-[20px] font-bold text-emerald-600">{activeCount}</p>
           <p className="text-[11px] text-gray-400">Aktiv</p>
         </div>
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{groups.length}</p>
           <p className="text-[11px] text-gray-400">Gruppen</p>
         </div>
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{contacts.filter((c) => c.status === "unsubscribed").length}</p>
           <p className="text-[11px] text-gray-400">Abgemeldet</p>
         </div>
@@ -209,13 +209,13 @@ export default function KontaktePage() {
       {/* Groups */}
       <div className="flex gap-2 overflow-x-auto pb-1">
         <button onClick={() => setFilterGroup("all")}
-          className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${filterGroup === "all" ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"}`}>
+          className={`rounded px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${filterGroup === "all" ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"}`}>
           Alle <span className="text-[10px] ml-1 opacity-70">{contacts.length}</span>
         </button>
         {groups.map((g) => (
           <div key={g.id} className="relative group/tag">
             <button onClick={() => setFilterGroup(g.id)}
-              className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all flex items-center gap-1.5 ${filterGroup === g.id ? "text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"}`}
+              className={`rounded px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all flex items-center gap-1.5 ${filterGroup === g.id ? "text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"}`}
               style={filterGroup === g.id ? { backgroundColor: g.color } : {}}>
               <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: filterGroup === g.id ? "white" : g.color }} />
               {g.name}
@@ -233,10 +233,10 @@ export default function KontaktePage() {
         <div className="flex-1 relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Name oder E-Mail suchen..."
-            className="w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white pl-10 pr-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
+            className="w-full rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white pl-10 pr-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
         </div>
         <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}
-          className="rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-3 py-2.5 text-[12px] text-gray-600 dark:text-gray-300 focus:border-[#00CEC9] focus:outline-none appearance-none pr-8">
+          className="rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-3 py-2.5 text-[12px] text-gray-600 dark:text-gray-300 focus:border-[#00CEC9] focus:outline-none appearance-none pr-8">
           <option value="all">Alle Status</option>
           <option value="active">Aktiv</option>
           <option value="unsubscribed">Abgemeldet</option>
@@ -244,10 +244,10 @@ export default function KontaktePage() {
         </select>
         {selected.size > 0 && (
           <div className="flex gap-2">
-            <button onClick={() => setShowAssignModal(true)} className="flex items-center gap-1.5 rounded-md border border-[#00CEC9]/30 bg-[#00CEC9]/[0.06] px-3 py-2.5 text-[12px] font-medium text-[#00CEC9]">
+            <button onClick={() => setShowAssignModal(true)} className="flex items-center gap-1.5 rounded border border-[#00CEC9]/30 bg-[#00CEC9]/[0.06] px-3 py-2.5 text-[12px] font-medium text-[#00CEC9]">
               <Tag className="h-3.5 w-3.5" />{selected.size} → Gruppe zuweisen
             </button>
-            <button onClick={handleBulkDelete} className="flex items-center gap-1.5 rounded-md border border-red-200 bg-red-50 px-3 py-2.5 text-[12px] font-medium text-red-600">
+            <button onClick={handleBulkDelete} className="flex items-center gap-1.5 rounded border border-red-200 bg-red-50 px-3 py-2.5 text-[12px] font-medium text-red-600">
               <Trash2 className="h-3.5 w-3.5" />Löschen
             </button>
           </div>
@@ -255,7 +255,7 @@ export default function KontaktePage() {
       </div>
 
       {/* Contact Table */}
-      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
+      <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-[13px]">
             <thead>
@@ -301,14 +301,14 @@ export default function KontaktePage() {
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-end gap-1">
-                        <button onClick={() => openEdit(contact)} className="rounded-lg p-2 text-gray-400 hover:text-[#00CEC9] hover:bg-[#00CEC9]/[0.06] transition-colors"><Pencil className="h-3.5 w-3.5" /></button>
+                        <button onClick={() => openEdit(contact)} className="rounded p-2 text-gray-400 hover:text-[#00CEC9] hover:bg-[#00CEC9]/[0.06] transition-colors"><Pencil className="h-3.5 w-3.5" /></button>
                         {deleteConfirm === contact.id ? (
                           <div className="flex gap-1">
-                            <button onClick={() => handleDelete(contact.id)} className="rounded-lg px-2 py-1 text-[10px] bg-red-500 text-white">Ja</button>
-                            <button onClick={() => setDeleteConfirm(null)} className="rounded-lg px-2 py-1 text-[10px] bg-gray-100 text-gray-600">Nein</button>
+                            <button onClick={() => handleDelete(contact.id)} className="rounded px-2 py-1 text-[10px] bg-red-500 text-white">Ja</button>
+                            <button onClick={() => setDeleteConfirm(null)} className="rounded px-2 py-1 text-[10px] bg-gray-100 text-gray-600">Nein</button>
                           </div>
                         ) : (
-                          <button onClick={() => setDeleteConfirm(contact.id)} className="rounded-lg p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"><Trash2 className="h-3.5 w-3.5" /></button>
+                          <button onClick={() => setDeleteConfirm(contact.id)} className="rounded p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"><Trash2 className="h-3.5 w-3.5" /></button>
                         )}
                       </div>
                     </td>
@@ -333,26 +333,26 @@ export default function KontaktePage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowModal(false)} />
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-lg mx-4 rounded-lg bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
+              className="relative z-10 w-full max-w-lg mx-4 rounded bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
               <div className="flex items-center justify-between mb-5">
                 <h2 className="text-[16px] font-bold text-gray-900 dark:text-white">{editingContact ? "Kontakt bearbeiten" : "Neuer Kontakt"}</h2>
-                <button onClick={() => setShowModal(false)} className="rounded-lg p-1 hover:bg-gray-100 transition-colors"><X className="h-5 w-5 text-gray-400" /></button>
+                <button onClick={() => setShowModal(false)} className="rounded p-1 hover:bg-gray-100 transition-colors"><X className="h-5 w-5 text-gray-400" /></button>
               </div>
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Vorname</label>
-                    <input value={formFirst} onChange={(e) => setFormFirst(e.target.value)} className="w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="Anna" /></div>
+                    <input value={formFirst} onChange={(e) => setFormFirst(e.target.value)} className="w-full rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="Anna" /></div>
                   <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Nachname</label>
-                    <input value={formLast} onChange={(e) => setFormLast(e.target.value)} className="w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="Müller" /></div>
+                    <input value={formLast} onChange={(e) => setFormLast(e.target.value)} className="w-full rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="Müller" /></div>
                 </div>
                 <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">E-Mail</label>
-                  <input type="email" value={formEmail} onChange={(e) => setFormEmail(e.target.value)} className="w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="anna@beispiel.ch" /></div>
+                  <input type="email" value={formEmail} onChange={(e) => setFormEmail(e.target.value)} className="w-full rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" placeholder="anna@beispiel.ch" /></div>
                 <div>
                   <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Gruppen</label>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {groups.map((g) => (
                       <button key={g.id} onClick={() => setFormGroups((prev) => prev.includes(g.id) ? prev.filter((x) => x !== g.id) : [...prev, g.id])}
-                        className={`rounded-lg px-3 py-1.5 text-[12px] font-medium transition-all flex items-center gap-1.5 ${formGroups.includes(g.id) ? "text-white" : "bg-gray-50 text-gray-600 border border-gray-200"}`}
+                        className={`rounded px-3 py-1.5 text-[12px] font-medium transition-all flex items-center gap-1.5 ${formGroups.includes(g.id) ? "text-white" : "bg-gray-50 text-gray-600 border border-gray-200"}`}
                         style={formGroups.includes(g.id) ? { backgroundColor: g.color } : {}}>
                         {formGroups.includes(g.id) && <Check className="h-3 w-3" />}
                         {g.name}
@@ -361,8 +361,8 @@ export default function KontaktePage() {
                   </div>
                 </div>
                 <div className="flex gap-3 pt-2">
-                  <button onClick={() => setShowModal(false)} className="flex-1 rounded-md border border-gray-200 dark:border-white/[0.06] py-2.5 text-[13px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">Abbrechen</button>
-                  <button onClick={handleSave} disabled={!formEmail} className="flex-1 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50 transition-colors">{editingContact ? "Speichern" : "Erstellen"}</button>
+                  <button onClick={() => setShowModal(false)} className="flex-1 rounded border border-gray-200 dark:border-white/[0.06] py-2.5 text-[13px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">Abbrechen</button>
+                  <button onClick={handleSave} disabled={!formEmail} className="flex-1 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50 transition-colors">{editingContact ? "Speichern" : "Erstellen"}</button>
                 </div>
               </div>
             </motion.div>
@@ -376,14 +376,14 @@ export default function KontaktePage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowGroupModal(false)} />
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-sm mx-4 rounded-lg bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
+              className="relative z-10 w-full max-w-sm mx-4 rounded bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
               <h2 className="text-[16px] font-bold text-gray-900 mb-4">Neue Gruppe</h2>
               <input value={newGroupName} onChange={(e) => setNewGroupName(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleCreateGroup()}
                 placeholder="Gruppenname..." autoFocus
-                className="w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
+                className="w-full rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
               <div className="flex gap-3 mt-4">
-                <button onClick={() => setShowGroupModal(false)} className="flex-1 rounded-md border border-gray-200 dark:border-white/[0.06] py-2.5 text-[13px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">Abbrechen</button>
-                <button onClick={handleCreateGroup} disabled={!newGroupName.trim()} className="flex-1 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50 transition-colors">Erstellen</button>
+                <button onClick={() => setShowGroupModal(false)} className="flex-1 rounded border border-gray-200 dark:border-white/[0.06] py-2.5 text-[13px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">Abbrechen</button>
+                <button onClick={handleCreateGroup} disabled={!newGroupName.trim()} className="flex-1 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50 transition-colors">Erstellen</button>
               </div>
             </motion.div>
           </div>
@@ -396,20 +396,20 @@ export default function KontaktePage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowAssignModal(false)} />
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-sm mx-4 rounded-lg bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
+              className="relative z-10 w-full max-w-sm mx-4 rounded bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
               <h2 className="text-[16px] font-bold text-gray-900 mb-1">Gruppe zuweisen</h2>
               <p className="text-[12px] text-gray-500 dark:text-gray-400 mb-4">{selected.size} Kontakt(e) einer Gruppe zuweisen</p>
               <div className="space-y-2">
                 {groups.map((g) => (
                   <button key={g.id} onClick={() => handleBulkAssign(g.id)}
-                    className="w-full flex items-center gap-3 rounded-md border border-gray-200 dark:border-white/[0.06] p-3 text-left hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
+                    className="w-full flex items-center gap-3 rounded border border-gray-200 dark:border-white/[0.06] p-3 text-left hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
                     <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: g.color }} />
                     <span className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{g.name}</span>
                     <span className="text-[11px] text-gray-400 ml-auto">{groupCounts[g.id] ?? 0} Kontakte</span>
                   </button>
                 ))}
               </div>
-              <button onClick={() => setShowAssignModal(false)} className="w-full rounded-md border border-gray-200 py-2.5 mt-4 text-[13px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">Abbrechen</button>
+              <button onClick={() => setShowAssignModal(false)} className="w-full rounded border border-gray-200 py-2.5 mt-4 text-[13px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">Abbrechen</button>
             </motion.div>
           </div>
         )}

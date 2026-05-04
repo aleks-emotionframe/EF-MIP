@@ -130,7 +130,7 @@ export default function ABVergleichPage() {
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center gap-1.5 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all"
+          className="flex items-center gap-1.5 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all"
         >
           <Plus className="h-3.5 w-3.5" />
           Neuer Test
@@ -138,7 +138,7 @@ export default function ABVergleichPage() {
       </div>
 
       {/* Demo-Daten Badge */}
-      <div className="flex items-center gap-2 rounded-md bg-amber-50 border border-amber-200 px-3 py-2 text-[11px] text-amber-700 font-medium">
+      <div className="flex items-center gap-2 rounded bg-amber-50 border border-amber-200 px-3 py-2 text-[11px] text-amber-700 font-medium">
         <Sparkles className="h-3.5 w-3.5" />
         Demo-Daten – Aktiver A/B-Test mit simulierten Ergebnissen
       </div>
@@ -175,7 +175,7 @@ export default function ABVergleichPage() {
       </div>
 
       {/* ─── Performance-Vergleich Chart ────────────────────────── */}
-      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6">
+      <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6">
         <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Performance-Vergleich</h2>
         <p className="text-[11px] text-gray-400 mb-5">Metriken im direkten Vergleich (Demo-Daten)</p>
         <div className="h-[300px]">
@@ -203,9 +203,9 @@ export default function ABVergleichPage() {
       </div>
 
       {/* ─── KI-Analyse ─────────────────────────────────────────── */}
-      <div className="rounded-lg bg-gradient-to-br from-[#6C5CE7]/5 to-[#00CEC9]/5 border border-[#6C5CE7]/15 shadow-sm p-6">
+      <div className="rounded bg-gradient-to-br from-[#6C5CE7]/5 to-[#00CEC9]/5 border border-[#6C5CE7]/15 shadow-sm p-6">
         <div className="flex items-center gap-2 mb-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6C5CE7] to-[#00CEC9] flex items-center justify-center">
+          <div className="w-8 h-8 rounded bg-gradient-to-br from-[#6C5CE7] to-[#00CEC9] flex items-center justify-center">
             <Sparkles className="h-4 w-4 text-white" />
           </div>
           <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">KI-Analyse</h2>
@@ -238,7 +238,7 @@ export default function ABVergleichPage() {
       </div>
 
       {/* ─── Vergangene Tests ───────────────────────────────────── */}
-      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6">
+      <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6">
         <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Vergangene Tests</h2>
         <p className="text-[11px] text-gray-400 mb-4">Abgeschlossene A/B-Tests (Demo-Daten)</p>
         <div className="overflow-x-auto">
@@ -301,7 +301,7 @@ export default function ABVergleichPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="w-full max-w-lg rounded-lg bg-white dark:bg-[#1E293B] shadow-xl p-6 space-y-5"
+              className="w-full max-w-lg rounded bg-white dark:bg-[#1E293B] shadow-xl p-6 space-y-5"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
@@ -310,7 +310,7 @@ export default function ABVergleichPage() {
                   <GitCompare className="h-5 w-5 text-[#00CEC9]" />
                   <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Neuer A/B-Test</h2>
                 </div>
-                <button onClick={() => setShowModal(false)} className="rounded-lg p-1.5 hover:bg-gray-100 transition-colors">
+                <button onClick={() => setShowModal(false)} className="rounded p-1.5 hover:bg-gray-100 transition-colors">
                   <X className="h-4 w-4 text-gray-400" />
                 </button>
               </div>
@@ -323,7 +323,7 @@ export default function ABVergleichPage() {
                   value={testName}
                   onChange={(e) => setTestName(e.target.value)}
                   placeholder="z.B. Hook-Vergleich Carousel"
-                  className="mt-1.5 w-full rounded-md border border-gray-200 px-4 py-2.5 text-[13px] text-[#0F172A] placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/30 focus:border-[#00CEC9] transition-all"
+                  className="mt-1.5 w-full rounded border border-gray-200 px-4 py-2.5 text-[13px] text-[#0F172A] placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/30 focus:border-[#00CEC9] transition-all"
                 />
               </div>
 
@@ -333,7 +333,7 @@ export default function ABVergleichPage() {
                 <select
                   value={testPlatform}
                   onChange={(e) => setTestPlatform(e.target.value)}
-                  className="mt-1.5 w-full rounded-md border border-gray-200 px-4 py-2.5 text-[13px] text-[#0F172A] bg-white focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/30 focus:border-[#00CEC9] transition-all"
+                  className="mt-1.5 w-full rounded border border-gray-200 px-4 py-2.5 text-[13px] text-[#0F172A] bg-white focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/30 focus:border-[#00CEC9] transition-all"
                 >
                   {Object.keys(PLATFORM_ICON).map((p) => (
                     <option key={p} value={p}>{p}</option>
@@ -352,7 +352,7 @@ export default function ABVergleichPage() {
                   onChange={(e) => setTextA(e.target.value)}
                   rows={3}
                   placeholder="Text der ersten Variante..."
-                  className="mt-1.5 w-full rounded-md border border-gray-200 px-4 py-2.5 text-[13px] text-[#0F172A] placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/30 focus:border-[#00CEC9] transition-all resize-none"
+                  className="mt-1.5 w-full rounded border border-gray-200 px-4 py-2.5 text-[13px] text-[#0F172A] placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/30 focus:border-[#00CEC9] transition-all resize-none"
                 />
               </div>
 
@@ -367,7 +367,7 @@ export default function ABVergleichPage() {
                   onChange={(e) => setTextB(e.target.value)}
                   rows={3}
                   placeholder="Text der zweiten Variante..."
-                  className="mt-1.5 w-full rounded-md border border-gray-200 px-4 py-2.5 text-[13px] text-[#0F172A] placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]/30 focus:border-[#6C5CE7] transition-all resize-none"
+                  className="mt-1.5 w-full rounded border border-gray-200 px-4 py-2.5 text-[13px] text-[#0F172A] placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]/30 focus:border-[#6C5CE7] transition-all resize-none"
                 />
               </div>
 
@@ -375,13 +375,13 @@ export default function ABVergleichPage() {
               <div className="flex items-center gap-3 pt-1">
                 <button
                   onClick={() => setShowModal(false)}
-                  className="flex-1 rounded-md border border-gray-200 py-2.5 text-[12px] font-semibold text-gray-500 hover:bg-gray-50 transition-colors"
+                  className="flex-1 rounded border border-gray-200 py-2.5 text-[12px] font-semibold text-gray-500 hover:bg-gray-50 transition-colors"
                 >
                   Abbrechen
                 </button>
                 <button
                   onClick={() => setShowModal(false)}
-                  className="flex-1 flex items-center justify-center gap-1.5 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all"
+                  className="flex-1 flex items-center justify-center gap-1.5 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all"
                 >
                   <Sparkles className="h-3.5 w-3.5" />
                   KI-Prognose starten
@@ -403,7 +403,7 @@ function VariantCard({ variant, isWinner }: { variant: Variant; isWinner: boolea
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: variant.label === "A" ? 0 : 0.15 }}
-      className={`relative rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden transition-shadow ${
+      className={`relative rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden transition-shadow ${
         isWinner ? "ring-2 ring-green-400/60 shadow-green-100" : ""
       }`}
     >
@@ -423,7 +423,7 @@ function VariantCard({ variant, isWinner }: { variant: Variant; isWinner: boolea
       {/* Label Badge */}
       <div className="p-5 pb-0">
         <span
-          className="inline-flex items-center justify-center w-7 h-7 rounded-lg text-white text-[13px] font-bold"
+          className="inline-flex items-center justify-center w-7 h-7 rounded text-white text-[13px] font-bold"
           style={{ backgroundColor: variant.color }}
         >
           {variant.label}
@@ -432,7 +432,7 @@ function VariantCard({ variant, isWinner }: { variant: Variant; isWinner: boolea
 
       {/* Mock Post Preview */}
       <div className="p-5">
-        <div className="rounded-md border border-gray-100 overflow-hidden">
+        <div className="rounded border border-gray-100 overflow-hidden">
           {/* Image placeholder */}
           <div
             className="h-44 flex flex-col items-center justify-center gap-2"
@@ -469,7 +469,7 @@ function VariantCard({ variant, isWinner }: { variant: Variant; isWinner: boolea
         </div>
 
         {/* KI-Prognose */}
-        <div className="mt-4 rounded-md bg-gray-50 p-3.5 space-y-2">
+        <div className="mt-4 rounded bg-gray-50 p-3.5 space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-semibold text-gray-500 flex items-center gap-1">
               <Sparkles className="h-3 w-3 text-[#F97316]" />
@@ -521,7 +521,7 @@ function MetricTile({
   color: string
 }) {
   return (
-    <div className="rounded-md bg-gray-50 p-3 flex items-center gap-2.5">
+    <div className="rounded bg-gray-50 p-3 flex items-center gap-2.5">
       <Icon className="h-4 w-4 shrink-0" style={{ color }} />
       <div>
         <p className="text-[13px] font-bold text-[#0F172A] dark:text-white">{fmt(value)}</p>

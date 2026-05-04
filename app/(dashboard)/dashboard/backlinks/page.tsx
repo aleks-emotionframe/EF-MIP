@@ -101,7 +101,7 @@ export default function BacklinksPage() {
         <div className="relative">
           <button
             onClick={() => setDomainOpen(!domainOpen)}
-            className="flex items-center gap-2 rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-4 py-2.5 text-[13px] font-medium text-gray-700 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04] transition-colors"
+            className="flex items-center gap-2 rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-4 py-2.5 text-[13px] font-medium text-gray-700 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04] transition-colors"
           >
             <Globe className="h-3.5 w-3.5 text-gray-400" />
             {selectedDomain}
@@ -118,7 +118,7 @@ export default function BacklinksPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
                 transition={{ duration: 0.15 }}
-                className="absolute right-0 mt-1 w-56 rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] shadow-lg z-20 overflow-hidden"
+                className="absolute right-0 mt-1 w-56 rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] shadow-lg z-20 overflow-hidden"
               >
                 {domains.map((d) => (
                   <button
@@ -183,7 +183,7 @@ function NotConnectedState() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden"
+        className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden"
       >
         <div className="p-8 md:p-10">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
@@ -191,7 +191,7 @@ function NotConnectedState() {
             <div className="flex-1 space-y-6">
               {/* Icon + Title */}
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-[#00CEC9]/10 to-[#6C5CE7]/10 flex items-center justify-center">
+                <div className="w-14 h-14 rounded bg-gradient-to-br from-[#00CEC9]/10 to-[#6C5CE7]/10 flex items-center justify-center">
                   <Search className="h-7 w-7 text-[#6C5CE7]" />
                 </div>
                 <div>
@@ -216,9 +216,9 @@ function NotConnectedState() {
                 {features.map((f) => (
                   <div
                     key={f.title}
-                    className="flex items-start gap-3 rounded-md border border-gray-100 bg-gray-50/50 p-3.5"
+                    className="flex items-start gap-3 rounded border border-gray-100 bg-gray-50/50 p-3.5"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-8 h-8 rounded bg-[#00CEC9]/10 flex items-center justify-center shrink-0 mt-0.5">
                       <f.icon className="h-4 w-4 text-[#00CEC9]" />
                     </div>
                     <div>
@@ -236,7 +236,7 @@ function NotConnectedState() {
                 href="/dashboard/settings/integrations"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-[#6C5CE7] to-[#00CEC9] px-6 py-3.5 text-[14px] font-semibold text-white shadow-lg shadow-[#6C5CE7]/20 hover:shadow-xl hover:shadow-[#6C5CE7]/30 transition-shadow"
+                className="inline-flex items-center gap-2 rounded bg-gradient-to-r from-[#6C5CE7] to-[#00CEC9] px-6 py-3.5 text-[14px] font-semibold text-white shadow-lg shadow-[#6C5CE7]/20 hover:shadow-xl hover:shadow-[#6C5CE7]/30 transition-shadow"
               >
                 <ExternalLink className="h-4 w-4" />
                 Search Console verbinden
@@ -246,7 +246,7 @@ function NotConnectedState() {
 
             {/* Right: Dashboard Preview Mockup (blurred placeholder) */}
             <div className="w-full lg:w-[380px] shrink-0">
-              <div className="relative rounded-lg border border-gray-200/60 bg-gradient-to-br from-gray-50 to-gray-100/50 p-5 overflow-hidden">
+              <div className="relative rounded border border-gray-200/60 bg-gradient-to-br from-gray-50 to-gray-100/50 p-5 overflow-hidden">
                 {/* Blur overlay */}
                 <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] z-10 flex items-center justify-center">
                   <div className="flex flex-col items-center gap-2">
@@ -267,7 +267,7 @@ function NotConnectedState() {
                   ].map((s) => (
                     <div
                       key={s.label}
-                      className="rounded-md bg-white/80 p-3"
+                      className="rounded bg-white/80 p-3"
                     >
                       <div className="text-[10px] text-gray-400">{s.label}</div>
                       <div className="text-[16px] font-bold text-gray-600 mt-0.5">
@@ -278,7 +278,7 @@ function NotConnectedState() {
                 </div>
 
                 {/* Fake chart lines */}
-                <div className="rounded-md bg-white/80 p-3 mb-3">
+                <div className="rounded bg-white/80 p-3 mb-3">
                   <div className="text-[10px] text-gray-400 mb-2">Wachstum</div>
                   <svg
                     viewBox="0 0 200 60"
@@ -307,7 +307,7 @@ function NotConnectedState() {
                   {[1, 2, 3].map((i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-2 rounded-lg bg-white/80 p-2"
+                      className="flex items-center gap-2 rounded bg-white/80 p-2"
                     >
                       <div className="w-4 h-4 rounded bg-gray-200" />
                       <div className="flex-1 h-2.5 rounded bg-gray-200" />
@@ -326,7 +326,7 @@ function NotConnectedState() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.15 }}
-        className="rounded-lg border border-blue-100 bg-blue-50/50 p-5 flex items-start gap-3"
+        className="rounded border border-blue-100 bg-blue-50/50 p-5 flex items-start gap-3"
       >
         <Info className="h-4 w-4 text-blue-500 mt-0.5 shrink-0" />
         <div>
@@ -426,7 +426,7 @@ function ConnectedState({ domain }: { domain: string }) {
       className="space-y-6"
     >
       {/* Demo-Daten Banner */}
-      <div className="rounded-md border border-amber-100 bg-amber-50/50 p-4 flex items-start gap-3">
+      <div className="rounded border border-amber-100 bg-amber-50/50 p-4 flex items-start gap-3">
         <Info className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
         <div>
           <p className="text-[13px] text-amber-800 font-medium">Demo-Daten</p>
@@ -477,14 +477,14 @@ function ConnectedState({ domain }: { domain: string }) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: i * 0.06 }}
-            className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5"
+            className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5"
           >
             <div className="flex items-center justify-between mb-3">
               <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider">
                 {stat.label}
               </p>
               <div
-                className={`w-8 h-8 rounded-lg ${stat.bg} flex items-center justify-center`}
+                className={`w-8 h-8 rounded ${stat.bg} flex items-center justify-center`}
               >
                 <stat.icon className="h-4 w-4" style={{ color: stat.color }} />
               </div>
@@ -502,7 +502,7 @@ function ConnectedState({ domain }: { domain: string }) {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.15 }}
-        className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
+        className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6"
       >
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -571,7 +571,7 @@ function ConnectedState({ domain }: { domain: string }) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.2 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">
             Top Verweisende Domains
@@ -602,7 +602,7 @@ function ConnectedState({ domain }: { domain: string }) {
                   >
                     <td className="py-3">
                       <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-md bg-gray-100 flex items-center justify-center">
+                        <div className="w-6 h-6 rounded bg-gray-100 flex items-center justify-center">
                           <Globe className="h-3 w-3 text-gray-400" />
                         </div>
                         <span className="text-[13px] font-medium text-[#0F172A] dark:text-white">
@@ -615,7 +615,7 @@ function ConnectedState({ domain }: { domain: string }) {
                     </td>
                     <td className="text-right py-3">
                       <span
-                        className={`inline-flex items-center justify-center w-10 h-6 rounded-md text-[11px] font-bold ${
+                        className={`inline-flex items-center justify-center w-10 h-6 rounded text-[11px] font-bold ${
                           d.authority >= 80
                             ? "bg-emerald-50 text-emerald-700"
                             : d.authority >= 60
@@ -655,7 +655,7 @@ function ConnectedState({ domain }: { domain: string }) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.25 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">
             Neue Backlinks
@@ -664,11 +664,11 @@ function ConnectedState({ domain }: { domain: string }) {
             {newBacklinks.map((bl, i) => (
               <div
                 key={i}
-                className="rounded-md border border-gray-100 p-3.5 hover:border-gray-200 transition-colors"
+                className="rounded border border-gray-100 p-3.5 hover:border-gray-200 transition-colors"
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-md bg-emerald-50 flex items-center justify-center">
+                    <div className="w-6 h-6 rounded bg-emerald-50 flex items-center justify-center">
                       <ArrowUpRight className="h-3 w-3 text-emerald-600" />
                     </div>
                     <span className="text-[12px] font-semibold text-[#0F172A] dark:text-white truncate max-w-[200px]">
@@ -702,10 +702,10 @@ function ConnectedState({ domain }: { domain: string }) {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.3 }}
-        className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden"
+        className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden"
       >
         <div className="flex items-center gap-3 px-6 pt-6 pb-4">
-          <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center">
+          <div className="w-8 h-8 rounded bg-red-50 flex items-center justify-center">
             <AlertTriangle className="h-4 w-4 text-red-500" />
           </div>
           <div>
@@ -721,14 +721,14 @@ function ConnectedState({ domain }: { domain: string }) {
           {toxicLinks.map((link, i) => (
             <div
               key={i}
-              className={`flex items-start gap-3 rounded-md p-4 ${
+              className={`flex items-start gap-3 rounded p-4 ${
                 link.risk === "hoch"
                   ? "bg-red-50 border border-red-100"
                   : "bg-amber-50 border border-amber-100"
               }`}
             >
               <div
-                className={`w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5 ${
+                className={`w-6 h-6 rounded flex items-center justify-center shrink-0 mt-0.5 ${
                   link.risk === "hoch" ? "bg-red-100" : "bg-amber-100"
                 }`}
               >

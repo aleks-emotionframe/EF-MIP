@@ -36,7 +36,7 @@ export function MobileNav() {
               href={item.href}
               aria-label={item.label}
               aria-current={isActive ? "page" : undefined}
-              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-3 rounded-md transition-colors ${
+              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-3 rounded transition-colors ${
                 isActive ? "text-[#00CEC9]" : "text-gray-400"
               }`}
             >

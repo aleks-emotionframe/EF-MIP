@@ -5,7 +5,7 @@ export default function LoginPage() {
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-[#F0F5F9]">
       <div className="relative z-10 w-full max-w-[420px] mx-4">
-        <div className="rounded-lg bg-white p-8 shadow-sm">
+        <div className="rounded bg-white p-8 shadow-sm">
           <div className="flex flex-col items-center mb-8">
             <EFLogo size={48} />
             <p className="mt-4 text-[13px] text-gray-400">

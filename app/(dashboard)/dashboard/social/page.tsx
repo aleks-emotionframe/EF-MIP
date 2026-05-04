@@ -153,7 +153,7 @@ export default function SocialPage() {
           <button
             key={p.key}
             onClick={() => setActive(p.key)}
-            className={`flex items-center gap-2 rounded-md px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-all ${
+            className={`flex items-center gap-2 rounded px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-all ${
               active === p.key
                 ? "text-white shadow-md"
                 : "bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"
@@ -169,9 +169,9 @@ export default function SocialPage() {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {data.kpis.map((kpi) => (
-          <div key={kpi.label} className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+          <div key={kpi.label} className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
             <div className="flex items-center justify-between mb-2">
-              <div className={`w-8 h-8 rounded-lg ${platform.bg} flex items-center justify-center`}>
+              <div className={`w-8 h-8 rounded ${platform.bg} flex items-center justify-center`}>
                 <kpi.icon className="h-4 w-4" style={{ color: platform.color }} />
               </div>
               <span className={`flex items-center gap-0.5 text-[11px] font-bold ${kpi.change >= 0 ? "text-emerald-600" : "text-red-500"}`}>
@@ -187,7 +187,7 @@ export default function SocialPage() {
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Follower-Entwicklung</h3>
           <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-4">Letzte 7 Tage</p>
           <div className="h-[220px]">
@@ -209,7 +209,7 @@ export default function SocialPage() {
           </div>
         </div>
 
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Tägliche Reichweite</h3>
           <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-4">Letzte 7 Tage</p>
           <div className="h-[220px]">
@@ -227,12 +227,12 @@ export default function SocialPage() {
       </div>
 
       {/* Top-Beiträge */}
-      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+      <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">Top-Beiträge</h3>
         <div className="space-y-3">
           {data.topPosts.map((post, i) => (
-            <div key={i} className="flex items-center gap-4 rounded-lg border border-gray-50 dark:border-white/[0.06] p-3.5 hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
-              <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/[0.04] flex items-center justify-center text-[12px] font-bold text-gray-400 dark:text-gray-500 shrink-0">
+            <div key={i} className="flex items-center gap-4 rounded border border-gray-50 dark:border-white/[0.06] p-3.5 hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
+              <div className="w-8 h-8 rounded bg-gray-100 dark:bg-white/[0.04] flex items-center justify-center text-[12px] font-bold text-gray-400 dark:text-gray-500 shrink-0">
                 {i + 1}
               </div>
               <div className="flex-1 min-w-0">

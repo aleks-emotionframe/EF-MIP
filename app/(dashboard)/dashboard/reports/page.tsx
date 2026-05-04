@@ -184,14 +184,14 @@ export default function ReportsPage() {
         {/* ─── LEFT: Builder (40%) ───────────────────────────── */}
         <div className="lg:col-span-2 space-y-4">
           {/* Time Period */}
-          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+          <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
             <label className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3 block">Zeitraum</label>
             <div className="grid grid-cols-2 gap-2">
               {TIME_PERIODS.map((tp) => (
                 <button
                   key={tp.key}
                   onClick={() => { setPeriod(tp.key); setGenerated(false) }}
-                  className={`rounded-md py-2.5 text-[12px] font-medium transition-all ${
+                  className={`rounded py-2.5 text-[12px] font-medium transition-all ${
                     period === tp.key
                       ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25"
                       : "bg-gray-50 dark:bg-white/[0.04] text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/[0.06]"
@@ -204,7 +204,7 @@ export default function ReportsPage() {
           </div>
 
           {/* Sections (Drag & Drop) */}
-          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+          <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
             <div className="flex items-center justify-between mb-3">
               <label className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Berichts-Abschnitte</label>
               <span className="text-[11px] text-gray-400 dark:text-gray-500">{sections.length} Abschnitte</span>
@@ -220,12 +220,12 @@ export default function ReportsPage() {
                 <Reorder.Item
                   key={section.id}
                   value={section}
-                  className="rounded-md border border-gray-200/80 dark:border-white/[0.06] bg-white/80 dark:bg-[#1E293B]/80 backdrop-blur-sm p-3.5 flex items-center gap-3 cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md transition-shadow"
+                  className="rounded border border-gray-200/80 dark:border-white/[0.06] bg-white/80 dark:bg-[#1E293B]/80 backdrop-blur-sm p-3.5 flex items-center gap-3 cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md transition-shadow"
                   whileDrag={{ scale: 1.02, boxShadow: "0 8px 25px rgba(0,0,0,0.1)" }}
                 >
                   <GripVertical className="h-4 w-4 text-gray-300 shrink-0" />
                   <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                    className="w-8 h-8 rounded flex items-center justify-center shrink-0"
                     style={{ backgroundColor: `${section.color}10` }}
                   >
                     <section.icon className="h-4 w-4" style={{ color: section.color }} />
@@ -235,7 +235,7 @@ export default function ReportsPage() {
                   </span>
                   <button
                     onClick={() => removeSection(section.id)}
-                    className="rounded-lg p-1 text-gray-300 hover:text-red-500 hover:bg-red-50 transition-colors shrink-0"
+                    className="rounded p-1 text-gray-300 hover:text-red-500 hover:bg-red-50 transition-colors shrink-0"
                   >
                     <X className="h-3.5 w-3.5" />
                   </button>
@@ -248,7 +248,7 @@ export default function ReportsPage() {
               <button
                 onClick={() => setShowAddMenu(!showAddMenu)}
                 disabled={availableToAdd.length === 0}
-                className="w-full flex items-center justify-center gap-1.5 rounded-md border-2 border-dashed border-gray-200 dark:border-white/[0.06] py-3 text-[12px] font-medium text-gray-400 hover:text-[#00CEC9] hover:border-[#00CEC9]/30 disabled:opacity-40 disabled:hover:text-gray-400 disabled:hover:border-gray-200 transition-colors"
+                className="w-full flex items-center justify-center gap-1.5 rounded border-2 border-dashed border-gray-200 dark:border-white/[0.06] py-3 text-[12px] font-medium text-gray-400 hover:text-[#00CEC9] hover:border-[#00CEC9]/30 disabled:opacity-40 disabled:hover:text-gray-400 disabled:hover:border-gray-200 transition-colors"
               >
                 <Plus className="h-3.5 w-3.5" />
                 Abschnitt hinzufügen
@@ -260,15 +260,15 @@ export default function ReportsPage() {
                     initial={{ opacity: 0, y: -4 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
-                    className="absolute z-50 bottom-full mb-2 w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] shadow-lg p-1 max-h-64 overflow-y-auto"
+                    className="absolute z-50 bottom-full mb-2 w-full rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] shadow-lg p-1 max-h-64 overflow-y-auto"
                   >
                     {availableToAdd.map((s) => (
                       <button
                         key={s.key}
                         onClick={() => addSection(s)}
-                        className="w-full flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
+                        className="w-full flex items-center gap-2.5 rounded px-3 py-2.5 text-[13px] text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
                       >
-                        <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{ backgroundColor: `${s.color}10` }}>
+                        <div className="w-7 h-7 rounded flex items-center justify-center" style={{ backgroundColor: `${s.color}10` }}>
                           <s.icon className="h-3.5 w-3.5" style={{ color: s.color }} />
                         </div>
                         {s.label}
@@ -285,7 +285,7 @@ export default function ReportsPage() {
             onClick={handleGenerate}
             disabled={generating || sections.length === 0}
             whileTap={{ scale: 0.97 }}
-            className={`w-full flex items-center justify-center gap-2 rounded-md py-3.5 text-[14px] font-semibold text-white transition-all disabled:opacity-50 ${
+            className={`w-full flex items-center justify-center gap-2 rounded py-3.5 text-[14px] font-semibold text-white transition-all disabled:opacity-50 ${
               generating
                 ? "bg-[#00CEC9]/70"
                 : "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] hover:shadow-lg hover:shadow-[#00CEC9]/30"
@@ -312,11 +312,11 @@ export default function ReportsPage() {
 
         {/* ─── RIGHT: Live Preview (60%) ─────────────────────── */}
         <div className="lg:col-span-3">
-          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
+          <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
             {/* PDF Header Preview */}
             <div className="bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] p-6 text-white">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
+                <div className="w-10 h-10 rounded bg-white/20 flex items-center justify-center">
                   <span className="font-bold text-sm">EF</span>
                 </div>
                 <div>
@@ -351,17 +351,17 @@ export default function ReportsPage() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ delay: idx * 0.05 }}
-                        className="rounded-md border border-gray-100 dark:border-white/[0.06] p-4"
+                        className="rounded border border-gray-100 dark:border-white/[0.06] p-4"
                       >
                         <div className="flex items-center gap-2 mb-3">
-                          <div className="w-6 h-6 rounded-md flex items-center justify-center" style={{ backgroundColor: `${section.color}10` }}>
+                          <div className="w-6 h-6 rounded flex items-center justify-center" style={{ backgroundColor: `${section.color}10` }}>
                             <section.icon className="h-3 w-3" style={{ color: section.color }} />
                           </div>
                           <h3 className="text-[14px] font-semibold text-[#0F172A] dark:text-white">{data.title}</h3>
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                           {data.metrics.map((m) => (
-                            <div key={m.label} className="bg-gray-50 dark:bg-white/[0.04] rounded-lg p-3">
+                            <div key={m.label} className="bg-gray-50 dark:bg-white/[0.04] rounded p-3">
                               <p className="text-[10px] text-gray-400 dark:text-gray-500 mb-0.5">{m.label}</p>
                               <div className="flex items-baseline gap-1.5">
                                 <span className="text-[15px] font-bold text-gray-900 dark:text-white">{m.value}</span>
@@ -377,7 +377,7 @@ export default function ReportsPage() {
                           ))}
                         </div>
                         {/* Chart placeholder */}
-                        <div className="mt-3 h-20 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100/50 flex items-center justify-center">
+                        <div className="mt-3 h-20 rounded bg-gradient-to-r from-gray-50 to-gray-100/50 flex items-center justify-center">
                           <div className="flex items-end gap-1 h-10">
                             {[35, 55, 45, 70, 60, 80, 65, 75, 85, 70, 90, 78].map((h, i) => (
                               <div

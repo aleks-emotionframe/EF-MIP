@@ -93,14 +93,14 @@ export default function ContentGeneratorPage() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* ─── LEFT: Config ──────────────────────────────────── */}
         <div className="lg:col-span-2 space-y-4">
-          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6 space-y-5">
+          <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6 space-y-5">
             {/* Platform */}
             <div>
               <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Plattform</label>
               <div className="flex gap-2 mt-2">
                 {PLATFORMS.map((p) => (
                   <button key={p.key} onClick={() => setPlatform(p.key)}
-                    className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-[12px] font-medium transition-all ${platform === p.key ? "text-white" : "bg-gray-50 text-gray-600 border border-gray-200"}`}
+                    className={`flex items-center gap-1.5 rounded px-3 py-2 text-[12px] font-medium transition-all ${platform === p.key ? "text-white" : "bg-gray-50 text-gray-600 border border-gray-200"}`}
                     style={platform === p.key ? { backgroundColor: p.color } : {}}>
                     <p.icon className="h-3.5 w-3.5" />{p.key}
                   </button>
@@ -114,7 +114,7 @@ export default function ContentGeneratorPage() {
               <textarea
                 value={topic} onChange={(e) => setTopic(e.target.value)}
                 rows={4} placeholder="Worüber soll der Beitrag sein? z.B. 'Neue Funktion unseres Analytics-Tools vorgestellen' oder 'Tipps für mehr Engagement auf Instagram'"
-                className="w-full rounded-md border border-gray-200 bg-white px-4 py-3 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none resize-none"
+                className="w-full rounded border border-gray-200 bg-white px-4 py-3 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none resize-none"
               />
             </div>
 
@@ -124,7 +124,7 @@ export default function ContentGeneratorPage() {
               <div className="flex flex-wrap gap-2 mt-2">
                 {TONES.map((t) => (
                   <button key={t.key} onClick={() => setTone(t.key)}
-                    className={`rounded-lg px-3 py-1.5 text-[12px] font-medium transition-all ${tone === t.key ? "bg-[#00CEC9]/[0.08] text-[#00CEC9] border border-[#00CEC9]/20" : "bg-gray-50 text-gray-600 border border-transparent"}`}>
+                    className={`rounded px-3 py-1.5 text-[12px] font-medium transition-all ${tone === t.key ? "bg-[#00CEC9]/[0.08] text-[#00CEC9] border border-[#00CEC9]/20" : "bg-gray-50 text-gray-600 border border-transparent"}`}>
                     {t.label}
                   </button>
                 ))}
@@ -145,7 +145,7 @@ export default function ContentGeneratorPage() {
 
             {/* Generate Button */}
             <motion.button onClick={handleGenerate} disabled={loading || !topic.trim()} whileTap={{ scale: 0.97 }}
-              className="w-full flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all">
+              className="w-full flex items-center justify-center gap-2 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all">
               {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
               {loading ? "Wird generiert..." : "Content generieren"}
             </motion.button>
@@ -158,7 +158,7 @@ export default function ContentGeneratorPage() {
             {result ? (
               <motion.div key="result" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 {/* Generated Content */}
-                <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+                <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <selectedPlatform.icon className="h-4 w-4" style={{ color: selectedPlatform.color }} />
@@ -170,10 +170,10 @@ export default function ContentGeneratorPage() {
                       )}
                     </div>
                     <div className="flex gap-2">
-                      <button onClick={handleGenerate} className="rounded-lg p-2 text-gray-400 hover:text-[#00CEC9] hover:bg-[#00CEC9]/[0.06] transition-colors" title="Neu generieren">
+                      <button onClick={handleGenerate} className="rounded p-2 text-gray-400 hover:text-[#00CEC9] hover:bg-[#00CEC9]/[0.06] transition-colors" title="Neu generieren">
                         <RefreshCw className="h-4 w-4" />
                       </button>
-                      <button onClick={handleCopy} className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-[12px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">
+                      <button onClick={handleCopy} className="flex items-center gap-1.5 rounded border border-gray-200 px-3 py-1.5 text-[12px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">
                         {copied ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
                         {copied ? "Kopiert!" : "Kopieren"}
                       </button>
@@ -181,7 +181,7 @@ export default function ContentGeneratorPage() {
                   </div>
 
                   {/* Content */}
-                  <div className="rounded-md bg-gray-50 p-4 text-[13px] text-gray-800 leading-relaxed whitespace-pre-line min-h-[120px]">
+                  <div className="rounded bg-gray-50 p-4 text-[13px] text-gray-800 leading-relaxed whitespace-pre-line min-h-[120px]">
                     {result.content}
                   </div>
 
@@ -208,7 +208,7 @@ export default function ContentGeneratorPage() {
 
                 {/* Posting Time + Tips */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+                  <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
                     <div className="flex items-center gap-2 mb-3">
                       <Clock className="h-4 w-4 text-[#00CEC9]" />
                       <h3 className="text-[14px] font-semibold text-[#0F172A] dark:text-white">Beste Posting-Zeit</h3>
@@ -226,7 +226,7 @@ export default function ContentGeneratorPage() {
                     </p>
                   </div>
 
-                  <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+                  <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
                     <div className="flex items-center gap-2 mb-3">
                       <Lightbulb className="h-4 w-4 text-amber-500" />
                       <h3 className="text-[14px] font-semibold text-[#0F172A] dark:text-white">Tipps</h3>
@@ -244,7 +244,7 @@ export default function ContentGeneratorPage() {
 
                 {/* Service info */}
                 {result.needsApiKey && (
-                  <div className="rounded-md border border-amber-100 bg-amber-50/50 p-4 flex items-start gap-3">
+                  <div className="rounded border border-amber-100 bg-amber-50/50 p-4 flex items-start gap-3">
                     <Sparkles className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
                     <div>
                       <p className="text-[13px] text-amber-800 font-medium">KI-Content wird eingerichtet</p>

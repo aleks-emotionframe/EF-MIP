@@ -89,7 +89,7 @@ export default function ClientsPage() {
         </div>
         <button
           onClick={openCreate}
-          className="inline-flex items-center gap-2 rounded-lg bg-ef-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-ef-primary-dark transition-colors glow-primary"
+          className="inline-flex items-center gap-2 rounded bg-ef-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-ef-primary-dark transition-colors glow-primary"
         >
           <Plus className="h-4 w-4" />
           Neuer Client
@@ -104,12 +104,12 @@ export default function ClientsPage() {
           placeholder="Suche nach Name oder Branche..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-lg border border-border bg-card pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary placeholder:text-muted-foreground"
+          className="w-full rounded border border-border bg-card pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary placeholder:text-muted-foreground"
         />
       </div>
 
       {/* Table */}
-      <div className="rounded-md border border-border bg-card overflow-hidden">
+      <div className="rounded border border-border bg-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -152,7 +152,7 @@ export default function ClientsPage() {
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => openEdit(client)}
-                          className="rounded-lg p-2 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                          className="rounded p-2 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                           title="Bearbeiten"
                         >
                           <Pencil className="h-4 w-4" />
@@ -161,13 +161,13 @@ export default function ClientsPage() {
                           <div className="flex items-center gap-1">
                             <button
                               onClick={() => handleDelete(client.id)}
-                              className="rounded-lg px-2 py-1 text-xs bg-red-500 text-white hover:bg-red-600 transition-colors"
+                              className="rounded px-2 py-1 text-xs bg-red-500 text-white hover:bg-red-600 transition-colors"
                             >
                               Ja
                             </button>
                             <button
                               onClick={() => setDeleteConfirm(null)}
-                              className="rounded-lg px-2 py-1 text-xs bg-muted text-foreground hover:bg-muted/80 transition-colors"
+                              className="rounded px-2 py-1 text-xs bg-muted text-foreground hover:bg-muted/80 transition-colors"
                             >
                               Nein
                             </button>
@@ -175,7 +175,7 @@ export default function ClientsPage() {
                         ) : (
                           <button
                             onClick={() => setDeleteConfirm(client.id)}
-                            className="rounded-lg p-2 text-muted-foreground hover:text-destructive hover:bg-red-50 transition-colors"
+                            className="rounded p-2 text-muted-foreground hover:text-destructive hover:bg-red-50 transition-colors"
                             title="Löschen"
                           >
                             <Trash2 className="h-4 w-4" />
@@ -198,14 +198,14 @@ export default function ClientsPage() {
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => { setShowModal(false); setEditingClient(null) }}
           />
-          <div className="relative z-10 w-full max-w-lg mx-4 rounded-lg bg-card border border-border p-6 shadow-2xl">
+          <div className="relative z-10 w-full max-w-lg mx-4 rounded bg-card border border-border p-6 shadow-2xl">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-bold text-foreground">
                 {editingClient ? "Client bearbeiten" : "Neuer Client"}
               </h2>
               <button
                 onClick={() => { setShowModal(false); setEditingClient(null) }}
-                className="rounded-lg p-1 hover:bg-muted transition-colors"
+                className="rounded p-1 hover:bg-muted transition-colors"
               >
                 <X className="h-5 w-5 text-muted-foreground" />
               </button>
@@ -218,7 +218,7 @@ export default function ClientsPage() {
                   name="name"
                   required
                   defaultValue={editingClient?.name ?? ""}
-                  className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary"
+                  className="w-full rounded border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary"
                   placeholder="Firmenname"
                 />
               </div>
@@ -227,7 +227,7 @@ export default function ClientsPage() {
                 <input
                   name="industry"
                   defaultValue={editingClient?.industry ?? ""}
-                  className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary"
+                  className="w-full rounded border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary"
                   placeholder="z.B. Technologie"
                 />
               </div>
@@ -237,7 +237,7 @@ export default function ClientsPage() {
                   name="contactEmail"
                   type="email"
                   defaultValue={editingClient?.contactEmail ?? ""}
-                  className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary"
+                  className="w-full rounded border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary"
                   placeholder="kontakt@firma.de"
                 />
               </div>
@@ -246,7 +246,7 @@ export default function ClientsPage() {
                 <input
                   name="website"
                   defaultValue={editingClient?.website ?? ""}
-                  className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary"
+                  className="w-full rounded border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ef-primary/50 focus:border-ef-primary"
                   placeholder="firma.de"
                 />
               </div>
@@ -255,13 +255,13 @@ export default function ClientsPage() {
                 <button
                   type="button"
                   onClick={() => { setShowModal(false); setEditingClient(null) }}
-                  className="flex-1 rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground hover:bg-muted transition-colors"
+                  className="flex-1 rounded border border-border px-4 py-2.5 text-sm font-medium text-foreground hover:bg-muted transition-colors"
                 >
                   Abbrechen
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 rounded-lg bg-ef-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-ef-primary-dark transition-colors"
+                  className="flex-1 rounded bg-ef-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-ef-primary-dark transition-colors"
                 >
                   {editingClient ? "Speichern" : "Erstellen"}
                 </button>

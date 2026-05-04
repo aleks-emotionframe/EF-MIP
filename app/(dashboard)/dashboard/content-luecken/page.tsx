@@ -170,7 +170,7 @@ export default function ContentLueckenPage() {
       {!isConnected && (
         <div className="relative">
           {/* Blurred preview behind */}
-          <div className="absolute inset-0 z-0 overflow-hidden rounded-lg">
+          <div className="absolute inset-0 z-0 overflow-hidden rounded">
             <div className="filter blur-[6px] opacity-40 pointer-events-none p-6 space-y-4">
               {/* Fake stats row */}
               <div className="grid grid-cols-4 gap-3">
@@ -180,14 +180,14 @@ export default function ContentLueckenPage() {
                   { label: "Schwierigkeit", val: "42%" },
                   { label: "Vorschläge", val: "12" },
                 ].map((s) => (
-                  <div key={s.label} className="rounded-md bg-white dark:bg-[#1E293B] p-4">
+                  <div key={s.label} className="rounded bg-white dark:bg-[#1E293B] p-4">
                     <p className="text-[11px] text-gray-400">{s.label}</p>
                     <p className="text-[20px] font-bold text-gray-900 mt-1">{s.val}</p>
                   </div>
                 ))}
               </div>
               {/* Fake table rows */}
-              <div className="rounded-md bg-white dark:bg-[#1E293B] p-4 space-y-3">
+              <div className="rounded bg-white dark:bg-[#1E293B] p-4 space-y-3">
                 {PREVIEW_KEYWORDS.map((kw) => (
                   <div key={kw.keyword} className="flex items-center gap-4 py-2 border-b border-gray-50 last:border-0">
                     <span className="text-[13px] font-medium text-gray-700 flex-1">{kw.keyword}</span>
@@ -209,17 +209,17 @@ export default function ContentLueckenPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="relative z-10 rounded-lg border border-gray-200 dark:border-white/[0.06] bg-white/95 dark:bg-[#1E293B]/95 backdrop-blur-sm shadow-lg p-8 md:p-12"
+            className="relative z-10 rounded border border-gray-200 dark:border-white/[0.06] bg-white/95 dark:bg-[#1E293B]/95 backdrop-blur-sm shadow-lg p-8 md:p-12"
           >
             <div className="max-w-2xl mx-auto text-center">
               {/* Animated search icon */}
               <div className="relative mx-auto w-20 h-20 mb-6">
                 <motion.div
-                  className="absolute inset-0 rounded-lg bg-gradient-to-br from-[#00CEC9]/20 to-[#6C5CE7]/20"
+                  className="absolute inset-0 rounded bg-gradient-to-br from-[#00CEC9]/20 to-[#6C5CE7]/20"
                   animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 />
-                <div className="relative w-20 h-20 rounded-lg bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center">
+                <div className="relative w-20 h-20 rounded bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center">
                   <motion.div
                     animate={{ rotate: [0, -10, 10, -5, 0], y: [0, -2, 0, -1, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -244,9 +244,9 @@ export default function ContentLueckenPage() {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: idx * 0.1 }}
-                    className="flex items-start gap-3 rounded-md bg-gray-50 p-3.5"
+                    className="flex items-start gap-3 rounded bg-gray-50 p-3.5"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/10 flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded bg-[#00CEC9]/10 flex items-center justify-center shrink-0">
                       <f.icon className="h-4 w-4 text-[#00CEC9]" />
                     </div>
                     <div>
@@ -262,7 +262,7 @@ export default function ContentLueckenPage() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-8 py-4 text-[15px] font-semibold text-white shadow-lg shadow-[#00CEC9]/25 hover:shadow-xl hover:shadow-[#00CEC9]/30 transition-shadow"
+                  className="inline-flex items-center gap-2 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-8 py-4 text-[15px] font-semibold text-white shadow-lg shadow-[#00CEC9]/25 hover:shadow-xl hover:shadow-[#00CEC9]/30 transition-shadow"
                 >
                   <ExternalLink className="h-4 w-4" />
                   Search Console verbinden
@@ -290,14 +290,14 @@ export default function ContentLueckenPage() {
                 value={competitorUrl}
                 onChange={(e) => setCompetitorUrl(e.target.value)}
                 placeholder="Konkurrenz-Website eingeben (z.B. hootsuite.com)"
-                className="w-full rounded-md border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-[14px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none transition-all"
+                className="w-full rounded border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-[14px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none transition-all"
               />
             </div>
             <motion.button
               type="submit"
               disabled={analyzing || !competitorUrl.trim()}
               whileTap={{ scale: 0.97 }}
-              className="rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-6 py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all flex items-center gap-2"
+              className="rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-6 py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all flex items-center gap-2"
             >
               {analyzing ? <Loader2 className="h-4 w-4 animate-spin" /> : <BarChart3 className="h-4 w-4" />}
               {analyzing ? "Analysiere..." : "Analysieren"}
@@ -316,10 +316,10 @@ export default function ContentLueckenPage() {
                 key={stat.label}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4"
+                className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: `${stat.color}10` }}>
+                  <div className="w-8 h-8 rounded flex items-center justify-center" style={{ backgroundColor: `${stat.color}10` }}>
                     <stat.icon className="h-4 w-4" style={{ color: stat.color }} />
                   </div>
                 </div>
@@ -332,7 +332,7 @@ export default function ContentLueckenPage() {
           </div>
 
           {/* Keyword-Chancen Table */}
-          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
+          <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
             <div className="px-5 pt-5 pb-3 flex items-center justify-between">
               <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white flex items-center gap-2">
                 <Target className="h-4 w-4 text-[#00CEC9]" />
@@ -396,7 +396,7 @@ export default function ContentLueckenPage() {
                         {/* Your Position */}
                         <td className="px-4 py-3">
                           {kw.yourPosition !== null ? (
-                            <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-amber-100 text-amber-700 text-[13px] font-bold">
+                            <span className="inline-flex items-center justify-center w-8 h-8 rounded bg-amber-100 text-amber-700 text-[13px] font-bold">
                               {kw.yourPosition}
                             </span>
                           ) : (
@@ -405,7 +405,7 @@ export default function ContentLueckenPage() {
                         </td>
                         {/* Competitor Position */}
                         <td className="px-4 py-3">
-                          <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 text-[13px] font-bold">
+                          <span className="inline-flex items-center justify-center w-8 h-8 rounded bg-emerald-100 text-emerald-700 text-[13px] font-bold">
                             {kw.competitorPosition}
                           </span>
                         </td>
@@ -446,15 +446,15 @@ export default function ContentLueckenPage() {
           </div>
 
           {/* KI Content-Vorschläge */}
-          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden relative">
+          <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden relative">
             {/* Gradient border effect */}
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#6C5CE7] via-[#E84393] to-[#00CEC9] p-[1px] pointer-events-none">
-              <div className="w-full h-full rounded-lg bg-white dark:bg-[#1E293B]" />
+            <div className="absolute inset-0 rounded bg-gradient-to-r from-[#6C5CE7] via-[#E84393] to-[#00CEC9] p-[1px] pointer-events-none">
+              <div className="w-full h-full rounded bg-white dark:bg-[#1E293B]" />
             </div>
 
             <div className="relative z-10 p-5">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6C5CE7] to-[#E84393] flex items-center justify-center">
+                <div className="w-8 h-8 rounded bg-gradient-to-br from-[#6C5CE7] to-[#E84393] flex items-center justify-center">
                   <Sparkles className="h-4 w-4 text-white" />
                 </div>
                 <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">KI Content-Vorschläge</h3>
@@ -471,7 +471,7 @@ export default function ContentLueckenPage() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="rounded-md border border-gray-100 p-4 hover:border-[#6C5CE7]/20 hover:bg-[#6C5CE7]/[0.02] transition-all"
+                      className="rounded border border-gray-100 p-4 hover:border-[#6C5CE7]/20 hover:bg-[#6C5CE7]/[0.02] transition-all"
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
@@ -482,14 +482,14 @@ export default function ContentLueckenPage() {
                           </div>
                           <div className="flex flex-wrap gap-1.5">
                             {s.topics.map((t) => (
-                              <span key={t} className="text-[10px] font-medium bg-gray-100 text-gray-600 rounded-md px-2 py-0.5">{t}</span>
+                              <span key={t} className="text-[10px] font-medium bg-gray-100 text-gray-600 rounded px-2 py-0.5">{t}</span>
                             ))}
                           </div>
                         </div>
                         <motion.button
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.97 }}
-                          className="shrink-0 rounded-lg bg-[#6C5CE7] px-4 py-2 text-[12px] font-semibold text-white hover:bg-[#5643CC] transition-colors flex items-center gap-1.5"
+                          className="shrink-0 rounded bg-[#6C5CE7] px-4 py-2 text-[12px] font-semibold text-white hover:bg-[#5643CC] transition-colors flex items-center gap-1.5"
                         >
                           <BookOpen className="h-3.5 w-3.5" />
                           Artikel erstellen
@@ -500,7 +500,7 @@ export default function ContentLueckenPage() {
                 </div>
               ) : (
                 <div className="text-center py-8">
-                  <div className="w-12 h-12 rounded-md bg-[#6C5CE7]/10 flex items-center justify-center mx-auto mb-3">
+                  <div className="w-12 h-12 rounded bg-[#6C5CE7]/10 flex items-center justify-center mx-auto mb-3">
                     <Zap className="h-5 w-5 text-[#6C5CE7]" />
                   </div>
                   <p className="text-[14px] font-semibold text-[#0F172A] dark:text-white mb-1">
@@ -515,7 +515,7 @@ export default function ContentLueckenPage() {
           </div>
 
           {/* Keyword-Verteilung Chart */}
-          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+          <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white flex items-center gap-2 mb-4">
               <Award className="h-4 w-4 text-[#F97316]" />
               Keyword-Verteilung
@@ -546,7 +546,7 @@ export default function ContentLueckenPage() {
                       if (!active || !payload?.length) return null
                       const d = payload[0].payload
                       return (
-                        <div className="rounded-lg bg-white shadow-lg border border-gray-100 p-3 text-[12px]">
+                        <div className="rounded bg-white shadow-lg border border-gray-100 p-3 text-[12px]">
                           <p className="font-semibold text-[#0F172A] mb-1">{d.keyword}</p>
                           <p className="text-gray-500">Suchvolumen: <span className="font-bold text-[#0F172A] dark:text-white">{d.volume.toLocaleString("de-CH")}</span></p>
                           <p className="text-gray-500">Schwierigkeit: <span className="font-bold text-[#0F172A] dark:text-white">{d.difficulty}%</span></p>

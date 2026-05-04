@@ -118,37 +118,37 @@ export default function EmailPage() {
           </div>
           <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Newsletter erstellen, versenden und analysieren.</p>
         </div>
-        <button onClick={() => setMainTab("neu")} className="flex items-center gap-1.5 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
+        <button onClick={() => setMainTab("neu")} className="flex items-center gap-1.5 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
           <Plus className="h-3.5 w-3.5" />Neue Kampagne
         </button>
       </div>
 
       {/* Overview KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
-            <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/[0.06] flex items-center justify-center"><Users className="h-4 w-4 text-[#00CEC9]" /></div>
+            <div className="w-8 h-8 rounded bg-[#00CEC9]/[0.06] flex items-center justify-center"><Users className="h-4 w-4 text-[#00CEC9]" /></div>
           </div>
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{totalSubscribers.toLocaleString("de-CH")}</p>
           <p className="text-[11px] text-gray-400 mt-0.5">Aktive Empfänger</p>
         </div>
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
-            <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center"><Send className="h-4 w-4 text-emerald-600" /></div>
+            <div className="w-8 h-8 rounded bg-emerald-50 flex items-center justify-center"><Send className="h-4 w-4 text-emerald-600" /></div>
           </div>
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{totalSent.toLocaleString("de-CH")}</p>
           <p className="text-[11px] text-gray-400 mt-0.5">E-Mails versendet</p>
         </div>
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
-            <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center"><Eye className="h-4 w-4 text-blue-600" /></div>
+            <div className="w-8 h-8 rounded bg-blue-50 flex items-center justify-center"><Eye className="h-4 w-4 text-blue-600" /></div>
           </div>
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{avgOpenRate.toFixed(1)}%</p>
           <p className="text-[11px] text-gray-400 mt-0.5">Ø Öffnungsrate</p>
         </div>
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
           <div className="flex items-center justify-between mb-2">
-            <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center"><MousePointer className="h-4 w-4 text-amber-600" /></div>
+            <div className="w-8 h-8 rounded bg-amber-50 flex items-center justify-center"><MousePointer className="h-4 w-4 text-amber-600" /></div>
           </div>
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{campaigns.length}</p>
           <p className="text-[11px] text-gray-400 mt-0.5">Kampagnen</p>
@@ -156,15 +156,15 @@ export default function EmailPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 p-1 rounded-md bg-gray-100 dark:bg-white/[0.04] w-fit">
+      <div className="flex gap-1 p-1 rounded bg-gray-100 dark:bg-white/[0.04] w-fit">
         {([
           { key: "kampagnen" as MainTab, label: "Kampagnen" },
           { key: "empfaenger" as MainTab, label: "Empfänger-Listen" },
           { key: "neu" as MainTab, label: "Neue Kampagne" },
         ]).map((tab) => (
           <button key={tab.key} onClick={() => setMainTab(tab.key)}
-            className={`relative rounded-lg px-5 py-2 text-[13px] font-medium transition-all ${mainTab === tab.key ? "text-gray-900 dark:text-white" : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"}`}>
-            {mainTab === tab.key && <motion.div layoutId="email-tab" className="absolute inset-0 bg-white dark:bg-[#1E293B] rounded-lg shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />}
+            className={`relative rounded px-5 py-2 text-[13px] font-medium transition-all ${mainTab === tab.key ? "text-gray-900 dark:text-white" : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"}`}>
+            {mainTab === tab.key && <motion.div layoutId="email-tab" className="absolute inset-0 bg-white dark:bg-[#1E293B] rounded shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />}
             <span className="relative z-10">{tab.label}</span>
           </button>
         ))}
@@ -177,9 +177,9 @@ export default function EmailPage() {
             const sc = STATUS_CONFIG[c.status]
             const isExp = expandedCampaign === c.id
             return (
-              <div key={c.id} className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
+              <div key={c.id} className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
                 <button onClick={() => setExpandedCampaign(isExp ? null : c.id)} className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
-                  <div className={`w-9 h-9 rounded-lg ${sc.bg} flex items-center justify-center shrink-0`}>
+                  <div className={`w-9 h-9 rounded ${sc.bg} flex items-center justify-center shrink-0`}>
                     <sc.icon className={`h-4 w-4 ${sc.color}`} />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -209,19 +209,19 @@ export default function EmailPage() {
                         {/* Stats bars for sent campaigns */}
                         {c.status === "sent" && (
                           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                            <div className="rounded-lg bg-gray-50 dark:bg-white/[0.04] p-3">
+                            <div className="rounded bg-gray-50 dark:bg-white/[0.04] p-3">
                               <p className="text-[10px] text-gray-400 dark:text-gray-500">Versendet</p>
                               <p className="text-[16px] font-bold text-gray-900 dark:text-white">{c.totalSent.toLocaleString("de-CH")}</p>
                             </div>
-                            <div className="rounded-lg bg-emerald-50 dark:bg-emerald-500/10 p-3">
+                            <div className="rounded bg-emerald-50 dark:bg-emerald-500/10 p-3">
                               <p className="text-[10px] text-gray-400 dark:text-gray-500">Geöffnet</p>
                               <p className="text-[16px] font-bold text-emerald-700">{c.totalOpened.toLocaleString("de-CH")} <span className="text-[12px] font-normal">({c.openRate}%)</span></p>
                             </div>
-                            <div className="rounded-lg bg-blue-50 dark:bg-blue-500/10 p-3">
+                            <div className="rounded bg-blue-50 dark:bg-blue-500/10 p-3">
                               <p className="text-[10px] text-gray-400 dark:text-gray-500">Geklickt</p>
                               <p className="text-[16px] font-bold text-blue-700">{c.totalClicked.toLocaleString("de-CH")} <span className="text-[12px] font-normal">({c.clickRate}%)</span></p>
                             </div>
-                            <div className="rounded-lg bg-gray-50 dark:bg-white/[0.04] p-3">
+                            <div className="rounded bg-gray-50 dark:bg-white/[0.04] p-3">
                               <p className="text-[10px] text-gray-400 dark:text-gray-500">Empfänger-Liste</p>
                               <p className="text-[14px] font-bold text-[#0F172A] dark:text-white">{c.listName}</p>
                             </div>
@@ -229,15 +229,15 @@ export default function EmailPage() {
                         )}
                         {/* Actions */}
                         <div className="flex gap-2">
-                          <button onClick={(e) => { e.stopPropagation(); handleDuplicate(c) }} className="flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-white/[0.06] px-3 py-2 text-[12px] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
+                          <button onClick={(e) => { e.stopPropagation(); handleDuplicate(c) }} className="flex items-center gap-1.5 rounded border border-gray-200 dark:border-white/[0.06] px-3 py-2 text-[12px] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
                             <Copy className="h-3.5 w-3.5" />Duplizieren
                           </button>
                           {c.status === "draft" && (
-                            <button className="flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-3 py-2 text-[12px] font-medium text-white hover:bg-[#00B4A3] transition-colors">
+                            <button className="flex items-center gap-1.5 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-3 py-2 text-[12px] font-medium text-white hover:bg-[#00B4A3] transition-colors">
                               <Send className="h-3.5 w-3.5" />Jetzt senden
                             </button>
                           )}
-                          <button onClick={(e) => { e.stopPropagation(); handleDelete(c.id) }} className="flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-white/[0.06] px-3 py-2 text-[12px] text-gray-400 hover:text-red-500 hover:border-red-200 hover:bg-red-50 transition-colors ml-auto">
+                          <button onClick={(e) => { e.stopPropagation(); handleDelete(c.id) }} className="flex items-center gap-1.5 rounded border border-gray-200 dark:border-white/[0.06] px-3 py-2 text-[12px] text-gray-400 hover:text-red-500 hover:border-red-200 hover:bg-red-50 transition-colors ml-auto">
                             <Trash2 className="h-3.5 w-3.5" />Löschen
                           </button>
                         </div>
@@ -255,8 +255,8 @@ export default function EmailPage() {
       {mainTab === "empfaenger" && (
         <div className="space-y-3">
           {lists.map((list) => (
-            <div key={list.id} className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5 flex items-center gap-4">
-              <div className="w-10 h-10 rounded-md bg-[#00CEC9]/[0.06] flex items-center justify-center shrink-0">
+            <div key={list.id} className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5 flex items-center gap-4">
+              <div className="w-10 h-10 rounded bg-[#00CEC9]/[0.06] flex items-center justify-center shrink-0">
                 <Users className="h-5 w-5 text-[#00CEC9]" />
               </div>
               <div className="flex-1 min-w-0">
@@ -280,7 +280,7 @@ export default function EmailPage() {
             </div>
           ))}
 
-          <button className="w-full flex items-center justify-center gap-1.5 rounded-md border-2 border-dashed border-gray-200 dark:border-white/[0.06] py-4 text-[12px] font-medium text-gray-400 hover:text-[#00CEC9] hover:border-[#00CEC9]/30 transition-colors">
+          <button className="w-full flex items-center justify-center gap-1.5 rounded border-2 border-dashed border-gray-200 dark:border-white/[0.06] py-4 text-[12px] font-medium text-gray-400 hover:text-[#00CEC9] hover:border-[#00CEC9]/30 transition-colors">
             <Plus className="h-3.5 w-3.5" />Neue Liste erstellen
           </button>
         </div>
@@ -291,32 +291,32 @@ export default function EmailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Editor */}
           <div className="lg:col-span-3 space-y-4">
-            <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6 space-y-4">
+            <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6 space-y-4">
               <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Kampagne erstellen</h2>
 
               <div className="space-y-1.5">
                 <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Kampagnen-Name</label>
                 <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="z.B. April Newsletter"
-                  className="w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-3 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
+                  className="w-full rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-3 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
               </div>
 
               <div className="space-y-1.5">
                 <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Betreffzeile</label>
                 <input value={newSubject} onChange={(e) => setNewSubject(e.target.value)} placeholder="z.B. Entdecke unsere neuen Features"
-                  className="w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-3 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
+                  className="w-full rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-3 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
                 <p className="text-[11px] text-gray-400 dark:text-gray-500">{newSubject.length}/60 Zeichen (ideal: 30-60)</p>
               </div>
 
               <div className="space-y-1.5">
                 <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Vorschau-Text</label>
                 <input value={newPreview} onChange={(e) => setNewPreview(e.target.value)} placeholder="Kurzer Text der nach dem Betreff angezeigt wird"
-                  className="w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-3 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
+                  className="w-full rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white px-4 py-3 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
               </div>
 
               <div className="space-y-1.5">
                 <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Empfänger-Liste</label>
                 <select value={newList} onChange={(e) => setNewList(e.target.value)}
-                  className="w-full rounded-md border border-gray-200 bg-white px-4 py-3 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none appearance-none">
+                  className="w-full rounded border border-gray-200 bg-white px-4 py-3 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none appearance-none">
                   <option value="">Liste wählen...</option>
                   {lists.map((l) => <option key={l.id} value={l.id}>{l.name} ({l.activeCount} Empfänger)</option>)}
                 </select>
@@ -340,12 +340,12 @@ export default function EmailPage() {
 
               <div className="flex gap-3">
                 <button onClick={handleSaveDraft} disabled={sending || !newName || !newSubject}
-                  className="flex-1 flex items-center justify-center gap-2 rounded-md border border-gray-200 dark:border-white/[0.06] py-3 text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] disabled:opacity-50 transition-colors">
+                  className="flex-1 flex items-center justify-center gap-2 rounded border border-gray-200 dark:border-white/[0.06] py-3 text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] disabled:opacity-50 transition-colors">
                   {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : saved ? <CheckCircle2 className="h-4 w-4 text-emerald-500" /> : <FileText className="h-4 w-4" />}
                   {saved ? "Gespeichert!" : "Als Entwurf speichern"}
                 </button>
                 <button disabled={!newName || !newSubject || !newList}
-                  className="flex-1 flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-3 text-[13px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all">
+                  className="flex-1 flex items-center justify-center gap-2 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-3 text-[13px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all">
                   <Send className="h-4 w-4" />Jetzt versenden
                 </button>
               </div>
@@ -354,13 +354,13 @@ export default function EmailPage() {
 
           {/* Preview */}
           <div className="lg:col-span-2">
-            <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden sticky top-20">
+            <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden sticky top-20">
               <div className="bg-gray-50 dark:bg-white/[0.04] px-5 py-3 border-b border-gray-100 dark:border-white/[0.06]">
                 <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Vorschau</p>
               </div>
               <div className="p-5">
                 {/* Email preview */}
-                <div className="rounded-lg border border-gray-200 overflow-hidden">
+                <div className="rounded border border-gray-200 overflow-hidden">
                   <div className="bg-white p-4 border-b border-gray-100">
                     <p className="text-[10px] text-gray-400">Von: EmotionFrame &lt;newsletter@emotionframe.com&gt;</p>
                     <p className="text-[10px] text-gray-400">An: empfaenger@beispiel.ch</p>
@@ -368,7 +368,7 @@ export default function EmailPage() {
                     {newPreview && <p className="text-[11px] text-gray-400 mt-0.5">{newPreview}</p>}
                   </div>
                   <div className="bg-gradient-to-b from-[#00CEC9] to-[#6C5CE7] px-6 py-5 text-center">
-                    <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center mx-auto">
+                    <div className="w-10 h-10 rounded bg-white/20 flex items-center justify-center mx-auto">
                       <span className="text-white font-bold text-sm">EF</span>
                     </div>
                     <h3 className="text-white font-bold text-[16px] mt-2">{newName || "Kampagnen-Name"}</h3>

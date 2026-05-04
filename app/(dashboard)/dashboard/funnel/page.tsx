@@ -126,7 +126,7 @@ export default function FunnelPage() {
       {/* ── Header ───────────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-md bg-[#6C5CE7]/10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded bg-[#6C5CE7]/10 flex items-center justify-center">
             <GitFork className="h-5 w-5 text-[#6C5CE7]" />
           </div>
           <div>
@@ -137,12 +137,12 @@ export default function FunnelPage() {
 
         {/* Time range selector */}
         <div className="relative">
-          <div className="flex items-center gap-1 bg-white dark:bg-[#1E293B] rounded-md shadow-sm border border-gray-100 dark:border-white/10 p-1">
+          <div className="flex items-center gap-1 bg-white dark:bg-[#1E293B] rounded shadow-sm border border-gray-100 dark:border-white/10 p-1">
             {TIME_RANGES.map((range) => (
               <button
                 key={range}
                 onClick={() => setTimeRange(range)}
-                className={`px-3 py-1.5 rounded-lg text-[12px] font-medium transition-all ${
+                className={`px-3 py-1.5 rounded text-[12px] font-medium transition-all ${
                   timeRange === range
                     ? "bg-[#6C5CE7] text-white shadow-sm"
                     : "text-gray-500 dark:text-white/50 hover:text-gray-700 dark:hover:text-white/70"
@@ -160,12 +160,12 @@ export default function FunnelPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden"
         >
           <div className="flex flex-col items-center justify-center py-16 px-6 text-center">
             {/* Animated icon */}
             <motion.div
-              className="w-20 h-20 rounded-lg bg-gradient-to-br from-[#6C5CE7]/10 to-[#00CEC9]/10 flex items-center justify-center mb-6"
+              className="w-20 h-20 rounded bg-gradient-to-br from-[#6C5CE7]/10 to-[#00CEC9]/10 flex items-center justify-center mb-6"
               animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 1] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -189,9 +189,9 @@ export default function FunnelPage() {
               ].map((feature) => (
                 <div
                   key={feature.label}
-                  className="flex items-start gap-3 p-3 rounded-md bg-gray-50 dark:bg-white/[0.04] text-left"
+                  className="flex items-start gap-3 p-3 rounded bg-gray-50 dark:bg-white/[0.04] text-left"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-[#6C5CE7]/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-8 h-8 rounded bg-[#6C5CE7]/10 flex items-center justify-center shrink-0 mt-0.5">
                     <feature.icon className="h-4 w-4 text-[#6C5CE7]" />
                   </div>
                   <div>
@@ -205,7 +205,7 @@ export default function FunnelPage() {
             {/* CTA */}
             <Link
               href="/dashboard/settings/integrations"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[#6C5CE7] text-white font-semibold text-[14px] shadow-lg shadow-[#6C5CE7]/20 hover:shadow-xl hover:shadow-[#6C5CE7]/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded bg-[#6C5CE7] text-white font-semibold text-[14px] shadow-lg shadow-[#6C5CE7]/20 hover:shadow-xl hover:shadow-[#6C5CE7]/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
               Google Analytics verbinden
               <ArrowRight className="h-4 w-4" />
@@ -218,7 +218,7 @@ export default function FunnelPage() {
       {isConnected && (
         <>
           {/* Demo notice */}
-          <div className="flex items-center gap-2 px-4 py-2.5 rounded-md bg-amber-50 dark:bg-amber-500/10 border border-amber-200/50 dark:border-amber-500/20">
+          <div className="flex items-center gap-2 px-4 py-2.5 rounded bg-amber-50 dark:bg-amber-500/10 border border-amber-200/50 dark:border-amber-500/20">
             <AlertTriangle className="h-4 w-4 text-amber-500 shrink-0" />
             <p className="text-[12px] text-amber-700 dark:text-amber-400">
               Dies sind Demo-Daten zur Veranschaulichung. Verbinde Google Analytics unter{" "}
@@ -236,11 +236,11 @@ export default function FunnelPage() {
                 key={stat.label}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4"
+                className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4"
               >
                 <div className="flex items-center justify-between mb-2">
                   <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    className="w-8 h-8 rounded flex items-center justify-center"
                     style={{ backgroundColor: `${stat.color}0F` }}
                   >
                     <stat.icon className="h-4 w-4" style={{ color: stat.color }} />
@@ -253,7 +253,7 @@ export default function FunnelPage() {
           </div>
 
           {/* ── Visual Funnel ────────────────────────────────── */}
-          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6">
+          <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6">
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Conversion-Trichter</h3>
             <p className="text-[11px] text-gray-400 dark:text-white/40 mb-6">
               5-Stufen-Funnel · Letzte {timeRange}
@@ -321,7 +321,7 @@ export default function FunnelPage() {
           </div>
 
           {/* ── Drop-off Analyse ─────────────────────────────── */}
-          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6">
+          <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6">
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Drop-off Analyse</h3>
             <p className="text-[11px] text-gray-400 dark:text-white/40 mb-4">
               Wo und warum verlierst du Besucher?
@@ -334,7 +334,7 @@ export default function FunnelPage() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.1 }}
-                  className="border border-gray-100 dark:border-white/10 rounded-md overflow-hidden"
+                  className="border border-gray-100 dark:border-white/10 rounded overflow-hidden"
                 >
                   {/* Header - clickable */}
                   <button
@@ -342,7 +342,7 @@ export default function FunnelPage() {
                     className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-[#F97316]/10 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded bg-[#F97316]/10 flex items-center justify-center">
                         <TrendingDown className="h-4 w-4 text-[#F97316]" />
                       </div>
                       <div>
@@ -393,7 +393,7 @@ export default function FunnelPage() {
                       </div>
 
                       {/* Suggestion */}
-                      <div className="flex items-start gap-2 p-3 rounded-lg bg-[#6C5CE7]/5 dark:bg-[#6C5CE7]/10">
+                      <div className="flex items-start gap-2 p-3 rounded bg-[#6C5CE7]/5 dark:bg-[#6C5CE7]/10">
                         <Lightbulb className="h-4 w-4 text-[#6C5CE7] shrink-0 mt-0.5" />
                         <p className="text-[12px] text-[#6C5CE7] dark:text-[#6C5CE7] leading-relaxed">
                           {drop.suggestion}
@@ -407,7 +407,7 @@ export default function FunnelPage() {
           </div>
 
           {/* ── Conversion über Zeit ─────────────────────────── */}
-          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+          <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Conversion über Zeit</h3>
             <p className="text-[11px] text-gray-400 dark:text-white/40 mb-4">
               Conversion-Rate im Zeitverlauf · Letzte {timeRange}
@@ -458,9 +458,9 @@ export default function FunnelPage() {
           </div>
 
           {/* ── KI-Empfehlungen ──────────────────────────────── */}
-          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6">
+          <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-[#6C5CE7]/10 flex items-center justify-center">
+              <div className="w-8 h-8 rounded bg-[#6C5CE7]/10 flex items-center justify-center">
                 <Sparkles className="h-4 w-4 text-[#6C5CE7]" />
               </div>
               <div>
@@ -469,7 +469,7 @@ export default function FunnelPage() {
               </div>
             </div>
 
-            <div className="p-4 rounded-md bg-gray-50 dark:bg-white/[0.04] border border-gray-100 dark:border-white/10 flex items-center gap-3">
+            <div className="p-4 rounded bg-gray-50 dark:bg-white/[0.04] border border-gray-100 dark:border-white/10 flex items-center gap-3">
               <Sparkles className="h-5 w-5 text-gray-300 dark:text-white/20 shrink-0" />
               <div>
                 <p className="text-[13px] font-medium text-gray-500 dark:text-white/50">
@@ -481,7 +481,7 @@ export default function FunnelPage() {
               </div>
               <Link
                 href="/dashboard/settings/integrations"
-                className="shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#6C5CE7] text-white text-[11px] font-semibold hover:bg-[#5B4ACF] transition-colors"
+                className="shrink-0 flex items-center gap-1 px-3 py-1.5 rounded bg-[#6C5CE7] text-white text-[11px] font-semibold hover:bg-[#5B4ACF] transition-colors"
               >
                 Verbinden
                 <ExternalLink className="h-3 w-3" />

@@ -174,7 +174,7 @@ export default function NeuerKundePage() {
   }
 
   const inputBase =
-    "w-full rounded-md border border-gray-200 dark:border-white/10 bg-[#F8FAFC] dark:bg-white/[0.05] px-4 py-3 text-[13px] text-[#0F172A] dark:text-white transition-all focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/20 focus:border-[#00CEC9] placeholder:text-gray-300 dark:placeholder:text-white/20"
+    "w-full rounded border border-gray-200 dark:border-white/10 bg-[#F8FAFC] dark:bg-white/[0.05] px-4 py-3 text-[13px] text-[#0F172A] dark:text-white transition-all focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/20 focus:border-[#00CEC9] placeholder:text-gray-300 dark:placeholder:text-white/20"
 
   const inputError =
     "border-red-400 dark:border-red-400 focus:ring-red-400/20 focus:border-red-400"
@@ -186,7 +186,7 @@ export default function NeuerKundePage() {
           <div className="flex items-center gap-3">
             <Link
               href="/dashboard/kunden"
-              className="flex items-center justify-center w-10 h-10 rounded-md border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors"
             >
               <ArrowLeft className="h-5 w-5 text-gray-500 dark:text-white/50" />
             </Link>
@@ -197,13 +197,13 @@ export default function NeuerKundePage() {
           <div className="flex items-center gap-3">
             <Link
               href="/dashboard/kunden"
-              className="border border-gray-200 dark:border-white/10 rounded-md px-6 py-3 text-[13px] font-medium text-gray-500 dark:text-white/50 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors"
+              className="border border-gray-200 dark:border-white/10 rounded px-6 py-3 text-[13px] font-medium text-gray-500 dark:text-white/50 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors"
             >
               Abbrechen
             </Link>
             <button
               type="submit"
-              className="bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white rounded-md px-6 py-3 text-[13px] font-semibold shadow-md shadow-[#00CEC9]/20 flex items-center gap-2 hover:opacity-90 transition-opacity cursor-pointer"
+              className="bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white rounded px-6 py-3 text-[13px] font-semibold shadow-md shadow-[#00CEC9]/20 flex items-center gap-2 hover:opacity-90 transition-opacity cursor-pointer"
             >
               <Save className="h-4 w-4" />
               Kunde speichern
@@ -217,7 +217,7 @@ export default function NeuerKundePage() {
             initial="hidden"
             animate="visible"
             variants={sectionVariants}
-            className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
+            className="bg-white dark:bg-[#1E293B] rounded shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
           >
             <div className="flex items-center gap-2 mb-5">
               <Building2 className="h-5 w-5 text-[#6C5CE7]" />
@@ -335,7 +335,7 @@ export default function NeuerKundePage() {
             initial="hidden"
             animate="visible"
             variants={sectionVariants}
-            className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
+            className="bg-white dark:bg-[#1E293B] rounded shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
           >
             <div className="flex items-center gap-2 mb-5">
               <User className="h-5 w-5 text-[#00CEC9]" />
@@ -407,7 +407,7 @@ export default function NeuerKundePage() {
             initial="hidden"
             animate="visible"
             variants={sectionVariants}
-            className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
+            className="bg-white dark:bg-[#1E293B] rounded shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
           >
             <div className="flex items-center gap-2 mb-5">
               <Camera className="h-5 w-5 text-[#E4405F]" />
@@ -443,7 +443,7 @@ export default function NeuerKundePage() {
             initial="hidden"
             animate="visible"
             variants={sectionVariants}
-            className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
+            className="bg-white dark:bg-[#1E293B] rounded shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
           >
             <div className="flex items-center gap-2 mb-5">
               <Crown className="h-5 w-5 text-[#F59E0B]" />
@@ -463,7 +463,7 @@ export default function NeuerKundePage() {
                       key={p.key}
                       type="button"
                       onClick={() => update("plan", p.key)}
-                      className={`relative rounded-md border-2 p-4 text-left transition-all cursor-pointer ${
+                      className={`relative rounded border-2 p-4 text-left transition-all cursor-pointer ${
                         selected
                           ? "border-[#00CEC9] bg-[#00CEC9]/5 dark:bg-[#00CEC9]/10"
                           : "border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20"
@@ -520,13 +520,13 @@ export default function NeuerKundePage() {
         <div className="flex items-center justify-end gap-3 mt-6">
           <Link
             href="/dashboard/kunden"
-            className="border border-gray-200 dark:border-white/10 rounded-md px-6 py-3 text-[13px] font-medium text-gray-500 dark:text-white/50 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors"
+            className="border border-gray-200 dark:border-white/10 rounded px-6 py-3 text-[13px] font-medium text-gray-500 dark:text-white/50 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors"
           >
             Abbrechen
           </Link>
           <button
             type="submit"
-            className="bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white rounded-md px-6 py-3 text-[13px] font-semibold shadow-md shadow-[#00CEC9]/20 flex items-center gap-2 hover:opacity-90 transition-opacity cursor-pointer"
+            className="bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white rounded px-6 py-3 text-[13px] font-semibold shadow-md shadow-[#00CEC9]/20 flex items-center gap-2 hover:opacity-90 transition-opacity cursor-pointer"
           >
             <Save className="h-4 w-4" />
             Kunde speichern
@@ -539,7 +539,7 @@ export default function NeuerKundePage() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 40 }}
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white dark:bg-[#1E293B] rounded-md shadow-lg border border-gray-100 dark:border-white/[0.06] px-5 py-4"
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white dark:bg-[#1E293B] rounded shadow-lg border border-gray-100 dark:border-white/[0.06] px-5 py-4"
         >
           <div className="w-8 h-8 rounded-full bg-[#00CEC9]/10 flex items-center justify-center">
             <Check className="h-4 w-4 text-[#00CEC9]" />

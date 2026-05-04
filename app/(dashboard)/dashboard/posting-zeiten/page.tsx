@@ -161,7 +161,7 @@ function BarTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null
   const item = payload[0].payload
   return (
-    <div className="bg-white border border-gray-200 rounded-lg px-3 py-2 shadow-lg text-[12px]">
+    <div className="bg-white border border-gray-200 rounded px-3 py-2 shadow-lg text-[12px]">
       <p className="font-bold text-[#0F172A] dark:text-white">{item.fullName}</p>
       <p className="text-gray-500">Ø Engagement: <span className="font-semibold text-[#00CEC9]">{item.engagement}%</span></p>
     </div>
@@ -189,7 +189,7 @@ export default function PostingZeitenPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-md bg-[#00CEC9]/10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded bg-[#00CEC9]/10 flex items-center justify-center">
             <Clock className="h-5 w-5 text-[#00CEC9]" />
           </div>
           <div>
@@ -215,7 +215,7 @@ export default function PostingZeitenPage() {
             <button
               key={tab.key}
               onClick={() => setPlatform(tab.key)}
-              className={`relative flex items-center gap-1.5 rounded-md px-4 py-2 text-[13px] font-medium whitespace-nowrap transition-all ${
+              className={`relative flex items-center gap-1.5 rounded px-4 py-2 text-[13px] font-medium whitespace-nowrap transition-all ${
                 active
                   ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25"
                   : "bg-white dark:bg-[#1E293B] text-gray-600 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04] shadow-sm"
@@ -241,11 +241,11 @@ export default function PostingZeitenPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4"
+            className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4"
           >
             <div className="flex items-center justify-between mb-2">
               <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                className="w-8 h-8 rounded flex items-center justify-center"
                 style={{ backgroundColor: `${stat.color}0F` }}
               >
                 <stat.icon className="h-4 w-4" style={{ color: stat.color }} />
@@ -258,7 +258,7 @@ export default function PostingZeitenPage() {
       </div>
 
       {/* Main Heatmap */}
-      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5 overflow-x-auto">
+      <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5 overflow-x-auto">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Engagement-Heatmap</h3>
@@ -314,7 +314,7 @@ export default function PostingZeitenPage() {
                   return (
                     <motion.div
                       key={`${dayIdx}-${hour}`}
-                      className="relative aspect-square rounded-md cursor-pointer flex items-center justify-center"
+                      className="relative aspect-square rounded cursor-pointer flex items-center justify-center"
                       style={{
                         backgroundColor: bg,
                         boxShadow: glow,
@@ -358,7 +358,7 @@ export default function PostingZeitenPage() {
                   transform: "translate(-50%, -100%)",
                 }}
               >
-                <div className="bg-[#0F172A] text-white rounded-lg px-3 py-2 text-[12px] shadow-xl whitespace-nowrap">
+                <div className="bg-[#0F172A] text-white rounded px-3 py-2 text-[12px] shadow-xl whitespace-nowrap">
                   <p className="font-bold">{DAYS[hoveredCell.day]}, {hoveredCell.hour}:00 Uhr</p>
                   <p className="text-[#00CEC9] font-semibold">{hoveredCell.engagement.toFixed(1)}% Engagement</p>
                   <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[5px] border-r-[5px] border-t-[5px] border-transparent border-t-[#0F172A]" />
@@ -370,7 +370,7 @@ export default function PostingZeitenPage() {
       </div>
 
       {/* Empfohlene Zeiten */}
-      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+      <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Empfohlene Zeiten</h3>
         <p className="text-[11px] text-gray-400 mb-4">Die Top-3 Zeitfenster mit dem höchsten erwarteten Engagement</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -384,7 +384,7 @@ export default function PostingZeitenPage() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1, duration: 0.4 }}
-                className={`relative rounded-md border ${rankBorder[idx]} p-4`}
+                className={`relative rounded border ${rankBorder[idx]} p-4`}
                 style={{ backgroundColor: rankBg[idx] }}
               >
                 {/* Rank badge */}
@@ -410,7 +410,7 @@ export default function PostingZeitenPage() {
                   </div>
                 </div>
                 <button
-                  className="mt-3 w-full flex items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-[12px] font-semibold text-white transition-all hover:brightness-110 active:scale-[0.98]"
+                  className="mt-3 w-full flex items-center justify-center gap-1.5 rounded px-3 py-2 text-[12px] font-semibold text-white transition-all hover:brightness-110 active:scale-[0.98]"
                   style={{ backgroundColor: rankColors[idx] }}
                 >
                   <CalendarPlus className="h-3.5 w-3.5" />
@@ -423,7 +423,7 @@ export default function PostingZeitenPage() {
       </div>
 
       {/* Bar Chart – Engagement by Day */}
-      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+      <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Engagement nach Wochentag</h3>
         <p className="text-[11px] text-gray-400 mb-4">Durchschnittliches Engagement pro Tag</p>
         <div className="h-[260px]">

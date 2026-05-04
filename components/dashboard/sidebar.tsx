@@ -151,7 +151,7 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
             <Link
               href="/dashboard/kunden"
               onClick={() => { setOpenSection(null); clearCustomer() }}
-              className={`flex items-center gap-3 rounded-md px-3.5 py-2.5 text-[13px] font-medium transition-all mb-1 ${
+              className={`flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium transition-all mb-1 ${
                 pathname.startsWith("/dashboard/kunden")
                   ? "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white shadow-md shadow-[#00CEC9]/20"
                   : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
@@ -174,7 +174,7 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
                 key={section.key}
                 href={section.singleLink}
                 onClick={() => setOpenSection(null)}
-                className={`flex items-center gap-3 rounded-md px-3.5 py-2.5 text-[13px] font-medium transition-all ${
+                className={`flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium transition-all ${
                   showActive
                     ? "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white shadow-md shadow-[#00CEC9]/20"
                     : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
@@ -187,7 +187,7 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
               <button
                 key={section.key}
                 onClick={() => handleSectionClick(section)}
-                className={`flex items-center gap-3 rounded-md px-3.5 py-2.5 text-[13px] font-medium transition-all text-left w-full ${
+                className={`flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium transition-all text-left w-full ${
                   showGradient
                     ? "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white shadow-md shadow-[#00CEC9]/20"
                     : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
@@ -211,7 +211,7 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
           <Link
             href="/dashboard/settings/integrations"
             onClick={() => setOpenSection(null)}
-            className={`flex items-center gap-3 rounded-md px-3.5 py-2.5 text-[13px] font-medium transition-all ${
+            className={`flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium transition-all ${
               pathname.startsWith("/dashboard/settings")
                 ? "bg-[#00CEC9]/10 text-[#00CEC9]"
                 : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
@@ -220,7 +220,7 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
             <Settings className="h-[18px] w-[18px] shrink-0" strokeWidth={1.5} />
             <span>Einstellungen</span>
           </Link>
-          <button className="flex items-center gap-3 rounded-md px-3.5 py-2.5 text-[13px] font-medium text-gray-400 dark:text-white/30 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all w-full text-left">
+          <button className="flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium text-gray-400 dark:text-white/30 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all w-full text-left">
             <LogOut className="h-[18px] w-[18px] shrink-0" strokeWidth={1.5} />
             <span>Abmelden</span>
           </button>
@@ -241,14 +241,14 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
             {/* Sub-header */}
             <div className="flex items-center justify-between h-[72px] px-5 border-b border-gray-100 dark:border-white/[0.06]">
               <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#00CEC9]/15 to-[#6C5CE7]/10 flex items-center justify-center">
+                <div className="w-7 h-7 rounded bg-gradient-to-br from-[#00CEC9]/15 to-[#6C5CE7]/10 flex items-center justify-center">
                   <subSection.icon className="h-3.5 w-3.5 text-[#00CEC9]" strokeWidth={2} />
                 </div>
                 <h2 className="text-[14px] font-bold text-[#0F172A] dark:text-white">{subSection.title}</h2>
               </div>
               <button
                 onClick={() => setOpenSection(null)}
-                className="w-7 h-7 flex items-center justify-center rounded-lg text-gray-300 dark:text-white/30 hover:text-gray-500 dark:hover:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
+                className="w-7 h-7 flex items-center justify-center rounded text-gray-300 dark:text-white/30 hover:text-gray-500 dark:hover:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -265,7 +265,7 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
                       key={item.href}
                       href={item.href}
                       onClick={() => setOpenSection(null)}
-                      className={`flex items-center gap-3 rounded-md px-3.5 py-2.5 text-[13px] font-medium transition-all group ${
+                      className={`flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium transition-all group ${
                         isActive
                           ? "bg-[#00CEC9]/10 text-[#00CEC9]"
                           : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"

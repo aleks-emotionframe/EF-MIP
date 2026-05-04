@@ -114,7 +114,7 @@ export default function AudiencePage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-md bg-[#00CEC9]/10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded bg-[#00CEC9]/10 flex items-center justify-center">
             <PieChartIcon className="h-5 w-5 text-[#00CEC9]" />
           </div>
           <div>
@@ -124,12 +124,12 @@ export default function AudiencePage() {
         </div>
 
         {/* Platform Tabs */}
-        <div className="flex items-center gap-1 rounded-md bg-gray-100 p-1">
+        <div className="flex items-center gap-1 rounded bg-gray-100 p-1">
           {PLATFORMS.map((p) => (
             <button
               key={p.key}
               onClick={() => setActivePlatform(p.key)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-[12px] font-medium transition-all ${
                 activePlatform === p.key
                   ? "bg-white text-[#0F172A] shadow-sm"
                   : "text-gray-500 hover:text-gray-700"
@@ -143,7 +143,7 @@ export default function AudiencePage() {
       </div>
 
       {/* Demo Data Banner */}
-      <div className="rounded-md border border-blue-100 bg-blue-50/50 p-4 flex items-start gap-3">
+      <div className="rounded border border-blue-100 bg-blue-50/50 p-4 flex items-start gap-3">
         <Info className="h-4 w-4 text-blue-500 mt-0.5 shrink-0" />
         <div>
           <p className="text-[13px] text-blue-800 font-medium">Demo-Daten</p>
@@ -162,10 +162,10 @@ export default function AudiencePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05, duration: 0.35 }}
-            className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4"
+            className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4"
           >
             <div className="flex items-center justify-between mb-2">
-              <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/[0.06] flex items-center justify-center">
+              <div className="w-8 h-8 rounded bg-[#00CEC9]/[0.06] flex items-center justify-center">
                 <stat.icon className="h-4 w-4 text-[#00CEC9]" />
               </div>
               <span className="flex items-center gap-0.5 text-[11px] font-bold text-emerald-600">
@@ -186,7 +186,7 @@ export default function AudiencePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.35 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Follower-Wachstum</h3>
           <p className="text-[11px] text-gray-400 mb-4">Letzte 12 Monate</p>
@@ -214,7 +214,7 @@ export default function AudiencePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.35 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Altersverteilung</h3>
           <p className="text-[11px] text-gray-400 mb-4">Alter der Follower in Prozent</p>
@@ -239,7 +239,7 @@ export default function AudiencePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.35 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Geschlecht</h3>
           <p className="text-[11px] text-gray-400 mb-4">Verteilung nach Geschlecht</p>
@@ -300,7 +300,7 @@ export default function AudiencePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.35 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Top Standorte</h3>
           <p className="text-[11px] text-gray-400 mb-4">Städte mit den meisten Followern</p>
@@ -333,7 +333,7 @@ export default function AudiencePage() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.35 }}
-        className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
+        className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6"
       >
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Top Fans</h3>
         <p className="text-[11px] text-gray-400 mb-4">Die engagiertesten Follower nach Interaktionen</p>
@@ -344,7 +344,7 @@ export default function AudiencePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.45 + i * 0.05, duration: 0.3 }}
-              className="flex items-center gap-3 rounded-md border border-gray-100 p-4 hover:border-[#00CEC9]/30 hover:shadow-sm transition-all"
+              className="flex items-center gap-3 rounded border border-gray-100 p-4 hover:border-[#00CEC9]/30 hover:shadow-sm transition-all"
             >
               {/* Avatar */}
               <div
@@ -372,7 +372,7 @@ export default function AudiencePage() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.35 }}
-        className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
+        className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6"
       >
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Interessen-Tags</h3>
         <p className="text-[11px] text-gray-400 mb-4">Häufigste Interessen der Follower</p>

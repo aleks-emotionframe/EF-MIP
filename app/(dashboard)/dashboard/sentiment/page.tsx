@@ -134,7 +134,7 @@ function ScoreRing({ score }: { score: number }) {
 function ChartTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null
   return (
-    <div className="rounded-md bg-white border border-gray-200 shadow-lg px-4 py-3 text-[12px]">
+    <div className="rounded bg-white border border-gray-200 shadow-lg px-4 py-3 text-[12px]">
       <p className="font-semibold text-[#0F172A] mb-1.5">{label}</p>
       {payload.map((p: any) => (
         <div key={p.dataKey} className="flex items-center gap-2">
@@ -172,12 +172,12 @@ export default function SentimentPage() {
             Automatische Auswertung aller Kommentare und Erwähnungen
           </p>
         </div>
-        <div className="flex items-center gap-1 rounded-md border border-gray-200 p-1">
+        <div className="flex items-center gap-1 rounded border border-gray-200 p-1">
           {TIME_RANGES.map((t) => (
             <button
               key={t.key}
               onClick={() => setRange(t.key)}
-              className={`px-3 py-1.5 rounded-lg text-[12px] font-medium transition-colors ${
+              className={`px-3 py-1.5 rounded text-[12px] font-medium transition-colors ${
                 range === t.key
                   ? "bg-[#6C5CE7] text-white shadow-sm"
                   : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
@@ -190,7 +190,7 @@ export default function SentimentPage() {
       </div>
 
       {/* ─── Demo-Hinweis ─── */}
-      <div className="rounded-md border border-blue-100 bg-blue-50/50 p-3 flex items-center gap-3">
+      <div className="rounded border border-blue-100 bg-blue-50/50 p-3 flex items-center gap-3">
         <Info className="h-4 w-4 text-blue-500 shrink-0" />
         <p className="text-[12px] text-blue-600">
           Demo-Daten – Die angezeigten Werte dienen zur Veranschaulichung und basieren nicht auf echten Plattformdaten.
@@ -204,7 +204,7 @@ export default function SentimentPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="lg:col-span-1 rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6 flex flex-col items-center justify-center text-center"
+          className="lg:col-span-1 rounded bg-white dark:bg-[#1E293B] shadow-sm p-6 flex flex-col items-center justify-center text-center"
         >
           <ScoreRing score={78} />
           <p className="mt-3 text-[15px] font-bold text-[#0F172A] dark:text-white">Überwiegend positiv</p>
@@ -224,10 +224,10 @@ export default function SentimentPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 * (i + 1) }}
-                className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5 flex flex-col justify-between"
+                className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5 flex flex-col justify-between"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <div className="w-9 h-9 rounded-md flex items-center justify-center" style={{ backgroundColor: `${s.color}15` }}>
+                  <div className="w-9 h-9 rounded flex items-center justify-center" style={{ backgroundColor: `${s.color}15` }}>
                     <Icon className="h-4.5 w-4.5" style={{ color: s.color }} />
                   </div>
                   <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full" style={{ backgroundColor: `${s.color}15`, color: s.color }}>
@@ -257,7 +257,7 @@ export default function SentimentPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="lg:col-span-2 rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5"
+          className="lg:col-span-2 rounded bg-white dark:bg-[#1E293B] shadow-sm p-5"
         >
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Stimmungsverlauf</h3>
           <p className="text-[11px] text-gray-400 mb-4">Letzte 30 Tage – Verteilung in %</p>
@@ -295,7 +295,7 @@ export default function SentimentPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5 flex flex-col"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5 flex flex-col"
         >
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Verteilung</h3>
           <p className="text-[11px] text-gray-400 mb-2">Gesamtanteil nach Stimmung</p>
@@ -341,7 +341,7 @@ export default function SentimentPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.35 }}
-        className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5"
+        className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5"
       >
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Letzte Kommentare</h3>
         <p className="text-[11px] text-gray-400 mb-4">Aktuelle Erwähnungen aus allen Plattformen</p>
@@ -355,9 +355,9 @@ export default function SentimentPage() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.04 * i }}
-                className={`flex items-start gap-3 rounded-md border-l-4 bg-gray-50/50 p-3.5 ${cfg.border}`}
+                className={`flex items-start gap-3 rounded border-l-4 bg-gray-50/50 p-3.5 ${cfg.border}`}
               >
-                <div className="w-8 h-8 rounded-lg bg-white border border-gray-100 flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-8 h-8 rounded bg-white border border-gray-100 flex items-center justify-center shrink-0 mt-0.5">
                   <PlatformIcon platform={c.platform} />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -387,10 +387,10 @@ export default function SentimentPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5"
         >
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/10 flex items-center justify-center">
+            <div className="w-8 h-8 rounded bg-[#00CEC9]/10 flex items-center justify-center">
               <ThumbsUp className="h-4 w-4 text-[#00CEC9]" />
             </div>
             <div>
@@ -424,10 +424,10 @@ export default function SentimentPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.45 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5"
         >
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-[#F97316]/10 flex items-center justify-center">
+            <div className="w-8 h-8 rounded bg-[#F97316]/10 flex items-center justify-center">
               <ThumbsDown className="h-4 w-4 text-[#F97316]" />
             </div>
             <div>
@@ -462,9 +462,9 @@ export default function SentimentPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className="rounded-lg border border-emerald-200 bg-emerald-50/50 p-5 flex items-start gap-4"
+        className="rounded border border-emerald-200 bg-emerald-50/50 p-5 flex items-start gap-4"
       >
-        <div className="w-10 h-10 rounded-md bg-emerald-100 flex items-center justify-center shrink-0">
+        <div className="w-10 h-10 rounded bg-emerald-100 flex items-center justify-center shrink-0">
           <ShieldCheck className="h-5 w-5 text-emerald-600" />
         </div>
         <div>

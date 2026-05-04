@@ -82,7 +82,7 @@ export function Header() {
         {activeCustomer && !isOnKundenPage && (
           <button
             onClick={handleBackToKunden}
-            className="flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 dark:text-white/40 hover:text-gray-600 dark:hover:text-white/70 hover:bg-white dark:hover:bg-white/[0.05] transition-colors"
+            className="flex items-center justify-center w-8 h-8 rounded text-gray-400 dark:text-white/40 hover:text-gray-600 dark:hover:text-white/70 hover:bg-white dark:hover:bg-white/[0.05] transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
           </button>
@@ -159,26 +159,26 @@ export function Header() {
           </button>
 
           {showUserMenu && (
-            <div className="absolute right-0 top-full mt-2 w-56 rounded-md border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0F172A] p-1.5 shadow-xl">
+            <div className="absolute right-0 top-full mt-2 w-56 rounded border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0F172A] p-1.5 shadow-xl">
               <div className="px-3 py-2.5 border-b border-gray-100 dark:border-white/[0.05] mb-1">
                 <p className="text-[13px] font-semibold text-gray-900 dark:text-white truncate">{session?.user?.name ?? "User"}</p>
                 <p className="text-[11px] text-gray-400 dark:text-white/40 truncate">{session?.user?.email}</p>
               </div>
               {isSuperAdmin && (
                 <Link href="/dashboard/kunden" onClick={() => { clearCustomer(); setShowUserMenu(false) }}
-                  className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] text-gray-600 dark:text-white/60 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors">
+                  className="flex w-full items-center gap-2.5 rounded px-3 py-2.5 text-[13px] text-gray-600 dark:text-white/60 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors">
                   <Building2 className="h-4 w-4 opacity-50" />Kundenübersicht
                 </Link>
               )}
-              <button className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] text-gray-600 dark:text-white/60 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors">
+              <button className="flex w-full items-center gap-2.5 rounded px-3 py-2.5 text-[13px] text-gray-600 dark:text-white/60 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors">
                 <User className="h-4 w-4 opacity-50" />Profil
               </button>
-              <button className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] text-gray-600 dark:text-white/60 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors">
+              <button className="flex w-full items-center gap-2.5 rounded px-3 py-2.5 text-[13px] text-gray-600 dark:text-white/60 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors">
                 <Settings className="h-4 w-4 opacity-50" />Einstellungen
               </button>
               <div className="border-t border-gray-100 dark:border-white/[0.05] mt-1 pt-1">
                 <button onClick={() => signOut({ callbackUrl: "/login" })}
-                  className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors">
+                  className="flex w-full items-center gap-2.5 rounded px-3 py-2.5 text-[13px] text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors">
                   <LogOut className="h-4 w-4" />Abmelden
                 </button>
               </div>

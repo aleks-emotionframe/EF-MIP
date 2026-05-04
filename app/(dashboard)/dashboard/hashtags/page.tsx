@@ -180,10 +180,10 @@ export default function HashtagsPage() {
           <Hash className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <input type="text" value={query} onChange={(e) => setQuery(e.target.value)}
             placeholder="Hashtag eingeben (z.B. marketing, fitness, schweiz)"
-            className="w-full rounded-md border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-[14px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
+            className="w-full rounded border border-gray-200 bg-white pl-11 pr-4 py-3.5 text-[14px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none" />
         </div>
         <motion.button type="submit" disabled={loading || !query.trim()} whileTap={{ scale: 0.97 }}
-          className="rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-6 py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all flex items-center gap-2">
+          className="rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-6 py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all flex items-center gap-2">
           {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
           Suchen
         </motion.button>
@@ -204,7 +204,7 @@ export default function HashtagsPage() {
         {result && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
             {/* Info */}
-            <div className="rounded-md border border-blue-100 bg-blue-50/50 p-3 flex items-start gap-2">
+            <div className="rounded border border-blue-100 bg-blue-50/50 p-3 flex items-start gap-2">
               <Info className="h-3.5 w-3.5 text-blue-500 mt-0.5 shrink-0" />
               <p className="text-[11px] text-blue-600">
                 Die Popularitäts-Einschätzung basiert auf allgemeinen Branchendaten. Für exakte Zahlen verbinde deine Plattform-Accounts unter Einstellungen → Integrationen.
@@ -215,7 +215,7 @@ export default function HashtagsPage() {
             <div className="flex items-center justify-between">
               <p className="text-[13px] text-gray-600"><span className="font-semibold">{result.results.length}</span> Hashtags gefunden für <span className="font-semibold">#{result.searched}</span></p>
               <button onClick={copyAll}
-                className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-[12px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">
+                className="flex items-center gap-1.5 rounded border border-gray-200 px-3 py-1.5 text-[12px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">
                 {copiedAll ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
                 {copiedAll ? "Kopiert!" : "Alle kopieren"}
               </button>
@@ -228,7 +228,7 @@ export default function HashtagsPage() {
                 const TrendIcon = TREND_ICON[h.trend]
                 return (
                   <button key={h.hashtag} onClick={() => copyTag(h.hashtag)}
-                    className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-3.5 text-left hover:shadow-sm hover:border-[#00CEC9]/20 transition-all group">
+                    className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-3.5 text-left hover:shadow-sm hover:border-[#00CEC9]/20 transition-all group">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[16px] font-bold text-[#0F172A] dark:text-white group-hover:text-[#00CEC9] transition-colors">#{h.hashtag}</span>
                       {copiedTag === h.hashtag
@@ -248,7 +248,7 @@ export default function HashtagsPage() {
 
             {/* Related Searches */}
             {result.related.length > 0 && (
-              <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+              <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
                 <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-3">Verwandte Themen</h3>
                 <div className="flex gap-2 flex-wrap">
                   {result.related.map((tag) => (
@@ -263,7 +263,7 @@ export default function HashtagsPage() {
 
             {/* Tips */}
             {result.tips.length > 0 && (
-              <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+              <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <Lightbulb className="h-4 w-4 text-amber-500" />
                   <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Tipps</h3>

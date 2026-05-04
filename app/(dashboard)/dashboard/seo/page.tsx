@@ -142,7 +142,7 @@ export default function SEOPage() {
       </div>
 
       {/* Main Tabs */}
-      <div className="flex gap-1 p-1 rounded-md bg-gray-100 dark:bg-white/[0.04] w-fit">
+      <div className="flex gap-1 p-1 rounded bg-gray-100 dark:bg-white/[0.04] w-fit">
         {([
           { key: "analyse" as MainTab, label: "Website-Analyse" },
           { key: "keywords" as MainTab, label: "Keyword-Rankings" },
@@ -150,12 +150,12 @@ export default function SEOPage() {
           <button
             key={tab.key}
             onClick={() => setMainTab(tab.key)}
-            className={`relative rounded-lg px-5 py-2 text-[13px] font-medium transition-all ${
+            className={`relative rounded px-5 py-2 text-[13px] font-medium transition-all ${
               mainTab === tab.key ? "text-gray-900 dark:text-white" : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
             }`}
           >
             {mainTab === tab.key && (
-              <motion.div layoutId="seo-tab" className="absolute inset-0 bg-white dark:bg-[#1E293B] rounded-lg shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />
+              <motion.div layoutId="seo-tab" className="absolute inset-0 bg-white dark:bg-[#1E293B] rounded shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />
             )}
             <span className="relative z-10">{tab.label}</span>
           </button>
@@ -172,24 +172,24 @@ export default function SEOPage() {
               <input
                 type="text" value={url} onChange={(e) => setUrl(e.target.value)}
                 placeholder="Website-URL eingeben (z.B. example.com)"
-                className="w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white pl-11 pr-4 py-3.5 text-[14px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none transition-all"
+                className="w-full rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white pl-11 pr-4 py-3.5 text-[14px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none transition-all"
               />
             </div>
             <motion.button type="submit" disabled={loading || !url.trim()} whileTap={{ scale: 0.97 }}
-              className="rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-6 py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all flex items-center gap-2">
+              className="rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-6 py-3.5 text-[14px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 disabled:opacity-50 transition-all flex items-center gap-2">
               {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <BarChart3 className="h-4 w-4" />}
               {loading ? "Analysiere..." : "Analysieren"}
             </motion.button>
           </form>
 
-          {error && <div className="rounded-md border border-red-200 bg-red-50 p-4 text-[13px] text-red-700">{error}</div>}
+          {error && <div className="rounded border border-red-200 bg-red-50 p-4 text-[13px] text-red-700">{error}</div>}
 
           <AnimatePresence>
             {result && (
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 {/* Score + Overview */}
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-                  <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6 flex flex-col items-center justify-center">
+                  <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-6 flex flex-col items-center justify-center">
                     <div className={`relative w-28 h-28 rounded-full flex items-center justify-center ${result.score >= 80 ? "bg-emerald-50" : result.score >= 50 ? "bg-amber-50" : "bg-red-50"}`}>
                       <svg className="absolute inset-0 w-28 h-28 -rotate-90" viewBox="0 0 100 100">
                         <circle cx="50" cy="50" r="44" fill="none" stroke="#e5e7eb" strokeWidth="6" />
@@ -206,14 +206,14 @@ export default function SEOPage() {
                     </div>
                     <p className="text-[12px] text-gray-500 dark:text-gray-400 mt-3">SEO-Score</p>
                   </div>
-                  <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5 flex flex-col justify-center space-y-3">
+                  <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5 flex flex-col justify-center space-y-3">
                     <div className="flex items-center justify-between"><span className="flex items-center gap-2 text-[13px] text-gray-600 dark:text-gray-300"><CheckCircle2 className="h-4 w-4 text-emerald-500" />Bestanden</span><span className="text-[14px] font-bold text-emerald-600">{passCount}</span></div>
                     <div className="flex items-center justify-between"><span className="flex items-center gap-2 text-[13px] text-gray-600 dark:text-gray-300"><AlertTriangle className="h-4 w-4 text-amber-500" />Warnungen</span><span className="text-[14px] font-bold text-amber-600">{warnCount}</span></div>
                     <div className="flex items-center justify-between"><span className="flex items-center gap-2 text-[13px] text-gray-600 dark:text-gray-300"><XCircle className="h-4 w-4 text-red-500" />Fehler</span><span className="text-[14px] font-bold text-red-600">{failCount}</span></div>
                   </div>
-                  <div className="lg:col-span-2 rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+                  <div className="lg:col-span-2 rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
                     <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">Google-Vorschau</p>
-                    <div className="rounded-lg border border-gray-200 p-4 bg-gray-50/50">
+                    <div className="rounded border border-gray-200 p-4 bg-gray-50/50">
                       <p className="text-[14px] text-[#1a0dab] font-medium leading-tight truncate">{result.meta.title || "Kein Titel gefunden"}</p>
                       <p className="text-[12px] text-[#006621] mt-0.5 truncate">{result.url}</p>
                       <p className="text-[12px] text-gray-600 mt-1 line-clamp-2 leading-relaxed">{result.meta.description || "Keine Meta-Beschreibung gefunden."}</p>
@@ -233,7 +233,7 @@ export default function SEOPage() {
                     const count = cat === "all" ? result.checks.length : result.checks.filter((c) => c.category === cat).length
                     return (
                       <button key={cat} onClick={() => setActiveCategory(cat)}
-                        className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === cat ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"}`}>
+                        className={`flex items-center gap-1.5 rounded px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === cat ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"}`}>
                         {cat === "all" ? "Alle" : cat}
                         <span className={`text-[10px] ${activeCategory === cat ? "text-white/70" : "text-gray-400"}`}>{count}</span>
                       </button>
@@ -247,9 +247,9 @@ export default function SEOPage() {
                     const Icon = STATUS_ICON[check.status]
                     const isExp = expandedCheck === `${check.category}-${check.name}`
                     return (
-                      <div key={`${check.category}-${check.name}`} className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
+                      <div key={`${check.category}-${check.name}`} className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
                         <button onClick={() => setExpandedCheck(isExp ? null : `${check.category}-${check.name}`)} className="w-full flex items-center gap-3 p-4 text-left hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
-                          <div className={`w-8 h-8 rounded-lg ${STATUS_BG[check.status]} flex items-center justify-center shrink-0`}><Icon className={`h-4 w-4 ${STATUS_COLOR[check.status]}`} /></div>
+                          <div className={`w-8 h-8 rounded ${STATUS_BG[check.status]} flex items-center justify-center shrink-0`}><Icon className={`h-4 w-4 ${STATUS_COLOR[check.status]}`} /></div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2"><span className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{check.name}</span><span className="text-[10px] text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-white/[0.04] rounded px-1.5 py-0.5">{check.category}</span></div>
                             <p className="text-[12px] text-gray-500 dark:text-gray-400 mt-0.5 truncate">{check.value}</p>
@@ -259,7 +259,7 @@ export default function SEOPage() {
                         </button>
                         <AnimatePresence>{isExp && (
                           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
-                            <div className="px-4 pb-4 pt-0"><div className={`rounded-lg p-3.5 ${STATUS_BG[check.status]}`}><div className="flex items-start gap-2"><ArrowRight className={`h-3.5 w-3.5 mt-0.5 shrink-0 ${STATUS_COLOR[check.status]}`} /><p className="text-[13px] text-gray-700 leading-relaxed">{check.recommendation}</p></div></div></div>
+                            <div className="px-4 pb-4 pt-0"><div className={`rounded p-3.5 ${STATUS_BG[check.status]}`}><div className="flex items-start gap-2"><ArrowRight className={`h-3.5 w-3.5 mt-0.5 shrink-0 ${STATUS_COLOR[check.status]}`} /><p className="text-[13px] text-gray-700 leading-relaxed">{check.recommendation}</p></div></div></div>
                           </motion.div>
                         )}</AnimatePresence>
                       </div>
@@ -269,7 +269,7 @@ export default function SEOPage() {
 
                 {/* Headings */}
                 {result.headings.length > 0 && (
-                  <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+                  <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
                     <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-3">Überschriften-Struktur</h3>
                     <div className="space-y-1.5">
                       {result.headings.map((h, i) => (
@@ -284,11 +284,11 @@ export default function SEOPage() {
 
                 {/* Images without alt */}
                 {result.images.filter((i) => !i.hasAlt).length > 0 && (
-                  <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+                  <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
                     <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-3">Bilder ohne Alt-Text ({result.images.filter((i) => !i.hasAlt).length})</h3>
                     <div className="space-y-1.5 max-h-48 overflow-y-auto">
                       {result.images.filter((i) => !i.hasAlt).map((img, i) => (
-                        <div key={i} className="flex items-center gap-2 text-[12px] rounded-lg p-2 bg-red-50">
+                        <div key={i} className="flex items-center gap-2 text-[12px] rounded p-2 bg-red-50">
                           <XCircle className="h-3.5 w-3.5 text-red-400 shrink-0" />
                           <span className="text-gray-600 truncate font-mono text-[11px]">{img.src}</span>
                         </div>
@@ -314,7 +314,7 @@ export default function SEOPage() {
       {mainTab === "keywords" && (
         <div className="space-y-4">
           {/* Info Banner */}
-          <div className="rounded-md border border-blue-100 bg-blue-50/50 p-4 flex items-start gap-3">
+          <div className="rounded border border-blue-100 bg-blue-50/50 p-4 flex items-start gap-3">
             <Info className="h-4 w-4 text-blue-500 mt-0.5 shrink-0" />
             <div>
               <p className="text-[13px] text-blue-800 font-medium">Demo-Daten</p>
@@ -327,19 +327,19 @@ export default function SEOPage() {
 
           {/* Overview Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-            <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+            <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
               <p className="text-[11px] text-gray-400 dark:text-gray-500">Keywords getrackt</p>
               <p className="text-[22px] font-bold text-gray-900 dark:text-white mt-1">{DEMO_KEYWORDS.length}</p>
             </div>
-            <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+            <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
               <p className="text-[11px] text-gray-400 dark:text-gray-500">Top 3 Positionen</p>
               <p className="text-[22px] font-bold text-emerald-600 mt-1">{DEMO_KEYWORDS.filter((k) => k.position <= 3).length}</p>
             </div>
-            <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+            <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
               <p className="text-[11px] text-gray-400 dark:text-gray-500">Top 10 Positionen</p>
               <p className="text-[22px] font-bold text-[#6C5CE7] mt-1">{DEMO_KEYWORDS.filter((k) => k.position <= 10).length}</p>
             </div>
-            <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+            <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
               <p className="text-[11px] text-gray-400 dark:text-gray-500">Ø Klickrate</p>
               <p className="text-[22px] font-bold text-gray-900 dark:text-white mt-1">{(DEMO_KEYWORDS.reduce((a, k) => a + k.ctr, 0) / DEMO_KEYWORDS.length).toFixed(1)}%</p>
             </div>
@@ -352,7 +352,7 @@ export default function SEOPage() {
               <input
                 type="text" value={keywordFilter} onChange={(e) => setKeywordFilter(e.target.value)}
                 placeholder="Keyword suchen..."
-                className="w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white pl-10 pr-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none"
+                className="w-full rounded border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] dark:text-white pl-10 pr-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none"
               />
             </div>
             <div className="flex gap-1.5">
@@ -363,7 +363,7 @@ export default function SEOPage() {
                 { key: "ctr" as const, label: "CTR" },
               ]).map((s) => (
                 <button key={s.key} onClick={() => setKeywordSort(s.key)}
-                  className={`rounded-lg px-3 py-2 text-[11px] font-medium transition-all ${keywordSort === s.key ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/[0.06]"}`}>
+                  className={`rounded px-3 py-2 text-[11px] font-medium transition-all ${keywordSort === s.key ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/[0.06]"}`}>
                   {s.label}
                 </button>
               ))}
@@ -378,13 +378,13 @@ export default function SEOPage() {
               const posColor = kw.position <= 3 ? "bg-emerald-100 text-emerald-700" : kw.position <= 10 ? "bg-blue-100 text-blue-700" : kw.position <= 20 ? "bg-amber-100 text-amber-700" : "bg-gray-100 text-gray-600"
 
               return (
-                <div key={kw.query} className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
+                <div key={kw.query} className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
                   <button onClick={() => setExpandedKeyword(isExp ? null : kw.query)}
                     className="w-full flex items-center gap-4 p-4 text-left hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
 
                     {/* Position */}
                     <div className="flex items-center gap-2 shrink-0 w-20">
-                      <span className={`inline-flex items-center justify-center w-8 h-8 rounded-lg text-[13px] font-bold ${posColor}`}>
+                      <span className={`inline-flex items-center justify-center w-8 h-8 rounded text-[13px] font-bold ${posColor}`}>
                         {kw.position}
                       </span>
                       {posChange !== null && posChange !== 0 && (
@@ -434,9 +434,9 @@ export default function SEOPage() {
                           </div>
 
                           {/* Tip */}
-                          <div className="rounded-lg bg-[#00CEC9]/[0.04] border border-[#00CEC9]/10 p-4">
+                          <div className="rounded bg-[#00CEC9]/[0.04] border border-[#00CEC9]/10 p-4">
                             <div className="flex items-start gap-2.5">
-                              <div className="w-7 h-7 rounded-lg bg-[#00CEC9]/10 flex items-center justify-center shrink-0 mt-0.5">
+                              <div className="w-7 h-7 rounded bg-[#00CEC9]/10 flex items-center justify-center shrink-0 mt-0.5">
                                 <Lightbulb className="h-3.5 w-3.5 text-[#00CEC9]" />
                               </div>
                               <div>

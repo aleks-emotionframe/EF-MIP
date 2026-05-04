@@ -149,7 +149,7 @@ export default function SeitenRankingPage() {
     return (
       <div className="space-y-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-md bg-[#6C5CE7]/10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded bg-[#6C5CE7]/10 flex items-center justify-center">
             <FileBarChart className="h-5 w-5 text-[#6C5CE7]" />
           </div>
           <div>
@@ -171,7 +171,7 @@ export default function SeitenRankingPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-md bg-[#6C5CE7]/10 flex items-center justify-center">
+            <div className="w-10 h-10 rounded bg-[#6C5CE7]/10 flex items-center justify-center">
               <FileBarChart className="h-5 w-5 text-[#6C5CE7]" />
             </div>
             <div>
@@ -179,12 +179,12 @@ export default function SeitenRankingPage() {
               <p className="text-[13px] text-gray-500 dark:text-white/50">Ranking deiner Webseiten nach Performance</p>
             </div>
           </div>
-          <div className="flex gap-1 rounded-lg bg-gray-100 dark:bg-white/[0.04] p-1">
+          <div className="flex gap-1 rounded bg-gray-100 dark:bg-white/[0.04] p-1">
             {TIME_RANGES.map((tr) => (
               <button
                 key={tr.value}
                 onClick={() => setTimeRange(tr.value)}
-                className={`px-3 py-1.5 rounded-md text-[12px] font-medium transition-all ${
+                className={`px-3 py-1.5 rounded text-[12px] font-medium transition-all ${
                   timeRange === tr.value
                     ? "bg-white dark:bg-white/10 text-[#0F172A] dark:text-white shadow-sm"
                     : "text-gray-500 hover:text-gray-700 dark:text-white/40 dark:hover:text-white/60"
@@ -201,7 +201,7 @@ export default function SeitenRankingPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden"
         >
           {/* Decorative gradient top bar */}
           <div className="h-1 bg-gradient-to-r from-[#6C5CE7] via-[#00CEC9] to-[#F97316]" />
@@ -212,7 +212,7 @@ export default function SeitenRankingPage() {
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="mx-auto w-20 h-20 rounded-lg bg-gradient-to-br from-[#6C5CE7]/10 to-[#00CEC9]/10 flex items-center justify-center mb-6"
+              className="mx-auto w-20 h-20 rounded bg-gradient-to-br from-[#6C5CE7]/10 to-[#00CEC9]/10 flex items-center justify-center mb-6"
             >
               <FileBarChart className="h-10 w-10 text-[#6C5CE7]" />
             </motion.div>
@@ -234,9 +234,9 @@ export default function SeitenRankingPage() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + i * 0.1 }}
-                  className="flex items-start gap-3 p-4 rounded-md bg-gray-50 dark:bg-white/[0.04] text-left"
+                  className="flex items-start gap-3 p-4 rounded bg-gray-50 dark:bg-white/[0.04] text-left"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-[#6C5CE7]/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-9 h-9 rounded bg-[#6C5CE7]/10 flex items-center justify-center shrink-0 mt-0.5">
                     <feature.icon className="h-4.5 w-4.5 text-[#6C5CE7]" />
                   </div>
                   <div>
@@ -252,7 +252,7 @@ export default function SeitenRankingPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="relative max-w-3xl mx-auto mb-8 rounded-md overflow-hidden"
+              className="relative max-w-3xl mx-auto mb-8 rounded overflow-hidden"
             >
               <div className="blur-sm select-none pointer-events-none opacity-60">
                 <div className="grid grid-cols-3 gap-3 mb-3">
@@ -261,7 +261,7 @@ export default function SeitenRankingPage() {
                     { path: "/produkte", views: "2'340", time: "3:12", rate: "28%" },
                     { path: "/blog", views: "1'890", time: "4:45", rate: "18%" },
                   ].map((mock, i) => (
-                    <div key={i} className={`rounded-md p-4 border ${PODIUM_STYLES[i].bg} ${PODIUM_STYLES[i].border}`}>
+                    <div key={i} className={`rounded p-4 border ${PODIUM_STYLES[i].bg} ${PODIUM_STYLES[i].border}`}>
                       <div className="flex items-center gap-2 mb-2">
                         <span className={`text-lg font-bold ${PODIUM_STYLES[i].iconColor}`}>#{i + 1}</span>
                         <span className="text-[13px] font-semibold text-[#0F172A]">{mock.path}</span>
@@ -274,7 +274,7 @@ export default function SeitenRankingPage() {
                     </div>
                   ))}
                 </div>
-                <div className="rounded-md bg-gray-50 p-4">
+                <div className="rounded bg-gray-50 p-4">
                   <div className="space-y-2">
                     {[1, 2, 3, 4, 5].map((i) => (
                       <div key={i} className="flex items-center gap-4 py-2 border-b border-gray-100 last:border-0">
@@ -299,7 +299,7 @@ export default function SeitenRankingPage() {
             >
               <Link
                 href="/dashboard/settings/integrations"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[#6C5CE7] text-white font-semibold text-[14px] hover:bg-[#5B4BD6] transition-colors shadow-lg shadow-[#6C5CE7]/25"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded bg-[#6C5CE7] text-white font-semibold text-[14px] hover:bg-[#5B4BD6] transition-colors shadow-lg shadow-[#6C5CE7]/25"
               >
                 Google Analytics verbinden
                 <ArrowRight className="h-4 w-4" />
@@ -320,7 +320,7 @@ export default function SeitenRankingPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-md bg-[#6C5CE7]/10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded bg-[#6C5CE7]/10 flex items-center justify-center">
             <FileBarChart className="h-5 w-5 text-[#6C5CE7]" />
           </div>
           <div>
@@ -333,12 +333,12 @@ export default function SeitenRankingPage() {
             <CheckCircle2 className="h-3.5 w-3.5" />
             <span className="font-medium">GA verbunden</span>
           </div>
-          <div className="flex gap-1 rounded-lg bg-gray-100 dark:bg-white/[0.04] p-1">
+          <div className="flex gap-1 rounded bg-gray-100 dark:bg-white/[0.04] p-1">
             {TIME_RANGES.map((tr) => (
               <button
                 key={tr.value}
                 onClick={() => setTimeRange(tr.value)}
-                className={`px-3 py-1.5 rounded-md text-[12px] font-medium transition-all ${
+                className={`px-3 py-1.5 rounded text-[12px] font-medium transition-all ${
                   timeRange === tr.value
                     ? "bg-white dark:bg-white/10 text-[#0F172A] dark:text-white shadow-sm"
                     : "text-gray-500 hover:text-gray-700 dark:text-white/40 dark:hover:text-white/60"
@@ -356,9 +356,9 @@ export default function SeitenRankingPage() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 p-12 text-center"
+          className="rounded bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 p-12 text-center"
         >
-          <div className="mx-auto w-16 h-16 rounded-lg bg-[#00CEC9]/10 flex items-center justify-center mb-4">
+          <div className="mx-auto w-16 h-16 rounded bg-[#00CEC9]/10 flex items-center justify-center mb-4">
             <BarChart3 className="h-8 w-8 text-[#00CEC9]" />
           </div>
           <h3 className="text-lg font-bold text-[#0F172A] dark:text-white mb-2">Daten werden geladen</h3>
@@ -380,7 +380,7 @@ export default function SeitenRankingPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className={`rounded-lg border ${style.border} ${style.bg} p-5 relative overflow-hidden`}
+                  className={`rounded border ${style.border} ${style.bg} p-5 relative overflow-hidden`}
                 >
                   {/* Rank badge */}
                   <div className={`absolute top-3 right-3 w-8 h-8 rounded-full ${style.badgeBg} flex items-center justify-center`}>
@@ -423,7 +423,7 @@ export default function SeitenRankingPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden"
+            className="rounded bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden"
           >
             <div className="p-5 border-b border-gray-100 dark:border-white/10">
               <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Alle Seiten</h3>
@@ -524,7 +524,7 @@ export default function SeitenRankingPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 p-5"
+              className="rounded bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 p-5"
             >
               <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Seitenaufrufe-Verteilung</h3>
               <p className="text-[11px] text-gray-400 dark:text-white/40 mb-4">Top 10 Seiten nach Aufrufen</p>
@@ -563,7 +563,7 @@ export default function SeitenRankingPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 p-5"
+              className="rounded bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 p-5"
             >
               <div className="flex items-center gap-2 mb-1">
                 <Sparkles className="h-4 w-4 text-[#F97316]" />
@@ -573,7 +573,7 @@ export default function SeitenRankingPage() {
 
               {suggestions.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-10 text-center">
-                  <div className="w-12 h-12 rounded-md bg-[#F97316]/10 flex items-center justify-center mb-3">
+                  <div className="w-12 h-12 rounded bg-[#F97316]/10 flex items-center justify-center mb-3">
                     <Sparkles className="h-6 w-6 text-[#F97316]" />
                   </div>
                   <p className="text-[13px] font-medium text-[#0F172A] dark:text-white mb-1">
@@ -588,13 +588,13 @@ export default function SeitenRankingPage() {
                   {suggestions.map((s) => (
                     <div
                       key={s.id}
-                      className="rounded-md border border-gray-100 dark:border-white/10 overflow-hidden"
+                      className="rounded border border-gray-100 dark:border-white/10 overflow-hidden"
                     >
                       <button
                         onClick={() => setExpandedSuggestion(expandedSuggestion === s.id ? null : s.id)}
                         className="w-full flex items-center gap-3 p-3 text-left hover:bg-gray-50/50 dark:hover:bg-white/[0.02] transition-colors"
                       >
-                        <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${
+                        <div className={`w-7 h-7 rounded flex items-center justify-center shrink-0 ${
                           s.type === "warning" ? "bg-red-50 text-red-500"
                           : s.type === "tip" ? "bg-amber-50 text-amber-500"
                           : "bg-emerald-50 text-emerald-600"

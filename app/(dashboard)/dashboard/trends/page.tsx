@@ -107,7 +107,7 @@ export default function TrendsPage() {
           </p>
         </div>
         <button onClick={fetchTrends} disabled={loading}
-          className="flex items-center gap-1.5 rounded-md border border-gray-200 px-3 py-2.5 text-[12px] font-medium text-gray-600 hover:bg-gray-50 disabled:opacity-50 transition-colors">
+          className="flex items-center gap-1.5 rounded border border-gray-200 px-3 py-2.5 text-[12px] font-medium text-gray-600 hover:bg-gray-50 disabled:opacity-50 transition-colors">
           <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
           Aktualisieren
         </button>
@@ -115,7 +115,7 @@ export default function TrendsPage() {
 
       {/* Source Info */}
       {data?.source === "demo" && (
-        <div className="rounded-md border border-blue-100 bg-blue-50/50 p-4 flex items-start gap-3">
+        <div className="rounded border border-blue-100 bg-blue-50/50 p-4 flex items-start gap-3">
           <Info className="h-4 w-4 text-blue-500 mt-0.5 shrink-0" />
           <div>
             <p className="text-[13px] text-blue-800 font-medium">Demo-Daten</p>
@@ -126,7 +126,7 @@ export default function TrendsPage() {
         </div>
       )}
       {data?.source === "reddit-live" && (
-        <div className="rounded-md border border-emerald-100 bg-emerald-50/50 p-3 flex items-center gap-2">
+        <div className="rounded border border-emerald-100 bg-emerald-50/50 p-3 flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-emerald-600" />
           <p className="text-[12px] text-emerald-700">
             <span className="font-semibold">Live-Daten</span> aus {data.totalPosts} Reddit-Beiträgen · Aktualisiert: {new Date(data.fetchedAt).toLocaleString("de-CH")}
@@ -136,15 +136,15 @@ export default function TrendsPage() {
 
       {/* Timeframe + Category Filter */}
       <div className="flex flex-col sm:flex-row gap-3">
-        <div className="flex gap-1 p-1 rounded-md bg-gray-100 w-fit">
+        <div className="flex gap-1 p-1 rounded bg-gray-100 w-fit">
           {([
             { key: "day" as const, label: "Heute" },
             { key: "week" as const, label: "Diese Woche" },
             { key: "month" as const, label: "Dieser Monat" },
           ]).map((t) => (
             <button key={t.key} onClick={() => setTimeframe(t.key)}
-              className={`relative rounded-lg px-4 py-1.5 text-[12px] font-medium transition-all ${timeframe === t.key ? "text-gray-900" : "text-gray-500"}`}>
-              {timeframe === t.key && <motion.div layoutId="trend-time" className="absolute inset-0 bg-white rounded-lg shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />}
+              className={`relative rounded px-4 py-1.5 text-[12px] font-medium transition-all ${timeframe === t.key ? "text-gray-900" : "text-gray-500"}`}>
+              {timeframe === t.key && <motion.div layoutId="trend-time" className="absolute inset-0 bg-white rounded shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />}
               <span className="relative z-10">{t.label}</span>
             </button>
           ))}
@@ -152,14 +152,14 @@ export default function TrendsPage() {
 
         <div className="flex gap-1.5 overflow-x-auto">
           <button onClick={() => setActiveCategory("all")}
-            className={`rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === "all" ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04]"}`}>
+            className={`rounded px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === "all" ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04]"}`}>
             Alle
           </button>
           {(data?.categories ?? []).map((cat) => {
             const Icon = ICON_MAP[cat.icon] ?? Sparkles
             return (
               <button key={cat.name} onClick={() => setActiveCategory(cat.name)}
-                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === cat.name ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04]"}`}>
+                className={`flex items-center gap-1.5 rounded px-3 py-1.5 text-[12px] font-medium whitespace-nowrap transition-all ${activeCategory === cat.name ? "bg-[#00CEC9] text-white" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04]"}`}>
                 <Icon className="h-3 w-3" />
                 {cat.name}
                 <span className={`text-[10px] ${activeCategory === cat.name ? "text-white/70" : "text-gray-400"}`}>{cat.trends.length}</span>
@@ -185,7 +185,7 @@ export default function TrendsPage() {
             return (
               <div key={category.name}>
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="w-7 h-7 rounded-lg bg-[#00CEC9]/[0.06] flex items-center justify-center">
+                  <div className="w-7 h-7 rounded bg-[#00CEC9]/[0.06] flex items-center justify-center">
                     <Icon className="h-3.5 w-3.5 text-[#00CEC9]" />
                   </div>
                   <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">{category.name}</h2>
@@ -196,7 +196,7 @@ export default function TrendsPage() {
                   {category.trends.map((trend) => {
                     const isExp = expandedId === trend.id
                     return (
-                      <motion.div key={trend.id} layout className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
+                      <motion.div key={trend.id} layout className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
                         <button onClick={() => setExpandedId(isExp ? null : trend.id)}
                           className="w-full flex items-start gap-4 p-4 text-left hover:bg-gray-50/50 transition-colors">
 
@@ -237,13 +237,13 @@ export default function TrendsPage() {
                             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
                               <div className="px-4 pb-4 space-y-3">
                                 {trend.summary && (
-                                  <div className="rounded-lg bg-gray-50 p-3.5">
+                                  <div className="rounded bg-gray-50 p-3.5">
                                     <p className="text-[13px] text-gray-700 leading-relaxed">{trend.summary}</p>
                                   </div>
                                 )}
 
                                 {/* AI Takeaway */}
-                                <div className="rounded-lg bg-[#00CEC9]/[0.04] border border-[#00CEC9]/10 p-3.5">
+                                <div className="rounded bg-[#00CEC9]/[0.04] border border-[#00CEC9]/10 p-3.5">
                                   <div className="flex items-start gap-2.5">
                                     <Sparkles className="h-4 w-4 text-[#00CEC9] mt-0.5 shrink-0" />
                                     <div>

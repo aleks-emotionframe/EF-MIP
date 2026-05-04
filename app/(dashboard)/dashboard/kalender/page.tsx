@@ -161,22 +161,22 @@ export default function KalenderPage() {
           </div>
           <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Plane und verwalte deine Social-Media-Beiträge.</p>
         </div>
-        <button onClick={() => openCreate()} className="flex items-center gap-1.5 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
+        <button onClick={() => openCreate()} className="flex items-center gap-1.5 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
           <Plus className="h-3.5 w-3.5" />Beitrag planen
         </button>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4 text-center">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4 text-center">
           <p className="text-[24px] font-extrabold text-[#0F172A] dark:text-white">{thisMonthPosts.length}</p>
           <p className="text-[11px] text-gray-400">Beiträge im {MONTH_NAMES[month]}</p>
         </div>
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4 text-center">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4 text-center">
           <p className="text-[20px] font-bold text-blue-600">{plannedCount}</p>
           <p className="text-[11px] text-gray-400">Geplant</p>
         </div>
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4 text-center">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4 text-center">
           <p className="text-[20px] font-bold text-gray-500">{draftCount}</p>
           <p className="text-[11px] text-gray-400">Entwürfe</p>
         </div>
@@ -185,15 +185,15 @@ export default function KalenderPage() {
       {/* Navigation */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <button onClick={() => navigate(-1)} className="rounded-lg p-2 hover:bg-gray-100 transition-colors"><ChevronLeft className="h-4 w-4 text-gray-600" /></button>
+          <button onClick={() => navigate(-1)} className="rounded p-2 hover:bg-gray-100 transition-colors"><ChevronLeft className="h-4 w-4 text-gray-600" /></button>
           <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white w-40 text-center">{MONTH_NAMES[month]} {year}</h2>
-          <button onClick={() => navigate(1)} className="rounded-lg p-2 hover:bg-gray-100 transition-colors"><ChevronRight className="h-4 w-4 text-gray-600" /></button>
+          <button onClick={() => navigate(1)} className="rounded p-2 hover:bg-gray-100 transition-colors"><ChevronRight className="h-4 w-4 text-gray-600" /></button>
         </div>
-        <div className="flex gap-1 p-1 rounded-md bg-gray-100">
+        <div className="flex gap-1 p-1 rounded bg-gray-100">
           {(["month", "week"] as ViewMode[]).map((v) => (
             <button key={v} onClick={() => setView(v)}
-              className={`relative rounded-lg px-4 py-1.5 text-[12px] font-medium transition-all ${view === v ? "text-gray-900" : "text-gray-500"}`}>
-              {view === v && <motion.div layoutId="cal-view" className="absolute inset-0 bg-white rounded-lg shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />}
+              className={`relative rounded px-4 py-1.5 text-[12px] font-medium transition-all ${view === v ? "text-gray-900" : "text-gray-500"}`}>
+              {view === v && <motion.div layoutId="cal-view" className="absolute inset-0 bg-white rounded shadow-sm" transition={{ type: "spring", stiffness: 400, damping: 30 }} />}
               <span className="relative z-10">{v === "month" ? "Monat" : "Woche"}</span>
             </button>
           ))}
@@ -202,7 +202,7 @@ export default function KalenderPage() {
 
       {/* ─── Month View ──────────────────────────────────────── */}
       {view === "month" && (
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
           {/* Weekday headers */}
           <div className="grid grid-cols-7 border-b border-gray-100 dark:border-white/[0.06]">
             {WEEKDAYS.map((d) => (
@@ -246,7 +246,7 @@ export default function KalenderPage() {
 
       {/* ─── Week View ───────────────────────────────────────── */}
       {view === "week" && (
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden">
           <div className="grid grid-cols-7">
             {weekDates.map((date) => {
               const dateStr = formatDate(date)
@@ -263,7 +263,7 @@ export default function KalenderPage() {
                       const pl = PLATFORMS.find((p) => p.key === post.platform)
                       return (
                         <button key={post.id} onClick={() => openEdit(post)}
-                          className="w-full text-left rounded-lg border p-2.5 hover:shadow-sm transition-shadow"
+                          className="w-full text-left rounded border p-2.5 hover:shadow-sm transition-shadow"
                           style={{ borderColor: `${post.color}30`, backgroundColor: `${post.color}06` }}>
                           <div className="flex items-center gap-1.5 mb-1">
                             {pl && <pl.icon className="h-3 w-3" style={{ color: post.color }} />}
@@ -274,7 +274,7 @@ export default function KalenderPage() {
                         </button>
                       )
                     })}
-                    <button onClick={() => openCreate(dateStr)} className="w-full rounded-lg border border-dashed border-gray-200 p-2 text-[10px] text-gray-400 hover:text-[#00CEC9] hover:border-[#00CEC9]/30 transition-colors flex items-center justify-center gap-1">
+                    <button onClick={() => openCreate(dateStr)} className="w-full rounded border border-dashed border-gray-200 p-2 text-[10px] text-gray-400 hover:text-[#00CEC9] hover:border-[#00CEC9]/30 transition-colors flex items-center justify-center gap-1">
                       <Plus className="h-3 w-3" />Hinzufügen
                     </button>
                   </div>
@@ -291,10 +291,10 @@ export default function KalenderPage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowModal(false)} />
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-lg mx-4 rounded-lg bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
+              className="relative z-10 w-full max-w-lg mx-4 rounded bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] p-6 shadow-2xl">
               <div className="flex items-center justify-between mb-5">
                 <h2 className="text-[16px] font-bold text-gray-900">{editingPost ? "Beitrag bearbeiten" : "Beitrag planen"}</h2>
-                <button onClick={() => setShowModal(false)} className="rounded-lg p-1 hover:bg-gray-100"><X className="h-5 w-5 text-gray-400" /></button>
+                <button onClick={() => setShowModal(false)} className="rounded p-1 hover:bg-gray-100"><X className="h-5 w-5 text-gray-400" /></button>
               </div>
               <div className="space-y-4">
                 {/* Platform */}
@@ -303,7 +303,7 @@ export default function KalenderPage() {
                   <div className="flex gap-2 mt-2">
                     {PLATFORMS.map((p) => (
                       <button key={p.key} onClick={() => setFormPlatform(p.key)}
-                        className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-[12px] font-medium transition-all ${formPlatform === p.key ? "text-white" : "bg-gray-50 text-gray-600 border border-gray-200"}`}
+                        className={`flex items-center gap-1.5 rounded px-3 py-2 text-[12px] font-medium transition-all ${formPlatform === p.key ? "text-white" : "bg-gray-50 text-gray-600 border border-gray-200"}`}
                         style={formPlatform === p.key ? { backgroundColor: p.color } : {}}>
                         <p.icon className="h-3.5 w-3.5" />{p.label}
                       </button>
@@ -313,16 +313,16 @@ export default function KalenderPage() {
                 {/* Date + Time */}
                 <div className="grid grid-cols-2 gap-3">
                   <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Datum</label>
-                    <input type="date" value={formDate} onChange={(e) => setFormDate(e.target.value)} className="w-full rounded-md border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none" /></div>
+                    <input type="date" value={formDate} onChange={(e) => setFormDate(e.target.value)} className="w-full rounded border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none" /></div>
                   <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Uhrzeit</label>
-                    <input type="time" value={formTime} onChange={(e) => setFormTime(e.target.value)} className="w-full rounded-md border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none" /></div>
+                    <input type="time" value={formTime} onChange={(e) => setFormTime(e.target.value)} className="w-full rounded border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none" /></div>
                 </div>
                 {/* Title */}
                 <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Titel</label>
-                  <input value={formTitle} onChange={(e) => setFormTitle(e.target.value)} placeholder="z.B. Produkt-Reel" className="w-full rounded-md border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none" /></div>
+                  <input value={formTitle} onChange={(e) => setFormTitle(e.target.value)} placeholder="z.B. Produkt-Reel" className="w-full rounded border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none" /></div>
                 {/* Content */}
                 <div><label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Beschreibung</label>
-                  <textarea value={formContent} onChange={(e) => setFormContent(e.target.value)} rows={3} placeholder="Was soll der Beitrag beinhalten?" className="w-full rounded-md border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none resize-none" /></div>
+                  <textarea value={formContent} onChange={(e) => setFormContent(e.target.value)} rows={3} placeholder="Was soll der Beitrag beinhalten?" className="w-full rounded border border-gray-200 px-4 py-2.5 text-[13px] mt-1.5 focus:border-[#00CEC9] focus:outline-none resize-none" /></div>
                 {/* Status */}
                 <div>
                   <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Status</label>
@@ -331,7 +331,7 @@ export default function KalenderPage() {
                       const st = STATUS_STYLE[s]
                       return (
                         <button key={s} onClick={() => setFormStatus(s)}
-                          className={`rounded-lg px-3 py-1.5 text-[12px] font-medium transition-all ${formStatus === s ? `${st.bg} ${st.text}` : "bg-gray-50 text-gray-500 border border-gray-200"}`}>
+                          className={`rounded px-3 py-1.5 text-[12px] font-medium transition-all ${formStatus === s ? `${st.bg} ${st.text}` : "bg-gray-50 text-gray-500 border border-gray-200"}`}>
                           {st.label}
                         </button>
                       )
@@ -341,12 +341,12 @@ export default function KalenderPage() {
                 {/* Actions */}
                 <div className="flex gap-3 pt-2">
                   {editingPost && (
-                    <button onClick={() => { handleDelete(editingPost.id); setShowModal(false) }} className="rounded-md border border-red-200 px-4 py-2.5 text-[13px] font-medium text-red-500 hover:bg-red-50 transition-colors">
+                    <button onClick={() => { handleDelete(editingPost.id); setShowModal(false) }} className="rounded border border-red-200 px-4 py-2.5 text-[13px] font-medium text-red-500 hover:bg-red-50 transition-colors">
                       <Trash2 className="h-4 w-4" />
                     </button>
                   )}
-                  <button onClick={() => setShowModal(false)} className="flex-1 rounded-md border border-gray-200 py-2.5 text-[13px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">Abbrechen</button>
-                  <button onClick={handleSave} disabled={!formTitle || !formDate} className="flex-1 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50 transition-colors">
+                  <button onClick={() => setShowModal(false)} className="flex-1 rounded border border-gray-200 py-2.5 text-[13px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">Abbrechen</button>
+                  <button onClick={handleSave} disabled={!formTitle || !formDate} className="flex-1 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50 transition-colors">
                     {editingPost ? "Speichern" : "Planen"}
                   </button>
                 </div>

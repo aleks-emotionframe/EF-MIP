@@ -212,13 +212,13 @@ export default function IntegrationsPage() {
           return (
             <div
               key={platform.key}
-              className="group rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5 hover:shadow-sm transition-all"
+              className="group rounded bg-white dark:bg-[#1E293B] shadow-sm p-5 hover:shadow-sm transition-all"
             >
               {/* Header */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div
-                    className={`w-10 h-10 rounded-md ${platform.bgColor} flex items-center justify-center`}
+                    className={`w-10 h-10 rounded ${platform.bgColor} flex items-center justify-center`}
                   >
                     <platform.icon
                       className="h-5 w-5"
@@ -267,7 +267,7 @@ export default function IntegrationsPage() {
                     <button
                       onClick={() => handleSync(platform.key)}
                       disabled={isSyncing}
-                      className="flex-1 flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 px-3 py-2 text-[12px] font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 transition-colors"
+                      className="flex-1 flex items-center justify-center gap-1.5 rounded border border-gray-200 px-3 py-2 text-[12px] font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 transition-colors"
                     >
                       {isSyncing ? (
                         <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -278,7 +278,7 @@ export default function IntegrationsPage() {
                     </button>
                     <button
                       onClick={() => handleDisconnect(platform.key)}
-                      className="flex items-center justify-center rounded-lg border border-gray-200 px-3 py-2 text-[12px] text-gray-400 hover:text-red-500 hover:border-red-200 hover:bg-red-50 transition-colors"
+                      className="flex items-center justify-center rounded border border-gray-200 px-3 py-2 text-[12px] text-gray-400 hover:text-red-500 hover:border-red-200 hover:bg-red-50 transition-colors"
                       title="Trennen"
                     >
                       <X className="h-3.5 w-3.5" />
@@ -288,7 +288,7 @@ export default function IntegrationsPage() {
                   <button
                     onClick={() => handleConnect(platform.key)}
                     disabled={isConnecting}
-                    className="flex-1 flex items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-[12px] font-semibold text-white transition-all disabled:opacity-60"
+                    className="flex-1 flex items-center justify-center gap-1.5 rounded px-3 py-2 text-[12px] font-semibold text-white transition-all disabled:opacity-60"
                     style={{ backgroundColor: platform.color }}
                   >
                     {isConnecting ? (

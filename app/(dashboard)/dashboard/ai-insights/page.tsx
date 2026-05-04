@@ -121,7 +121,7 @@ export default function AIInsightsPage() {
         </div>
         <button
           onClick={() => { setLoading(true); setTimeout(() => setLoading(false), 1200) }}
-          className="flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-white/[0.06] px-3 py-2 text-[12px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
+          className="flex items-center gap-1.5 rounded border border-gray-200 dark:border-white/[0.06] px-3 py-2 text-[12px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
         >
           <Sparkles className="h-3.5 w-3.5" />
           Neu erstellen
@@ -129,7 +129,7 @@ export default function AIInsightsPage() {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex gap-1 p-1 rounded-md bg-gray-100 dark:bg-white/[0.04] w-fit">
+      <div className="flex gap-1 p-1 rounded bg-gray-100 dark:bg-white/[0.04] w-fit">
         {FILTER_TABS.map((tab) => {
           const count = tab.key === "all"
             ? insights.length
@@ -138,7 +138,7 @@ export default function AIInsightsPage() {
             <button
               key={tab.key}
               onClick={() => setActiveFilter(tab.key)}
-              className={`relative rounded-lg px-4 py-1.5 text-[12px] font-medium transition-all ${
+              className={`relative rounded px-4 py-1.5 text-[12px] font-medium transition-all ${
                 activeFilter === tab.key
                   ? "text-gray-900 dark:text-white"
                   : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
@@ -147,7 +147,7 @@ export default function AIInsightsPage() {
               {activeFilter === tab.key && (
                 <motion.div
                   layoutId="filter-pill"
-                  className="absolute inset-0 bg-white dark:bg-[#1E293B] rounded-lg shadow-sm"
+                  className="absolute inset-0 bg-white dark:bg-[#1E293B] rounded shadow-sm"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
@@ -184,7 +184,7 @@ export default function AIInsightsPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden hover:shadow-sm transition-shadow"
+                  className="rounded bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden hover:shadow-sm transition-shadow"
                 >
                   {/* Main Row */}
                   <div
@@ -192,7 +192,7 @@ export default function AIInsightsPage() {
                     onClick={() => setExpandedId(isExpanded ? null : insight.id)}
                   >
                     {/* Icon */}
-                    <div className={`w-10 h-10 rounded-md ${typeConf.bg} flex items-center justify-center shrink-0`}>
+                    <div className={`w-10 h-10 rounded ${typeConf.bg} flex items-center justify-center shrink-0`}>
                       <typeConf.icon className="h-[18px] w-[18px]" style={{ color: typeConf.color }} />
                     </div>
 
@@ -259,7 +259,7 @@ export default function AIInsightsPage() {
                                 {insight.actions.map((action, i) => (
                                   <span
                                     key={i}
-                                    className="inline-flex items-center rounded-lg border border-gray-200 dark:border-white/[0.06] bg-gray-50 dark:bg-white/[0.04] px-3 py-1.5 text-[12px] text-gray-600 dark:text-gray-300"
+                                    className="inline-flex items-center rounded border border-gray-200 dark:border-white/[0.06] bg-gray-50 dark:bg-white/[0.04] px-3 py-1.5 text-[12px] text-gray-600 dark:text-gray-300"
                                   >
                                     {action}
                                   </span>
@@ -279,21 +279,21 @@ export default function AIInsightsPage() {
                               <>
                                 <button
                                   onClick={(e) => { e.stopPropagation(); handleFeedback(insight.id, "implemented") }}
-                                  className="flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-3.5 py-2 text-[12px] font-semibold text-white hover:bg-[#00B4A3] transition-colors"
+                                  className="flex items-center gap-1.5 rounded bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-3.5 py-2 text-[12px] font-semibold text-white hover:bg-[#00B4A3] transition-colors"
                                 >
                                   <Check className="h-3.5 w-3.5" />
                                   Umsetzen
                                 </button>
                                 <button
                                   onClick={(e) => { e.stopPropagation(); handleFeedback(insight.id, "not_useful") }}
-                                  className="flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-white/[0.06] px-3.5 py-2 text-[12px] text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
+                                  className="flex items-center gap-1.5 rounded border border-gray-200 dark:border-white/[0.06] px-3.5 py-2 text-[12px] text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
                                 >
                                   <X className="h-3.5 w-3.5" />
                                   Ignorieren
                                 </button>
                                 <button
                                   onClick={(e) => { e.stopPropagation(); handleFeedback(insight.id, "useful") }}
-                                  className="flex items-center gap-1.5 rounded-lg border border-gray-200 dark:border-white/[0.06] px-3.5 py-2 text-[12px] text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
+                                  className="flex items-center gap-1.5 rounded border border-gray-200 dark:border-white/[0.06] px-3.5 py-2 text-[12px] text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
                                 >
                                   <Eye className="h-3.5 w-3.5" />
                                   Nützlich
@@ -320,7 +320,7 @@ export default function AIInsightsPage() {
       )}
 
       {/* Learning Timeline */}
-      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5 mt-8">
+      <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5 mt-8">
         <div className="flex items-center gap-2 mb-5">
           <Brain className="h-4 w-4 text-[#00CEC9]" />
           <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Lernverlauf</h2>
@@ -330,7 +330,7 @@ export default function AIInsightsPage() {
           {LEARNING_TIMELINE.map((entry, i) => (
             <div key={i} className="flex gap-3">
               <div className="flex flex-col items-center">
-                <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/[0.06] flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded bg-[#00CEC9]/[0.06] flex items-center justify-center shrink-0">
                   <entry.icon className="h-3.5 w-3.5 text-[#00CEC9]" />
                 </div>
                 {i < LEARNING_TIMELINE.length - 1 && (

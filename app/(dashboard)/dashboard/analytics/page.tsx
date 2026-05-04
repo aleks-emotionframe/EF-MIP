@@ -69,9 +69,9 @@ export default function AnalyticsPage() {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {kpis.map((kpi) => (
-          <div key={kpi.label} className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
+          <div key={kpi.label} className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-4">
             <div className="flex items-center justify-between mb-2">
-              <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/[0.06] flex items-center justify-center">
+              <div className="w-8 h-8 rounded bg-[#00CEC9]/[0.06] flex items-center justify-center">
                 <kpi.icon className="h-4 w-4 text-[#00CEC9]" />
               </div>
               <span className={`flex items-center gap-0.5 text-[11px] font-bold ${
@@ -88,7 +88,7 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Traffic Chart */}
-      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+      <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Traffic-Übersicht</h3>
         <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-4">Sitzungen, Nutzer & Seitenaufrufe</p>
         <div className="h-[280px]">
@@ -119,7 +119,7 @@ export default function AnalyticsPage() {
       {/* Sources + Devices */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Traffic Sources */}
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">Besucherquellen</h3>
           <div className="flex items-center gap-6">
             <div className="w-[140px] h-[140px] shrink-0">
@@ -148,12 +148,12 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Devices */}
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">Endgeräte</h3>
           <div className="space-y-4">
             {deviceData.map((d) => (
               <div key={d.name} className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-gray-50 dark:bg-white/[0.04] flex items-center justify-center">
+                <div className="w-9 h-9 rounded bg-gray-50 dark:bg-white/[0.04] flex items-center justify-center">
                   <d.icon className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                 </div>
                 <div className="flex-1">
@@ -174,11 +174,11 @@ export default function AnalyticsPage() {
       {/* Top Pages + Search Console */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Top Pages */}
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">Top-Seiten</h3>
           <div className="space-y-2">
             {topPages.map((page, i) => (
-              <div key={page.path} className="flex items-center gap-3 rounded-lg p-2.5 hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
+              <div key={page.path} className="flex items-center gap-3 rounded p-2.5 hover:bg-gray-50/50 dark:hover:bg-white/[0.06] transition-colors">
                 <span className="w-6 h-6 rounded bg-gray-100 dark:bg-white/[0.04] flex items-center justify-center text-[10px] font-bold text-gray-400 dark:text-gray-500 shrink-0">{i + 1}</span>
                 <div className="flex-1 min-w-0">
                   <p className="text-[12px] font-semibold text-[#0F172A] dark:text-white truncate">{page.title}</p>
@@ -194,7 +194,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Search Console */}
-        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <div className="flex items-center gap-2 mb-4">
             <Globe className="h-4 w-4 text-[#4285F4]" />
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Search Console</h3>
