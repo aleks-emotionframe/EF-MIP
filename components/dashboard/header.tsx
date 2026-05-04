@@ -1,15 +1,24 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useSession, signOut } from "next-auth/react"
 import {
-  User, Settings, LogOut, Building2,
+  User, Settings, LogOut, Building2, LayoutDashboard,
   Bell, Moon, Sun, Search,
 } from "lucide-react"
 import Link from "next/link"
 import { useTheme } from "@/components/providers/theme-provider"
-import { useCustomer } from "@/components/providers/customer-provider"
+import { useCustomer, type ActiveCustomer } from "@/components/providers/customer-provider"
+
+const EF_OWN_CUSTOMER: ActiveCustomer = {
+  id: "ef",
+  name: "EmotionFrame",
+  slug: "emotionframe",
+  industry: "Marketing & Technologie",
+  plan: "ENTERPRISE",
+  website: "https://emotionframe.com",
+}
 
 const pageTitles: Record<string, string> = {
   "/dashboard": "Übersicht",
@@ -49,7 +58,8 @@ export function Header() {
   const { theme, toggle: toggleTheme } = useTheme()
   const { data: session } = useSession()
   const pathname = usePathname()
-  const { activeCustomer, clearCustomer } = useCustomer()
+  const router = useRouter()
+  const { activeCustomer, setActiveCustomer, clearCustomer } = useCustomer()
   const [showUserMenu, setShowUserMenu] = useState(false)
   const userMenuRef = useRef<HTMLDivElement>(null)
 
@@ -91,6 +101,25 @@ export function Header() {
             className="bg-transparent text-[13px] text-gray-600 dark:text-white/70 placeholder:text-gray-400 dark:placeholder:text-white/30 focus:outline-none w-40"
           />
         </div>
+
+        {/* Own Dashboard */}
+        {isSuperAdmin && (
+          <button
+            onClick={() => {
+              setActiveCustomer(EF_OWN_CUSTOMER)
+              router.push("/dashboard")
+              setShowUserMenu(false)
+            }}
+            className={`hidden md:flex items-center gap-2 rounded px-3 py-2 text-[12px] font-medium transition-colors ${
+              activeCustomer?.id === "ef"
+                ? "bg-[#6C5CE7]/10 text-[#6C5CE7]"
+                : "text-gray-500 dark:text-white/50 hover:bg-[#F4F7FE] dark:hover:bg-white/[0.05] hover:text-gray-700 dark:hover:text-white/70"
+            }`}
+          >
+            <LayoutDashboard className="h-4 w-4" />
+            Unser Dashboard
+          </button>
+        )}
 
         {/* Dark Mode */}
         <button onClick={toggleTheme} aria-label={theme === "dark" ? "Helles Design" : "Dunkles Design"}

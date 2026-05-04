@@ -301,6 +301,64 @@ const CUSTOMER_DATA: Record<string, CustomerDashboardData> = {
       { name: "Wo 4", likes: 320, kommentare: 155, shares: 95 },
     ],
   },
+
+  "ef": {
+    stats: [
+      { label: "Gesamt-Reichweite", value: "89.4K", change: "+19%", trend: "up", icon: Eye, bg: "bg-[#00CEC9]/10", iconColor: "text-[#00CEC9]" },
+      { label: "Interaktionen", value: "12.680", change: "+14%", trend: "up", icon: Heart, bg: "bg-[#6C5CE7]/10", iconColor: "text-[#6C5CE7]" },
+      { label: "Neue Follower", value: "1.890", change: "+31%", trend: "up", icon: Users, bg: "bg-[#00B894]/10", iconColor: "text-[#00B894]" },
+      { label: "Aktive Kampagnen", value: "11", change: "+2", trend: "up", icon: Activity, bg: "bg-[#F97316]/10", iconColor: "text-[#F97316]" },
+    ],
+    visitorData: [
+      { name: "Jan", besucher: 3200, neueFollower: 820, engagement: 2100 },
+      { name: "Feb", besucher: 3850, neueFollower: 960, engagement: 2540 },
+      { name: "Mär", besucher: 4100, neueFollower: 1080, engagement: 2890 },
+      { name: "Apr", besucher: 4600, neueFollower: 1250, engagement: 3200 },
+      { name: "Mai", besucher: 5200, neueFollower: 1420, engagement: 3680 },
+      { name: "Jun", besucher: 5800, neueFollower: 1610, engagement: 4100 },
+      { name: "Jul", besucher: 6400, neueFollower: 1890, engagement: 4520 },
+    ],
+    reachData: [
+      { name: "Mo", online: 820, offline: 240 },
+      { name: "Di", online: 760, offline: 280 },
+      { name: "Mi", online: 940, offline: 310 },
+      { name: "Do", online: 880, offline: 290 },
+      { name: "Fr", online: 1020, offline: 380 },
+      { name: "Sa", online: 640, offline: 180 },
+      { name: "So", online: 520, offline: 140 },
+    ],
+    satisfactionData: [
+      { name: "Zufrieden", value: 76, color: "#00CEC9" },
+      { name: "Neutral", value: 17, color: "#6C5CE7" },
+      { name: "Unzufrieden", value: 7, color: "#F97316" },
+    ],
+    targetData: [
+      { subject: "Reichweite", ist: 88, ziel: 85 },
+      { subject: "Engagement", ist: 82, ziel: 80 },
+      { subject: "Follower", ist: 91, ziel: 75 },
+      { subject: "Content", ist: 85, ziel: 90 },
+      { subject: "Conversions", ist: 72, ziel: 70 },
+    ],
+    topContent: [
+      { rank: 1, title: "LinkedIn: KI im Marketing 2026", platform: "LinkedIn", engagement: "18.9K", trend: 52 },
+      { rank: 2, title: "Instagram: Behind the Scenes EF", platform: "Instagram", engagement: "14.2K", trend: 38 },
+      { rank: 3, title: "Blog: Marketing-Trends Schweiz", platform: "Website", engagement: "9.8K", trend: 24 },
+      { rank: 4, title: "TikTok: Quick Marketing Hacks", platform: "TikTok", engagement: "7.5K", trend: 61 },
+    ],
+    platformData: [
+      { name: "LinkedIn", value: 35, color: "#0A66C2" },
+      { name: "Instagram", value: 28, color: "#E4405F" },
+      { name: "TikTok", value: 18, color: "#00CEC9" },
+      { name: "Twitter", value: 12, color: "#1DA1F2" },
+      { name: "YouTube", value: 7, color: "#FF0000" },
+    ],
+    engagementBarData: [
+      { name: "Wo 1", likes: 1280, kommentare: 520, shares: 340 },
+      { name: "Wo 2", likes: 1450, kommentare: 580, shares: 390 },
+      { name: "Wo 3", likes: 1620, kommentare: 640, shares: 420 },
+      { name: "Wo 4", likes: 1380, kommentare: 560, shares: 360 },
+    ],
+  },
 }
 
 const DEFAULT_DATA = CUSTOMER_DATA["1"]
