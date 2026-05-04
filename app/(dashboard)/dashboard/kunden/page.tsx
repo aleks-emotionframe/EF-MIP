@@ -3,11 +3,13 @@
 import { useState, useMemo } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import {
   Building2, Plus, Search, Globe, Mail, Phone, MapPin,
   Camera, Share2, Briefcase, Video, ExternalLink,
   Users, Crown, Calendar,
 } from "lucide-react"
+import { useCustomer } from "@/components/providers/customer-provider"
 
 interface Customer {
   id: string
@@ -123,6 +125,8 @@ function formatDate(dateStr: string) {
 }
 
 export default function KundenPage() {
+  const router = useRouter()
+  const { setActiveCustomer } = useCustomer()
   const [search, setSearch] = useState("")
   const [planFilter, setPlanFilter] = useState("ALL")
 
@@ -330,13 +334,23 @@ export default function KundenPage() {
                     <Calendar className="h-3 w-3" />
                     {formatDate(customer.createdAt)}
                   </span>
-                  <Link
-                    href="/dashboard"
+                  <button
+                    onClick={() => {
+                      setActiveCustomer({
+                        id: customer.id,
+                        name: customer.name,
+                        slug: customer.slug,
+                        industry: customer.industry,
+                        plan: customer.plan,
+                        website: customer.website,
+                      })
+                      router.push("/dashboard")
+                    }}
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white text-xs font-semibold hover:shadow-md transition-all"
                   >
                     Dashboard öffnen
                     <ExternalLink className="h-3 w-3" />
-                  </Link>
+                  </button>
                 </div>
               </motion.div>
             )

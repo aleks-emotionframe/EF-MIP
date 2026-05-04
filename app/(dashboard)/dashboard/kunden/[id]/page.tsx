@@ -3,6 +3,8 @@
 import { use, useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useCustomer } from "@/components/providers/customer-provider"
 import {
   ArrowLeft,
   Building2,
@@ -108,9 +110,24 @@ export default function KundenDetailPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = use(params)
+  const router = useRouter()
+  const { setActiveCustomer } = useCustomer()
   const customer = DEMO_CUSTOMERS[id]
   const [copied, setCopied] = useState(false)
   const [isActive, setIsActive] = useState(customer?.isActive ?? false)
+
+  function openDashboard() {
+    if (!customer) return
+    setActiveCustomer({
+      id: customer.id,
+      name: customer.name,
+      slug: customer.slug,
+      industry: customer.industry,
+      plan: customer.plan,
+      website: customer.website,
+    })
+    router.push("/dashboard")
+  }
 
   if (!customer) {
     return (
@@ -185,13 +202,13 @@ export default function KundenDetailPage({
             <Pencil className="w-4 h-4" />
             Bearbeiten
           </button>
-          <Link
-            href={`/share/${customer.shareToken}`}
+          <button
+            onClick={openDashboard}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white font-medium text-sm hover:opacity-90 transition"
           >
             <ExternalLink className="w-4 h-4" />
             Dashboard öffnen
-          </Link>
+          </button>
         </div>
       </div>
 
@@ -419,13 +436,13 @@ export default function KundenDetailPage({
           >
             <h2 className="text-lg font-semibold text-[#0F172A] dark:text-white mb-4">Schnellaktionen</h2>
             <div className="space-y-3">
-              <Link
-                href={`/share/${customer.shareToken}`}
+              <button
+                onClick={openDashboard}
                 className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white font-medium text-sm hover:opacity-90 transition"
               >
                 <ExternalLink className="w-4 h-4" />
                 Dashboard öffnen
-              </Link>
+              </button>
               <a
                 href={`mailto:${customer.contactEmail}`}
                 className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 text-[#0F172A] dark:text-white font-medium text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition"

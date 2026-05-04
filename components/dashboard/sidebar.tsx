@@ -12,6 +12,7 @@ import {
   FileBarChart, GitFork, Search, LogOut, Building2,
 } from "lucide-react"
 import { useSession } from "next-auth/react"
+import { useCustomer } from "@/components/providers/customer-provider"
 
 interface MenuItem { icon: any; label: string; href: string }
 interface MenuSection { key: string; title: string; icon: any; items: MenuItem[]; singleLink?: string }
@@ -96,6 +97,7 @@ interface SidebarProps {
 export function Sidebar({ onSubOpen }: SidebarProps) {
   const pathname = usePathname()
   const { data: session } = useSession()
+  const { clearCustomer } = useCustomer()
   const isSuperAdmin = session?.user?.globalRole === "SUPER_ADMIN"
   const [openSection, setOpenSectionRaw] = useState<string | null>(null)
 
@@ -148,7 +150,7 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
           {isSuperAdmin && (
             <Link
               href="/dashboard/kunden"
-              onClick={() => setOpenSection(null)}
+              onClick={() => { setOpenSection(null); clearCustomer() }}
               className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-medium transition-all mb-1 ${
                 pathname.startsWith("/dashboard/kunden")
                   ? "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white shadow-md shadow-[#00CEC9]/20"

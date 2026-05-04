@@ -1,13 +1,15 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useSession, signOut } from "next-auth/react"
 import {
   User, Settings, LogOut, Building2, ChevronDown,
-  Bell, Moon, Sun, Search,
+  Bell, Moon, Sun, Search, ArrowLeft, X,
 } from "lucide-react"
+import Link from "next/link"
 import { useTheme } from "@/components/providers/theme-provider"
+import { useCustomer } from "@/components/providers/customer-provider"
 
 const pageTitles: Record<string, string> = {
   "/dashboard": "Übersicht",
@@ -47,21 +49,18 @@ export function Header() {
   const { theme, toggle: toggleTheme } = useTheme()
   const { data: session } = useSession()
   const pathname = usePathname()
+  const router = useRouter()
+  const { activeCustomer, clearCustomer } = useCustomer()
   const [showUserMenu, setShowUserMenu] = useState(false)
-  const [showOrgSwitcher, setShowOrgSwitcher] = useState(false)
   const userMenuRef = useRef<HTMLDivElement>(null)
-  const orgMenuRef = useRef<HTMLDivElement>(null)
 
   const isSuperAdmin = session?.user?.globalRole === "SUPER_ADMIN"
-  const activeOrg = session?.user?.memberships?.find(
-    (m) => m.organizationId === session?.user?.activeOrganizationId
-  )
+  const isOnKundenPage = pathname.startsWith("/dashboard/kunden")
   const pageTitle = pageTitles[pathname] || pathname.split("/").pop()?.replace(/-/g, " ") || ""
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) setShowUserMenu(false)
-      if (orgMenuRef.current && !orgMenuRef.current.contains(e.target as Node)) setShowOrgSwitcher(false)
     }
     document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
@@ -71,18 +70,56 @@ export function Header() {
     ? session.user.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
     : session?.user?.email?.[0]?.toUpperCase() ?? "U"
 
+  function handleBackToKunden() {
+    clearCustomer()
+    router.push("/dashboard/kunden")
+  }
+
   return (
     <header className="h-[72px] bg-[#F0F5F9] dark:bg-[#0F172A] flex items-center justify-between px-8 sticky top-0 z-30">
       {/* Left */}
-      <div>
-        <h1 className="text-[18px] font-bold text-[#0F172A] dark:text-white tracking-tight">{pageTitle}</h1>
-        <p className="text-[12px] text-gray-500 dark:text-white/40 mt-0.5">
-          {activeOrg?.organizationName ?? "EmotionFrame"}
-        </p>
+      <div className="flex items-center gap-4">
+        {activeCustomer && !isOnKundenPage && (
+          <button
+            onClick={handleBackToKunden}
+            className="flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 dark:text-white/40 hover:text-gray-600 dark:hover:text-white/70 hover:bg-white dark:hover:bg-white/[0.05] transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+        )}
+        <div>
+          <h1 className="text-[18px] font-bold text-[#0F172A] dark:text-white tracking-tight">{pageTitle}</h1>
+          <p className="text-[12px] text-gray-500 dark:text-white/40 mt-0.5">
+            {activeCustomer ? activeCustomer.name : "EmotionFrame"}
+          </p>
+        </div>
       </div>
 
       {/* Right */}
       <div className="flex items-center gap-1">
+        {/* Active Customer Badge */}
+        {activeCustomer && !isOnKundenPage && (
+          <div className="hidden md:flex items-center gap-2 bg-gradient-to-r from-[#00CEC9]/10 to-[#6C5CE7]/10 rounded-full px-4 py-2 mr-2">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center text-[10px] font-bold text-white">
+              {activeCustomer.name[0]}
+            </div>
+            <span className="text-[12px] font-semibold text-[#0F172A] dark:text-white max-w-[120px] truncate">
+              {activeCustomer.name}
+            </span>
+            {activeCustomer.industry && (
+              <span className="text-[10px] text-gray-400 dark:text-white/40">
+                {activeCustomer.industry}
+              </span>
+            )}
+            <button
+              onClick={handleBackToKunden}
+              className="ml-1 text-gray-400 hover:text-gray-600 dark:text-white/30 dark:hover:text-white/60 transition-colors"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        )}
+
         {/* Search */}
         <div className="hidden lg:flex items-center gap-2 bg-[#F4F7FE] dark:bg-white/[0.05] rounded-full px-4 py-2 mr-2">
           <Search className="h-4 w-4 text-gray-400 dark:text-white/30" />
@@ -92,38 +129,6 @@ export function Header() {
             className="bg-transparent text-[13px] text-gray-600 dark:text-white/70 placeholder:text-gray-400 dark:placeholder:text-white/30 focus:outline-none w-40"
           />
         </div>
-
-        {/* Org Switcher (Super Admin) */}
-        {isSuperAdmin && session?.user?.memberships && (
-          <div ref={orgMenuRef} className="relative">
-            <button onClick={() => setShowOrgSwitcher(!showOrgSwitcher)}
-              className="flex items-center gap-2 rounded-full bg-[#F4F7FE] dark:bg-white/[0.05] px-3 py-2 text-[12px] text-gray-600 dark:text-white/60 hover:bg-gray-100 dark:hover:bg-white/[0.08] transition-colors">
-              <Building2 className="h-3.5 w-3.5" />
-              <span className="max-w-[100px] truncate font-medium">{activeOrg?.organizationName ?? "Org"}</span>
-              <ChevronDown className="h-3 w-3 opacity-50" />
-            </button>
-            {showOrgSwitcher && (
-              <div className="absolute right-0 top-full mt-2 w-56 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0F172A] p-1.5 shadow-xl">
-                <p className="px-3 py-1.5 text-[10px] font-bold text-gray-400 dark:text-white/30 uppercase tracking-wider">Organisationen</p>
-                {session.user.memberships.map((m) => (
-                  <button key={m.organizationId} onClick={() => setShowOrgSwitcher(false)}
-                    className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-[13px] transition-colors ${
-                      m.organizationId === session.user.activeOrganizationId
-                        ? "bg-[#00CEC9]/10 text-[#00CEC9] font-medium"
-                        : "hover:bg-gray-50 dark:hover:bg-white/[0.05] text-gray-700 dark:text-white/60"
-                    }`}>
-                    <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold ${
-                      m.organizationId === session.user.activeOrganizationId
-                        ? "bg-[#00CEC9]/15 text-[#00CEC9]"
-                        : "bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-white/40"
-                    }`}>{m.organizationName[0]}</div>
-                    <span className="truncate">{m.organizationName}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
 
         {/* Dark Mode */}
         <button onClick={toggleTheme} aria-label={theme === "dark" ? "Helles Design" : "Dunkles Design"}
@@ -149,7 +154,7 @@ export function Header() {
             </div>
             <div className="hidden sm:block text-left">
               <p className="text-[13px] font-semibold text-[#0F172A] dark:text-white leading-tight">{session?.user?.name ?? "User"}</p>
-              <p className="text-[11px] text-gray-400 dark:text-white/40 leading-tight">{session?.user?.globalRole === "SUPER_ADMIN" ? "Super-Admin" : "Mitglied"}</p>
+              <p className="text-[11px] text-gray-400 dark:text-white/40 leading-tight">{isSuperAdmin ? "Super-Admin" : "Mitglied"}</p>
             </div>
           </button>
 
@@ -159,6 +164,12 @@ export function Header() {
                 <p className="text-[13px] font-semibold text-gray-900 dark:text-white truncate">{session?.user?.name ?? "User"}</p>
                 <p className="text-[11px] text-gray-400 dark:text-white/40 truncate">{session?.user?.email}</p>
               </div>
+              {isSuperAdmin && (
+                <Link href="/dashboard/kunden" onClick={() => { clearCustomer(); setShowUserMenu(false) }}
+                  className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] text-gray-600 dark:text-white/60 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors">
+                  <Building2 className="h-4 w-4 opacity-50" />Kundenübersicht
+                </Link>
+              )}
               <button className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] text-gray-600 dark:text-white/60 hover:bg-gray-50 dark:hover:bg-white/[0.05] transition-colors">
                 <User className="h-4 w-4 opacity-50" />Profil
               </button>
