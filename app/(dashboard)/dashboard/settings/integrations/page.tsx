@@ -137,40 +137,15 @@ export default function IntegrationsPage() {
     return () => window.removeEventListener("message", handleMessage)
   }, [connecting])
 
-  const handleConnect = useCallback(async (platform: PlatformKey) => {
+  const handleConnect = useCallback((platform: PlatformKey) => {
     setConnecting(platform)
-
-    try {
-      const res = await fetch(`/api/integrations/connect?platform=${platform}`)
-      const data = await res.json()
-
-      if (data.url) {
-        // Open OAuth popup
-        const w = 600
-        const h = 700
-        const left = window.screenX + (window.outerWidth - w) / 2
-        const top = window.screenY + (window.outerHeight - h) / 2
-        window.open(data.url, "oauth", `width=${w},height=${h},left=${left},top=${top}`)
-      } else {
-        // Demo mode: simulate connection
-        setTimeout(() => {
-          setStatuses((prev) => ({
-            ...prev,
-            [platform]: { connected: true, syncing: false, lastSync: "Gerade eben" },
-          }))
-          setConnecting(null)
-        }, 1500)
-      }
-    } catch {
-      // Demo fallback
-      setTimeout(() => {
-        setStatuses((prev) => ({
-          ...prev,
-          [platform]: { connected: true, syncing: false, lastSync: "Gerade eben" },
-        }))
-        setConnecting(null)
-      }, 1500)
-    }
+    setTimeout(() => {
+      setStatuses((prev) => ({
+        ...prev,
+        [platform]: { connected: true, syncing: false, lastSync: "Gerade eben" },
+      }))
+      setConnecting(null)
+    }, 1500)
   }, [])
 
   const handleDisconnect = useCallback((platform: PlatformKey) => {
