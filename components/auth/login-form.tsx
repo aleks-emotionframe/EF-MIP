@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { signIn } from "next-auth/react"
+import { signIn, getSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { Shield, User } from "lucide-react"
 
@@ -39,7 +39,9 @@ export function LoginForm() {
       setError("Login fehlgeschlagen")
       setLoading(null)
     } else {
-      router.push("/dashboard")
+      const session = await getSession()
+      const isAdmin = session?.user?.globalRole === "SUPER_ADMIN"
+      router.push(isAdmin ? "/dashboard/kunden" : "/dashboard")
       router.refresh()
     }
   }

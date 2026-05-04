@@ -9,14 +9,25 @@ datasource db {
 
 // ─── Multi-Tenant: Organizations ────────────────────────────────
 model Organization {
-  id          String   @id @default(cuid())
-  name        String
-  slug        String   @unique
-  logo        String?
-  plan        Plan     @default(FREE)
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id             String   @id @default(cuid())
+  name           String
+  slug           String   @unique
+  logo           String?
+  plan           Plan     @default(FREE)
+  isActive       Boolean  @default(true)
+  website        String?
+  address        String?
+  city           String?
+  zip            String?
+  country        String?  @default("Schweiz")
+  industry       String?
+  contactPerson  String?
+  contactEmail   String?
+  contactPhone   String?
+  socialMedia    Json?
+  shareToken     String?  @unique
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   members      OrganizationMember[]
   clients      Client[]

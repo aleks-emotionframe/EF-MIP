@@ -9,8 +9,9 @@ import {
   TrendingUp, Globe, Users, Mail, Settings, Calendar,
   Hash, Target, Bell, ChevronRight, X, Inbox, Clock,
   PieChart, SmilePlus, GitCompare, Gauge, Link2, MapPin,
-  FileBarChart, GitFork, Search, LogOut,
+  FileBarChart, GitFork, Search, LogOut, Building2,
 } from "lucide-react"
+import { useSession } from "next-auth/react"
 
 interface MenuItem { icon: any; label: string; href: string }
 interface MenuSection { key: string; title: string; icon: any; items: MenuItem[]; singleLink?: string }
@@ -94,6 +95,8 @@ interface SidebarProps {
 
 export function Sidebar({ onSubOpen }: SidebarProps) {
   const pathname = usePathname()
+  const { data: session } = useSession()
+  const isSuperAdmin = session?.user?.globalRole === "SUPER_ADMIN"
   const [openSection, setOpenSectionRaw] = useState<string | null>(null)
 
   function setOpenSection(key: string | null) {
@@ -142,6 +145,20 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
 
         {/* Sections */}
         <nav className="flex-1 flex flex-col gap-0.5 pt-3 px-3 overflow-y-auto sidebar-scroll">
+          {isSuperAdmin && (
+            <Link
+              href="/dashboard/kunden"
+              onClick={() => setOpenSection(null)}
+              className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-medium transition-all mb-1 ${
+                pathname.startsWith("/dashboard/kunden")
+                  ? "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white shadow-md shadow-[#00CEC9]/20"
+                  : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
+              }`}
+            >
+              <Building2 className="h-[18px] w-[18px] shrink-0" strokeWidth={pathname.startsWith("/dashboard/kunden") ? 2 : 1.5} />
+              <span>Kunden</span>
+            </Link>
+          )}
           {menuSections.map((section) => {
             const isActive = activeSection?.key === section.key
             const isOpen = openSection === section.key
