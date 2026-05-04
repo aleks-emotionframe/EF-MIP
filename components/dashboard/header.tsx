@@ -141,6 +141,16 @@ export function Header() {
   const isSubOpen = !!subSection && subSection.items.length > 0
 
   useEffect(() => {
+    if (!showFullNav) return
+    const current = menuSections.find((s) =>
+      s.items.some((i) => pathname === i.href || pathname.startsWith(i.href + "/"))
+    )
+    if (current) {
+      setOpenSection(current.key)
+    }
+  }, [pathname, showFullNav])
+
+  useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) setShowUserMenu(false)
       if (navRef.current && !navRef.current.contains(e.target as Node)) setOpenSection(null)
@@ -364,7 +374,6 @@ export function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() => setOpenSection(null)}
                     className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded whitespace-nowrap transition-colors ${
                       isActive
                         ? "bg-[#00CEC9]/10 text-[#00CEC9]"
