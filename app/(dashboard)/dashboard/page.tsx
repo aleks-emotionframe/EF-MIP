@@ -10,7 +10,7 @@ import {
 import { useCustomer } from "@/components/providers/customer-provider"
 import { getCustomerDashboardData } from "@/lib/demo-data"
 
-const tooltipStyle = { background: "white", border: "none", borderRadius: "12px", fontSize: "12px", boxShadow: "0 4px 20px rgba(0,0,0,0.08)" }
+const tooltipStyle = { background: "white", border: "none", borderRadius: "6px", fontSize: "12px", boxShadow: "0 4px 20px rgba(0,0,0,0.08)" }
 
 export default function DashboardPage() {
   const { activeCustomer } = useCustomer()
@@ -20,7 +20,7 @@ export default function DashboardPage() {
     <div className="space-y-5">
       {/* ─── Row 1: Stats + Visitor Chart ─── */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
-        <div className="lg:col-span-2 rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-sm">
+        <div className="lg:col-span-2 rounded-lg bg-white dark:bg-[#1E293B] p-6 shadow-sm">
           <div className="flex items-center justify-between mb-5">
             <div>
               <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white">Heutige Performance</h2>
@@ -48,7 +48,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="lg:col-span-3 rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-sm">
+        <div className="lg:col-span-3 rounded-lg bg-white dark:bg-[#1E293B] p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white">Besucher-Trends</h2>
             <div className="flex items-center gap-4 text-[11px]">
@@ -75,7 +75,7 @@ export default function DashboardPage() {
 
       {/* ─── Row 2: Reach + Satisfaction + Target ─── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-sm">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] p-6 shadow-sm">
           <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white mb-1">Gesamt-Reichweite</h2>
           <p className="text-[11px] text-gray-400 dark:text-white/40 mb-4">Organisch vs. Bezahlt</p>
           <div className="h-[200px]">
@@ -96,7 +96,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-sm">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] p-6 shadow-sm">
           <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white mb-1">Kundenzufriedenheit</h2>
           <p className="text-[11px] text-gray-400 dark:text-white/40 mb-2">Basierend auf Sentiment-Analyse</p>
           <div className="h-[180px] flex items-center justify-center">
@@ -121,7 +121,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-sm">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] p-6 shadow-sm">
           <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white mb-1">Ziel vs. Realität</h2>
           <p className="text-[11px] text-gray-400 dark:text-white/40 mb-2">Monatliche KPI-Erreichung</p>
           <div className="h-[200px]">
@@ -144,7 +144,7 @@ export default function DashboardPage() {
 
       {/* ─── Row 3: Top Content + Platform + Engagement ─── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-sm">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] p-6 shadow-sm">
           <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white mb-4">Top Inhalte</h2>
           <table className="w-full text-[12px]">
             <thead>
@@ -186,7 +186,7 @@ export default function DashboardPage() {
           </table>
         </div>
 
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-sm">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] p-6 shadow-sm">
           <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white mb-1">Follower nach Plattform</h2>
           <p className="text-[11px] text-gray-400 dark:text-white/40 mb-3">Verteilung über alle Kanäle</p>
           <div className="h-[160px]">
@@ -214,7 +214,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-sm">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] p-6 shadow-sm">
           <h2 className="text-[15px] font-bold text-[#0F172A] dark:text-white mb-1">Engagement-Übersicht</h2>
           <p className="text-[11px] text-gray-400 dark:text-white/40 mb-4">Likes, Kommentare & Shares</p>
           <div className="h-[190px]">

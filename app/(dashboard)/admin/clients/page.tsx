@@ -109,7 +109,7 @@ export default function ClientsPage() {
       </div>
 
       {/* Table */}
-      <div className="rounded-xl border border-border bg-card overflow-hidden">
+      <div className="rounded-md border border-border bg-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -198,7 +198,7 @@ export default function ClientsPage() {
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => { setShowModal(false); setEditingClient(null) }}
           />
-          <div className="relative z-10 w-full max-w-lg mx-4 rounded-2xl bg-card border border-border p-6 shadow-2xl">
+          <div className="relative z-10 w-full max-w-lg mx-4 rounded-lg bg-card border border-border p-6 shadow-2xl">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-bold text-foreground">
                 {editingClient ? "Client bearbeiten" : "Neuer Client"}

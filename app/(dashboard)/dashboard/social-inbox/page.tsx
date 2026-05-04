@@ -268,7 +268,7 @@ export default function SocialInboxPage() {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#00CEC9]/10">
+            <div className="flex h-9 w-9 items-center justify-center rounded-md bg-[#00CEC9]/10">
               <Inbox className="h-5 w-5 text-[#00CEC9]" />
             </div>
             <h1 className="text-2xl font-bold text-[#0F172A] dark:text-white">Social Inbox</h1>
@@ -297,10 +297,10 @@ export default function SocialInboxPage() {
             key={stat.label}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 p-4 flex items-center gap-3"
+            className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 p-4 flex items-center gap-3"
           >
             <div
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md"
               style={{ backgroundColor: `${stat.accent}10` }}
             >
               <stat.icon className="h-5 w-5" style={{ color: stat.accent }} />
@@ -373,7 +373,7 @@ export default function SocialInboxPage() {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="w-[40%] shrink-0 rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden flex flex-col"
+          className="w-[40%] shrink-0 rounded-lg bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden flex flex-col"
         >
           <div className="px-4 py-3 border-b border-gray-100 dark:border-white/10">
             <p className="text-[12px] font-semibold text-gray-500 dark:text-white/50 uppercase tracking-wider">
@@ -457,7 +457,7 @@ export default function SocialInboxPage() {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex-1 rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden flex flex-col"
+          className="flex-1 rounded-lg bg-white dark:bg-[#1E293B] shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden flex flex-col"
         >
           {selected ? (
             <>
@@ -498,7 +498,7 @@ export default function SocialInboxPage() {
                     className={`flex ${msg.sender === "me" ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`max-w-[75%] rounded-2xl px-4 py-2.5 ${
+                      className={`max-w-[75%] rounded-lg px-4 py-2.5 ${
                         msg.sender === "me"
                           ? "bg-[#00CEC9] text-white rounded-br-md"
                           : "bg-gray-100 dark:bg-white/10 text-gray-800 dark:text-white/90 rounded-bl-md"
@@ -525,7 +525,7 @@ export default function SocialInboxPage() {
                       exit={{ opacity: 0, y: -8, scale: 0.95 }}
                       className="flex justify-end"
                     >
-                      <div className="max-w-[75%] rounded-2xl px-4 py-3 bg-gradient-to-br from-[#6C5CE7]/10 to-[#00CEC9]/10 border border-[#6C5CE7]/20 rounded-br-md">
+                      <div className="max-w-[75%] rounded-lg px-4 py-3 bg-gradient-to-br from-[#6C5CE7]/10 to-[#00CEC9]/10 border border-[#6C5CE7]/20 rounded-br-md">
                         <div className="flex items-center gap-1.5 mb-1.5">
                           <Sparkles className="h-3 w-3 text-[#6C5CE7]" />
                           <span className="text-[10px] font-semibold text-[#6C5CE7] uppercase tracking-wider">KI-Vorschlag</span>
@@ -579,10 +579,10 @@ export default function SocialInboxPage() {
                     placeholder="Nachricht schreiben..."
                     value={replyText}
                     onChange={(e) => setReplyText(e.target.value)}
-                    className="flex-1 h-10 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#1E293B] px-4 text-[13px] text-gray-700 dark:text-white/80 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/40 focus:border-[#00CEC9]/40 transition-all"
+                    className="flex-1 h-10 rounded-md border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#1E293B] px-4 text-[13px] text-gray-700 dark:text-white/80 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/40 focus:border-[#00CEC9]/40 transition-all"
                   />
                   <button
-                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all shrink-0"
+                    className="flex h-10 w-10 items-center justify-center rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all shrink-0"
                   >
                     <Send className="h-4 w-4" />
                   </button>
@@ -592,7 +592,7 @@ export default function SocialInboxPage() {
           ) : (
             /* Empty State */
             <div className="flex-1 flex flex-col items-center justify-center text-gray-400">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-50 dark:bg-[#1E293B] mb-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-50 dark:bg-[#1E293B] mb-4">
                 <MessageSquare className="h-8 w-8 opacity-40" />
               </div>
               <p className="text-[15px] font-medium text-gray-500 dark:text-white/50">Wähle eine Konversation</p>

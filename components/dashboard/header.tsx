@@ -159,7 +159,7 @@ export function Header() {
           </button>
 
           {showUserMenu && (
-            <div className="absolute right-0 top-full mt-2 w-56 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0F172A] p-1.5 shadow-xl">
+            <div className="absolute right-0 top-full mt-2 w-56 rounded-md border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0F172A] p-1.5 shadow-xl">
               <div className="px-3 py-2.5 border-b border-gray-100 dark:border-white/[0.05] mb-1">
                 <p className="text-[13px] font-semibold text-gray-900 dark:text-white truncate">{session?.user?.name ?? "User"}</p>
                 <p className="text-[11px] text-gray-400 dark:text-white/40 truncate">{session?.user?.email}</p>

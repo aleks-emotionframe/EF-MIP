@@ -142,7 +142,7 @@ function CustomDropdown<T extends string>({
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-4 py-3 text-[13px] text-left hover:border-gray-300 dark:hover:border-white/[0.12] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 transition-all"
+        className="w-full flex items-center justify-between rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-4 py-3 text-[13px] text-left hover:border-gray-300 dark:hover:border-white/[0.12] focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 transition-all"
       >
         <span className={value ? "text-gray-900 dark:text-white font-medium" : "text-gray-400 dark:text-gray-500"}>
           {renderOption ? renderOption(value) : value || placeholder}
@@ -156,7 +156,7 @@ function CustomDropdown<T extends string>({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-50 mt-1.5 w-full rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] shadow-lg shadow-gray-200/50 dark:shadow-black/30 p-1 max-h-64 overflow-y-auto"
+            className="absolute z-50 mt-1.5 w-full rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] shadow-lg shadow-gray-200/50 dark:shadow-black/30 p-1 max-h-64 overflow-y-auto"
           >
             {options.map((opt) => (
               <button
@@ -294,7 +294,7 @@ export default function ScenariosPage() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* ─── LEFT: Builder (40%) ───────────────────────────── */}
         <div className="lg:col-span-2 space-y-5">
-          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6 space-y-5">
+          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6 space-y-5">
             <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Szenario konfigurieren</h2>
 
             {/* Scenario Type */}
@@ -305,7 +305,7 @@ export default function ScenariosPage() {
                   <button
                     key={st.key}
                     onClick={() => setConfig((p) => ({ ...p, type: st.key }))}
-                    className={`w-full flex items-center gap-3 rounded-xl px-4 py-3 text-left transition-all ${
+                    className={`w-full flex items-center gap-3 rounded-md px-4 py-3 text-left transition-all ${
                       config.type === st.key
                         ? "bg-[#00CEC9]/[0.06] border-2 border-[#00CEC9]/30 shadow-sm"
                         : "border-2 border-transparent hover:bg-gray-50 dark:hover:bg-white/[0.06]"
@@ -404,7 +404,7 @@ export default function ScenariosPage() {
                   <button
                     key={d}
                     onClick={() => setConfig((p) => ({ ...p, timeframeDays: d }))}
-                    className={`flex-1 rounded-xl py-2.5 text-[13px] font-medium transition-all ${
+                    className={`flex-1 rounded-md py-2.5 text-[13px] font-medium transition-all ${
                       config.timeframeDays === d
                         ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25"
                         : "bg-gray-50 dark:bg-white/[0.04] text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/[0.06]"
@@ -421,7 +421,7 @@ export default function ScenariosPage() {
               onClick={handleCalculate}
               disabled={calculating}
               whileTap={{ scale: 0.97 }}
-              className={`w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-[14px] font-semibold text-white transition-all ${
+              className={`w-full flex items-center justify-center gap-2 rounded-md py-3.5 text-[14px] font-semibold text-white transition-all ${
                 calculating
                   ? "bg-[#00CEC9]/70"
                   : "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] hover:shadow-lg hover:shadow-[#00CEC9]/30"
@@ -445,7 +445,7 @@ export default function ScenariosPage() {
         {/* ─── RIGHT: Results (60%) ──────────────────────────── */}
         <div className="lg:col-span-3 space-y-4">
           {/* Chart */}
-          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6">
+          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6">
             <div className="flex items-center justify-between mb-5">
               <div>
                 <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Prognose</h2>
@@ -475,7 +475,7 @@ export default function ScenariosPage() {
                     <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
                     <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: "#9ca3af" }} interval="preserveStartEnd" />
                     <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: "#9ca3af" }} />
-                    <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "10px", fontSize: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
+                    <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "6px", fontSize: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
                     <ReferenceLine x={chartData.find((d) => d.day === 0)?.date} stroke="#e5e7eb" strokeDasharray="4 4" label={{ value: "Heute", position: "top", fontSize: 10, fill: "#9ca3af" }} />
                     <Area type="monotone" dataKey="upper" stroke="none" fill="url(#confGrad)" />
                     <Area type="monotone" dataKey="lower" stroke="none" fill="white" />
@@ -507,7 +507,7 @@ export default function ScenariosPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4"
+                    className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="w-8 h-8 rounded-lg bg-gray-50 dark:bg-white/[0.04] flex items-center justify-center">
@@ -540,19 +540,19 @@ export default function ScenariosPage() {
                     onKeyDown={(e) => e.key === "Enter" && handleSave()}
                     placeholder="Szenario-Name..."
                     autoFocus
-                    className="flex-1 rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-4 py-2.5 text-[13px] dark:text-white focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none"
+                    className="flex-1 rounded-md border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#1E293B] px-4 py-2.5 text-[13px] dark:text-white focus:border-[#00CEC9] focus:ring-2 focus:ring-[#00CEC9]/20 focus:outline-none"
                   />
-                  <button onClick={handleSave} className="rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:bg-[#00B4A3] transition-colors">
+                  <button onClick={handleSave} className="rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:bg-[#00B4A3] transition-colors">
                     <Check className="h-4 w-4" />
                   </button>
-                  <button onClick={() => setShowSaveInput(false)} className="rounded-xl border border-gray-200 dark:border-white/[0.06] px-3 py-2.5 text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
+                  <button onClick={() => setShowSaveInput(false)} className="rounded-md border border-gray-200 dark:border-white/[0.06] px-3 py-2.5 text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors">
                     <RotateCcw className="h-4 w-4" />
                   </button>
                 </div>
               ) : (
                 <button
                   onClick={() => setShowSaveInput(true)}
-                  className="flex items-center gap-1.5 rounded-xl border border-gray-200 dark:border-white/[0.06] px-4 py-2.5 text-[12px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
+                  className="flex items-center gap-1.5 rounded-md border border-gray-200 dark:border-white/[0.06] px-4 py-2.5 text-[12px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-colors"
                 >
                   <Save className="h-3.5 w-3.5" />
                   Szenario speichern
@@ -565,7 +565,7 @@ export default function ScenariosPage() {
 
       {/* ─── Saved Scenarios ─────────────────────────────────── */}
       {savedScenarios.length > 0 && (
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Gespeicherte Szenarien</h2>
             {compareIds.length === 2 && (

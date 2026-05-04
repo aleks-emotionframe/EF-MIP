@@ -176,7 +176,7 @@ export default function KundenPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: i * 0.07 }}
-            className="bg-white dark:bg-[#1E293B] rounded-2xl shadow-sm border border-gray-100 dark:border-white/[0.06] p-5 flex items-center gap-4"
+            className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-5 flex items-center gap-4"
           >
             <div className={`w-11 h-11 rounded-full ${s.bg} flex items-center justify-center shrink-0`}>
               <s.icon className={`h-5 w-5 ${s.iconColor}`} />
@@ -205,13 +205,13 @@ export default function KundenPage() {
             placeholder="Kunden suchen..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 text-sm text-[#0F172A] dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]/30 transition-all"
+            className="w-full pl-10 pr-4 py-2.5 rounded-md bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 text-sm text-[#0F172A] dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]/30 transition-all"
           />
         </div>
         <select
           value={planFilter}
           onChange={(e) => setPlanFilter(e.target.value)}
-          className="px-4 py-2.5 rounded-xl bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 text-sm text-[#0F172A] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]/30 transition-all appearance-none cursor-pointer pr-8"
+          className="px-4 py-2.5 rounded-md bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 text-sm text-[#0F172A] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]/30 transition-all appearance-none cursor-pointer pr-8"
           style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center" }}
         >
           <option value="ALL">Alle Pläne</option>
@@ -222,7 +222,7 @@ export default function KundenPage() {
         </select>
         <Link
           href="/dashboard/kunden/neu"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white text-sm font-semibold shadow-sm hover:shadow-md transition-all whitespace-nowrap"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white text-sm font-semibold shadow-sm hover:shadow-md transition-all whitespace-nowrap"
         >
           <Plus className="h-4 w-4" />
           Kunde registrieren
@@ -234,7 +234,7 @@ export default function KundenPage() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.35 }}
-          className="bg-white dark:bg-[#1E293B] rounded-2xl shadow-sm border border-gray-100 dark:border-white/[0.06] p-16 flex flex-col items-center justify-center text-center"
+          className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-16 flex flex-col items-center justify-center text-center"
         >
           <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center mb-6">
             <Building2 className="h-10 w-10 text-white" />
@@ -245,7 +245,7 @@ export default function KundenPage() {
           </p>
           <Link
             href="/dashboard/kunden/neu"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white text-sm font-semibold shadow-sm hover:shadow-md transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white text-sm font-semibold shadow-sm hover:shadow-md transition-all"
           >
             <Plus className="h-4 w-4" />
             Kunde registrieren
@@ -263,7 +263,7 @@ export default function KundenPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: 0.05 * i }}
                 whileHover={{ scale: 1.02, boxShadow: "0 8px 30px rgba(0,0,0,0.08)" }}
-                className="bg-white dark:bg-[#1E293B] rounded-2xl shadow-sm border border-gray-100 dark:border-white/[0.06] p-6 flex flex-col transition-all"
+                className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-6 flex flex-col transition-all"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">

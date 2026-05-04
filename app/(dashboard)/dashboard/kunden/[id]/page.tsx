@@ -137,7 +137,7 @@ export default function KundenDetailPage({
         <p className="text-gray-500 dark:text-white/50">Der angeforderte Kunde existiert nicht oder wurde entfernt.</p>
         <Link
           href="/dashboard/kunden"
-          className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white font-medium hover:opacity-90 transition"
+          className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white font-medium hover:opacity-90 transition"
         >
           <ArrowLeft className="w-4 h-4" />
           Zurück zur Übersicht
@@ -177,7 +177,7 @@ export default function KundenDetailPage({
         <div className="flex items-center gap-4">
           <Link
             href="/dashboard/kunden"
-            className="p-2 rounded-xl bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/[0.06] hover:bg-gray-50 dark:hover:bg-white/5 transition"
+            className="p-2 rounded-md bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/[0.06] hover:bg-gray-50 dark:hover:bg-white/5 transition"
           >
             <ArrowLeft className="w-5 h-5 text-[#0F172A] dark:text-white" />
           </Link>
@@ -198,13 +198,13 @@ export default function KundenDetailPage({
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <button className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/[0.06] text-[#0F172A] dark:text-white font-medium text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition">
+          <button className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/[0.06] text-[#0F172A] dark:text-white font-medium text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition">
             <Pencil className="w-4 h-4" />
             Bearbeiten
           </button>
           <button
             onClick={openDashboard}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white font-medium text-sm hover:opacity-90 transition"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white font-medium text-sm hover:opacity-90 transition"
           >
             <ExternalLink className="w-4 h-4" />
             Dashboard öffnen
@@ -218,7 +218,7 @@ export default function KundenDetailPage({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white dark:bg-[#1E293B] rounded-2xl shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
+            className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
           >
             <h2 className="text-lg font-semibold text-[#0F172A] dark:text-white mb-4">Unternehmensdaten</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -260,7 +260,7 @@ export default function KundenDetailPage({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-[#1E293B] rounded-2xl shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
+            className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
           >
             <h2 className="text-lg font-semibold text-[#0F172A] dark:text-white mb-4">Kontaktperson</h2>
             <div className="space-y-4">
@@ -276,7 +276,7 @@ export default function KundenDetailPage({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <a
                   href={`mailto:${customer.contactEmail}`}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition"
+                  className="flex items-center gap-3 p-3 rounded-md bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition"
                 >
                   <Mail className="w-5 h-5 text-[#6C5CE7]" />
                   <div>
@@ -286,7 +286,7 @@ export default function KundenDetailPage({
                 </a>
                 <a
                   href={`tel:${customer.contactPhone}`}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition"
+                  className="flex items-center gap-3 p-3 rounded-md bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition"
                 >
                   <Phone className="w-5 h-5 text-[#00CEC9]" />
                   <div>
@@ -302,7 +302,7 @@ export default function KundenDetailPage({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-white dark:bg-[#1E293B] rounded-2xl shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
+            className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
           >
             <h2 className="text-lg font-semibold text-[#0F172A] dark:text-white mb-4">Social Media</h2>
             <div className="space-y-3">
@@ -317,10 +317,10 @@ export default function KundenDetailPage({
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition group"
+                    className="flex items-center justify-between p-3 rounded-md bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition group"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/[0.06] flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-md bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/[0.06] flex items-center justify-center">
                         <Icon className="w-5 h-5 text-[#0F172A] dark:text-white" />
                       </div>
                       <div>
@@ -341,7 +341,7 @@ export default function KundenDetailPage({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="bg-white dark:bg-[#1E293B] rounded-2xl shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
+            className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
           >
             <div className="flex items-center gap-2 mb-3">
               <Share2 className="w-5 h-5 text-[#6C5CE7]" />
@@ -356,11 +356,11 @@ export default function KundenDetailPage({
                 type="text"
                 readOnly
                 value={shareUrl}
-                className="flex-1 min-w-0 px-3 py-2 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-xs text-[#0F172A] dark:text-white font-mono truncate"
+                className="flex-1 min-w-0 px-3 py-2 rounded-md bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-xs text-[#0F172A] dark:text-white font-mono truncate"
               />
               <button
                 onClick={handleCopy}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium transition whitespace-nowrap ${
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium transition whitespace-nowrap ${
                   copied
                     ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400"
                     : "bg-[#6C5CE7]/10 text-[#6C5CE7] hover:bg-[#6C5CE7]/20"
@@ -388,7 +388,7 @@ export default function KundenDetailPage({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
-            className="bg-white dark:bg-[#1E293B] rounded-2xl shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
+            className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
           >
             <h2 className="text-lg font-semibold text-[#0F172A] dark:text-white mb-4">Plan & Status</h2>
             <div className="space-y-4">
@@ -432,27 +432,27 @@ export default function KundenDetailPage({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
-            className="bg-white dark:bg-[#1E293B] rounded-2xl shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
+            className="bg-white dark:bg-[#1E293B] rounded-lg shadow-sm border border-gray-100 dark:border-white/[0.06] p-6"
           >
             <h2 className="text-lg font-semibold text-[#0F172A] dark:text-white mb-4">Schnellaktionen</h2>
             <div className="space-y-3">
               <button
                 onClick={openDashboard}
-                className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white font-medium text-sm hover:opacity-90 transition"
+                className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white font-medium text-sm hover:opacity-90 transition"
               >
                 <ExternalLink className="w-4 h-4" />
                 Dashboard öffnen
               </button>
               <a
                 href={`mailto:${customer.contactEmail}`}
-                className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 text-[#0F172A] dark:text-white font-medium text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition"
+                className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-md bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 text-[#0F172A] dark:text-white font-medium text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition"
               >
                 <Mail className="w-4 h-4" />
                 E-Mail senden
               </a>
               <button
                 onClick={() => setIsActive(!isActive)}
-                className={`flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl font-medium text-sm transition ${
+                className={`flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-md font-medium text-sm transition ${
                   isActive
                     ? "bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-500/20 hover:bg-red-100 dark:hover:bg-red-500/20"
                     : "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20 hover:bg-emerald-100 dark:hover:bg-emerald-500/20"

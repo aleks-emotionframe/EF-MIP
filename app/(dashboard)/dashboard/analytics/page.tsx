@@ -69,7 +69,7 @@ export default function AnalyticsPage() {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {kpis.map((kpi) => (
-          <div key={kpi.label} className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
+          <div key={kpi.label} className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="w-8 h-8 rounded-lg bg-[#00CEC9]/[0.06] flex items-center justify-center">
                 <kpi.icon className="h-4 w-4 text-[#00CEC9]" />
@@ -88,7 +88,7 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Traffic Chart */}
-      <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
+      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Traffic-Übersicht</h3>
         <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-4">Sitzungen, Nutzer & Seitenaufrufe</p>
         <div className="h-[280px]">
@@ -107,7 +107,7 @@ export default function AnalyticsPage() {
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
               <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
               <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
-              <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "8px", fontSize: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
+              <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "6px", fontSize: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
               <Area type="monotone" dataKey="Sitzungen" stroke="#6C5CE7" strokeWidth={2} fill="url(#gradSessions)" />
               <Area type="monotone" dataKey="Nutzer" stroke="#00CEC9" strokeWidth={2} fill="url(#gradUsers)" />
               <Area type="monotone" dataKey="Seitenaufrufe" stroke="#DFE4EA" strokeWidth={1.5} fill="transparent" />
@@ -119,7 +119,7 @@ export default function AnalyticsPage() {
       {/* Sources + Devices */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Traffic Sources */}
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">Besucherquellen</h3>
           <div className="flex items-center gap-6">
             <div className="w-[140px] h-[140px] shrink-0">
@@ -148,7 +148,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Devices */}
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">Endgeräte</h3>
           <div className="space-y-4">
             {deviceData.map((d) => (
@@ -174,7 +174,7 @@ export default function AnalyticsPage() {
       {/* Top Pages + Search Console */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Top Pages */}
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">Top-Seiten</h3>
           <div className="space-y-2">
             {topPages.map((page, i) => (
@@ -194,7 +194,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Search Console */}
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <div className="flex items-center gap-2 mb-4">
             <Globe className="h-4 w-4 text-[#4285F4]" />
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Search Console</h3>

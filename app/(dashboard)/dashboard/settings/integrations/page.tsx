@@ -212,13 +212,13 @@ export default function IntegrationsPage() {
           return (
             <div
               key={platform.key}
-              className="group rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5 hover:shadow-sm transition-all"
+              className="group rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5 hover:shadow-sm transition-all"
             >
               {/* Header */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div
-                    className={`w-10 h-10 rounded-xl ${platform.bgColor} flex items-center justify-center`}
+                    className={`w-10 h-10 rounded-md ${platform.bgColor} flex items-center justify-center`}
                   >
                     <platform.icon
                       className="h-5 w-5"

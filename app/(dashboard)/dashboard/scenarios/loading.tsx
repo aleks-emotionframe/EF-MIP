@@ -8,14 +8,14 @@ export default function ScenariosLoading() {
         <Skeleton className="h-4 w-72" />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-        <div className="lg:col-span-2 rounded-2xl border border-gray-100 bg-white p-6 space-y-4">
+        <div className="lg:col-span-2 rounded-lg border border-gray-100 bg-white p-6 space-y-4">
           <Skeleton className="h-5 w-40" />
           {[...Array(5)].map((_, i) => (
-            <Skeleton key={i} className="h-16 w-full rounded-xl" />
+            <Skeleton key={i} className="h-16 w-full rounded-md" />
           ))}
-          <Skeleton className="h-12 w-full rounded-xl" />
+          <Skeleton className="h-12 w-full rounded-md" />
         </div>
-        <div className="lg:col-span-3 rounded-2xl border border-gray-100 bg-white p-6">
+        <div className="lg:col-span-3 rounded-lg border border-gray-100 bg-white p-6">
           <Skeleton className="h-5 w-24 mb-5" />
           <Skeleton className="h-[320px] w-full rounded-lg" />
         </div>

@@ -129,7 +129,7 @@ export default function AIInsightsPage() {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex gap-1 p-1 rounded-xl bg-gray-100 dark:bg-white/[0.04] w-fit">
+      <div className="flex gap-1 p-1 rounded-md bg-gray-100 dark:bg-white/[0.04] w-fit">
         {FILTER_TABS.map((tab) => {
           const count = tab.key === "all"
             ? insights.length
@@ -184,7 +184,7 @@ export default function AIInsightsPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden hover:shadow-sm transition-shadow"
+                  className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm overflow-hidden hover:shadow-sm transition-shadow"
                 >
                   {/* Main Row */}
                   <div
@@ -192,7 +192,7 @@ export default function AIInsightsPage() {
                     onClick={() => setExpandedId(isExpanded ? null : insight.id)}
                   >
                     {/* Icon */}
-                    <div className={`w-10 h-10 rounded-xl ${typeConf.bg} flex items-center justify-center shrink-0`}>
+                    <div className={`w-10 h-10 rounded-md ${typeConf.bg} flex items-center justify-center shrink-0`}>
                       <typeConf.icon className="h-[18px] w-[18px]" style={{ color: typeConf.color }} />
                     </div>
 
@@ -320,7 +320,7 @@ export default function AIInsightsPage() {
       )}
 
       {/* Learning Timeline */}
-      <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5 mt-8">
+      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5 mt-8">
         <div className="flex items-center gap-2 mb-5">
           <Brain className="h-4 w-4 text-[#00CEC9]" />
           <h2 className="text-[16px] font-bold text-[#0F172A] dark:text-white">Lernverlauf</h2>

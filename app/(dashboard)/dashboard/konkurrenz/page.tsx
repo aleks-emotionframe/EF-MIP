@@ -125,7 +125,7 @@ export default function KonkurrenzPage() {
           </div>
           <p className="text-[14px] text-gray-500 dark:text-white/50 mt-1">Vergleiche deine Performance mit Wettbewerbern.</p>
         </div>
-        <button onClick={() => setShowAdd(true)} className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
+        <button onClick={() => setShowAdd(true)} className="flex items-center gap-1.5 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-2.5 text-[12px] font-semibold text-white hover:shadow-lg hover:shadow-[#00CEC9]/30 transition-all">
           <Plus className="h-3.5 w-3.5" />Wettbewerber hinzufügen
         </button>
       </div>
@@ -135,7 +135,7 @@ export default function KonkurrenzPage() {
         {competitors.map((c) => (
           <div key={c.id} className="relative group/comp">
             <button onClick={() => setSelectedId(c.id)}
-              className={`rounded-xl px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-all ${selectedId === c.id ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04]"}`}>
+              className={`rounded-md px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-all ${selectedId === c.id ? "bg-[#00CEC9] text-white shadow-md shadow-[#00CEC9]/25" : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/[0.06] text-gray-600 dark:text-white/70 hover:bg-gray-50 dark:hover:bg-white/[0.04]"}`}>
               {c.name}
             </button>
             <button onClick={() => { setCompetitors((prev) => prev.filter((x) => x.id !== c.id)); if (selectedId === c.id) setSelectedId(null) }}
@@ -147,7 +147,7 @@ export default function KonkurrenzPage() {
       {/* Comparison Overview */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Bar Chart: Follower */}
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Follower-Vergleich</h3>
           <p className="text-[11px] text-gray-400 mb-4">in Tausend</p>
           <div className="h-[250px]">
@@ -156,7 +156,7 @@ export default function KonkurrenzPage() {
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" horizontal={false} />
                 <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
                 <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#6b7280" }} width={100} />
-                <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "8px", fontSize: "12px" }} />
+                <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "6px", fontSize: "12px" }} />
                 <Bar dataKey="Follower" radius={[0, 6, 6, 0]}>
                   {comparisonData.map((entry, i) => (
                     <motion.rect key={i} fill={i === 0 ? "#6C5CE7" : "#00CEC9"} />
@@ -169,7 +169,7 @@ export default function KonkurrenzPage() {
 
         {/* Radar Chart */}
         {selected && (
-          <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
+          <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
             <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Du vs. {selected.name}</h3>
             <p className="text-[11px] text-gray-400 mb-4">Stärken-Vergleich</p>
             <div className="h-[250px]">
@@ -180,7 +180,7 @@ export default function KonkurrenzPage() {
                   <PolarRadiusAxis tick={false} axisLine={false} />
                   <Radar name="Du" dataKey="du" stroke="#6C5CE7" fill="#6C5CE7" fillOpacity={0.15} strokeWidth={2} />
                   <Radar name={selected.name} dataKey="konkurrent" stroke="#00CEC9" fill="#00CEC9" fillOpacity={0.1} strokeWidth={2} />
-                  <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "8px", fontSize: "12px" }} />
+                  <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "6px", fontSize: "12px" }} />
                 </RadarChart>
               </ResponsiveContainer>
             </div>
@@ -194,7 +194,7 @@ export default function KonkurrenzPage() {
 
       {/* Selected Competitor Detail */}
       {selected && (
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5 space-y-4">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5 space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white">{selected.name}</h3>
@@ -221,7 +221,7 @@ export default function KonkurrenzPage() {
               const followerDiff = yourPlatform ? ((p.follower - yourPlatform.follower) / yourPlatform.follower * 100) : 0
 
               return (
-                <div key={p.platform} className="rounded-xl border border-gray-100 dark:border-white/[0.06] p-3.5">
+                <div key={p.platform} className="rounded-md border border-gray-100 dark:border-white/[0.06] p-3.5">
                   <div className="flex items-center gap-2 mb-2">
                     <Icon className="h-4 w-4" style={{ color }} />
                     <span className="text-[13px] font-semibold text-[#0F172A] dark:text-white">{p.platform}</span>
@@ -253,11 +253,11 @@ export default function KonkurrenzPage() {
 
           {/* Strengths & Weaknesses */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="rounded-xl bg-emerald-50 p-4">
+            <div className="rounded-md bg-emerald-50 p-4">
               <p className="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider mb-1">Stärke</p>
               <p className="text-[13px] text-emerald-800 leading-relaxed">{selected.strength}</p>
             </div>
-            <div className="rounded-xl bg-amber-50 p-4">
+            <div className="rounded-md bg-amber-50 p-4">
               <p className="text-[11px] font-semibold text-amber-700 uppercase tracking-wider mb-1">Schwäche</p>
               <p className="text-[13px] text-amber-800 leading-relaxed">{selected.weakness}</p>
             </div>
@@ -271,15 +271,15 @@ export default function KonkurrenzPage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowAdd(false)} />
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-md mx-4 rounded-2xl bg-white dark:bg-[#1E293B] p-6 shadow-2xl">
+              className="relative z-10 w-full max-w-md mx-4 rounded-lg bg-white dark:bg-[#1E293B] p-6 shadow-2xl">
               <h2 className="text-[16px] font-bold text-gray-900 mb-4">Wettbewerber hinzufügen</h2>
               <div className="space-y-3">
-                <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Firmenname" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
-                <input value={newWebsite} onChange={(e) => setNewWebsite(e.target.value)} placeholder="Website (z.B. competitor.com)" className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
+                <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Firmenname" className="w-full rounded-md border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
+                <input value={newWebsite} onChange={(e) => setNewWebsite(e.target.value)} placeholder="Website (z.B. competitor.com)" className="w-full rounded-md border border-gray-200 px-4 py-2.5 text-[13px] focus:border-[#00CEC9] focus:outline-none" />
               </div>
               <div className="flex gap-3 mt-5">
-                <button onClick={() => setShowAdd(false)} className="flex-1 rounded-xl border border-gray-200 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">Abbrechen</button>
-                <button onClick={handleAdd} disabled={!newName} className="flex-1 rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50">Hinzufügen</button>
+                <button onClick={() => setShowAdd(false)} className="flex-1 rounded-md border border-gray-200 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50">Abbrechen</button>
+                <button onClick={handleAdd} disabled={!newName} className="flex-1 rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] py-2.5 text-[13px] font-semibold text-white hover:bg-[#00B4A3] disabled:opacity-50">Hinzufügen</button>
               </div>
             </motion.div>
           </div>

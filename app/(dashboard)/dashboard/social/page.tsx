@@ -153,7 +153,7 @@ export default function SocialPage() {
           <button
             key={p.key}
             onClick={() => setActive(p.key)}
-            className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-all ${
+            className={`flex items-center gap-2 rounded-md px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-all ${
               active === p.key
                 ? "text-white shadow-md"
                 : "bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/[0.06] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/[0.06]"
@@ -169,7 +169,7 @@ export default function SocialPage() {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {data.kpis.map((kpi) => (
-          <div key={kpi.label} className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-4">
+          <div key={kpi.label} className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-4">
             <div className="flex items-center justify-between mb-2">
               <div className={`w-8 h-8 rounded-lg ${platform.bg} flex items-center justify-center`}>
                 <kpi.icon className="h-4 w-4" style={{ color: platform.color }} />
@@ -187,7 +187,7 @@ export default function SocialPage() {
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Follower-Entwicklung</h3>
           <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-4">Letzte 7 Tage</p>
           <div className="h-[220px]">
@@ -202,14 +202,14 @@ export default function SocialPage() {
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
                 <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} domain={["dataMin - 50", "dataMax + 50"]} />
-                <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "8px", fontSize: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
+                <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "6px", fontSize: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
                 <Area type="monotone" dataKey="Follower" stroke={platform.color} strokeWidth={2.5} fill={`url(#grad-${active})`} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
+        <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
           <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-1">Tägliche Reichweite</h3>
           <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-4">Letzte 7 Tage</p>
           <div className="h-[220px]">
@@ -218,7 +218,7 @@ export default function SocialPage() {
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
                 <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
-                <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "8px", fontSize: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
+                <Tooltip contentStyle={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "6px", fontSize: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
                 <Bar dataKey="Reichweite" fill={platform.color} radius={[4, 4, 0, 0]} opacity={0.8} />
               </BarChart>
             </ResponsiveContainer>
@@ -227,7 +227,7 @@ export default function SocialPage() {
       </div>
 
       {/* Top-Beiträge */}
-      <div className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-5">
+      <div className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-5">
         <h3 className="text-[16px] font-bold text-[#0F172A] dark:text-white mb-4">Top-Beiträge</h3>
         <div className="space-y-3">
           {data.topPosts.map((post, i) => (

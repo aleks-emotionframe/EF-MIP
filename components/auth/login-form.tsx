@@ -67,7 +67,7 @@ export function LoginForm() {
               key={account.email}
               onClick={() => doLogin(account.email, account.password, account.email)}
               disabled={loading !== null}
-              className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-3 text-[13px] font-medium text-gray-600 transition-all hover:border-[#00CEC9] hover:text-[#00CEC9] hover:bg-[#00CEC9]/5 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center justify-center gap-2 rounded-md border border-gray-200 bg-white px-4 py-3 text-[13px] font-medium text-gray-600 transition-all hover:border-[#00CEC9] hover:text-[#00CEC9] hover:bg-[#00CEC9]/5 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading === account.email ? (
                 <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
@@ -93,7 +93,7 @@ export function LoginForm() {
       </div>
 
       {error && (
-        <div className="rounded-xl bg-red-50 border border-red-100 p-3 text-[13px] text-red-500">
+        <div className="rounded-md bg-red-50 border border-red-100 p-3 text-[13px] text-red-500">
           {error}
         </div>
       )}
@@ -104,7 +104,7 @@ export function LoginForm() {
           type="email"
           autoComplete="email"
           required
-          className="w-full rounded-xl border border-gray-200 bg-[#F8FAFC] px-4 py-3 text-[13px] text-[#0F172A] transition-all focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/20 focus:border-[#00CEC9] placeholder:text-gray-300"
+          className="w-full rounded-md border border-gray-200 bg-[#F8FAFC] px-4 py-3 text-[13px] text-[#0F172A] transition-all focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/20 focus:border-[#00CEC9] placeholder:text-gray-300"
           placeholder="E-Mail"
         />
         <input
@@ -112,13 +112,13 @@ export function LoginForm() {
           type="password"
           autoComplete="current-password"
           required
-          className="w-full rounded-xl border border-gray-200 bg-[#F8FAFC] px-4 py-3 text-[13px] text-[#0F172A] transition-all focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/20 focus:border-[#00CEC9] placeholder:text-gray-300"
+          className="w-full rounded-md border border-gray-200 bg-[#F8FAFC] px-4 py-3 text-[13px] text-[#0F172A] transition-all focus:outline-none focus:ring-2 focus:ring-[#00CEC9]/20 focus:border-[#00CEC9] placeholder:text-gray-300"
           placeholder="Passwort"
         />
         <button
           type="submit"
           disabled={loading !== null}
-          className="w-full rounded-xl bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-3 text-[13px] font-semibold text-white shadow-md shadow-[#00CEC9]/20 transition-all hover:shadow-lg hover:shadow-[#00CEC9]/30 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full rounded-md bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] px-4 py-3 text-[13px] font-semibold text-white shadow-md shadow-[#00CEC9]/20 transition-all hover:shadow-lg hover:shadow-[#00CEC9]/30 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading === "form" ? "Anmelden..." : "Anmelden"}
         </button>

@@ -118,7 +118,7 @@ function LiveDashboard() {
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-2xl bg-gradient-to-br from-[#6C5CE7] to-[#5643CC] p-8 text-white shadow-lg"
+        className="rounded-lg bg-gradient-to-br from-[#6C5CE7] to-[#5643CC] p-8 text-white shadow-lg"
       >
         <div className="flex items-center gap-3 mb-4">
           <PulsingDot color="#22C55E" size={12} />
@@ -149,7 +149,7 @@ function LiveDashboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
+          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
@@ -198,7 +198,7 @@ function LiveDashboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
+          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
@@ -248,7 +248,7 @@ function LiveDashboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
+          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
@@ -292,7 +292,7 @@ function LiveDashboard() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
-          className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
+          className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
         >
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
@@ -312,7 +312,7 @@ function LiveDashboard() {
                 className="flex items-center gap-4"
               >
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center"
+                  className="w-12 h-12 rounded-md flex items-center justify-center"
                   style={{ backgroundColor: `${device.color}10` }}
                 >
                   <device.icon className="h-5 w-5" style={{ color: device.color }} />
@@ -348,7 +348,7 @@ function LiveDashboard() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="rounded-2xl bg-white dark:bg-[#1E293B] shadow-sm p-6"
+        className="rounded-lg bg-white dark:bg-[#1E293B] shadow-sm p-6"
       >
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2">
@@ -401,7 +401,7 @@ function ConnectionRequired() {
   return (
     <div className="relative">
       {/* Blurred Preview Behind */}
-      <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none select-none" aria-hidden>
+      <div className="absolute inset-0 overflow-hidden rounded-lg pointer-events-none select-none" aria-hidden>
         <div className="blur-[6px] opacity-40 scale-[0.98] origin-top">
           <LiveDashboard />
         </div>
@@ -417,7 +417,7 @@ function ConnectionRequired() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="w-full max-w-lg mx-auto"
         >
-          <div className="rounded-2xl bg-white/95 dark:bg-[#1E293B]/95 backdrop-blur-xl shadow-xl border border-gray-100 dark:border-white/[0.06] p-8 text-center">
+          <div className="rounded-lg bg-white/95 dark:bg-[#1E293B]/95 backdrop-blur-xl shadow-xl border border-gray-100 dark:border-white/[0.06] p-8 text-center">
             {/* Animated Icon */}
             <div className="flex justify-center mb-6">
               <motion.div
@@ -426,7 +426,7 @@ function ConnectionRequired() {
                   scale: [1, 1.05, 1],
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#6C5CE7] to-[#00CEC9] flex items-center justify-center shadow-lg"
+                className="w-20 h-20 rounded-lg bg-gradient-to-br from-[#6C5CE7] to-[#00CEC9] flex items-center justify-center shadow-lg"
               >
                 <MapPin className="h-10 w-10 text-white" />
               </motion.div>
@@ -445,7 +445,7 @@ function ConnectionRequired() {
               {features.map((f) => (
                 <div
                   key={f.label}
-                  className="rounded-xl bg-gray-50 p-3 text-left"
+                  className="rounded-md bg-gray-50 p-3 text-left"
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <Zap className="h-3.5 w-3.5 text-[#6C5CE7]" />
@@ -461,7 +461,7 @@ function ConnectionRequired() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#00CEC9] text-white font-semibold text-[14px] shadow-lg shadow-[#6C5CE7]/25 flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3.5 px-6 rounded-md bg-gradient-to-r from-[#6C5CE7] to-[#00CEC9] text-white font-semibold text-[14px] shadow-lg shadow-[#6C5CE7]/25 flex items-center justify-center gap-2 cursor-pointer"
               >
                 Google Analytics verbinden
                 <ArrowRight className="h-4 w-4" />
@@ -507,7 +507,7 @@ export default function LiveBesucherPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6C5CE7] to-[#00CEC9] flex items-center justify-center shadow-md">
+          <div className="w-10 h-10 rounded-md bg-gradient-to-br from-[#6C5CE7] to-[#00CEC9] flex items-center justify-center shadow-md">
             <MapPin className="h-5 w-5 text-white" />
           </div>
           <div>
