@@ -11,7 +11,7 @@ import {
   Hash, Target, Bell, Inbox, Clock,
   PieChart, SmilePlus, GitCompare, Gauge, Link2, MapPin,
   FileBarChart, GitFork, Search, LogOut, Building2,
-  User, LayoutDashboard, ArrowLeft, ChevronDown, X,
+  User, LayoutDashboard, ChevronDown, X, Plus, Shield,
 } from "lucide-react"
 import { useCustomer, type ActiveCustomer } from "@/components/providers/customer-provider"
 
@@ -81,40 +81,6 @@ const menuSections: MenuSection[] = [
   },
 ]
 
-const pageTitles: Record<string, string> = {
-  "/dashboard": "Übersicht",
-  "/dashboard/social": "Soziale Medien",
-  "/dashboard/social-inbox": "Social Inbox",
-  "/dashboard/sentiment": "Stimmungsanalyse",
-  "/dashboard/audience": "Audience Insights",
-  "/dashboard/posting-zeiten": "Posting-Zeiten",
-  "/dashboard/ab-vergleich": "A/B Vergleich",
-  "/dashboard/analytics": "Analysen",
-  "/dashboard/speed": "Website Speed",
-  "/dashboard/backlinks": "Backlinks",
-  "/dashboard/live-besucher": "Live Besucher",
-  "/dashboard/seiten-ranking": "Seiten-Ranking",
-  "/dashboard/funnel": "Conversion-Funnel",
-  "/dashboard/content-luecken": "Content-Lücken",
-  "/dashboard/scenarios": "Szenarien",
-  "/dashboard/kalender": "Kalender",
-  "/dashboard/content-generator": "Content-Generator",
-  "/dashboard/hashtags": "Hashtag-Recherche",
-  "/dashboard/konkurrenz": "Konkurrenz-Analyse",
-  "/dashboard/benachrichtigungen": "Benachrichtigungen",
-  "/dashboard/ai-insights": "KI-Erkenntnisse",
-  "/dashboard/trends": "Trends",
-  "/dashboard/seo": "SEO-Analyse",
-  "/dashboard/kontakte": "Kontakte",
-  "/dashboard/email": "E-Mail-Marketing",
-  "/dashboard/reports": "Berichte",
-  "/dashboard/settings": "Einstellungen",
-  "/dashboard/settings/integrations": "Integrationen",
-  "/dashboard/settings/credentials": "API-Zugangsdaten",
-  "/dashboard/kunden": "Kundenübersicht",
-  "/dashboard/kunden/neu": "Neuen Kunden registrieren",
-}
-
 export function Header() {
   const { data: session } = useSession()
   const pathname = usePathname()
@@ -123,13 +89,11 @@ export function Header() {
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [openSection, setOpenSection] = useState<string | null>(null)
   const userMenuRef = useRef<HTMLDivElement>(null)
-  const navRef = useRef<HTMLDivElement>(null)
 
   const isSuperAdmin = session?.user?.globalRole === "SUPER_ADMIN"
   const hasCustomer = !!activeCustomer
   const isOnKundenPage = pathname.startsWith("/dashboard/kunden")
   const showFullNav = hasCustomer && !isOnKundenPage
-  const pageTitle = pageTitles[pathname] || pathname.split("/").pop()?.replace(/-/g, " ") || ""
 
   const activeSection = menuSections.find((s) =>
     s.singleLink
@@ -153,7 +117,6 @@ export function Header() {
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) setShowUserMenu(false)
-      if (navRef.current && !navRef.current.contains(e.target as Node)) setOpenSection(null)
     }
     document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
@@ -178,122 +141,79 @@ export function Header() {
   }
 
   return (
-    <div ref={navRef} className="sticky top-0 z-30">
-      {/* Main Header Bar */}
-      <header className="h-[60px] bg-white border-b border-gray-100 flex items-center justify-between px-6">
-        {/* Left: Logo + Customer + Nav */}
-        <div className="flex items-center gap-4">
-          {/* Logo */}
-          <Link href={hasCustomer ? "/dashboard" : "/dashboard/kunden"} className="shrink-0 mr-2">
-            <img src="/logo-dark.svg" alt="EmotionFrame" className="h-8 w-auto" />
+    <div className="sticky top-0 z-30">
+      {/* ─── Top Bar: Admin/Global Actions ─── */}
+      <header className="h-[52px] bg-[#0F172A] flex items-center justify-between px-6">
+        {/* Left: Logo + Admin Links */}
+        <div className="flex items-center gap-1">
+          <Link href={hasCustomer ? "/dashboard" : "/dashboard/kunden"} className="shrink-0 mr-4">
+            <img src="/logo-dark.svg" alt="EmotionFrame" className="h-7 w-auto brightness-0 invert" />
           </Link>
 
-          {/* Customer Indicator */}
-          {hasCustomer && !isOnKundenPage && (
-            <div className="flex items-center gap-2 pl-3 border-l border-gray-200">
-              <div className="w-6 h-6 rounded bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center text-[10px] font-bold text-white">
-                {activeCustomer.name[0]}
-              </div>
-              <span className="text-[12px] font-semibold text-[#0F172A] max-w-[100px] truncate">
-                {activeCustomer.name}
-              </span>
-              <button onClick={handleBackToKunden} className="text-gray-300 hover:text-gray-500 transition-colors">
-                <X className="h-3.5 w-3.5" />
-              </button>
-            </div>
-          )}
-
-          {/* Divider */}
-          {showFullNav && <div className="w-px h-6 bg-gray-200 mx-1" />}
-
-          {/* Admin: Kunden Link */}
-          {isSuperAdmin && !showFullNav && (
-            <Link
-              href="/dashboard/kunden"
-              onClick={() => { clearCustomer(); setOpenSection(null) }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-medium rounded transition-colors ${
-                isOnKundenPage
-                  ? "bg-[#00CEC9]/10 text-[#00CEC9]"
-                  : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
-              }`}
-            >
-              <Building2 className="h-4 w-4" />
-              Kunden
-            </Link>
-          )}
-
-          {/* Main Nav Items */}
-          {showFullNav && (
-            <nav className="hidden md:flex items-center gap-0.5">
-              {menuSections.map((section) => {
-                const isActive = activeSection?.key === section.key
-                const isOpen = openSection === section.key
-                const hasSubItems = section.items.length > 0
-
-                return section.singleLink ? (
-                  <Link
-                    key={section.key}
-                    href={section.singleLink}
-                    onClick={() => setOpenSection(null)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-medium rounded transition-colors ${
-                      isActive && !openSection
-                        ? "bg-[#00CEC9]/10 text-[#00CEC9]"
-                        : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
-                    }`}
-                  >
-                    <section.icon className="h-4 w-4" />
-                    {section.title}
-                  </Link>
-                ) : (
-                  <button
-                    key={section.key}
-                    onClick={() => handleSectionClick(section)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-medium rounded transition-colors ${
-                      isOpen || (isActive && !openSection)
-                        ? "bg-[#00CEC9]/10 text-[#00CEC9]"
-                        : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
-                    }`}
-                  >
-                    <section.icon className="h-4 w-4" />
-                    {section.title}
-                    {hasSubItems && (
-                      <ChevronDown className={`h-3 w-3 transition-transform ${isOpen ? "rotate-180" : ""}`} />
-                    )}
-                  </button>
-                )
-              })}
-
-              <div className="w-px h-5 bg-gray-200 mx-1" />
-
+          {isSuperAdmin && (
+            <>
               <Link
-                href="/dashboard/settings/integrations"
-                onClick={() => setOpenSection(null)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-medium rounded transition-colors ${
-                  pathname.startsWith("/dashboard/settings")
-                    ? "bg-[#00CEC9]/10 text-[#00CEC9]"
-                    : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
+                href="/dashboard/kunden"
+                onClick={() => { clearCustomer(); setOpenSection(null) }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded transition-colors ${
+                  isOnKundenPage && !pathname.includes("/neu")
+                    ? "bg-white/15 text-white"
+                    : "text-white/60 hover:text-white hover:bg-white/10"
                 }`}
               >
-                <Settings className="h-4 w-4" />
-                Einstellungen
+                <Building2 className="h-3.5 w-3.5" />
+                Kundenübersicht
               </Link>
-            </nav>
+              <Link
+                href="/dashboard/kunden/neu"
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded transition-colors ${
+                  pathname === "/dashboard/kunden/neu"
+                    ? "bg-white/15 text-white"
+                    : "text-white/60 hover:text-white hover:bg-white/10"
+                }`}
+              >
+                <Plus className="h-3.5 w-3.5" />
+                Kunde registrieren
+              </Link>
+              <Link
+                href="/dashboard/settings/integrations"
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded transition-colors ${
+                  pathname === "/dashboard/settings/integrations"
+                    ? "bg-white/15 text-white"
+                    : "text-white/60 hover:text-white hover:bg-white/10"
+                }`}
+              >
+                <Settings className="h-3.5 w-3.5" />
+                Allgemeine Einstellungen
+              </Link>
+              <Link
+                href="/dashboard/settings/credentials"
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded transition-colors ${
+                  pathname === "/dashboard/settings/credentials"
+                    ? "bg-white/15 text-white"
+                    : "text-white/60 hover:text-white hover:bg-white/10"
+                }`}
+              >
+                <Shield className="h-3.5 w-3.5" />
+                Admin Einstellungen
+              </Link>
+            </>
           )}
         </div>
 
-        {/* Right */}
+        {/* Right: EF Dashboard + Bell + User */}
         <div className="flex items-center gap-1">
           {isSuperAdmin && (
             <button
               onClick={() => {
                 setActiveCustomer(EF_OWN_CUSTOMER)
-                router.push("/dashboard")
                 setOpenSection(null)
+                router.push("/dashboard")
               }}
-              className={`hidden md:flex items-center gap-1.5 rounded px-3 py-1.5 text-[12px] font-medium transition-colors ${
+              className={`flex items-center gap-1.5 rounded px-3 py-1.5 text-[12px] font-medium transition-colors ${
                 activeCustomer?.id === "ef"
-                  ? "bg-[#6C5CE7]/10 text-[#6C5CE7]"
-                  : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  ? "bg-[#6C5CE7]/30 text-white"
+                  : "text-white/60 hover:text-white hover:bg-white/10"
               }`}
             >
               <LayoutDashboard className="h-3.5 w-3.5" />
@@ -301,23 +221,23 @@ export function Header() {
             </button>
           )}
 
-          <button className="relative rounded-full p-2 text-gray-400 hover:bg-gray-50 transition-colors">
-            <Bell className="h-[18px] w-[18px]" />
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#F97316] rounded-full border-2 border-white" />
+          <button className="relative rounded-full p-2 text-white/50 hover:text-white hover:bg-white/10 transition-colors">
+            <Bell className="h-4 w-4" />
+            <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-[#F97316] rounded-full" />
           </button>
 
-          <div className="w-px h-6 bg-gray-200 mx-2" />
+          <div className="w-px h-5 bg-white/15 mx-2" />
 
           {/* User Menu */}
           <div ref={userMenuRef} className="relative">
             <button onClick={() => setShowUserMenu(!showUserMenu)}
-              className="flex items-center gap-2.5 rounded-full py-1 pl-1 pr-3 hover:bg-gray-50 transition-colors">
-              <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center text-[11px] font-bold text-white">
+              className="flex items-center gap-2 rounded-full py-1 pl-1 pr-2 hover:bg-white/10 transition-colors">
+              <div className="h-7 w-7 rounded-full bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center text-[10px] font-bold text-white">
                 {initials}
               </div>
               <div className="hidden sm:block text-left">
-                <p className="text-[12px] font-semibold text-[#0F172A] leading-tight">{session?.user?.name ?? "User"}</p>
-                <p className="text-[10px] text-gray-400 leading-tight">{isSuperAdmin ? "Admin" : "Mitglied"}</p>
+                <p className="text-[11px] font-medium text-white leading-tight">{session?.user?.name ?? "User"}</p>
+                <p className="text-[10px] text-white/40 leading-tight">{isSuperAdmin ? "Admin" : "Mitglied"}</p>
               </div>
             </button>
 
@@ -327,19 +247,9 @@ export function Header() {
                   <p className="text-[13px] font-semibold text-gray-900 truncate">{session?.user?.name ?? "User"}</p>
                   <p className="text-[11px] text-gray-400 truncate">{session?.user?.email}</p>
                 </div>
-                {isSuperAdmin && (
-                  <Link href="/dashboard/kunden" onClick={() => { clearCustomer(); setShowUserMenu(false); setOpenSection(null) }}
-                    className="flex w-full items-center gap-2.5 rounded px-3 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50 transition-colors">
-                    <Building2 className="h-4 w-4 opacity-50" />Kundenübersicht
-                  </Link>
-                )}
                 <button className="flex w-full items-center gap-2.5 rounded px-3 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50 transition-colors">
                   <User className="h-4 w-4 opacity-50" />Profil
                 </button>
-                <Link href="/dashboard/settings/integrations" onClick={() => setShowUserMenu(false)}
-                  className="flex w-full items-center gap-2.5 rounded px-3 py-2.5 text-[13px] text-gray-600 hover:bg-gray-50 transition-colors">
-                  <Settings className="h-4 w-4 opacity-50" />Einstellungen
-                </Link>
                 <div className="border-t border-gray-100 mt-1 pt-1">
                   <button onClick={() => signOut({ callbackUrl: "/login" })}
                     className="flex w-full items-center gap-2.5 rounded px-3 py-2.5 text-[13px] text-red-500 hover:bg-red-50 transition-colors">
@@ -352,35 +262,110 @@ export function Header() {
         </div>
       </header>
 
-      {/* Sub Navigation Bar */}
+      {/* ─── Second Bar: Project Nav (only when customer active) ─── */}
+      {showFullNav && (
+        <div className="h-[44px] bg-white border-b border-gray-100 flex items-center px-6 gap-1">
+          {/* Customer Indicator */}
+          <div className="flex items-center gap-2 mr-3">
+            <div className="w-6 h-6 rounded bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center text-[10px] font-bold text-white">
+              {activeCustomer!.name[0]}
+            </div>
+            <span className="text-[12px] font-semibold text-[#0F172A] max-w-[100px] truncate">
+              {activeCustomer!.name}
+            </span>
+            <button onClick={handleBackToKunden} className="text-gray-300 hover:text-gray-500 transition-colors">
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
+
+          <div className="w-px h-5 bg-gray-200 mr-2" />
+
+          {/* Nav Items */}
+          <nav className="flex items-center gap-0.5 overflow-x-auto">
+            {menuSections.map((section) => {
+              const isActive = activeSection?.key === section.key
+              const isOpen = openSection === section.key
+              const hasSubItems = section.items.length > 0
+
+              return section.singleLink ? (
+                <Link
+                  key={section.key}
+                  href={section.singleLink}
+                  onClick={() => setOpenSection(null)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded whitespace-nowrap transition-colors ${
+                    isActive && !openSection
+                      ? "bg-[#00CEC9]/10 text-[#00CEC9]"
+                      : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
+                  }`}
+                >
+                  <section.icon className="h-3.5 w-3.5" />
+                  {section.title}
+                </Link>
+              ) : (
+                <button
+                  key={section.key}
+                  onClick={() => handleSectionClick(section)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded whitespace-nowrap transition-colors ${
+                    isOpen || (isActive && !openSection)
+                      ? "bg-[#00CEC9]/10 text-[#00CEC9]"
+                      : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
+                  }`}
+                >
+                  <section.icon className="h-3.5 w-3.5" />
+                  {section.title}
+                  {hasSubItems && (
+                    <ChevronDown className={`h-3 w-3 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                  )}
+                </button>
+              )
+            })}
+
+            <div className="w-px h-5 bg-gray-200 mx-1" />
+
+            <Link
+              href="/dashboard/settings/integrations"
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded whitespace-nowrap transition-colors ${
+                pathname.startsWith("/dashboard/settings")
+                  ? "bg-[#00CEC9]/10 text-[#00CEC9]"
+                  : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
+              }`}
+            >
+              <Settings className="h-3.5 w-3.5" />
+              Einstellungen
+            </Link>
+          </nav>
+        </div>
+      )}
+
+      {/* ─── Third Bar: Sub Navigation (when section open) ─── */}
       <AnimatePresence>
-        {isSubOpen && subSection && (
+        {isSubOpen && subSection && showFullNav && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-            className="bg-white border-b border-gray-100 overflow-hidden"
+            transition={{ duration: 0.15 }}
+            className="bg-[#F8FAFC] border-b border-gray-100 overflow-hidden"
           >
             <div className="flex items-center gap-1 px-6 py-2 overflow-x-auto">
-              <div className="flex items-center gap-1 mr-3">
-                <subSection.icon className="h-4 w-4 text-[#00CEC9]" />
-                <span className="text-[12px] font-semibold text-[#0F172A]">{subSection.title}</span>
+              <div className="flex items-center gap-1.5 mr-3">
+                <subSection.icon className="h-3.5 w-3.5 text-[#00CEC9]" />
+                <span className="text-[11px] font-semibold text-[#0F172A]">{subSection.title}</span>
               </div>
-              <div className="w-px h-5 bg-gray-200 mr-2" />
+              <div className="w-px h-4 bg-gray-200 mr-1" />
               {subSection.items.map((item) => {
                 const isActive = pathname === item.href || pathname.startsWith(item.href + "/")
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded whitespace-nowrap transition-colors ${
+                    className={`flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded whitespace-nowrap transition-colors ${
                       isActive
                         ? "bg-[#00CEC9]/10 text-[#00CEC9]"
-                        : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
+                        : "text-gray-500 hover:text-gray-800 hover:bg-white"
                     }`}
                   >
-                    <item.icon className="h-3.5 w-3.5" />
+                    <item.icon className="h-3 w-3" />
                     {item.label}
                   </Link>
                 )
@@ -389,7 +374,7 @@ export function Header() {
                 onClick={() => setOpenSection(null)}
                 className="ml-auto shrink-0 text-gray-300 hover:text-gray-500 transition-colors p-1"
               >
-                <X className="h-4 w-4" />
+                <X className="h-3.5 w-3.5" />
               </button>
             </div>
           </motion.div>
