@@ -5,10 +5,9 @@ import { usePathname, useRouter } from "next/navigation"
 import { useSession, signOut } from "next-auth/react"
 import {
   User, Settings, LogOut, Building2, LayoutDashboard,
-  Bell, Moon, Sun, Search,
+  Bell, Search,
 } from "lucide-react"
 import Link from "next/link"
-import { useTheme } from "@/components/providers/theme-provider"
 import { useCustomer, type ActiveCustomer } from "@/components/providers/customer-provider"
 
 const EF_OWN_CUSTOMER: ActiveCustomer = {
@@ -56,7 +55,6 @@ const pageTitles: Record<string, string> = {
 }
 
 export function Header() {
-  const { theme, toggle: toggleTheme } = useTheme()
   const { data: session } = useSession()
   const pathname = usePathname()
   const router = useRouter()
@@ -121,12 +119,6 @@ export function Header() {
             Unser Dashboard
           </button>
         )}
-
-        {/* Dark Mode */}
-        <button onClick={toggleTheme} aria-label={theme === "dark" ? "Helles Design" : "Dunkles Design"}
-          className="rounded-full p-2.5 text-gray-400 dark:text-white/40 hover:bg-[#F4F7FE] dark:hover:bg-white/[0.05] transition-colors">
-          {theme === "dark" ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
-        </button>
 
         {/* Bell */}
         <button className="relative rounded-full p-2.5 text-gray-400 dark:text-white/40 hover:bg-[#F4F7FE] dark:hover:bg-white/[0.05] transition-colors">
