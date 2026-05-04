@@ -2,16 +2,16 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   Home, Share2, BarChart3, Layers, Sparkles, FileText,
   TrendingUp, Globe, Users, Mail, Settings, Calendar,
   Hash, Target, Bell, ChevronRight, X, Inbox, Clock,
   PieChart, SmilePlus, GitCompare, Gauge, Link2, MapPin,
-  FileBarChart, GitFork, Search, LogOut, Building2,
+  FileBarChart, GitFork, Search, LogOut, Building2, ArrowLeft,
 } from "lucide-react"
-import { useSession } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 import { useCustomer } from "@/components/providers/customer-provider"
 
 interface MenuItem { icon: any; label: string; href: string }
@@ -96,15 +96,25 @@ interface SidebarProps {
 
 export function Sidebar({ onSubOpen }: SidebarProps) {
   const pathname = usePathname()
+  const router = useRouter()
   const { data: session } = useSession()
-  const { clearCustomer } = useCustomer()
+  const { activeCustomer, clearCustomer } = useCustomer()
   const isSuperAdmin = session?.user?.globalRole === "SUPER_ADMIN"
+  const hasCustomer = !!activeCustomer
+  const isOnKundenPage = pathname.startsWith("/dashboard/kunden")
   const [openSection, setOpenSectionRaw] = useState<string | null>(null)
 
   function setOpenSection(key: string | null) {
     setOpenSectionRaw(key)
     const section = key ? menuSections.find((s) => s.key === key) : null
     onSubOpen?.(!!section && section.items.length > 0)
+  }
+
+  function handleBackToKunden() {
+    clearCustomer()
+    setOpenSection(null)
+    onSubOpen?.(false)
+    router.push("/dashboard/kunden")
   }
 
   const activeSection = menuSections.find((s) =>
@@ -125,9 +135,10 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
   const isSubOpen = !!subSection && subSection.items.length > 0
   const anySubOpen = openSection !== null
 
+  const showFullNav = hasCustomer && !isOnKundenPage
+
   return (
     <>
-      {/* ─── Primary Sidebar (Light) ─── */}
       <aside
         className="hidden md:flex flex-col h-screen fixed left-0 top-0 z-50 bg-white dark:bg-[#1E293B] border-r border-gray-100 dark:border-white/[0.06]"
         style={{ width: PRIMARY_WIDTH }}
@@ -136,7 +147,7 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
       >
         {/* Logo */}
         <div className="flex items-center h-[72px] px-5">
-          <Link href="/dashboard" onClick={() => setOpenSection(null)} className="overflow-hidden">
+          <Link href={hasCustomer ? "/dashboard" : "/dashboard/kunden"} onClick={() => setOpenSection(null)} className="overflow-hidden">
             <img
               src="/logo-dark.svg"
               alt="EmotionFrame"
@@ -145,23 +156,52 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
           </Link>
         </div>
 
-        {/* Sections */}
-        <nav className="flex-1 flex flex-col gap-0.5 pt-3 px-3 overflow-y-auto sidebar-scroll">
-          {isSuperAdmin && (
+        {/* Active Customer Banner */}
+        {showFullNav && (
+          <div className="mx-3 mb-3">
+            <div className="bg-gradient-to-r from-[#00CEC9]/10 to-[#6C5CE7]/10 dark:from-[#00CEC9]/15 dark:to-[#6C5CE7]/15 rounded p-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded bg-gradient-to-br from-[#00CEC9] to-[#6C5CE7] flex items-center justify-center text-[12px] font-bold text-white shrink-0">
+                  {activeCustomer.name[0]}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[13px] font-semibold text-[#0F172A] dark:text-white truncate">{activeCustomer.name}</p>
+                  {activeCustomer.industry && (
+                    <p className="text-[10px] text-gray-500 dark:text-white/40 truncate">{activeCustomer.industry}</p>
+                  )}
+                </div>
+              </div>
+              <button
+                onClick={handleBackToKunden}
+                className="flex items-center gap-1.5 mt-2.5 text-[11px] font-medium text-[#00CEC9] hover:text-[#00CEC9]/80 transition-colors"
+              >
+                <ArrowLeft className="h-3 w-3" />
+                Kunde wechseln
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Navigation */}
+        <nav className="flex-1 flex flex-col gap-0.5 px-3 overflow-y-auto sidebar-scroll">
+          {/* Admin: Kunden link (always visible for admin when no customer or on kunden pages) */}
+          {isSuperAdmin && !showFullNav && (
             <Link
               href="/dashboard/kunden"
               onClick={() => { setOpenSection(null); clearCustomer() }}
-              className={`flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium transition-all mb-1 ${
-                pathname.startsWith("/dashboard/kunden")
+              className={`flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium transition-all ${
+                isOnKundenPage
                   ? "bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] text-white shadow-md shadow-[#00CEC9]/20"
                   : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
               }`}
             >
-              <Building2 className="h-[18px] w-[18px] shrink-0" strokeWidth={pathname.startsWith("/dashboard/kunden") ? 2 : 1.5} />
+              <Building2 className="h-[18px] w-[18px] shrink-0" strokeWidth={isOnKundenPage ? 2 : 1.5} />
               <span>Kunden</span>
             </Link>
           )}
-          {menuSections.map((section) => {
+
+          {/* Full menu sections - only when customer is active */}
+          {showFullNav && menuSections.map((section) => {
             const isActive = activeSection?.key === section.key
             const isOpen = openSection === section.key
             const hasSubItems = section.items.length > 0
@@ -203,33 +243,52 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
               </button>
             )
           })}
+
+          {/* Empty state hint when no customer selected (not on kunden page) */}
+          {isSuperAdmin && !hasCustomer && !isOnKundenPage && (
+            <div className="mt-4 mx-1 p-4 border border-dashed border-gray-200 dark:border-white/10 rounded text-center">
+              <Building2 className="h-6 w-6 text-gray-300 dark:text-white/20 mx-auto mb-2" />
+              <p className="text-[11px] text-gray-400 dark:text-white/30">Wähle einen Kunden aus, um das Dashboard zu sehen</p>
+              <Link
+                href="/dashboard/kunden"
+                className="inline-block mt-2 text-[11px] font-medium text-[#00CEC9] hover:text-[#00CEC9]/80"
+              >
+                Zur Kundenübersicht
+              </Link>
+            </div>
+          )}
         </nav>
 
         {/* Bottom */}
         <div className="px-3 pb-4 space-y-1">
           <div className="mx-2 mb-2 border-t border-gray-100 dark:border-white/[0.06]" />
-          <Link
-            href="/dashboard/settings/integrations"
-            onClick={() => setOpenSection(null)}
-            className={`flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium transition-all ${
-              pathname.startsWith("/dashboard/settings")
-                ? "bg-[#00CEC9]/10 text-[#00CEC9]"
-                : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
-            }`}
+          {showFullNav && (
+            <Link
+              href="/dashboard/settings/integrations"
+              onClick={() => setOpenSection(null)}
+              className={`flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium transition-all ${
+                pathname.startsWith("/dashboard/settings")
+                  ? "bg-[#00CEC9]/10 text-[#00CEC9]"
+                  : "text-gray-500 dark:text-white/50 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.06]"
+              }`}
+            >
+              <Settings className="h-[18px] w-[18px] shrink-0" strokeWidth={1.5} />
+              <span>Einstellungen</span>
+            </Link>
+          )}
+          <button
+            onClick={() => signOut({ callbackUrl: "/login" })}
+            className="flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium text-gray-400 dark:text-white/30 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all w-full text-left"
           >
-            <Settings className="h-[18px] w-[18px] shrink-0" strokeWidth={1.5} />
-            <span>Einstellungen</span>
-          </Link>
-          <button className="flex items-center gap-3 rounded px-3.5 py-2.5 text-[13px] font-medium text-gray-400 dark:text-white/30 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all w-full text-left">
             <LogOut className="h-[18px] w-[18px] shrink-0" strokeWidth={1.5} />
             <span>Abmelden</span>
           </button>
         </div>
       </aside>
 
-      {/* ─── Secondary Sub-Sidebar ─── */}
+      {/* Secondary Sub-Sidebar */}
       <AnimatePresence>
-        {isSubOpen && subSection && (
+        {isSubOpen && subSection && showFullNav && (
           <motion.aside
             initial={{ x: -SUB_WIDTH, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -238,7 +297,6 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
             className="hidden md:flex flex-col h-screen fixed top-0 z-45 bg-white dark:bg-[#1E293B] border-r border-gray-100 dark:border-white/[0.06] shadow-xl shadow-black/5 dark:shadow-black/30"
             style={{ left: PRIMARY_WIDTH, width: SUB_WIDTH }}
           >
-            {/* Sub-header */}
             <div className="flex items-center justify-between h-[72px] px-5 border-b border-gray-100 dark:border-white/[0.06]">
               <div className="flex items-center gap-2.5">
                 <div className="w-7 h-7 rounded bg-gradient-to-br from-[#00CEC9]/15 to-[#6C5CE7]/10 flex items-center justify-center">
@@ -254,7 +312,6 @@ export function Sidebar({ onSubOpen }: SidebarProps) {
               </button>
             </div>
 
-            {/* Sub-items */}
             <nav className="flex-1 px-3 pt-3 overflow-y-auto sidebar-scroll">
               <div className="space-y-0.5">
                 {subSection.items.map((item) => {
