@@ -320,19 +320,7 @@ export function Header() {
               )
             })}
 
-            <div className="w-px h-5 bg-gray-200 mx-1" />
 
-            <Link
-              href="/dashboard/settings/integrations"
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded whitespace-nowrap transition-colors ${
-                pathname.startsWith("/dashboard/settings")
-                  ? "bg-[#00CEC9]/10 text-[#00CEC9]"
-                  : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
-              }`}
-            >
-              <Settings className="h-3.5 w-3.5" />
-              Einstellungen
-            </Link>
           </nav>
         </div>
       )}
