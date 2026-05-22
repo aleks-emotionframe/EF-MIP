@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
+import { AkquiseNav } from "@/components/akquise/akquise-nav"
 import {
   Search, Target, TrendingUp, Users, Building2, Globe, Star,
   MapPin, ExternalLink, BarChart3, Filter, Play, CheckCircle,
@@ -256,6 +257,7 @@ export default function AkquisePage() {
   return (
     <div className="min-h-screen p-6 md:p-8" style={{ backgroundColor: "#F0F5F9" }}>
       <div className="max-w-7xl mx-auto space-y-6">
+        <AkquiseNav />
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-[#0F172A]">Kundenakquise</h1>

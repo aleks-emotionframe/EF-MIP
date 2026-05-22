@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
+import { AkquiseNav } from "@/components/akquise/akquise-nav"
 import { useRouter } from "next/navigation"
 import {
   ChevronLeft,
@@ -289,6 +290,7 @@ export default function PipelinePage() {
   return (
     <div className="min-h-screen p-6" style={{ backgroundColor: "#F0F5F9" }}>
       <div className="space-y-5">
+        <AkquiseNav />
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-[#0F172A]">Lead-Pipeline</h1>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { AkquiseNav } from "@/components/akquise/akquise-nav"
 import {
   ArrowLeft,
   Settings,
@@ -129,6 +130,7 @@ export default function AkquiseEinstellungenPage() {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className="space-y-6"
     >
+      <AkquiseNav />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <Link
