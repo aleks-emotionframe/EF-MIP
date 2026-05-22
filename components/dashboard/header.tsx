@@ -175,17 +175,39 @@ export function Header() {
                 <Plus className="h-3.5 w-3.5" />
                 Kunde registrieren
               </Link>
-              <Link
-                href="/dashboard/akquise"
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded transition-colors ${
-                  pathname.startsWith("/dashboard/akquise")
-                    ? "bg-white/15 text-white"
-                    : "text-white/60 hover:text-white hover:bg-white/10"
-                }`}
-              >
-                <Target className="h-3.5 w-3.5" />
-                Kundenakquise
-              </Link>
+              <div className="flex items-center gap-0.5 border-l border-white/10 pl-2 ml-1">
+                <Link
+                  href="/dashboard/akquise"
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 text-[12px] font-medium rounded transition-colors ${
+                    pathname === "/dashboard/akquise"
+                      ? "bg-white/15 text-white"
+                      : "text-white/60 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  <Target className="h-3.5 w-3.5" />
+                  Leads
+                </Link>
+                <Link
+                  href="/dashboard/akquise/pipeline"
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 text-[12px] font-medium rounded transition-colors ${
+                    pathname === "/dashboard/akquise/pipeline"
+                      ? "bg-white/15 text-white"
+                      : "text-white/60 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  Pipeline
+                </Link>
+                <Link
+                  href="/dashboard/akquise/dashboard"
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 text-[12px] font-medium rounded transition-colors ${
+                    pathname === "/dashboard/akquise/dashboard"
+                      ? "bg-white/15 text-white"
+                      : "text-white/60 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  KPIs
+                </Link>
+              </div>
               <Link
                 href="/dashboard/settings/integrations"
                 className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded transition-colors ${

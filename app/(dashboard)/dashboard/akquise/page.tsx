@@ -261,18 +261,21 @@ export default function AkquisePage() {
             <h1 className="text-2xl font-bold text-[#0F172A]">Kundenakquise</h1>
             <p className="text-gray-500 mt-1">KI-gestützte Suche nach potenziellen Kunden</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => { setShowSearchModal(true); setSearchComplete(false) }}
-              className="px-5 py-2.5 rounded-lg text-white font-medium bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] hover:opacity-90 transition-opacity flex items-center gap-2"
+              className="px-4 py-2 rounded text-white text-[13px] font-medium bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] hover:opacity-90 transition-opacity flex items-center gap-2"
             >
               <Sparkles className="w-4 h-4" />
               Suche starten
             </button>
-            <Link
-              href="/dashboard/akquise/einstellungen"
-              className="px-5 py-2.5 rounded-lg border border-gray-200 bg-white text-gray-700 font-medium hover:bg-gray-50 transition-colors"
-            >
+            <Link href="/dashboard/akquise/pipeline" className="px-4 py-2 rounded border border-gray-200 bg-white text-gray-700 text-[13px] font-medium hover:bg-gray-50 transition-colors">
+              Pipeline
+            </Link>
+            <Link href="/dashboard/akquise/dashboard" className="px-4 py-2 rounded border border-gray-200 bg-white text-gray-700 text-[13px] font-medium hover:bg-gray-50 transition-colors">
+              KPIs
+            </Link>
+            <Link href="/dashboard/akquise/einstellungen" className="px-4 py-2 rounded border border-gray-200 bg-white text-gray-700 text-[13px] font-medium hover:bg-gray-50 transition-colors">
               Einstellungen
             </Link>
           </div>
