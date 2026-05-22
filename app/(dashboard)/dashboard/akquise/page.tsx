@@ -9,7 +9,7 @@ import {
   Clock, XCircle, ChevronDown, Loader2, Sparkles, RefreshCw,
 } from "lucide-react"
 
-type LeadStatus = "NEW" | "ANALYZED" | "CONTACTED" | "INTERESTED" | "CONVERTED" | "NOT_INTERESTED"
+type LeadStatus = "NEU" | "RECHERCHIERT" | "ANGESCHRIEBEN" | "FOLLOW_UP" | "ANTWORT" | "TERMIN" | "OFFERTE" | "KUNDE" | "ABGELEHNT"
 
 interface Lead {
   id: string
@@ -30,12 +30,15 @@ interface Lead {
 }
 
 const STATUS_CONFIG: Record<LeadStatus, { label: string; color: string; bg: string }> = {
-  NEW: { label: "Neu", color: "text-blue-700", bg: "bg-blue-100" },
-  ANALYZED: { label: "Analysiert", color: "text-teal-700", bg: "bg-teal-100" },
-  CONTACTED: { label: "Kontaktiert", color: "text-orange-700", bg: "bg-orange-100" },
-  INTERESTED: { label: "Interessiert", color: "text-green-700", bg: "bg-green-100" },
-  CONVERTED: { label: "Konvertiert", color: "text-purple-700", bg: "bg-purple-100" },
-  NOT_INTERESTED: { label: "Kein Interesse", color: "text-gray-600", bg: "bg-gray-100" },
+  NEU: { label: "Neu", color: "text-blue-700", bg: "bg-blue-100" },
+  RECHERCHIERT: { label: "Recherchiert", color: "text-teal-700", bg: "bg-teal-100" },
+  ANGESCHRIEBEN: { label: "Angeschrieben", color: "text-orange-700", bg: "bg-orange-100" },
+  FOLLOW_UP: { label: "Follow-up", color: "text-amber-700", bg: "bg-amber-100" },
+  ANTWORT: { label: "Antwort", color: "text-green-700", bg: "bg-green-100" },
+  TERMIN: { label: "Termin", color: "text-cyan-700", bg: "bg-cyan-100" },
+  OFFERTE: { label: "Offerte", color: "text-indigo-700", bg: "bg-indigo-100" },
+  KUNDE: { label: "Kunde", color: "text-purple-700", bg: "bg-purple-100" },
+  ABGELEHNT: { label: "Abgelehnt", color: "text-gray-600", bg: "bg-gray-100" },
 }
 
 const INDUSTRIES = [
@@ -45,31 +48,31 @@ const INDUSTRIES = [
 ]
 
 const DEMO_LEADS: Lead[] = [
-  { id: "l1", companyName: "Restaurant Löwengarten", industry: "Gastronomie", city: "Zürich", canton: "ZH", website: "https://loewengarten.ch", googleRating: 4.2, googleReviews: 187, score: 82, websiteScore: 75, socialScore: 88, seoScore: 70, status: "NEW", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-20" },
-  { id: "l2", companyName: "FitZone Basel", industry: "Fitness", city: "Basel", canton: "BS", website: "https://fitzone-basel.ch", googleRating: 3.8, googleReviews: 94, score: 45, websiteScore: 40, socialScore: 52, seoScore: 38, status: "ANALYZED", socialMedia: { instagram: true, facebook: false, linkedin: false, tiktok: true }, foundAt: "2026-05-19" },
-  { id: "l3", companyName: "Schneider Immobilien", industry: "Immobilien", city: "Bern", canton: "BE", website: "https://schneider-immo.ch", googleRating: 4.5, googleReviews: 63, score: 71, websiteScore: 68, socialScore: 65, seoScore: 80, status: "CONTACTED", socialMedia: { instagram: false, facebook: true, linkedin: true, tiktok: false }, foundAt: "2026-05-18" },
-  { id: "l4", companyName: "Bella Moda Boutique", industry: "Mode & Retail", city: "Luzern", canton: "LU", website: "https://bellamoda.ch", googleRating: 4.1, googleReviews: 42, score: 38, websiteScore: 30, socialScore: 45, seoScore: 35, status: "NEW", socialMedia: { instagram: true, facebook: false, linkedin: false, tiktok: false }, foundAt: "2026-05-17" },
-  { id: "l5", companyName: "Dr. Meier Zahnklinik", industry: "Gesundheit", city: "Winterthur", canton: "ZH", website: "https://zahnklinik-meier.ch", googleRating: 4.7, googleReviews: 231, score: 56, websiteScore: 60, socialScore: 35, seoScore: 72, status: "ANALYZED", socialMedia: { instagram: false, facebook: true, linkedin: true, tiktok: false }, foundAt: "2026-05-16" },
-  { id: "l6", companyName: "Café Monico", industry: "Gastronomie", city: "Genf", canton: "GE", website: "https://cafemonico.ch", googleRating: 4.4, googleReviews: 312, score: 91, websiteScore: 85, socialScore: 95, seoScore: 88, status: "INTERESTED", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: true }, foundAt: "2026-05-15" },
-  { id: "l7", companyName: "TechHub Zürich", industry: "Technologie", city: "Zürich", canton: "ZH", website: "https://techhub-zh.ch", googleRating: 4.0, googleReviews: 28, score: 67, websiteScore: 80, socialScore: 55, seoScore: 65, status: "NEW", socialMedia: { instagram: false, facebook: false, linkedin: true, tiktok: false }, foundAt: "2026-05-14" },
-  { id: "l8", companyName: "Blumen Zauber", industry: "Handwerk", city: "St. Gallen", canton: "SG", website: null, googleRating: 4.8, googleReviews: 156, score: 34, websiteScore: 0, socialScore: 48, seoScore: 20, status: "NOT_INTERESTED", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-13" },
-  { id: "l9", companyName: "Alpine Yoga Studio", industry: "Fitness", city: "Interlaken", canton: "BE", website: "https://alpine-yoga.ch", googleRating: 4.9, googleReviews: 87, score: 78, websiteScore: 72, socialScore: 90, seoScore: 60, status: "CONTACTED", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: true }, foundAt: "2026-05-12" },
-  { id: "l10", companyName: "Bäckerei Hofmann", industry: "Gastronomie", city: "Thun", canton: "BE", website: "https://hofmann-baeckerei.ch", googleRating: 4.6, googleReviews: 203, score: 53, websiteScore: 45, socialScore: 50, seoScore: 65, status: "ANALYZED", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-11" },
-  { id: "l11", companyName: "LuxusHaar Salon", industry: "Beauty & Wellness", city: "Lausanne", canton: "VD", website: "https://luxushaar.ch", googleRating: 4.3, googleReviews: 178, score: 85, websiteScore: 80, socialScore: 92, seoScore: 78, status: "CONVERTED", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: true }, foundAt: "2026-05-10" },
-  { id: "l12", companyName: "Weber Treuhand", industry: "Finanzen", city: "Aarau", canton: "AG", website: "https://weber-treuhand.ch", googleRating: 4.1, googleReviews: 34, score: 62, websiteScore: 70, socialScore: 30, seoScore: 85, status: "NEW", socialMedia: { instagram: false, facebook: false, linkedin: true, tiktok: false }, foundAt: "2026-05-09" },
-  { id: "l13", companyName: "Pizzeria Da Luigi", industry: "Gastronomie", city: "Lugano", canton: "TI", website: null, googleRating: 4.5, googleReviews: 421, score: 41, websiteScore: 0, socialScore: 60, seoScore: 25, status: "ANALYZED", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-08" },
-  { id: "l14", companyName: "SwissCode Academy", industry: "Bildung", city: "Zürich", canton: "ZH", website: "https://swisscode.academy", googleRating: 4.6, googleReviews: 67, score: 74, websiteScore: 85, socialScore: 70, seoScore: 68, status: "INTERESTED", socialMedia: { instagram: true, facebook: true, linkedin: true, tiktok: false }, foundAt: "2026-05-07" },
-  { id: "l15", companyName: "Berghotel Edelweiss", industry: "Tourismus", city: "Zermatt", canton: "VS", website: "https://berghotel-edelweiss.ch", googleRating: 4.4, googleReviews: 534, score: 88, websiteScore: 82, socialScore: 90, seoScore: 85, status: "CONTACTED", socialMedia: { instagram: true, facebook: true, linkedin: true, tiktok: true }, foundAt: "2026-05-06" },
-  { id: "l16", companyName: "Schreiner Meister GmbH", industry: "Handwerk", city: "Olten", canton: "SO", website: "https://schreiner-meister.ch", googleRating: 4.7, googleReviews: 45, score: 49, websiteScore: 55, socialScore: 25, seoScore: 68, status: "NEW", socialMedia: { instagram: false, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-05" },
-  { id: "l17", companyName: "Consulting Plus AG", industry: "Beratung", city: "Zug", canton: "ZG", website: "https://consultingplus.ch", googleRating: 3.9, googleReviews: 22, score: 58, websiteScore: 65, socialScore: 40, seoScore: 70, status: "NOT_INTERESTED", socialMedia: { instagram: false, facebook: false, linkedin: true, tiktok: false }, foundAt: "2026-05-04" },
-  { id: "l18", companyName: "Modehaus Tanner", industry: "Mode & Retail", city: "Schaffhausen", canton: "SH", website: "https://modehaus-tanner.ch", googleRating: 4.0, googleReviews: 89, score: 63, websiteScore: 58, socialScore: 72, seoScore: 55, status: "ANALYZED", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-03" },
-  { id: "l19", companyName: "Kinderland Spielgruppe", industry: "Bildung", city: "Baden", canton: "AG", website: "https://kinderland-baden.ch", googleRating: 4.8, googleReviews: 112, score: 36, websiteScore: 30, socialScore: 42, seoScore: 32, status: "NEW", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-02" },
-  { id: "l20", companyName: "Autohaus Keller", industry: "Handwerk", city: "Frauenfeld", canton: "TG", website: "https://autohaus-keller.ch", googleRating: 4.3, googleReviews: 167, score: 72, websiteScore: 70, socialScore: 65, seoScore: 80, status: "CONTACTED", socialMedia: { instagram: false, facebook: true, linkedin: true, tiktok: false }, foundAt: "2026-05-01" },
-  { id: "l21", companyName: "Nail Art Studio", industry: "Beauty & Wellness", city: "Biel", canton: "BE", website: "https://nailart-biel.ch", googleRating: 4.6, googleReviews: 98, score: 77, websiteScore: 68, socialScore: 88, seoScore: 65, status: "INTERESTED", socialMedia: { instagram: true, facebook: false, linkedin: false, tiktok: true }, foundAt: "2026-04-30" },
-  { id: "l22", companyName: "Reisebüro Fernweh", industry: "Tourismus", city: "Chur", canton: "GR", website: "https://fernweh-reisen.ch", googleRating: 4.2, googleReviews: 76, score: 55, websiteScore: 60, socialScore: 50, seoScore: 52, status: "ANALYZED", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-04-29" },
-  { id: "l23", companyName: "Bio Hofladen Müller", industry: "Gastronomie", city: "Solothurn", canton: "SO", website: null, googleRating: 4.9, googleReviews: 245, score: 44, websiteScore: 0, socialScore: 55, seoScore: 30, status: "NEW", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-04-28" },
-  { id: "l24", companyName: "IT Solutions Bern", industry: "Technologie", city: "Bern", canton: "BE", website: "https://itsolutions-bern.ch", googleRating: 4.1, googleReviews: 19, score: 69, websiteScore: 78, socialScore: 45, seoScore: 82, status: "CONVERTED", socialMedia: { instagram: false, facebook: false, linkedin: true, tiktok: false }, foundAt: "2026-04-27" },
-  { id: "l25", companyName: "Yoga & Balance Center", industry: "Fitness", city: "Rapperswil", canton: "SG", website: "https://yogabalance.ch", googleRating: 4.7, googleReviews: 134, score: 81, websiteScore: 75, socialScore: 85, seoScore: 78, status: "NEW", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: true }, foundAt: "2026-04-26" },
+  { id: "l1", companyName: "Restaurant Löwengarten", industry: "Gastronomie", city: "Zürich", canton: "ZH", website: "https://loewengarten.ch", googleRating: 4.2, googleReviews: 187, score: 82, websiteScore: 75, socialScore: 88, seoScore: 70, status: "NEU", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-20" },
+  { id: "l2", companyName: "FitZone Basel", industry: "Fitness", city: "Basel", canton: "BS", website: "https://fitzone-basel.ch", googleRating: 3.8, googleReviews: 94, score: 45, websiteScore: 40, socialScore: 52, seoScore: 38, status: "RECHERCHIERT", socialMedia: { instagram: true, facebook: false, linkedin: false, tiktok: true }, foundAt: "2026-05-19" },
+  { id: "l3", companyName: "Schneider Immobilien", industry: "Immobilien", city: "Bern", canton: "BE", website: "https://schneider-immo.ch", googleRating: 4.5, googleReviews: 63, score: 71, websiteScore: 68, socialScore: 65, seoScore: 80, status: "ANGESCHRIEBEN", socialMedia: { instagram: false, facebook: true, linkedin: true, tiktok: false }, foundAt: "2026-05-18" },
+  { id: "l4", companyName: "Bella Moda Boutique", industry: "Mode & Retail", city: "Luzern", canton: "LU", website: "https://bellamoda.ch", googleRating: 4.1, googleReviews: 42, score: 38, websiteScore: 30, socialScore: 45, seoScore: 35, status: "NEU", socialMedia: { instagram: true, facebook: false, linkedin: false, tiktok: false }, foundAt: "2026-05-17" },
+  { id: "l5", companyName: "Dr. Meier Zahnklinik", industry: "Gesundheit", city: "Winterthur", canton: "ZH", website: "https://zahnklinik-meier.ch", googleRating: 4.7, googleReviews: 231, score: 56, websiteScore: 60, socialScore: 35, seoScore: 72, status: "RECHERCHIERT", socialMedia: { instagram: false, facebook: true, linkedin: true, tiktok: false }, foundAt: "2026-05-16" },
+  { id: "l6", companyName: "Café Monico", industry: "Gastronomie", city: "Genf", canton: "GE", website: "https://cafemonico.ch", googleRating: 4.4, googleReviews: 312, score: 91, websiteScore: 85, socialScore: 95, seoScore: 88, status: "ANTWORT", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: true }, foundAt: "2026-05-15" },
+  { id: "l7", companyName: "TechHub Zürich", industry: "Technologie", city: "Zürich", canton: "ZH", website: "https://techhub-zh.ch", googleRating: 4.0, googleReviews: 28, score: 67, websiteScore: 80, socialScore: 55, seoScore: 65, status: "NEU", socialMedia: { instagram: false, facebook: false, linkedin: true, tiktok: false }, foundAt: "2026-05-14" },
+  { id: "l8", companyName: "Blumen Zauber", industry: "Handwerk", city: "St. Gallen", canton: "SG", website: null, googleRating: 4.8, googleReviews: 156, score: 34, websiteScore: 0, socialScore: 48, seoScore: 20, status: "ABGELEHNT", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-13" },
+  { id: "l9", companyName: "Alpine Yoga Studio", industry: "Fitness", city: "Interlaken", canton: "BE", website: "https://alpine-yoga.ch", googleRating: 4.9, googleReviews: 87, score: 78, websiteScore: 72, socialScore: 90, seoScore: 60, status: "ANGESCHRIEBEN", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: true }, foundAt: "2026-05-12" },
+  { id: "l10", companyName: "Bäckerei Hofmann", industry: "Gastronomie", city: "Thun", canton: "BE", website: "https://hofmann-baeckerei.ch", googleRating: 4.6, googleReviews: 203, score: 53, websiteScore: 45, socialScore: 50, seoScore: 65, status: "RECHERCHIERT", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-11" },
+  { id: "l11", companyName: "LuxusHaar Salon", industry: "Beauty & Wellness", city: "Lausanne", canton: "VD", website: "https://luxushaar.ch", googleRating: 4.3, googleReviews: 178, score: 85, websiteScore: 80, socialScore: 92, seoScore: 78, status: "KUNDE", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: true }, foundAt: "2026-05-10" },
+  { id: "l12", companyName: "Weber Treuhand", industry: "Finanzen", city: "Aarau", canton: "AG", website: "https://weber-treuhand.ch", googleRating: 4.1, googleReviews: 34, score: 62, websiteScore: 70, socialScore: 30, seoScore: 85, status: "NEU", socialMedia: { instagram: false, facebook: false, linkedin: true, tiktok: false }, foundAt: "2026-05-09" },
+  { id: "l13", companyName: "Pizzeria Da Luigi", industry: "Gastronomie", city: "Lugano", canton: "TI", website: null, googleRating: 4.5, googleReviews: 421, score: 41, websiteScore: 0, socialScore: 60, seoScore: 25, status: "RECHERCHIERT", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-08" },
+  { id: "l14", companyName: "SwissCode Academy", industry: "Bildung", city: "Zürich", canton: "ZH", website: "https://swisscode.academy", googleRating: 4.6, googleReviews: 67, score: 74, websiteScore: 85, socialScore: 70, seoScore: 68, status: "ANTWORT", socialMedia: { instagram: true, facebook: true, linkedin: true, tiktok: false }, foundAt: "2026-05-07" },
+  { id: "l15", companyName: "Berghotel Edelweiss", industry: "Tourismus", city: "Zermatt", canton: "VS", website: "https://berghotel-edelweiss.ch", googleRating: 4.4, googleReviews: 534, score: 88, websiteScore: 82, socialScore: 90, seoScore: 85, status: "ANGESCHRIEBEN", socialMedia: { instagram: true, facebook: true, linkedin: true, tiktok: true }, foundAt: "2026-05-06" },
+  { id: "l16", companyName: "Schreiner Meister GmbH", industry: "Handwerk", city: "Olten", canton: "SO", website: "https://schreiner-meister.ch", googleRating: 4.7, googleReviews: 45, score: 49, websiteScore: 55, socialScore: 25, seoScore: 68, status: "NEU", socialMedia: { instagram: false, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-05" },
+  { id: "l17", companyName: "Consulting Plus AG", industry: "Beratung", city: "Zug", canton: "ZG", website: "https://consultingplus.ch", googleRating: 3.9, googleReviews: 22, score: 58, websiteScore: 65, socialScore: 40, seoScore: 70, status: "ABGELEHNT", socialMedia: { instagram: false, facebook: false, linkedin: true, tiktok: false }, foundAt: "2026-05-04" },
+  { id: "l18", companyName: "Modehaus Tanner", industry: "Mode & Retail", city: "Schaffhausen", canton: "SH", website: "https://modehaus-tanner.ch", googleRating: 4.0, googleReviews: 89, score: 63, websiteScore: 58, socialScore: 72, seoScore: 55, status: "RECHERCHIERT", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-03" },
+  { id: "l19", companyName: "Kinderland Spielgruppe", industry: "Bildung", city: "Baden", canton: "AG", website: "https://kinderland-baden.ch", googleRating: 4.8, googleReviews: 112, score: 36, websiteScore: 30, socialScore: 42, seoScore: 32, status: "NEU", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-05-02" },
+  { id: "l20", companyName: "Autohaus Keller", industry: "Handwerk", city: "Frauenfeld", canton: "TG", website: "https://autohaus-keller.ch", googleRating: 4.3, googleReviews: 167, score: 72, websiteScore: 70, socialScore: 65, seoScore: 80, status: "ANGESCHRIEBEN", socialMedia: { instagram: false, facebook: true, linkedin: true, tiktok: false }, foundAt: "2026-05-01" },
+  { id: "l21", companyName: "Nail Art Studio", industry: "Beauty & Wellness", city: "Biel", canton: "BE", website: "https://nailart-biel.ch", googleRating: 4.6, googleReviews: 98, score: 77, websiteScore: 68, socialScore: 88, seoScore: 65, status: "ANTWORT", socialMedia: { instagram: true, facebook: false, linkedin: false, tiktok: true }, foundAt: "2026-04-30" },
+  { id: "l22", companyName: "Reisebüro Fernweh", industry: "Tourismus", city: "Chur", canton: "GR", website: "https://fernweh-reisen.ch", googleRating: 4.2, googleReviews: 76, score: 55, websiteScore: 60, socialScore: 50, seoScore: 52, status: "RECHERCHIERT", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-04-29" },
+  { id: "l23", companyName: "Bio Hofladen Müller", industry: "Gastronomie", city: "Solothurn", canton: "SO", website: null, googleRating: 4.9, googleReviews: 245, score: 44, websiteScore: 0, socialScore: 55, seoScore: 30, status: "NEU", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: false }, foundAt: "2026-04-28" },
+  { id: "l24", companyName: "IT Solutions Bern", industry: "Technologie", city: "Bern", canton: "BE", website: "https://itsolutions-bern.ch", googleRating: 4.1, googleReviews: 19, score: 69, websiteScore: 78, socialScore: 45, seoScore: 82, status: "KUNDE", socialMedia: { instagram: false, facebook: false, linkedin: true, tiktok: false }, foundAt: "2026-04-27" },
+  { id: "l25", companyName: "Yoga & Balance Center", industry: "Fitness", city: "Rapperswil", canton: "SG", website: "https://yogabalance.ch", googleRating: 4.7, googleReviews: 134, score: 81, websiteScore: 75, socialScore: 85, seoScore: 78, status: "NEU", socialMedia: { instagram: true, facebook: true, linkedin: false, tiktok: true }, foundAt: "2026-04-26" },
 ]
 
 function ScoreCircle({ score, size = "lg" }: { score: number; size?: "sm" | "lg" }) {
@@ -157,9 +160,9 @@ export default function AkquisePage() {
 
   const stats = useMemo(() => ({
     total: leads.length,
-    analyzed: leads.filter((l) => l.status !== "NEW").length,
-    contacted: leads.filter((l) => ["CONTACTED", "INTERESTED", "CONVERTED"].includes(l.status)).length,
-    converted: leads.filter((l) => l.status === "CONVERTED").length,
+    analyzed: leads.filter((l) => l.status !== "NEU").length,
+    contacted: leads.filter((l) => ["ANGESCHRIEBEN", "ANTWORT", "KUNDE"].includes(l.status)).length,
+    converted: leads.filter((l) => l.status === "KUNDE").length,
   }), [leads])
 
   const filteredLeads = useMemo(() => {
@@ -181,12 +184,12 @@ export default function AkquisePage() {
 
     if (statusFilter !== "Alle") {
       const statusMap: Record<string, LeadStatus> = {
-        Neu: "NEW",
-        Analysiert: "ANALYZED",
-        Kontaktiert: "CONTACTED",
-        Interessiert: "INTERESTED",
-        Konvertiert: "CONVERTED",
-        "Kein Interesse": "NOT_INTERESTED",
+        Neu: "NEU",
+        Analysiert: "RECHERCHIERT",
+        Kontaktiert: "ANGESCHRIEBEN",
+        Interessiert: "ANTWORT",
+        Konvertiert: "KUNDE",
+        "Kein Interesse": "ABGELEHNT",
       }
       result = result.filter((l) => l.status === statusMap[statusFilter])
     }
@@ -446,9 +449,9 @@ export default function AkquisePage() {
                       </div>
 
                       <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-50">
-                        {lead.status === "NEW" && (
+                        {lead.status === "NEU" && (
                           <button
-                            onClick={() => handleStatusChange(lead.id, "ANALYZED")}
+                            onClick={() => handleStatusChange(lead.id, "RECHERCHIERT")}
                             className="px-3 py-1.5 rounded-md text-xs font-medium text-white bg-gradient-to-r from-[#00CEC9] to-[#6C5CE7] hover:opacity-90 transition-opacity flex items-center gap-1"
                           >
                             <BarChart3 className="w-3 h-3" />

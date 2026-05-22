@@ -148,7 +148,7 @@ export async function runSearchPipeline(config: {
           googlePlaceId: place.placeId,
           googleRating: place.rating || null,
           googleReviews: place.reviewCount || null,
-          status: "ANALYZING",
+          status: "RECHERCHIERT",
           searchBatch: new Date().toISOString().slice(0, 10),
         },
       })
@@ -173,7 +173,7 @@ export async function runSearchPipeline(config: {
             score: result.score,
             analysis: result.analysis as any,
             recommendations: result.recommendations as any,
-            status: "ANALYZED",
+            status: "RECHERCHIERT",
             analyzedAt: new Date(),
           },
         })
@@ -182,7 +182,7 @@ export async function runSearchPipeline(config: {
       } catch {
         await prisma.lead.update({
           where: { id: lead.id },
-          data: { status: "NEW" },
+          data: { status: "NEU" },
         })
         errors++
       }

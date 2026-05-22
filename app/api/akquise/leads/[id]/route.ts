@@ -17,7 +17,7 @@ const DEMO_LEAD = {
   googleRating: 4.5,
   googleReviews: 187,
   socialMedia: { instagram: "@bellavista_zh", facebook: "bellavistazh", followers: 2300 },
-  status: "ANALYZED",
+  status: "RECHERCHIERT",
   score: 88,
   analysis: {
     websiteQuality: "gut",
@@ -113,11 +113,11 @@ export async function PATCH(
   const body = await request.json()
 
   const validStatuses = [
-    "NEW",
-    "CONTACTED",
-    "INTERESTED",
-    "NOT_INTERESTED",
-    "CONVERTED",
+    "NEU",
+    "ANGESCHRIEBEN",
+    "ANTWORT",
+    "ABGELEHNT",
+    "KUNDE",
   ]
 
   if (!body.status || !validStatuses.includes(body.status)) {

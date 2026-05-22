@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
 
     await prisma!.lead.update({
       where: { id: body.leadId },
-      data: { status: "ANALYZING" },
+      data: { status: "RECHERCHIERT" },
     })
 
     let result
@@ -108,7 +108,7 @@ export async function POST(request: NextRequest) {
     await prisma!.lead.update({
       where: { id: body.leadId },
       data: {
-        status: "ANALYZED",
+        status: "RECHERCHIERT",
         score: result.score ?? null,
         websiteScore: result.websiteScore ?? null,
         socialScore: result.socialScore ?? null,

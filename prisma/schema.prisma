@@ -359,7 +359,7 @@ model Lead {
   googleRating    Float?
   googleReviews   Int?
   socialMedia     Json?
-  status          LeadStatus @default(NEW)
+  status          LeadStatus @default(NEU)
   score           Int?
   analysis        Json?
   recommendations Json?
@@ -372,6 +372,10 @@ model Lead {
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
 
+  notes           LeadNote[]
+  activities      LeadActivity[]
+  reminders       LeadReminder[]
+
   @@index([status])
   @@index([industry])
   @@index([score])
@@ -379,13 +383,72 @@ model Lead {
 }
 
 enum LeadStatus {
-  NEW
-  ANALYZING
-  ANALYZED
-  CONTACTED
-  INTERESTED
-  NOT_INTERESTED
-  CONVERTED
+  NEU
+  RECHERCHIERT
+  ANGESCHRIEBEN
+  FOLLOW_UP
+  ANTWORT
+  TERMIN
+  OFFERTE
+  KUNDE
+  ABGELEHNT
+}
+
+model LeadNote {
+  id        String   @id @default(cuid())
+  leadId    String
+  content   String
+  authorId  String?
+  authorName String?
+  createdAt DateTime @default(now())
+
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@map("lead_notes")
+}
+
+model LeadActivity {
+  id        String   @id @default(cuid())
+  leadId    String
+  type      String
+  message   String
+  metadata  Json?
+  authorId  String?
+  authorName String?
+  createdAt DateTime @default(now())
+
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@map("lead_activities")
+}
+
+model LeadReminder {
+  id        String   @id @default(cuid())
+  leadId    String
+  title     String
+  dueDate   DateTime
+  completed Boolean  @default(false)
+  authorId  String?
+  createdAt DateTime @default(now())
+
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@index([dueDate])
+  @@map("lead_reminders")
+}
+
+model SuppressionEntry {
+  id        String   @id @default(cuid())
+  type      String
+  value     String
+  reason    String?
+  createdAt DateTime @default(now())
+
+  @@unique([type, value])
+  @@map("suppression_list")
 }
 
 model AkquiseConfig {
