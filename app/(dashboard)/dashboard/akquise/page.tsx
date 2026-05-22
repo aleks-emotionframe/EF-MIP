@@ -271,15 +271,6 @@ export default function AkquisePage() {
               <Sparkles className="w-4 h-4" />
               Suche starten
             </button>
-            <Link href="/dashboard/akquise/pipeline" className="px-4 py-2 rounded border border-gray-200 bg-white text-gray-700 text-[13px] font-medium hover:bg-gray-50 transition-colors">
-              Pipeline
-            </Link>
-            <Link href="/dashboard/akquise/dashboard" className="px-4 py-2 rounded border border-gray-200 bg-white text-gray-700 text-[13px] font-medium hover:bg-gray-50 transition-colors">
-              KPIs
-            </Link>
-            <Link href="/dashboard/akquise/einstellungen" className="px-4 py-2 rounded border border-gray-200 bg-white text-gray-700 text-[13px] font-medium hover:bg-gray-50 transition-colors">
-              Einstellungen
-            </Link>
           </div>
         </div>
 
