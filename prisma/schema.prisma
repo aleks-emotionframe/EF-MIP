@@ -343,6 +343,64 @@ model PlatformCredential {
   @@map("platform_credentials")
 }
 
+// ─── Sales Intelligence / Kundenakquise ─────────────────────────
+model Lead {
+  id              String     @id @default(cuid())
+  name            String
+  industry        String
+  website         String?
+  phone           String?
+  email           String?
+  address         String?
+  city            String?
+  zip             String?
+  canton          String?
+  googlePlaceId   String?    @unique
+  googleRating    Float?
+  googleReviews   Int?
+  socialMedia     Json?
+  status          LeadStatus @default(NEW)
+  score           Int?
+  analysis        Json?
+  recommendations Json?
+  websiteScore    Int?
+  socialScore     Int?
+  seoScore        Int?
+  potentialValue  String?
+  searchBatch     String?
+  analyzedAt      DateTime?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([status])
+  @@index([industry])
+  @@index([score])
+  @@map("leads")
+}
+
+enum LeadStatus {
+  NEW
+  ANALYZING
+  ANALYZED
+  CONTACTED
+  INTERESTED
+  NOT_INTERESTED
+  CONVERTED
+}
+
+model AkquiseConfig {
+  id          String   @id @default(cuid())
+  branches    Json
+  regions     Json
+  isActive    Boolean  @default(true)
+  searchTime  String   @default("02:00")
+  maxResults  Int      @default(30)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("akquise_config")
+}
+
 enum CampaignStatus {
   DRAFT
   SCHEDULED
