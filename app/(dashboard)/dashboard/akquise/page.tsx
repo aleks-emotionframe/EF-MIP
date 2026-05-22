@@ -25,7 +25,7 @@ interface Lead {
   socialScore: number
   seoScore: number
   status: LeadStatus
-  socialMedia: { instagram: boolean; facebook: boolean; linkedin: boolean; tiktok: boolean }
+  socialMedia: { instagram: boolean; facebook: boolean; linkedin: boolean; tiktok: boolean } | null
   foundAt: string
 }
 
@@ -114,7 +114,7 @@ function SocialDots({ socialMedia }: { socialMedia: Lead["socialMedia"] }) {
           key={p.key}
           className="w-2.5 h-2.5 rounded-full"
           title={p.label}
-          style={{ backgroundColor: socialMedia[p.key] ? p.color : "#D1D5DB" }}
+          style={{ backgroundColor: socialMedia?.[p.key] ? p.color : "#D1D5DB" }}
         />
       ))}
     </div>
