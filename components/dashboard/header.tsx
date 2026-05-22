@@ -176,6 +176,17 @@ export function Header() {
                 Kunde registrieren
               </Link>
               <Link
+                href="/dashboard/akquise"
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded transition-colors ${
+                  pathname.startsWith("/dashboard/akquise")
+                    ? "bg-white/15 text-white"
+                    : "text-white/60 hover:text-white hover:bg-white/10"
+                }`}
+              >
+                <Target className="h-3.5 w-3.5" />
+                Kundenakquise
+              </Link>
+              <Link
                 href="/dashboard/settings/integrations"
                 className={`flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded transition-colors ${
                   pathname === "/dashboard/settings/integrations"

@@ -25,9 +25,7 @@ import {
   BarChart3,
   Smartphone,
   FileText,
-  Instagram,
-  Facebook,
-  Linkedin,
+  Users,
   ExternalLink,
 } from "lucide-react"
 
@@ -298,13 +296,13 @@ function StatusBadge({ status }: { status: string }) {
 function PlatformIcon({ name }: { name: string }) {
   switch (name) {
     case "Instagram":
-      return <Instagram className="w-5 h-5" />
+      return <Share2 className="w-5 h-5 text-pink-500" />
     case "Facebook":
-      return <Facebook className="w-5 h-5" />
+      return <Users className="w-5 h-5 text-blue-600" />
     case "LinkedIn":
-      return <Linkedin className="w-5 h-5" />
+      return <Globe className="w-5 h-5 text-blue-700" />
     default:
-      return <Share2 className="w-5 h-5" />
+      return <Share2 className="w-5 h-5 text-gray-400" />
   }
 }
 

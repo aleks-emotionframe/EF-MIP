@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const { runSearchPipeline } = await import("@/lib/akquise/lead-pipeline")
-    const result = await runSearchPipeline(branches, regions)
+    const result = await runSearchPipeline({ branches, regions, maxResults: 30 })
 
     return Response.json({
       found: result.found ?? 0,

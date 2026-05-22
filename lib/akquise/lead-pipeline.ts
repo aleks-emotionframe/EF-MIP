@@ -36,6 +36,7 @@ export async function analyzeLeadFull(lead: {
   score: number
   analysis: AIAnalysis
   recommendations: AIAnalysis["recommendations"]
+  potentialValue: string
 }> {
   let websiteAnalysis: WebsiteAnalysis | undefined
   let socialAnalysis: SocialAnalysis | undefined
@@ -88,6 +89,7 @@ export async function analyzeLeadFull(lead: {
     score,
     analysis: aiAnalysis,
     recommendations: aiAnalysis.recommendations,
+    potentialValue: aiAnalysis.potentialValue,
   }
 }
 

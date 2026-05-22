@@ -88,7 +88,15 @@ export async function POST(request: NextRequest) {
     let result
     try {
       const { analyzeLeadFull } = await import("@/lib/akquise/lead-pipeline")
-      result = await analyzeLeadFull(lead)
+      result = await analyzeLeadFull({
+        name: lead.name,
+        industry: lead.industry,
+        website: lead.website ?? undefined,
+        googlePlaceId: lead.googlePlaceId ?? undefined,
+        googleRating: lead.googleRating ?? undefined,
+        googleReviews: lead.googleReviews ?? undefined,
+        city: lead.city ?? undefined,
+      })
     } catch {
       return Response.json({
         ...DEMO_ANALYSIS,
@@ -105,9 +113,9 @@ export async function POST(request: NextRequest) {
         websiteScore: result.websiteScore ?? null,
         socialScore: result.socialScore ?? null,
         seoScore: result.seoScore ?? null,
-        analysis: result.analysis ?? null,
-        recommendations: result.recommendations ?? null,
-        potentialValue: result.potentialValue ?? null,
+        analysis: result.analysis ? JSON.parse(JSON.stringify(result.analysis)) : null,
+        recommendations: result.recommendations ? JSON.parse(JSON.stringify(result.recommendations)) : null,
+        potentialValue: (result as any).potentialValue ?? (result.analysis as any)?.potentialValue ?? null,
         analyzedAt: new Date(),
       },
     })
