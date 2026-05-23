@@ -173,7 +173,7 @@ export default function AkquisePage() {
       const q = searchQuery.toLowerCase()
       result = result.filter(
         (l) =>
-          l.companyName.toLowerCase().includes(q) ||
+          (l.companyName || (l as any).name || "").toLowerCase().includes(q) ||
           l.city.toLowerCase().includes(q) ||
           l.industry.toLowerCase().includes(q)
       )
@@ -203,7 +203,7 @@ export default function AkquisePage() {
 
     result.sort((a, b) => {
       if (sortBy === "Score") return b.score - a.score
-      if (sortBy === "Name") return a.companyName.localeCompare(b.companyName)
+      if (sortBy === "Name") return (a.companyName || (a as any).name || "").localeCompare(b.companyName || (b as any).name || "")
       if (sortBy === "Datum") return new Date(b.foundAt).getTime() - new Date(a.foundAt).getTime()
       if (sortBy === "Branche") return a.industry.localeCompare(b.industry)
       return 0
@@ -407,7 +407,7 @@ export default function AkquisePage() {
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <h3 className="text-lg font-bold text-[#0F172A]">{lead.companyName}</h3>
+                            <h3 className="text-lg font-bold text-[#0F172A]">{lead.companyName || (lead as any).name || "Unbekannt"}</h3>
                             <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 whitespace-nowrap">
                               {lead.industry}
                             </span>
@@ -441,7 +441,7 @@ export default function AkquisePage() {
                           <StarRating rating={lead.googleRating} />
                         )}
                         <SocialDots socialMedia={lead.socialMedia} />
-                        <span className="text-xs text-gray-400 ml-auto">{formatDate(lead.foundAt)}</span>
+                        <span className="text-xs text-gray-400 ml-auto">{lead.foundAt || (lead as any).createdAt ? formatDate(lead.foundAt || (lead as any).createdAt) : ""}</span>
                       </div>
 
                       <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-50">
