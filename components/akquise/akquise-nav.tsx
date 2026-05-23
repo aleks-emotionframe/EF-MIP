@@ -2,13 +2,14 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { List, Columns3, BarChart3, Settings, Sparkles } from "lucide-react"
+import { List, Columns3, BarChart3, Settings, Sparkles, Brain } from "lucide-react"
 
 const TABS = [
   { href: "/dashboard/akquise", label: "Leads", icon: List, exact: true },
   { href: "/dashboard/akquise/pipeline", label: "Pipeline", icon: Columns3, exact: true },
   { href: "/dashboard/akquise/dashboard", label: "KPIs", icon: BarChart3, exact: true },
   { href: "/dashboard/akquise/einstellungen", label: "Einstellungen", icon: Settings, exact: true },
+  { href: "/dashboard/akquise/ki-training", label: "KI-Training", icon: Brain, exact: true },
 ]
 
 export function AkquiseNav() {
