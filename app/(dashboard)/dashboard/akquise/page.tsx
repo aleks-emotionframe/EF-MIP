@@ -407,7 +407,7 @@ export default function AkquisePage() {
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <h3 className="text-base font-semibold text-[#0F172A] truncate">{lead.companyName}</h3>
+                            <h3 className="text-lg font-bold text-[#0F172A]">{lead.companyName}</h3>
                             <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 whitespace-nowrap">
                               {lead.industry}
                             </span>
