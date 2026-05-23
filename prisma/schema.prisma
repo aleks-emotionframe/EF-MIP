@@ -464,6 +464,68 @@ model AkquiseConfig {
   @@map("akquise_config")
 }
 
+// ─── KI-Lernsystem ──────────────────────────────────────────────
+model AiReference {
+  id          String   @id @default(cuid())
+  type        String
+  industry    String?
+  url         String?
+  name        String
+  description String?
+  data        Json?
+  score       Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([type])
+  @@index([industry])
+  @@map("ai_references")
+}
+
+model AiRule {
+  id          String   @id @default(cuid())
+  title       String
+  rule        String
+  industry    String?
+  isActive    Boolean  @default(true)
+  priority    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("ai_rules")
+}
+
+model AiFeedback {
+  id               String   @id @default(cuid())
+  leadId           String?
+  recommendationId String?
+  type             String
+  rating           Int
+  comment          String?
+  originalText     String?
+  createdAt        DateTime @default(now())
+
+  @@index([type])
+  @@map("ai_feedback")
+}
+
+model ConversionInsight {
+  id              String   @id @default(cuid())
+  leadId          String
+  industry        String
+  city            String?
+  score           Int?
+  winningFactors  Json?
+  outreachMethod  String?
+  timeToConvert   Int?
+  monthlyValue    String?
+  notes           String?
+  createdAt       DateTime @default(now())
+
+  @@index([industry])
+  @@map("conversion_insights")
+}
+
 enum CampaignStatus {
   DRAFT
   SCHEDULED

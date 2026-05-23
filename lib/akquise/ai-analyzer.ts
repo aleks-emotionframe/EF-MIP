@@ -1,5 +1,6 @@
 import type { WebsiteAnalysis } from "./website-analyzer"
 import type { SocialAnalysis } from "./social-analyzer"
+import { loadLearningContext, buildLearningPrompt } from "./ai-learning-context"
 
 export interface AIAnalysis {
   summary: string
@@ -131,6 +132,21 @@ export async function generateLeadAnalysis(data: {
     return buildFallbackAnalysis(data.name)
   }
 
+  const learningCtx = await loadLearningContext(data.industry)
+  const learningPrompt = buildLearningPrompt(learningCtx)
+
+  const systemPrompt = `Du bist ein Senior Marketing-Berater bei EmotionFrame, einer Schweizer Marketing-Agentur. Analysiere die Online-Praesenz dieses Unternehmens und erstelle einen detaillierten Bericht mit konkreten, umsetzbaren Empfehlungen.
+
+WICHTIGE GRUNDSÄTZE:
+- Sei ehrlich, direkt und professionell
+- Keine leeren Phrasen - nur echte Insights die Mehrwert schaffen
+- Empfehlungen müssen konkret und umsetzbar sein
+- Nenne spezifische Tools, Zahlen und Zeitrahmen wo möglich
+- Vergleiche mit der Branche und Region
+- Berücksichtige Schweizer Markt-Besonderheiten
+
+${learningPrompt}`
+
   try {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -142,7 +158,7 @@ export async function generateLeadAnalysis(data: {
       body: JSON.stringify({
         model: "claude-sonnet-4-20250514",
         max_tokens: 4096,
-        system: "Du bist ein Senior Marketing-Berater bei EmotionFrame, einer Schweizer Marketing-Agentur. Analysiere die Online-Praesenz dieses Unternehmens und erstelle einen detaillierten Bericht mit konkreten, umsetzbaren Empfehlungen. Sei ehrlich, direkt und professionell. Keine leeren Phrasen - nur echte Insights die Mehrwert schaffen.",
+        system: systemPrompt,
         messages: [
           {
             role: "user",
