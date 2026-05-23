@@ -3,6 +3,7 @@
 import { use, useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { AKQUISE_DEMO_LEADS } from "@/lib/akquise/demo-leads-detail"
 import {
   ArrowLeft,
   Building2,
@@ -29,183 +30,7 @@ import {
   ExternalLink,
 } from "lucide-react"
 
-const DEMO_LEADS: Record<string, {
-  id: string
-  name: string
-  industry: string
-  city: string
-  score: number
-  status: string
-  address: string
-  phone: string
-  email: string
-  website: string
-  googleRating: number
-  googleReviews: number
-  analyzed: boolean
-  websiteScore: number
-  socialScore: number
-  seoScore: number
-  websiteAnalysis: {
-    overall: number
-    seo: number
-    speed: number
-    mobile: number
-    content: number
-    issues: string[]
-    opportunities: string[]
-  }
-  socialAnalysis: {
-    platforms: { name: string; found: boolean; handle: string; url: string }[]
-    score: number
-    issues: string[]
-    opportunities: string[]
-  }
-  recommendations: {
-    title: string
-    description: string
-    impact: string
-    effort: string
-    category: string
-  }[]
-  aiSummary: string
-  quickWins: string[]
-  longTermStrategy: string
-  strengths: string[]
-  weaknesses: string[]
-  estimatedMonthlyValue: number
-}> = {
-  "1": {
-    id: "1",
-    name: "Restaurant Löwengarten",
-    industry: "Gastronomie",
-    city: "Zürich",
-    score: 82,
-    status: "Analysiert",
-    address: "Limmatstrasse 42, 8005 Zürich",
-    phone: "+41 44 321 65 87",
-    email: "info@loewengarten.ch",
-    website: "https://loewengarten.ch",
-    googleRating: 4.2,
-    googleReviews: 187,
-    analyzed: true,
-    websiteScore: 65,
-    socialScore: 45,
-    seoScore: 72,
-    websiteAnalysis: {
-      overall: 65,
-      seo: 72,
-      speed: 48,
-      mobile: 71,
-      content: 69,
-      issues: [
-        "Ladezeit über 4 Sekunden auf Mobile",
-        "Keine strukturierten Daten (Schema.org) vorhanden",
-        "Bilder nicht optimiert (WebP fehlt)",
-        "Kein SSL-Zertifikat auf Unterseiten",
-        "Meta-Beschreibungen fehlen auf 60% der Seiten",
-      ],
-      opportunities: [
-        "Online-Reservierungssystem integrieren",
-        "Speisekarte als strukturierte Daten einbinden",
-        "Google Fonts lokal hosten für bessere Ladezeit",
-        "Lazy Loading für Bilder implementieren",
-      ],
-    },
-    socialAnalysis: {
-      platforms: [
-        { name: "Instagram", found: true, handle: "@loewengarten_zh", url: "https://instagram.com/loewengarten_zh" },
-        { name: "Facebook", found: true, handle: "Restaurant Löwengarten", url: "https://facebook.com/loewengarten" },
-        { name: "LinkedIn", found: false, handle: "", url: "" },
-        { name: "TikTok", found: false, handle: "", url: "" },
-      ],
-      score: 45,
-      issues: [
-        "Instagram: Nur 2-3 Posts pro Monat",
-        "Facebook: Letzer Post vor 3 Wochen",
-        "Keine einheitliche Bildsprache",
-        "Stories werden nicht genutzt",
-        "Keine Reels oder Video-Content",
-      ],
-      opportunities: [
-        "Regelmässige Instagram Stories mit Tagesmenü",
-        "Behind-the-scenes Content aus der Küche",
-        "User Generated Content fördern",
-        "Google Business Beiträge nutzen",
-      ],
-    },
-    recommendations: [
-      {
-        title: "Instagram-Strategie aufbauen",
-        description: "Regelmässiger Content-Plan mit 4-5 Posts pro Woche, tägliche Stories mit Tagesmenü und Behind-the-scenes Content",
-        impact: "hoch",
-        effort: "mittel",
-        category: "Social Media",
-      },
-      {
-        title: "Google Business optimieren",
-        description: "Profil vollständig ausfüllen, regelmässige Beiträge, auf alle Bewertungen antworten, Fotos aktualisieren",
-        impact: "hoch",
-        effort: "einfach",
-        category: "Local SEO",
-      },
-      {
-        title: "Website-Geschwindigkeit verbessern",
-        description: "Bilder komprimieren, Caching einrichten, CSS/JS minimieren. Ziel: Ladezeit unter 2 Sekunden",
-        impact: "mittel",
-        effort: "mittel",
-        category: "Website",
-      },
-      {
-        title: "SEO-Grundlagen implementieren",
-        description: "Meta-Tags optimieren, strukturierte Daten einbinden, lokale Keywords integrieren",
-        impact: "hoch",
-        effort: "mittel",
-        category: "SEO",
-      },
-      {
-        title: "Newsletter einführen",
-        description: "Monatlicher Newsletter mit Events, Spezialmenüs und Angeboten. E-Mail-Liste über Website und vor Ort aufbauen",
-        impact: "mittel",
-        effort: "einfach",
-        category: "E-Mail Marketing",
-      },
-      {
-        title: "Online-Reservierungssystem",
-        description: "Integration eines Reservierungstools auf der Website und in Google Business für direkte Buchungen",
-        impact: "hoch",
-        effort: "aufwändig",
-        category: "Website",
-      },
-    ],
-    aiSummary:
-      "Das Restaurant Löwengarten hat eine solide Basis mit guten Google-Bewertungen (4.2 Sterne, 187 Bewertungen) und einer bestehenden Online-Präsenz. Die grössten Verbesserungspotenziale liegen in der Social-Media-Strategie und der technischen Website-Optimierung. Mit gezielten Massnahmen in diesen Bereichen kann die Online-Sichtbarkeit deutlich gesteigert und neue Gäste gewonnen werden.",
-    quickWins: [
-      "Google Business Profil vollständig ausfüllen und Fotos aktualisieren",
-      "Auf alle Google-Bewertungen antworten",
-      "Instagram-Posting-Frequenz auf 4x pro Woche erhöhen",
-      "Tägliche Instagram Stories mit Tagesmenü starten",
-    ],
-    longTermStrategy:
-      "Langfristig sollte eine ganzheitliche Digital-Marketing-Strategie entwickelt werden, die Social Media, SEO und E-Mail-Marketing verbindet. Ein professionelles Online-Reservierungssystem reduziert den Aufwand und erhöht die Buchungsrate. Content-Marketing mit Rezepten, Koch-Videos und Geschichten rund um das Restaurant stärkt die Marke und bindet Gäste langfristig.",
-    strengths: [
-      "Gute Google-Bewertungen (4.2 Sterne)",
-      "Hohe Anzahl Bewertungen (187)",
-      "Website vorhanden und erreichbar",
-      "Instagram und Facebook Präsenz aufgebaut",
-      "Zentrale Lage in Zürich",
-    ],
-    weaknesses: [
-      "Website-Ladezeit zu langsam",
-      "Unregelmässige Social-Media-Aktivität",
-      "Keine Online-Reservierungsmöglichkeit",
-      "SEO nicht optimiert",
-      "Kein Newsletter oder E-Mail-Marketing",
-      "Keine Video-Inhalte",
-    ],
-    estimatedMonthlyValue: 1850,
-  },
-}
+const DEMO_LEADS = AKQUISE_DEMO_LEADS
 
 const STATUS_OPTIONS = ["Neu", "Kontaktiert", "Analysiert", "In Verhandlung", "Gewonnen", "Verloren"]
 
@@ -567,7 +392,7 @@ export default function AkquiseDetailPage({
                     Probleme
                   </h3>
                   <ul className="space-y-2">
-                    {lead.websiteAnalysis.issues.map((issue, i) => (
+                    {lead.websiteAnalysis.issues.map((issue: string, i: number) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
                         <span className="mt-1.5 w-2 h-2 rounded-full bg-red-400 shrink-0" />
                         {issue}
@@ -581,7 +406,7 @@ export default function AkquiseDetailPage({
                     Chancen
                   </h3>
                   <ul className="space-y-2">
-                    {lead.websiteAnalysis.opportunities.map((opp, i) => (
+                    {lead.websiteAnalysis.opportunities.map((opp: string, i: number) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
                         <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
                         {opp}
@@ -605,7 +430,7 @@ export default function AkquiseDetailPage({
                 <h2 className="text-lg font-semibold text-[#0F172A]">Social Media Analyse</h2>
               </div>
               <div className="space-y-3 mb-6">
-                {lead.socialAnalysis.platforms.map((platform) => (
+                {lead.socialAnalysis.platforms.map((platform: any) => (
                   <div
                     key={platform.name}
                     className="flex items-center justify-between p-3 rounded bg-gray-50"
@@ -663,7 +488,7 @@ export default function AkquiseDetailPage({
                     Probleme
                   </h3>
                   <ul className="space-y-2">
-                    {lead.socialAnalysis.issues.map((issue, i) => (
+                    {lead.socialAnalysis.issues.map((issue: string, i: number) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
                         <span className="mt-1.5 w-2 h-2 rounded-full bg-red-400 shrink-0" />
                         {issue}
@@ -677,7 +502,7 @@ export default function AkquiseDetailPage({
                     Chancen
                   </h3>
                   <ul className="space-y-2">
-                    {lead.socialAnalysis.opportunities.map((opp, i) => (
+                    {lead.socialAnalysis.opportunities.map((opp: string, i: number) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
                         <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
                         {opp}
@@ -713,7 +538,7 @@ export default function AkquiseDetailPage({
                     </tr>
                   </thead>
                   <tbody>
-                    {lead.recommendations.map((rec, i) => (
+                    {lead.recommendations.map((rec: any, i: number) => (
                       <tr key={i} className="border-b border-gray-50 hover:bg-gray-50 transition">
                         <td className="py-3 px-2 font-medium text-[#0F172A]">{rec.title}</td>
                         <td className="py-3 px-2 text-gray-500 hidden sm:table-cell max-w-xs">{rec.description}</td>
@@ -732,7 +557,7 @@ export default function AkquiseDetailPage({
                     Quick Wins
                   </h3>
                   <ul className="space-y-2">
-                    {lead.quickWins.map((win, i) => (
+                    {lead.quickWins.map((win: string, i: number) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
                         <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                         {win}
@@ -790,7 +615,7 @@ export default function AkquiseDetailPage({
                   Stärken
                 </h3>
                 <ul className="space-y-2">
-                  {lead.strengths.map((s, i) => (
+                  {lead.strengths.map((s: string, i: number) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
                       <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                       {s}
@@ -804,7 +629,7 @@ export default function AkquiseDetailPage({
                   Schwächen
                 </h3>
                 <ul className="space-y-2">
-                  {lead.weaknesses.map((w, i) => (
+                  {lead.weaknesses.map((w: string, i: number) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
                       <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
                       {w}
